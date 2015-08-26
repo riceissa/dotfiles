@@ -28,4 +28,19 @@ filetype plugin indent on    " required
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" YouCompleteMe
+" -------------
+let g:ycm_filetype_blacklist = {
+    \ 'unite' : 1,
+    \ 'markdown' : 1,
+    \ 'text': 1,
+    \ 'notes' : 1,
+    \ 'pdc' : 1,
+    \ 'pandoc' : 1,
+    \ 'mail' : 1,
+    \}
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
