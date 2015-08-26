@@ -20,3 +20,5 @@ echo 'source ~/.bashrc' >> ~/.bash_profile
 mkdir -p ~/.moc/themes
 ln -s "$(pwd)/.moc/config" ~/.moc/config
 ln -s "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
+# for UltiSnips
+pip install --user neovim
