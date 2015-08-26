@@ -195,7 +195,7 @@ FormatString = "%(n:%n :)%(t:%t - :)%(A:%A - :)%(a:%a:)"
 #
 # Example:    Theme = laras_theme
 #
-Theme = ~/.moc/my_theme
+Theme = my_theme
 
 # The theme used when running on an xterm.
 #
