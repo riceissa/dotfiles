@@ -12,161 +12,162 @@
 from subprocess import call
 
 def main():
-    # Update sources and upgrade system:
-    #call("sudo aptitude update && sudo aptitude upgrade", shell=True)
+    # Update sources and upgrade system
+    call("sudo {apt_prog} update && sudo {apt_prog} upgrade".format(
+        apt_prog=APT_PROG), shell=True)
 
-    # Install programs:
-    #call("sudo aptitude install {programs}".format(programs=' '.join(programs)), shell=True)
+    # Install programs
+    call("sudo {apt_prog} install {programs}".format(apt_prog=APT_PROG, programs=' '.join(PROGRAMS)), shell=True)
 
-
-    # Some commands for Bash:
-    call('''echo "PS1='[\u:\W]> '" >> ~/.bashrc''', shell=True)
-    call('''echo "alias {upgrade,update}='sudo aptitude update && sudo aptitude -y upgrade'" >> ~/.bashrc''', shell=True)
-    #call('''echo "alias ls='ls --color'" > ~/.bashrc''', shell=True)
+# "apt-get" or "aptitude"
+APT_PROG = "apt-get"
 
 # List of programs to install.
-programs = [
-# "Essential" utilities:
-"vim",
-"vim-gtk", # for gundo, which requires python
-"python3",
-"python-pip",
-"python-dev", # for website
-"htop",
-"pandoc",
-"elinks",
-"git",
-#"mercurial",
+PROGRAMS = [
+    # "Essential" utilities:
+    "vim",
+    "vim-gtk", # for gundo, which requires python
+    "python3",
+    "python-pip",
+    "python-dev", # for website
+    "htop",
+    "pandoc",
+    "elinks",
+    "git",
+    #"mercurial",
 
-#"lynx-cur",
+    #"lynx-cur",
 
-"python-gpgme", # for Dropbox
-"ruby-sass", # for website
+    "python-gpgme", # for Dropbox
+    "ruby-sass", # for website
 
-# More advanced utilities:
-"surfraw",
-"par",
-"detox",
-"xclip",
-"wodim",
-"gparted",
-"sponge",
+    # More advanced utilities:
+    "surfraw",
+    "par",
+    "detox",
+    "xclip",
+    "wodim",
+    "gparted",
+    "moreutils", # contains sponge
 
-# Tmux and screen ... and byobu
-"tmux",
-#"screen",
-#"byobu",
+    # Tmux and screen ... and byobu
+    "tmux",
+    #"screen",
+    #"byobu",
 
-# Programming-related:
-"build-essential",
-"exuberant-ctags",
-"flex",
-"bison",
-"gcc",
-"cmake",
-r"g\+\+",
-"ruby",
-"openjdk-7-jre",
-"openjdk-7-jdk",
+    # Programming-related:
+    "build-essential",
+    "exuberant-ctags",
+    "flex",
+    "bison",
+    "gcc",
+    "cmake",
+    r"g\+\+",
+    "ruby",
+    "openjdk-7-jre",
+    "openjdk-7-jdk",
 
-# For Haskell, it's a good idea to get GHC, Haddock, and zlib, but
-# getting the entire Haskell platform is not a good idea since the one
-# in Debian is outdated.  Instead, use the notes provided here:
-# http://riceissa.com/installing-haskell to get an up-to-date version of
-# the Haskell platform.
-"ghc",
-"ghc-haddock",
-"libghc-zlib-dev",
+    # For Haskell, it's a good idea to get GHC, Haddock, and zlib, but
+    # getting the entire Haskell platform is not a good idea since the
+    # one in Debian is outdated. Instead, use the notes provided here:
+    # http://riceissa.com/installing-haskell to get an up-to-date
+    # version of the Haskell platform.
+    "ghc",
+    "ghc-haddock",
+    "libghc-zlib-dev",
 
-# Music On Console is a lightweight and easy-to-use commandline audio
-# player.
-#"moc", # Run using 'mocp'.
-#"moc-ffmpeg-plugin", # Extra plugins.
+    # Music On Console is a lightweight and easy-to-use commandline
+    # audio player.
+    #"moc", # Run using 'mocp'.
+    #"moc-ffmpeg-plugin", # Extra plugins.
 
-# Support for Japanese:
-#"ibus-anthy",
-#"fonts-ipafont",
-# On the command line, type 'ibus-setup' to bring up the IBus
-# preferences.  Under "Input Method" > "Select an input method" >
-# "Japanese", find "Anthy" and click.  Click "Add" to add it to the list
-# of input methods.  You can now close the window.  You must logout once
-# in order to enable Japanese input.  To switch to Japanese input, hit
-# <Ctrl>-<Space> while in a text-field.
+    # Support for Japanese
+    # --------------------
+    # On the command line, type 'ibus-setup' to bring up the IBus
+    # preferences. Under "Input Method" > "Select an input method" >
+    # "Japanese", find "Anthy" and click. Click "Add" to add it to the
+    # list of input methods. You can now close the window. You must
+    # logout once in order to enable Japanese input. To switch to
+    # Japanese input, hit <Ctrl>-<Space> while in a text-field. For
+    # Japanese on the commandline, see
+    # http://issarice.com/japanese-input-on-the-command-line-framebuffer
 
-# For Japanese on the commandline, see http://riceissa.com/japanese-input-on-the-command-line-framebuffer
+    #"ibus-anthy",
+    #"fonts-ipafont",
 
-# LaTeX (warning: large download):
-#"texlive-full",
+    # LaTeX (warning: large download)
+    #"texlive-full",
 
-"gdebi",
+    "gdebi",
 
-# For the Acer laptop; Wi-Fi driver and bluetooth diabler.
-# Make sure to enable 'non-free' and 'contrib' for the driver.
-#"firmware-iwlwifi",
-#"rfkill",
+    # For the Acer laptop; Wi-Fi driver and bluetooth diabler. Make sure
+    # to enable 'non-free' and 'contrib' for the driver.
+    #"firmware-iwlwifi",
+    #"rfkill",
 
-# For the PowerBook Mac
-#"firmware-b43-installer",
+    # For the PowerBook Mac
+    #"firmware-b43-installer",
 
-# Some media-related tools:
-#"cdparanoia",
-#"flac",
-#"vlc",
-#"vorbis-tools",
+    # Some media-related tools
+    #"cdparanoia",
+    #"flac",
+    #"vlc",
+    #"vorbis-tools",
 
-#"bsdgames",
+    #"bsdgames",
 
-# note you might have to install the oxygen theme for this to work
-"okular", # essentially the best PDF viewer, even if it drags in all the KDE dependencies...
+    # note you might have to install the oxygen theme for this to work
+    "okular", # essentially the best PDF viewer, even if it drags in all
+              # the KDE dependencies...
 
 
-# Openbox
-#"xorg",
-#"openbox",
-#"obconf",
-#"obmenu",
-#"rxvt-unicode",
-#"iceweasel",
-#"gtkchtheme",
-#"emelfm2",
-#"leafpad",
-#"mirage",
-#"epdfview",
+    # Openbox
+    #"xorg",
+    #"openbox",
+    #"obconf",
+    #"obmenu",
+    #"rxvt-unicode",
+    #"iceweasel",
+    #"gtkchtheme",
+    #"emelfm2",
+    #"leafpad",
+    #"mirage",
+    #"epdfview",
 
-#"gnupg",
-#"virtualbox-ose",
-#"wine",
+    #"gnupg",
+    #"virtualbox-ose",
+    #"wine",
 
-# These are packages (or in some cases non-packages) that still have not
-# been sorted.
-#"hexer",
-#"mc",
-#"flashplugin-nonfree",
-#"alsaequal",
-#"antiword",
-#"aspell",
-#"detox",
-#"dict",
-#"fbgrab",
-#"fim",
-#"mplayer",
-#"o3read",
-#"odt2txt",
-#"renameutils",
-#"rtorrent",
-#"recorder",
-#"eatdoc",
-#"catppt",
-#"espeak",
-#"vlock",
-#"dtrx",
-#"cmatrix",
-#"openssl",
-#"docx2txt",
+    # These are packages (or in some cases non-packages) that still have
+    # not been sorted.
+    #"hexer",
+    #"mc",
+    #"flashplugin-nonfree",
+    #"alsaequal",
+    #"antiword",
+    #"aspell",
+    #"detox",
+    #"dict",
+    #"fbgrab",
+    #"fim",
+    #"mplayer",
+    #"o3read",
+    #"odt2txt",
+    #"renameutils",
+    #"rtorrent",
+    #"recorder",
+    #"eatdoc",
+    #"catppt",
+    #"espeak",
+    #"vlock",
+    #"dtrx",
+    #"cmatrix",
+    #"openssl",
+    #"docx2txt",
 
-# gitosis, gitolite?
-# openssl-server?
-# get scheme! keepass(X)
+    # gitosis, gitolite?
+    # openssl-server?
+    # get scheme! keepass(X)
 ]
 
 if __name__ == "__main__":
