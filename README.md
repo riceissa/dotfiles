@@ -10,17 +10,13 @@ configuration repositories like my old [Vim][vim-repo] and
 
 All paths are relative to `~/`.
 
-## todo
+## To-do
 
 - add mutt
 - irssi
 - bitlbee
 - git config
 - ensure vim/neovim/gvim all work nicely everywhere
-    - basically I don't really want to rely on too many plugins; they are a hassle to manage and also aren't practical to install on remote machines (whereas copying a single .vimrc is often possible)
-    - also submodules make the main git repo *slow* (and also I don't really understand them very well) so it's best to just use a shell script to pull them in without entangling them with the main vim/dotfiles repo
-    - YouCompleteMe
-    - ultisnips (mostly useful for writing LaTeX documents, since I can never remember the syntax for e.g. tables)
 - elinks
 - w3m
 - terminator/gnome terminal configs (esp. getting solarized to work)
