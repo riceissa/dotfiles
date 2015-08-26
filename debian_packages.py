@@ -24,7 +24,7 @@ APT_PROG = "apt-get"
 PROGRAMS = [
     # "Essential" utilities
     "vim",
-    "vim-gtk", # for gundo, which requires python
+    #"vim-gtk", # for gundo, which requires python
     "python3",
     "python-pip",
     "python-dev", # for website and YouCompleteMe
@@ -32,7 +32,6 @@ PROGRAMS = [
     "pandoc",
     "elinks",
     "git",
-    #"mercurial",
 
     #"lynx-cur",
 
@@ -44,7 +43,7 @@ PROGRAMS = [
     "par",
     "detox",
     "xclip",
-    "wodim",
+    #"wodim",
     "gparted",
     "moreutils", # contains sponge
     "tree",
@@ -78,8 +77,8 @@ PROGRAMS = [
 
     # Music On Console is a lightweight and easy-to-use commandline
     # audio player.
-    #"moc", # Run using 'mocp'.
-    #"moc-ffmpeg-plugin", # Extra plugins.
+    #"moc",                 # Run using 'mocp'.
+    #"moc-ffmpeg-plugin",   # Extra plugins.
 
     # Support for Japanese
     # --------------------
@@ -117,7 +116,7 @@ PROGRAMS = [
     #"bsdgames",
 
     # note you might have to install the oxygen theme for this to work
-    "okular", # essentially the best PDF viewer, even if it drags in all
+    #"okular", # essentially the best PDF viewer, even if it drags in all
               # the KDE dependencies...
 
     # LXDE
@@ -141,6 +140,7 @@ PROGRAMS = [
     #"leafpad",
     #"mirage",
     #"epdfview",
+    #"mupdf",
 
     #"gnupg",
     #"virtualbox-ose",
@@ -148,6 +148,7 @@ PROGRAMS = [
 
     # These are packages (or in some cases non-packages) that still have
     # not been sorted.
+    #"mercurial",
     #"hexer",
     #"mc",
     #"flashplugin-nonfree",
