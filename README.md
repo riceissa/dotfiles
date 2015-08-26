@@ -24,6 +24,8 @@ All paths are relative to `~/`.
 - elinks
 - w3m
 - terminator/gnome terminal configs (esp. getting solarized to work)
+    - on gnome terminal I just set the background color to `#FDF6E3` and the text color to `#586E75`; I use the Tango colors (they work well enough with the solarized base) and Source Code Pro size 10
+    - newer versions of terminator have solarized built in; however, the colors don't work very well with vim (not sure why) so I stick to solarized base and Tango colors (just like in gnome terminal)
 - bash aliases, etc. bash config
 - set up python to work (e.g. getting pip to work...)
 
