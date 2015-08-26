@@ -48,6 +48,7 @@ PROGRAMS = [
     "gparted",
     "moreutils", # contains sponge
     "tree",
+    "lm-sensors", # check temperature
 
     # Tmux and screen ... and byobu
     "tmux",
