@@ -59,6 +59,7 @@ programs = [
 
 # Programming-related:
 "build-essential",
+"exuberant-ctags",
 "flex",
 "bison",
 "gcc",
