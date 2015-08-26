@@ -226,7 +226,7 @@ augroup paste
     au InsertLeave * set nopaste
 augroup END
 
-" {X,HT}ML options
+" {HT,X}ML options
 " ----------------
 augroup filetype_html
     autocmd!
