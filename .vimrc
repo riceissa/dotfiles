@@ -32,6 +32,10 @@
 " https://github.com/riceissa/neovim
 
 set nocompatible
+" Secure Vim by disabling modelines; see
+" http://usevim.com/2012/03/28/modelines/ and
+" http://www.techrepublic.com/blog/it-security/turn-off-modeline-support-in-vim/
+" for more information
 set nomodeline
 set modelines=0
 syntax enable
@@ -239,6 +243,13 @@ augroup filetype_markdown
     autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd filetype markdown setlocal linebreak nolist
+augroup END
+
+" Makefile options
+" ----------------
+augroup filetype_makefile
+    autocmd!
+    autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
 augroup END
 
 " Custom digraphs
