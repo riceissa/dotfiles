@@ -1,13 +1,10 @@
 #!/usr/bin/python
 
-# This script installs some common tools used on a Debian GNU/Linux
-# system. Comment or uncomment to select the programs that you want to
-# install. Since this script needs Python to run, it might be necessary
-# to do (assuming you have sudo) `sudo aptitude install python` or `sudo
-# apt-get install python` first. In addition, this program uses aptitude
-# to install software instead of apt-get, so if you only have apt-get,
-# either change all instances of "aptitude" to "apt-get" or else do
-# `sudo apt-get install aptitude`.
+# This script installs some common tools used on a Debian-type systems.
+# Comment or uncomment to select the programs that you want to install.
+# Since this script needs Python to run, it might be necessary to do
+# (assuming you have sudo) `sudo aptitude install python` or `sudo
+# apt-get install python` first.
 
 from subprocess import call
 
@@ -17,19 +14,20 @@ def main():
         apt_prog=APT_PROG), shell=True)
 
     # Install programs
-    call("sudo {apt_prog} install {programs}".format(apt_prog=APT_PROG, programs=' '.join(PROGRAMS)), shell=True)
+    call("sudo {apt_prog} install {programs}".format(
+        apt_prog=APT_PROG, programs=' '.join(PROGRAMS)), shell=True)
 
 # "apt-get" or "aptitude"
 APT_PROG = "apt-get"
 
-# List of programs to install.
+# List of programs to install
 PROGRAMS = [
-    # "Essential" utilities:
+    # "Essential" utilities
     "vim",
     "vim-gtk", # for gundo, which requires python
     "python3",
     "python-pip",
-    "python-dev", # for website
+    "python-dev", # for website and YouCompleteMe
     "htop",
     "pandoc",
     "elinks",
@@ -41,7 +39,7 @@ PROGRAMS = [
     "python-gpgme", # for Dropbox
     "ruby-sass", # for website
 
-    # More advanced utilities:
+    # More advanced utilities
     "surfraw",
     "par",
     "detox",
@@ -49,13 +47,14 @@ PROGRAMS = [
     "wodim",
     "gparted",
     "moreutils", # contains sponge
+    "tree",
 
     # Tmux and screen ... and byobu
     "tmux",
     #"screen",
     #"byobu",
 
-    # Programming-related:
+    # Programming-related
     "build-essential",
     "exuberant-ctags",
     "flex",
