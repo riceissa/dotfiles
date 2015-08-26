@@ -120,6 +120,14 @@ PROGRAMS = [
     "okular", # essentially the best PDF viewer, even if it drags in all
               # the KDE dependencies...
 
+    # LXDE
+    # Using only "lxde-core" might be too minimal; I couldn't get the
+    # login screen to show up (couldn't get X to start up...) with just
+    # "lxde-core". I probably could have done it this way though, so
+    # that I would have an even more minimal setup.
+
+    #"lxde-core",
+    #"lxde",    # This package has more
 
     # Openbox
     #"xorg",
