@@ -32,6 +32,10 @@
 " https://github.com/riceissa/neovim
 
 set nocompatible
+if filereadable(expand("~/.vim/plugins.vim"))
+    " This includes 'set nocompatible' again
+    source ~/.vim/plugins.vim
+endif
 " Secure Vim by disabling modelines; see
 " http://usevim.com/2012/03/28/modelines/ and
 " http://www.techrepublic.com/blog/it-security/turn-off-modeline-support-in-vim/
@@ -210,14 +214,8 @@ command! CD :lcd %:p:h
 silent !stty -ixon > /dev/null 2>/dev/null
 " Get mswin_extract.vim at
 " https://github.com/riceissa/neovim/blob/master/mswin_extract.vim
-if has('nvim')
-    if filereadable(expand("~/.nvim/mswin_extract.vim"))
-        source ~/.nvim/mswin_extract.vim
-    endif
-else
-    if filereadable(expand("~/.vim/mswin_extract.vim"))
-        source ~/.vim/mswin_extract.vim
-    endif
+if filereadable(expand("~/.vim/mswin_extract.vim"))
+    source ~/.vim/mswin_extract.vim
 endif
 
 " Leave paste mode after escaping
