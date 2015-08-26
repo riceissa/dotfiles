@@ -235,6 +235,14 @@ augroup filetype_html
     autocmd filetype xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 augroup END
 
+" LaTeX options
+" -------------
+let g:tex_flavor='latex'
+augroup filetype_tex
+    " Make visually selected region be mathematically typeset
+    autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
+augroup END
+
 " Markdown options
 " ----------------
 augroup filetype_markdown
