@@ -1,4 +1,4 @@
-# Issa Rice's dotfiles
+# Issa Rice’s dotfiles
 
 This repository stores configuration files for some common command-line
 programs. This repository supersedes previous program-specific
