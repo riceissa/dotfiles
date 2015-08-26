@@ -1,5 +1,8 @@
-# This MOC color theme is derived from the example theme, which on Debian is
-# available at /usr/share/moc/themes/example_theme
+# This MOC color theme is derived from the example theme and a monochrome theme;
+# the example theme on Debian is available at
+# /usr/share/moc/themes/example_theme and the monochrome theme is available at
+# http://v1.corenominal.org/howto-setup-moc-music-on-console/
+
 # The format of this file is:
 # Lines beginning with # are comments.
 # Blank lines are ignored.
