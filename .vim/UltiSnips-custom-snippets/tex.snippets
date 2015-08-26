@@ -1,0 +1,410 @@
+# Custom snippets; imported from my Snipmate
+
+# Date options
+snippet texdate
+\formatdate{${1:dd}}{${2:mm}}{${3:yyyy}}${4}
+endsnippet
+
+snippet textoday
+\formatdate{`!v strftime("%d")`}{`!v strftime("%m")`}{`!v strftime("%Y")`}${1}
+endsnippet
+
+snippet texdatetime
+\formatdate{`!v strftime("%d")`}{`!v strftime("%m")`}{`!v strftime("%Y")`} at \formattime{`!v strftime("%H")`}{`!v strftime("%M")`}{`!v strftime("%S")`}~(`!v strftime("%Z")`)${1}
+endsnippet
+
+snippet href "hyperref linking; href"
+\href{${1:url}}{${2:text}}
+endsnippet
+
+snippet ce "Chemical equations"
+\ce{${1}}${2}
+endsnippet
+
+snippet sec "Section" b
+\section{${1}}
+%\label{${2}}
+${3}
+endsnippet
+
+snippet sub "Subsection" b
+\subsection{${1}}
+%label{${2}}
+${3}
+endsnippet
+
+snippet subs "Subsubsection" b
+\subsubsection{${1}}
+%\label{${2}}
+${3}
+endsnippet
+
+snippet em "Emphasis"
+\emph{${1}}${2}
+endsnippet
+
+snippet sh "School header" b
+\schoolheader{${1:title}}{${2:name}}{${3:teacher}, ${4:period}}{`!v strftime("%-d %B %Y")`}
+
+${5}
+endsnippet
+
+snippet quote
+\begin{quote}
+${1}
+\end{quote}
+endsnippet
+
+snippet quotation
+\begin{quotation}
+${1}
+\end{quotation}
+endsnippet
+
+snippet verse
+\begin{verse}
+${1}
+\end{verse}
+endsnippet
+
+snippet bf
+\textbf{${1}}${2}
+endsnippet
+
+snippet it "Italics"
+\textit{${1}}${2}
+endsnippet
+
+snippet ul "Underline"
+\ul{${1}}${2}
+endsnippet
+
+snippet sl "Slant"
+\textsl{${1}}${2}
+endsnippet
+
+snippet sc "Small caps"
+\textsc{${1}}${2}
+endsnippet
+
+snippet ... "Ellipses"
+\ldots
+endsnippet
+
+snippet co "In-line code using the listings package"
+\lstinline!${1}!${2}
+endsnippet
+
+snippet col "Block code using listings" b
+\begin{lstlisting}[language=${1}]
+${2}
+\end{lstlisting}
+endsnippet
+
+snippet cof "listings external file"
+\lstinputlisting[language=${1}]{${2:filename.ext}}
+endsnippet
+
+# References
+snippet ref
+\ref{${1}}${2}
+endsnippet
+
+snippet label
+\label{${1}}${2}
+endsnippet
+
+snippet cref
+\cref{${1}}${2}
+endsnippet
+
+snippet Cref
+\Cref{${1}}${2}
+endsnippet
+
+snippet table "Table and tabular combined"
+\begin{table}[H]
+\centering
+\caption{${1}}
+\begin{tabular}{|${2}|}
+${3}
+\end{tabular}
+\end{table}
+endsnippet
+
+snippet hl
+\hline
+endsnippet
+
+snippet SI
+\SI{${1}}{${2}}${3}
+endsnippet
+
+snippet si
+\si{${1}}${2}
+endsnippet
+
+snippet num
+\num{${1}}${2}
+endsnippet
+
+snippet bi
+\bibitem{${1:label}}${2}
+endsnippet
+
+snippet figure
+\begin{figure}[H]
+\caption{${1}}
+${2}
+\end{figure}
+endsnippet
+
+snippet enum "Enumerate"
+\begin{enumerate}
+\item ${1}
+\end{enumerate}
+endsnippet
+
+snippet item "Itemize"
+\begin{itemize}
+\item ${1}
+\end{itemize}
+endsnippet
+
+snippet i "list item"
+\item ${1}
+endsnippet
+
+snippet desc "Description"
+\begin{description}
+\item[${1}] ${2}
+\end{description}
+endsnippet
+
+snippet itd
+\item[${1:description}] ${2:item}
+endsnippet
+
+# Split
+snippet spl
+\begin{split}
+${1}
+\end{split}
+endsnippet
+
+# Chapter
+snippet cha
+\chapter{${1}}
+%\label{cha:${2}}
+${3}
+endsnippet
+
+snippet listing
+${1:Listing}~\ref{${2:list}}${3}
+endsnippet
+
+snippet section
+${1:Section}~\ref{${2:sec:}}${3}
+endsnippet
+
+snippet page
+${1:page}~\pageref{${2}}${3}
+endsnippet
+
+# Transitions
+
+snippet ts
+\threestars
+endsnippet
+
+snippet shift
+\shift
+endsnippet
+
+## For dialogue
+
+snippet dia
+\dialogue{${1}}${2}
+endsnippet
+
+snippet sp
+\speaks{${1}}{${2}}${3}
+endsnippet
+
+snippet heading
+\heading{${1}}{\formatdate{`!v strftime("%d")`}{`!v strftime("%m")`}{`!v strftime("%Y")`}}
+
+${2}
+endsnippet
+
+snippet header
+\heading{${1}}{\formatdate{`!v strftime("%d")`}{`!v strftime("%m")`}{`!v strftime("%Y")`}}
+
+${2}
+endsnippet
+
+# For math
+
+snippet |
+\abs{${1}}${2}
+endsnippet
+
+snippet abs
+\abs{${1}}${2}
+endsnippet
+
+snippet ma "In-line maths"
+\(${1}\)${2}
+endsnippet
+
+snippet mad "in-line math, display-style"
+\(\displaystyle ${1}\)${2}
+endsnippet
+
+snippet mal "display maths" b
+\[
+${1}
+\]
+endsnippet
+
+snippet mbf
+\mathbf{${1}}${2}
+endsnippet
+
+snippet msf
+\mathsf{${1}}${2}
+endsnippet
+
+snippet mrm
+\mathrm{${1}}${2}
+endsnippet
+
+snippet text
+\text{${1}}${2}
+endsnippet
+
+snippet d "Definiendum"
+\definiendum{${1}}${2}
+endsnippet
+
+# Align(ed)
+snippet ali
+\begin{align${1:ed}}
+${2}
+\end{align$1}
+endsnippet
+
+# align*
+snippet align
+\begin{align*}
+${1}
+\end{align*}
+endsnippet
+
+snippet eq "Equation"
+\begin{equation}
+${1}
+\end{equation}
+endsnippet
+
+snippet mat "Matrix"
+\begin{${1:p/b/v/V/B/small}matrix}
+${2}
+\end{$1matrix}
+endsnippet
+
+snippet cas "Cases"
+\begin{cases}
+${1:equation}, &\text{ if }${2:case}\\
+${3}
+\end{cases}
+endsnippet
+
+# Environments for AMSMath
+
+snippet ax "Axiom" b
+\begin{axiom}
+%\label{${1}}
+${2}
+\end{axiom}
+endsnippet
+
+snippet cor "Corollary" b
+\begin{corollary}
+%\label{${1}}
+${2}
+\end{corollary}
+endsnippet
+
+snippet defn "Definition" b
+\begin{definition}
+%\label{${1}}
+${2}
+\end{definition}
+endsnippet
+
+snippet di "Discussion" b
+\begin{discussion}
+%\label{${1}}
+${2}
+\end{discussion}
+endsnippet
+
+snippet ex "Example" b
+\begin{example}
+%\label{${1}}
+${2}
+\end{example}
+endsnippet
+
+snippet exer "Exercise" b
+\begin{exercise}[${1}]
+%\label{${2}}
+${3}
+\end{exercise}
+endsnippet
+
+snippet lem "Lemma" b
+\begin{lemma}
+%\label{${1}}
+${2}
+\end{lemma}
+endsnippet
+
+snippet note "Note" b
+\begin{note}
+%\label{${1}}
+${2}
+\end{note}
+endsnippet
+
+snippet prop "Proposition" b
+\begin{proposition}
+%\label{${1}}
+${2}
+\end{proposition}
+endsnippet
+
+snippet remark "Remark" b
+\begin{remark}
+%\label{${1}}
+${2}
+\end{remark}
+endsnippet
+
+snippet thm "Theorem" b
+\begin{theorem}
+%\label{${1}}
+${2}
+\end{theorem}
+endsnippet
+
+snippet proof "Proof" b
+\begin{proof}
+${1}
+\end{proof}
+endsnippet
+
+snippet hwsec "Homework section" b
+\hwsec{${1}}${2}
+endsnippet

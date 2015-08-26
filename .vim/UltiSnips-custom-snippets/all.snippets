@@ -1,0 +1,49 @@
+# Custom snippets; from Snipmate
+
+snippet date "ISO standard date"
+`!v strftime("%Y-%m-%d")`
+endsnippet
+
+snippet usdate "US style date"
+`!v strftime("%B %-d, %Y")`
+endsnippet
+
+snippet paperdate
+`!v strftime("%-d %B %Y")`
+endsnippet
+
+snippet time "24-hour time with time zone"
+`!v strftime("%T (%Z)")`
+endsnippet
+
+snippet datetime
+`!v strftime("%Y-%m-%d @ %T (%Z)")`
+endsnippet
+
+snippet "
+“${1}”${2}
+endsnippet
+
+snippet '
+‘${1}’${2}
+endsnippet
+
+snippet <
+⟨${1}⟩${2}
+endsnippet
+
+snippet <<
+«${1}»${2}
+endsnippet
+
+snippet -- "EN-dash"
+–
+endsnippet
+
+snippet --- "EM-dash"
+—
+endsnippet
+
+snippet qma "math for Quora"
+[math]${1}[/math]${2}
+endsnippet
