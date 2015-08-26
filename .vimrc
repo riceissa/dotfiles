@@ -29,7 +29,7 @@
 " very good, there is sensible.vim: https://github.com/tpope/vim-sensible
 
 " Get the latest version at
-" https://github.com/riceissa/neovim
+" https://raw.githubusercontent.com/riceissa/dotfiles/master/.vimrc
 
 set nocompatible
 if filereadable(expand("~/.vim/plugins.vim"))
