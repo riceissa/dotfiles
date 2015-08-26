@@ -26,7 +26,6 @@ All paths are relative to `~/`.
 - terminator/gnome terminal configs (esp. getting solarized to work)
 - bash aliases, etc. bash config
 - set up python to work (e.g. getting pip to work...)
-- add ctags to `debian_software.py`
 
 vim todo:
 
