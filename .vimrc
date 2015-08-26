@@ -127,15 +127,6 @@ nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>f :tabe `pwd`<CR>
 nnoremap <leader>b :Tex<CR>
-function! SplitTerminal()
-    :lcd %:p:h
-    if has('nvim')
-        :sp | term
-    else
-        :shell
-    endif
-endfunction
-nnoremap <leader>c :call SplitTerminal()<CR>
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-w> <C-G>u<C-w>
 
