@@ -82,6 +82,7 @@ set tags=./tags;,tags
 set title
 set ttyfast
 set viminfo+=!
+set wildignore+=*.swp,*.pyc
 set wildmenu
 set wildmode=list:longest,full
 set wrap
@@ -201,7 +202,8 @@ function! PasteLink()
     let command = 'autolink.py "' . link . '"'
     return system(command)
 endfunction
-inoremap <C-l> <C-r>=PasteLink()<CR>
+" Break up the undo first in case the output is messed up
+inoremap <C-l> <C-G>u<C-r>=PasteLink()<CR>
 
 " Paste HTML as Pandoc markdown; remember as 'markdown paste'
 nnoremap <leader>mp :r !xclip -sel clip -t text/html -o \| pandoc -f html -t markdown<CR>
@@ -247,6 +249,7 @@ augroup END
 " ----------------
 augroup filetype_makefile
     autocmd!
+    " Makefiles only work with actual tabs
     autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
 augroup END
 
