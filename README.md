@@ -12,6 +12,9 @@ All paths are relative to `~/`.
 
 ## To-do
 
+- clarify license for each file (they're all *free* but I often work off
+  the example provided by the software, and each software has a
+  different license)
 - add mutt
 - irssi
 - bitlbee
