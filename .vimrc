@@ -243,6 +243,14 @@ augroup filetype_tex
     autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
 augroup END
 
+" Makefile options
+" ----------------
+augroup filetype_makefile
+    autocmd!
+    " Makefiles only work with actual tabs
+    autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
+augroup END
+
 " Markdown options
 " ----------------
 augroup filetype_markdown
@@ -251,14 +259,6 @@ augroup filetype_markdown
     autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd filetype markdown setlocal linebreak nolist
-augroup END
-
-" Makefile options
-" ----------------
-augroup filetype_makefile
-    autocmd!
-    " Makefiles only work with actual tabs
-    autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
 augroup END
 
 " Custom digraphs
