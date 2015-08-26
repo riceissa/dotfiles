@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+git clone git://github.com/riceissa/dotfiles.git
+# The following might work better if I don't have SSH configured
+#git clone git@github.com:riceissa/dotfiles.git
+cd dotfiles
+
 # Install software
 python debian_packages.py
 
@@ -10,11 +15,6 @@ ln -s "$(pwd)/.bashrc" ~/.bashrc
 
 # Vim and Neovim
 # --------------
-git clone git://github.com/riceissa/dotfiles.git
-# The following might work better if I don't have SSH configured
-#git clone git@github.com:riceissa/dotfiles.git
-cd dotfiles
-
 # Get Vundle to manage Vim plugins
 mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
