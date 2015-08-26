@@ -24,7 +24,7 @@ filetype plugin indent on    " required
 
 " UltiSnips
 " ---------
-let g:UltiSnipsSnippetDirectories=["UltiSnips-custom-snippets"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
 let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsJumpForwardTrigger="<C-j>"
 let g:UltiSnipsJumpBackwardTrigger="<C-h>"
