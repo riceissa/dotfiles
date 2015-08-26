@@ -1,15 +1,28 @@
 #!/usr/bin/python
 
 # This script installs some common tools used on a Debian GNU/Linux
-# system.  Comment or uncomment to select the programs that you want to
-# install.  Since this script needs Python to run, it might be necessary
+# system. Comment or uncomment to select the programs that you want to
+# install. Since this script needs Python to run, it might be necessary
 # to do (assuming you have sudo) `sudo aptitude install python` or `sudo
-# apt-get install python` first.  In addition, this program uses
-# aptitude to install software instead of apt-get, so if you only have
-# apt-get, either change all instances of "aptitude" to "apt-get" or
-# else do `sudo apt-get install aptitude`.
+# apt-get install python` first. In addition, this program uses aptitude
+# to install software instead of apt-get, so if you only have apt-get,
+# either change all instances of "aptitude" to "apt-get" or else do
+# `sudo apt-get install aptitude`.
 
 from subprocess import call
+
+def main():
+    # Update sources and upgrade system:
+    #call("sudo aptitude update && sudo aptitude upgrade", shell=True)
+
+    # Install programs:
+    #call("sudo aptitude install {programs}".format(programs=' '.join(programs)), shell=True)
+
+
+    # Some commands for Bash:
+    call('''echo "PS1='[\u:\W]> '" >> ~/.bashrc''', shell=True)
+    call('''echo "alias {upgrade,update}='sudo aptitude update && sudo aptitude -y upgrade'" >> ~/.bashrc''', shell=True)
+    #call('''echo "alias ls='ls --color'" > ~/.bashrc''', shell=True)
 
 # List of programs to install.
 programs = [
@@ -37,6 +50,7 @@ programs = [
 "xclip",
 "wodim",
 "gparted",
+"sponge",
 
 # Tmux and screen ... and byobu
 "tmux",
@@ -154,14 +168,5 @@ r"g\+\+",
 # get scheme! keepass(X)
 ]
 
-# Update sources and upgrade system:
-#call("sudo aptitude update && sudo aptitude upgrade", shell=True)
-
-# Install programs:
-#call("sudo aptitude install {programs}".format(programs=' '.join(programs)), shell=True)
-
-
-# Some commands for Bash:
-call('''echo "PS1='[\u:\W]> '" >> ~/.bashrc''', shell=True)
-call('''echo "alias {upgrade,update}='sudo aptitude update && sudo aptitude -y upgrade'" >> ~/.bashrc''', shell=True)
-#call('''echo "alias ls='ls --color'" > ~/.bashrc''', shell=True)
+if __name__ == "__main__":
+    main()
