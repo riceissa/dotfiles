@@ -8,6 +8,8 @@ configuration repositories like my old [Vim][vim-repo] and
 [vim-repo]: https://github.com/riceissa/vim
 [neovim-repo]: https://github.com/riceissa/neovim
 
+All paths are relative to `~/`.
+
 ## todo
 
 - add mutt
