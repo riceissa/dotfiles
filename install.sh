@@ -12,8 +12,8 @@ ln -s "$(pwd)/.vimrc" ~/.vimrc
 ln -s "$(pwd)/.gvimrc" ~/.gvimrc
 ln -s ~/.vimrc ~/.nvimrc
 ln -s ~/.vim ~/.nvim
-ln -s "$(pwd)/plugins.vim" ~/.vim/plugins.vim
-ln -s "$(pwd)/mswin_extract.vim" ~/.vim/mswin_extract.vim
+ln -s "$(pwd)/.vim/plugins.vim" ~/.vim/plugins.vim
+ln -s "$(pwd)/.vim/mswin_extract.vim" ~/.vim/mswin_extract.vim
 ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
 # For tmux
 echo 'source ~/.bashrc' >> ~/.bash_profile
