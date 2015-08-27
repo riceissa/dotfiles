@@ -1,5 +1,9 @@
 " Use Vundle to manage Vim plugins; see
 " https://github.com/VundleVim/Vundle.vim for more
+"
+" Once all Vim config files are in the right places, just do :PluginInstall in
+" Vim to install the plugins. The exception is YouCompleteMe, which probably
+" needs to be compiled; see below for more.
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -15,6 +19,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'altercation/vim-colors-solarized'
+
+" YouCompleteMe
+" -------------
+" This plugin doesn't seem to work with just :PluginInstall, so compile it as
+" follows after calling :PluginInstall in Vim (this step is still necessary
+" since we have to clone the YouCompleteMe repository)
+"       cd ~/.vim/bundle/YouCompleteMe
+"       ./install.py --clang-completer
 Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
