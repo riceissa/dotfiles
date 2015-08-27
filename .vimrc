@@ -239,7 +239,7 @@ augroup END
 augroup filetype_makefile
     autocmd!
     " Makefiles only work with actual tabs
-    autocmd BufNewFile,BufRead Makefile setlocal noexpandtab
+    autocmd filetype make setlocal noexpandtab
 augroup END
 
 " Markdown options
