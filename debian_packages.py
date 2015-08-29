@@ -32,6 +32,7 @@ PROGRAMS = [
     "pandoc",
     "elinks",
     "git",
+    "mutt",
 
     #"lynx-cur",
 
