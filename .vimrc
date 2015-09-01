@@ -188,13 +188,13 @@ vnoremap fmh <Esc>:call FormatText(100)<CR>
 vnoremap fmo <Esc>:call FormatText(100)<CR>
 
 " See https://github.com/riceissa/autolink for source
-function! PasteLink()
+function! PasteLink(fmt)
     let link = @+
-    let command = 'autolink.py "' . link . '"'
+    let command = 'autolink.py --clean --format ' . a:fmt . ' "' . link . '"'
     return system(command)
 endfunction
 " Break up the undo first in case the output is messed up
-inoremap <C-l> <C-G>u<C-r>=PasteLink()<CR>
+inoremap <C-l> <C-G>u<C-r>=PasteLink('none')<CR>
 
 " Paste HTML as Pandoc markdown; remember as 'markdown paste'
 nnoremap <leader>mp :r !xclip -sel clip -t text/html -o \| pandoc -f html -t markdown<CR>
@@ -206,7 +206,7 @@ command! CD :lcd %:p:h
 " Make <C-c>, <C-v> work as expected
 silent !stty -ixon > /dev/null 2>/dev/null
 " Get mswin_extract.vim at
-" https://github.com/riceissa/neovim/blob/master/mswin_extract.vim
+" https://github.com/riceissa/dotfiles/blob/master/.vim/mswin_extract.vim
 if filereadable(expand("~/.vim/mswin_extract.vim"))
     source ~/.vim/mswin_extract.vim
 endif
@@ -224,6 +224,7 @@ augroup filetype_html
     autocmd filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd filetype xhtml setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd filetype xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd filetype html inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('html')<CR>
 augroup END
 
 " LaTeX options
@@ -232,6 +233,7 @@ let g:tex_flavor='latex'
 augroup filetype_tex
     " Make visually selected region be mathematically typeset
     autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
+    autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
 augroup END
 
 " Makefile options
@@ -250,6 +252,7 @@ augroup filetype_markdown
     autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd filetype markdown setlocal linebreak nolist
+    autocmd filetype markdown inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('markdown')<CR>
 augroup END
 
 " Custom digraphs
