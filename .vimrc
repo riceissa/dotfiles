@@ -189,8 +189,11 @@ vnoremap fmo <Esc>:call FormatText(100)<CR>
 
 " See https://github.com/riceissa/autolink for source
 function! PasteLink(fmt)
-    let link = @+
-    let command = 'autolink.py --clean --format ' . a:fmt . ' "' . link . '"'
+    " escape double and single quotes to prevent potential attacks against
+    " oneself
+    let link = substitute(@+, '"', '%22', 'g')
+    let link = substitute(link, "'", "%27", "g")
+    let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
     return system(command)
 endfunction
 " Break up the undo first in case the output is messed up
