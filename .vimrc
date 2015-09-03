@@ -132,7 +132,6 @@ inoremap <C-w> <C-G>u<C-w>
 
 " Tabs
 " ----
-nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-n> :tabn<CR>
 nnoremap <silent> <C-p> :tabp<CR>
 
