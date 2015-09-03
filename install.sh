@@ -49,3 +49,8 @@ ln -s "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 # git
 # ---
 ln -s "$(pwd)/.gitconfig" ~/.gitconfig
+
+# ELinks
+# ------
+mkdir ~/.elinks
+echo elinks.conf >> ~/.elinks/elinks.conf
