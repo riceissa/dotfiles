@@ -127,8 +127,9 @@ nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>f :tabe `pwd`<CR>
 nnoremap <leader>b :Tex<CR>
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-w> <C-G>u<C-w>
+inoremap <C-u> <C-g>u<C-u>
+inoremap <C-w> <C-g>u<C-w>
+inoremap <CR> <C-g>u<CR>
 
 " Tabs
 " ----
