@@ -52,6 +52,7 @@ let g:ycm_filetype_blacklist = {
     \ 'pdc' : 1,
     \ 'pandoc' : 1,
     \ 'mail' : 1,
+    \ 'gitcommit': 1,
     \}
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
