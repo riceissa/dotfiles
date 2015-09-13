@@ -44,6 +44,7 @@ echo 'source ~/.bashrc' >> ~/.bash_profile
 # ---
 mkdir -p ~/.moc/themes
 ln -s "$(pwd)/.moc/config" ~/.moc/config
+ln -s "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
 ln -s "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 
 # git
