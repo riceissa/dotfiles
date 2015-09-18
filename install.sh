@@ -53,5 +53,10 @@ ln -s "$(pwd)/.gitconfig" ~/.gitconfig
 
 # ELinks
 # ------
-mkdir ~/.elinks
+mkdir -p ~/.elinks
 echo elinks.conf >> ~/.elinks/elinks.conf
+
+# Newsbeuter
+# ----------
+mkdir -p ~/.newsbeuter
+ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
