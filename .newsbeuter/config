@@ -20,7 +20,5 @@ bind-key k up
 bind-key J next
 bind-key K prev
 
-bind-key ; mark-feed-read
-
 unbind-key i
 bind-key i mark-all-feeds-read
