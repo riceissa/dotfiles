@@ -1,24 +1,23 @@
 browser firefox
-unbind-key R
+
 bind-key ^R reload-all
 
+# use J and K for inter-feed navigation and j and k for smaller
+# movements
 unbind-key J
 unbind-key K
-
-unbind-key l
-bind-key l open
-unbind-key h
-bind-key h quit
+bind-key J next-feed
+bind-key K prev-feed
 
 unbind-key j
 bind-key j down
 unbind-key k
 bind-key k up
-#bind-key j next
-#bind-key k prev
+bind-key j next
+bind-key k prev
 
-bind-key J next
-bind-key K prev
-
-unbind-key i
-bind-key i mark-all-feeds-read
+# quitting is like moving left and viewing items is like moving right
+unbind-key l
+bind-key l open
+unbind-key h
+bind-key h quit
