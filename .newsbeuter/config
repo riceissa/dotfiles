@@ -1,4 +1,4 @@
-browser iceweasel
+browser firefox
 unbind-key R
 bind-key ^R reload-all
 
