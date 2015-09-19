@@ -22,7 +22,8 @@ To install, edit `install.sh` and `debian_software.py` (these are the main scrip
 - bitlbee
 - git config
 - ensure vim/neovim/gvim all work nicely everywhere
-- elinks
+- newsbeuter: change cache size so all content can be backed up.
+- elinks: merge keys with VimFX? I'm still not sure how much application-specific keybinding I'm willing to allow. In general I want everything to work like Vim, but many programs (e.g. elinks) don't support key combinations (except with hold-down combination with ctrl, alt, etc.).
 - w3m
 - terminator/gnome terminal configs (esp. getting solarized to work)
     - on gnome terminal I just set the background color to `#FDF6E3` and the text color to `#586E75`; I use the Tango colors (they work well enough with the solarized base) and Source Code Pro size 10
