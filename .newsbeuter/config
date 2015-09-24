@@ -1,5 +1,6 @@
 browser firefox
 auto-reload yes
+suppress-first-reload yes
 
 bind-key ^R reload-all
 
@@ -11,11 +12,9 @@ bind-key J next-feed
 bind-key K prev-feed
 
 unbind-key j
-bind-key j down
 unbind-key k
-bind-key k up
-bind-key j next
-bind-key k prev
+bind-key j down "all"
+bind-key k up "all"
 
 # quitting is like moving left and viewing items is like moving right
 unbind-key l
