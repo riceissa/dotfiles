@@ -122,9 +122,6 @@ vnoremap gk k
 nnoremap Y y$
 nnoremap Q @@
 nnoremap <Enter> o<Esc>
-" Easy editing of vimrc
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>f :tabe `pwd`<CR>
 nnoremap <leader>b :Tex<CR>
 inoremap <C-u> <C-g>u<C-u>
@@ -205,9 +202,12 @@ nnoremap <leader>mp :r !xclip -sel clip -t text/html -o \| pandoc -f html -t mar
 
 " Other options
 " ======================================================================
+" Easy editing of vimrc
+command! EditVimrc :tabnew $MYVIMRC
+command! SourceVimrc :source $MYVIMRC
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
-" Make <C-c>, <C-v> work as expected
+" Make <C-c>, <C-v> work as expected (or maybe this is for <C-q>?)
 silent !stty -ixon > /dev/null 2>/dev/null
 " Get mswin_extract.vim at
 " https://github.com/riceissa/dotfiles/blob/master/.vim/mswin_extract.vim
