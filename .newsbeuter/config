@@ -21,3 +21,13 @@ unbind-key l
 bind-key l open
 unbind-key h
 bind-key h quit
+
+# modified from the default given at
+# http://newsbeuter.org/doc/newsbeuter.html#_configuring_colors
+color background          default   default
+color listnormal          default   default
+color listfocus           yellow  blue   bold
+color listnormal_unread   green default
+color listfocus_unread    green blue   bold
+color info                yellow  blue   bold
+color article             default   default
