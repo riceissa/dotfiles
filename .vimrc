@@ -238,6 +238,7 @@ augroup filetype_tex
     " Make visually selected region be mathematically typeset
     autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
     autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
+    autocmd filetype indent off
 augroup END
 
 " Makefile options
