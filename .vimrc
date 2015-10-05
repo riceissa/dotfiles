@@ -219,7 +219,9 @@ nnoremap <C-v> "+gP
 " allow visual block mode. This avoids the usual remapping to <C-q>
 " (which creates problems since Vim never sees it, and even if the
 " signal is passed to Vim, if one uses Vim within tmux, then tmux still
-" intercepts it(?), and so on).
+" intercepts it(?), and so on). Note that <C-c> and <C-v> face no
+" similar problems, since <C-x> has no meaning in visual mode, and <C-c>
+" in visual mode is equivalent to one or two escapes(?).
 command! VisualBlock normal! <C-v>
 command! Vb normal! <C-v>
 command! VB normal! <C-v>
