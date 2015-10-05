@@ -215,10 +215,11 @@ command! CD :lcd %:p:h
 vnoremap <C-x> "+x
 vnoremap <C-c> "+y
 nnoremap <C-v> "+gP
-" Since <C-v> in normal mode no longer works, we define a command to allow
-" visual block mode. This avoids the usual remapping to <C-q> (which creates
-" problems since Vim never sees it, and even if the signal is passed to Vim,
-" if one uses Vim within tmux, then tmux still intercepts it, and so on).
+" Since <C-v> in normal mode no longer works, we define commands to
+" allow visual block mode. This avoids the usual remapping to <C-q>
+" (which creates problems since Vim never sees it, and even if the
+" signal is passed to Vim, if one uses Vim within tmux, then tmux still
+" intercepts it(?), and so on).
 command! VisualBlock normal! <C-v>
 command! Vb normal! <C-v>
 command! VB normal! <C-v>
