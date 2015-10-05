@@ -83,6 +83,7 @@ set title
 set ttyfast
 set viminfo+=!
 set wildignore+=*.swp,*.pyc
+set wildignorecase
 set wildmenu
 set wildmode=list:longest,full
 set wrap
@@ -207,13 +208,20 @@ command! EditVimrc :tabnew $MYVIMRC
 command! SourceVimrc :source $MYVIMRC
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
-" Make <C-c>, <C-v> work as expected (or maybe this is for <C-q>?)
-silent !stty -ixon > /dev/null 2>/dev/null
-" Get mswin_extract.vim at
-" https://github.com/riceissa/dotfiles/blob/master/.vim/mswin_extract.vim
-if filereadable(expand("~/.vim/mswin_extract.vim"))
-    source ~/.vim/mswin_extract.vim
-endif
+
+" Saner copy-pasting
+" ------------------
+" Make <C-c>, <C-x>, and <C-v> work as expected
+vnoremap <C-x> "+x
+vnoremap <C-c> "+y
+nnoremap <C-v> "+gP
+" Since <C-v> in normal mode no longer works, we define a command to allow
+" visual block mode. This avoids the usual remapping to <C-q> (which creates
+" problems since Vim never sees it, and even if the signal is passed to Vim,
+" if one uses Vim within tmux, then tmux still intercepts it, and so on).
+command! VisualBlock normal! <C-v>
+command! Vb normal! <C-v>
+command! VB normal! <C-v>
 
 " Leave paste mode after escaping
 augroup paste
@@ -238,7 +246,8 @@ augroup filetype_tex
     " Make visually selected region be mathematically typeset
     autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
     autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
-    autocmd filetype indent off
+    " see https://superuser.com/questions/865513/turn-off-vims-filetype-indent-for-a-specific-filetype
+    autocmd BufRead,BufNewFile *.tex filetype indent off
 augroup END
 
 " Makefile options
