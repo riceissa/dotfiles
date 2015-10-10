@@ -214,6 +214,7 @@ command! CD :lcd %:p:h
 " Make <C-c>, <C-x>, and <C-v> work as expected
 vnoremap <C-x> "+x
 vnoremap <C-c> "+y
+" In insert mode, just use <C-o><C-v> or <C-\><C-o><C-v>
 nnoremap <C-v> "+gP
 " Since <C-v> in normal mode no longer works, we define commands to
 " allow visual block mode. This avoids the usual remapping to <C-q>
