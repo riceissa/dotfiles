@@ -122,8 +122,6 @@ set smartcase
 " configuration). Moreover maps are more difficult to remember than
 " commands since maps don't benefit from autocompletion. For these
 " reasons, maps are kept to a minimum.
-inoremap jj <Esc>
-inoremap kk <Esc>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
