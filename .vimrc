@@ -81,6 +81,9 @@ endif
 set tags=./tags;,tags
 set title
 set ttyfast
+if $TERM == "xterm-256color" || $TERM == "screen-256color"
+    set t_Co=256
+endif
 set viminfo+=!
 set wildignore+=*.swp,*.pyc
 set wildignorecase
@@ -128,11 +131,6 @@ nnoremap <leader>b :Tex<CR>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <CR> <C-g>u<CR>
-
-" Tabs
-" ----
-nnoremap <silent> <C-n> :tabn<CR>
-nnoremap <silent> <C-p> :tabp<CR>
 
 " Windows
 " -------
@@ -208,6 +206,14 @@ command! EditVimrc :tabnew $MYVIMRC
 command! SourceVimrc :source $MYVIMRC
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
+
+" Spelling
+"if !has('nvim')
+"    highlight clear SpellBad
+"    highlight clear SpellCap
+"    highlight SpellBad term=underline, cterm=underline, ctermfg=1
+"    highlight SpellCap term=underline, cterm=underline, ctermfg=4
+"endif
 
 " Saner copy-pasting
 " ------------------
