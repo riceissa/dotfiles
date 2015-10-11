@@ -228,10 +228,16 @@ command! PwdExplore :edit `pwd`
 " Saner copy-pasting
 " ------------------
 " Make <C-c>, <C-x>, and <C-v> work as expected
-vnoremap <C-x> "+x
-vnoremap <C-c> "+y
-" In insert mode, just use <C-o><C-v> or <C-\><C-o><C-v>
-nnoremap <C-v> "+gP
+if has('clipboard')
+    vnoremap <C-x> "+x
+    vnoremap <C-c> "+y
+    " In insert mode, just use <C-o><C-v> or <C-\><C-o><C-v>
+    nnoremap <C-v> "+gP
+else
+    vnoremap <C-x> x
+    vnoremap <C-c> y
+    nnoremap <C-v> gP
+endif
 " Since <C-v> in normal mode no longer works, we define commands to
 " allow visual block mode. This avoids the usual remapping to <C-q>
 " (which creates problems since Vim never sees it, and even if the
