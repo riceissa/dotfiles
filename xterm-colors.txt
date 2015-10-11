@@ -39,6 +39,8 @@
 #FDF6E3
 
 # My custom Solarized + Tango
+# In ~/.config/terminator/config, just put
+#    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#6c71c4:#34e2e2:#fdf6e3"
 
 #073642
 #DC322F
