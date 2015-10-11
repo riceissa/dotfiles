@@ -27,7 +27,7 @@ bind-key h quit
 color background          default   default
 color listnormal          default   default
 color listfocus           default   default     reverse
-color listnormal_unread   default   default     bold
-color listfocus_unread    default   default     bold    reverse
+color listnormal_unread   default   default
+color listfocus_unread    default   default     reverse
 color info                default   default     reverse
 color article             default   default
