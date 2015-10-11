@@ -260,6 +260,12 @@ augroup filetype_tex
     autocmd BufRead,BufNewFile *.tex filetype indent off
 augroup END
 
+" Mail options
+" ------------
+augroup filetype_mail
+    autocmd filetype mail setlocal linebreak nolist spell
+augroup END
+
 " Makefile options
 " ----------------
 augroup filetype_makefile
@@ -275,7 +281,7 @@ augroup filetype_markdown
     autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
-    autocmd filetype markdown setlocal linebreak nolist
+    autocmd filetype markdown setlocal linebreak nolist spell
     autocmd filetype markdown inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('markdown')<CR>
 augroup END
 
