@@ -112,6 +112,16 @@ set smartcase
 
 " Maps
 " ======================================================================
+" 'Don't use a map when a command will do. Vim doesn't even have a map
+" for :write.' -- Tim Pope
+" https://www.reddit.com/r/vim/comments/267vrv/i_am_tim_pope_crafter_of_plugins_ama/chooack
+"
+" Most maps below just vary the default behavior slightly rather than
+" doing completely new things. This makes it easy to program even
+" without one's own .vimrc (i.e. it reduces dependence on idiosyncratic
+" configuration). Moreover maps are more difficult to remember than
+" commands since maps don't benefit from autocompletion. For these
+" reasons, maps are kept to a minimum.
 inoremap jj <Esc>
 inoremap kk <Esc>
 nnoremap j gj
@@ -126,8 +136,6 @@ vnoremap gk k
 nnoremap Y y$
 nnoremap Q @@
 nnoremap <Enter> o<Esc>
-nnoremap <leader>f :tabe `pwd`<CR>
-nnoremap <leader>b :Tex<CR>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <CR> <C-g>u<CR>
@@ -206,6 +214,8 @@ command! EditVimrc :tabnew $MYVIMRC
 command! SourceVimrc :source $MYVIMRC
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
+command! ExplorePwd :edit `pwd`
+command! PwdExplore :edit `pwd`
 
 " Spelling
 "if !has('nvim')
