@@ -217,14 +217,6 @@ command! CD :lcd %:p:h
 command! ExplorePwd :edit `pwd`
 command! PwdExplore :edit `pwd`
 
-" Spelling
-"if !has('nvim')
-"    highlight clear SpellBad
-"    highlight clear SpellCap
-"    highlight SpellBad term=underline, cterm=underline, ctermfg=1
-"    highlight SpellCap term=underline, cterm=underline, ctermfg=4
-"endif
-
 " Saner copy-pasting
 " ------------------
 " Make <C-c>, <C-x>, and <C-v> work as expected
