@@ -253,7 +253,14 @@ command! VB normal! <C-v>
 " Leave paste mode after escaping
 augroup paste
     autocmd!
-    au InsertLeave * set nopaste
+    autocmd InsertLeave * set nopaste
+augroup END
+
+" Git commit message options
+" --------------------------
+augroup filetype_gitcommit
+    autocmd!
+    autocmd filetype gitcommit setlocal spell
 augroup END
 
 " {HT,X}ML options
@@ -270,6 +277,7 @@ augroup END
 " -------------
 let g:tex_flavor='latex'
 augroup filetype_tex
+    autocmd!
     " Make visually selected region be mathematically typeset
     autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
     autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
@@ -280,6 +288,7 @@ augroup END
 " Mail options
 " ------------
 augroup filetype_mail
+    autocmd!
     autocmd filetype mail setlocal linebreak nolist spell
 augroup END
 
