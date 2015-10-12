@@ -70,9 +70,16 @@ set encoding=utf-8
 set formatoptions=tcqj
 set hidden
 set history=10000
+if exists('+langnoremap')
+    set langnoremap
+endif
+set laststatus=2
 " Show invisible characters
 set list
-set listchars=nbsp:_,tab:>-,trail:@
+set listchars=nbsp:_,tab:>\ ,trail:@
+" Color special keys (i.e. those visible with 'list') as in
+" gvim+Solarized
+highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
 " Always enable mouse
 set mouse=a
 set nrformats=hex
