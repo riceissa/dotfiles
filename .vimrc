@@ -50,7 +50,19 @@ let mapleader=' '
 set noautoread
 set background=light
 set backspace=indent,eol,start
-set cmdheight=2
+if has('nvim')
+    " Neovim has an extra bar so only two lines for the command line is
+    " needed.
+    set cmdheight=2
+else
+    " In Vim, showcmd takes up space in the command line, and, when used
+    " along with :make, forces one to hit enter twice when the makefile
+    " line is sufficiently long (which is often). The solution is to
+    " either make the terminal screen wide enough to accompany both the
+    " partial command for showcmd and makefile line (not preferred), or
+    " to increase the cmdheight by one.
+    set cmdheight=3
+endif
 set complete-=i
 " Show last line instead of the @ column
 set display=lastline
@@ -122,6 +134,8 @@ set smartcase
 " configuration). Moreover maps are more difficult to remember than
 " commands since maps don't benefit from autocompletion. For these
 " reasons, maps are kept to a minimum.
+inoremap jj <Esc>
+inoremap kk <Esc>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
