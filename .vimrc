@@ -24,9 +24,11 @@
 "
 " For more information, please refer to <http://unlicense.org/>
 
-" The intention here was to produce a sane vimrc file that works well on
-" both Vim and Neovim. For a more minimal configuration that is still
-" very good, there is sensible.vim: https://github.com/tpope/vim-sensible
+" The intention here is to produce a sane .vimrc that makes both Vim and
+" Neovim act in the same way. As such, where Neovim changes a default option
+" from that in Vim, this is set explicitly here. For a more minimal
+" configuration that is still very good, there is sensible.vim:
+" https://github.com/tpope/vim-sensible
 
 " Get the latest version at
 " https://raw.githubusercontent.com/riceissa/dotfiles/master/.vimrc
