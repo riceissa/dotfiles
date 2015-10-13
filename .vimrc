@@ -279,16 +279,8 @@ let g:tex_flavor='latex'
 augroup filetype_tex
     autocmd!
     " Make visually selected region be mathematically typeset
-    autocmd filetype tex vnoremap <buffer> <silent> ma <esc>`>a\)<esc>`<i\(<esc>
     autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
-    " See http://stackoverflow.com/a/14749361 . The following is
-    " actually the opposite of what appears in the answer: here
-    " 'filetype indent on' is the default, and it is turned off
-    " specifically for .tex files. In either case, the general glob '*'
-    " must appear before the more specific glob '*.tex', since .tex
-    " files will be caught by both autocmds in succession.
-    autocmd BufRead,BufNewFile * filetype indent on
-    autocmd BufRead,BufNewFile *.tex filetype indent off
+    autocmd filetype tex setlocal indentexpr=
 augroup END
 
 " Mail options
