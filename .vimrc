@@ -67,9 +67,6 @@ set laststatus=2
 " Show invisible characters
 set list
 set listchars=nbsp:_,tab:>\ ,trail:@
-" Color special keys (i.e. those visible with 'list') as in
-" gvim+Solarized
-highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
 " Always enable mouse
 set mouse=a
 set nrformats=hex
@@ -324,3 +321,11 @@ dig (< 10216
 dig <( 10216
 dig )> 10217
 dig >) 10217
+
+" Colors
+" ------
+" Color special keys (i.e. those visible with 'list') as in
+" gvim+Solarized
+highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+" Less prominent status line
+highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
