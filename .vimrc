@@ -56,13 +56,13 @@ set cmdheight=2
 set complete-=i
 " Show last line instead of the @ column
 set display=lastline
-set encoding=utf-8
 set formatoptions=tcqj
 set hidden
 set history=10000
 if exists('+langnoremap')
     set langnoremap
 endif
+" Always show status line
 set laststatus=2
 " Show invisible characters
 set list
@@ -76,7 +76,7 @@ set scrolloff=5
 set sessionoptions-=options
 set showcmd
 set noshowmatch
-" Show mode name on status line
+" Show mode name on last line
 set showmode
 set smarttab
 set nospell
