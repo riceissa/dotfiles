@@ -56,6 +56,9 @@ set cmdheight=2
 set complete-=i
 " Show last line instead of the @ column
 set display=lastline
+if &encoding !=? 'utf-8'
+    set encoding=utf-8
+endif
 set formatoptions=tcqj
 set hidden
 set history=10000
@@ -87,7 +90,7 @@ endif
 set tags=./tags;,tags
 set title
 set ttyfast
-if $TERM == "xterm-256color" || $TERM == "screen-256color"
+if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
     set t_Co=256
 endif
 set viminfo+=!
