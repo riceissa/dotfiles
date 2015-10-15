@@ -158,8 +158,7 @@ nnoremap <C-l> <C-w>l
 
 " Buffers
 " -------
-nnoremap K :bn<CR>
-nnoremap _ :bp<CR>
+nnoremap <silent> K :b#<CR>
 
 " Option toggling (similar to vim-unimpaired)
 " -------------------------------------------
