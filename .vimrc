@@ -227,27 +227,31 @@ command! PwdExplore :edit `pwd`
 
 " Saner copy-pasting
 " ------------------
-" Make <C-c>, <C-x>, and <C-v> work as expected
-if has('clipboard')
-    vnoremap <C-x> "+x
-    vnoremap <C-c> "+y
-    " In insert mode, just use <C-o><C-v> or <C-\><C-o><C-v>
-    nnoremap <C-v> "+gP
-else
-    vnoremap <C-x> x
-    vnoremap <C-c> y
-    nnoremap <C-v> gP
-endif
-" Since <C-v> in normal mode no longer works, we define commands to
-" allow visual block mode. This avoids the usual remapping to <C-q>
-" (which creates problems since Vim never sees it, and even if the
-" signal is passed to Vim, if one uses Vim within tmux, then tmux still
-" intercepts it(?), and so on). Note that <C-c> and <C-v> require no
-" similar definitions of commands, since <C-x> has no meaning in visual
-" mode, and <C-c> in visual mode is equivalent to one or two escapes(?).
-command! VisualBlock normal! <C-v>
-command! Vb normal! <C-v>
-command! VB normal! <C-v>
+function! ToggleVisual()
+    if hasmapto('"+gP', 'n') || hasmapto('gP', 'n')
+        nunmap <C-v>
+        iunmap <C-v>
+        cunmap <C-v>
+        vunmap <C-c>
+        vunmap <C-x>
+    else
+        if has('clipboard')
+            nnoremap <C-v> "+gP
+            inoremap <C-v> <C-\><C-o>"+gP
+            cnoremap <C-v> <C-R>+
+            vnoremap <C-c> "+y
+            vnoremap <C-x> "+x
+        else
+            nnoremap <C-v> gP
+            inoremap <C-v> <C-\><C-o>gP
+            cnoremap <C-v> <C-R>"
+            vnoremap <C-c> y
+            vnoremap <C-x> x
+        endif
+    endif
+endfunction
+nnoremap <silent> cov :call ToggleVisual()<CR>
+call ToggleVisual()
 
 " Leave paste mode after escaping
 augroup paste
