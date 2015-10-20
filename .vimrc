@@ -92,6 +92,13 @@ set title
 set ttyfast
 if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
     set t_Co=256
+    " Colors
+    " ------
+    " Color special keys (i.e. those visible with 'list') as in
+    " gvim+Solarized
+    highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+    " Less prominent status line
+    highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
 endif
 set viminfo+=!
 set wildignore+=*.swp,*.pyc
@@ -325,11 +332,3 @@ dig (< 10216
 dig <( 10216
 dig )> 10217
 dig >) 10217
-
-" Colors
-" ------
-" Color special keys (i.e. those visible with 'list') as in
-" gvim+Solarized
-highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-" Less prominent status line
-highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
