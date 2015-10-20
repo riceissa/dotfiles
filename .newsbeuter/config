@@ -1,6 +1,7 @@
 browser firefox
 auto-reload yes
 suppress-first-reload yes
+#max-items 20
 
 bind-key ^R reload-all
 
