@@ -259,6 +259,10 @@ function! ToggleVisual()
 endfunction
 nnoremap <silent> cov :call ToggleVisual()<CR>
 call ToggleVisual()
+if has('clipboard')
+    command! Copy :normal gg"+yG``
+    command! Clip :normal gg"+yG``
+endif
 
 " Leave paste mode after escaping
 augroup paste
