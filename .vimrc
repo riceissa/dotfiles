@@ -244,13 +244,13 @@ function! ToggleVisual()
     else
         if has('clipboard')
             nnoremap <C-v> "+gP
-            inoremap <C-v> <C-\><C-o>"+gP
+            inoremap <C-v> <C-g>u<C-\><C-o>"+gP
             cnoremap <C-v> <C-R>+
             vnoremap <C-c> "+y
             vnoremap <C-x> "+x
         else
             nnoremap <C-v> gP
-            inoremap <C-v> <C-\><C-o>gP
+            inoremap <C-v> <C-g>u<C-\><C-o>gP
             cnoremap <C-v> <C-R>"
             vnoremap <C-c> y
             vnoremap <C-x> x
