@@ -27,8 +27,8 @@ bind-key h quit
 # http://newsbeuter.org/doc/newsbeuter.html#_configuring_colors
 color background          default   default
 color listnormal          default   default
-color listfocus           default   default     reverse
+color listfocus           default   white
 color listnormal_unread   default   default
-color listfocus_unread    default   default     reverse
-color info                default   default     reverse
+color listfocus_unread    default   white
+color info                default   white
 color article             default   default
