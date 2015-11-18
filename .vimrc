@@ -52,7 +52,6 @@ let mapleader=' '
 set noautoread
 set background=light
 set backspace=indent,eol,start
-set cmdheight=2
 set complete-=i
 " Show last line instead of the @ column
 set display=lastline
