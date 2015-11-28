@@ -240,7 +240,7 @@ function! ToggleVisual()
         cunmap <C-v>
         vunmap <C-c>
         vunmap <C-x>
-        if g:cov_startup
+        if g:vimrc_cov_startup
             echom('unmapped <C-v>, <C-c>, <C-x>')
         endif
     else
@@ -257,15 +257,15 @@ function! ToggleVisual()
             vnoremap <C-c> y
             vnoremap <C-x> x
         endif
-        if g:cov_startup
+        if g:vimrc_cov_startup
             echom('remapped <C-v>, <C-c>, <C-x>')
         endif
     endif
 endfunction
-let cov_startup = 0
+let vimrc_cov_startup = 0
 nnoremap <silent> cov :call ToggleVisual()<CR>
 call ToggleVisual()
-let cov_startup = 1
+let vimrc_cov_startup = 1
 if has('clipboard')
     command! Copy :normal gg"+yG``
     command! Clip :normal gg"+yG``
