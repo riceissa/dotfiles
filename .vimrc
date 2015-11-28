@@ -233,14 +233,14 @@ command! PwdExplore :edit `pwd`
 
 " Saner copy-pasting
 " ------------------
-function! ToggleVisual()
-    if hasmapto('"+gP', 'n') || hasmapto('gP', 'n')
+function! ToggleVisual(echo, force_on)
+    if (hasmapto('"+gP', 'n') || hasmapto('gP', 'n')) && !a:force_on
         nunmap <C-v>
         iunmap <C-v>
         cunmap <C-v>
         vunmap <C-c>
         vunmap <C-x>
-        if g:vimrc_cov_startup
+        if a:echo
             echom('unmapped <C-v>, <C-c>, <C-x>')
         endif
     else
@@ -257,15 +257,13 @@ function! ToggleVisual()
             vnoremap <C-c> y
             vnoremap <C-x> x
         endif
-        if g:vimrc_cov_startup
+        if a:echo
             echom('remapped <C-v>, <C-c>, <C-x>')
         endif
     endif
 endfunction
-let vimrc_cov_startup = 0
-nnoremap <silent> cov :call ToggleVisual()<CR>
-call ToggleVisual()
-let vimrc_cov_startup = 1
+nnoremap <silent> cov :call ToggleVisual(1, 0)<CR>
+call ToggleVisual(0, 1)
 if has('clipboard')
     command! Copy :normal gg"+yG``
     command! Clip :normal gg"+yG``
