@@ -22,7 +22,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Mirror config files and dirs
 ln -s "$(pwd)/.vimrc" ~/.vimrc
 ln -s "$(pwd)/.gvimrc" ~/.gvimrc
-ln -s "$(pwd)/.vim/mswin_extract.vim" ~/.vim/mswin_extract.vim
 ln -s "$(pwd)/.vim/plugins.vim" ~/.vim/plugins.vim
 ln -s "$(pwd)/.vim/UltiSnips-custom-snippets" ~/.vim/UltiSnips-custom-snippets
 ln -s "$(pwd)/.ycm_extra_conf.py" ~/.ycm_extra_conf.py
