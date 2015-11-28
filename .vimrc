@@ -240,6 +240,7 @@ function! ToggleVisual()
         cunmap <C-v>
         vunmap <C-c>
         vunmap <C-x>
+        echom('unmapped <C-v>, <C-c>, <C-x>')
     else
         if has('clipboard')
             nnoremap <C-v> "+gP
@@ -254,6 +255,7 @@ function! ToggleVisual()
             vnoremap <C-c> y
             vnoremap <C-x> x
         endif
+        echom('remapped <C-v>, <C-c>, <C-x>')
     endif
 endfunction
 nnoremap <silent> cov :call ToggleVisual()<CR>
