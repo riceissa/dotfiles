@@ -96,26 +96,8 @@ set smartcase
 
 " Maps
 " ======================================================================
-" 'Don't use a map when a command will do. Vim doesn't even have a map
-" for :write.' -- Tim Pope
-" https://www.reddit.com/r/vim/comments/267vrv/i_am_tim_pope_crafter_of_plugins_ama/chooack
-"
-" Most maps below just vary the default behavior slightly rather than
-" doing completely new things. This makes it easy to program even
-" without one's own .vimrc (i.e. it reduces dependence on idiosyncratic
-" configuration). Moreover maps are more difficult to remember than
-" commands since maps don't benefit from autocompletion. For these
-" reasons, maps are kept to a minimum.
 inoremap jj <Esc>
 inoremap kk <Esc>
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap gj j
-nnoremap gk k
-vnoremap gj j
-vnoremap gk k
 " Make Y act like D and C
 nnoremap Y y$
 nnoremap Q @@
@@ -123,13 +105,6 @@ nnoremap <Enter> o<Esc>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <CR> <C-g>u<CR>
-
-" Windows
-" -------
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Buffers
 " -------
@@ -203,41 +178,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 if has('clipboard')
     command! Copy :normal gg"+yG``
     command! Clip :normal gg"+yG``
-    inoremap <C-b> <C-g>u<C-\><C-o>"+gP
-else
-    inoremap <C-b> <C-g>u<C-\><C-o>gP
 endif
-"function! ToggleVisual(echo, force_on)
-    "if (hasmapto('"+gP', 'n') || hasmapto('gP', 'n')) && !a:force_on
-        "nunmap <C-v>
-        "iunmap <C-v>
-        "cunmap <C-v>
-        "vunmap <C-c>
-        "vunmap <C-x>
-        "if a:echo
-            "echom('unmapped <C-v>, <C-c>, <C-x>')
-        "endif
-    "else
-        "if has('clipboard')
-            "nnoremap <C-v> "+gP
-            "inoremap <C-v> <C-g>u<C-\><C-o>"+gP
-            "cnoremap <C-v> <C-R>+
-            "vnoremap <C-c> "+y
-            "vnoremap <C-x> "+x
-        "else
-            "nnoremap <C-v> gP
-            "inoremap <C-v> <C-g>u<C-\><C-o>gP
-            "cnoremap <C-v> <C-R>"
-            "vnoremap <C-c> y
-            "vnoremap <C-x> x
-        "endif
-        "if a:echo
-            "echom('remapped <C-v>, <C-c>, <C-x>')
-        "endif
-    "endif
-"endfunction
-"nnoremap <silent> cov :call ToggleVisual(1, 0)<CR>
-"call ToggleVisual(0, 1)
 
 " Leave paste mode after escaping
 augroup paste
