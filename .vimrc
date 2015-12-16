@@ -14,7 +14,6 @@ endif
 set nomodeline
 set modelines=0
 syntax enable
-let mapleader=' '
 
 " Main options
 " ======================================================================
@@ -162,11 +161,11 @@ endfunction
 " Break up the undo first in case the output is messed up
 inoremap <C-l> <C-G>u<C-r>=PasteLink('none')<CR>
 
-" Paste HTML as Pandoc markdown; remember as 'markdown paste'
-nnoremap <leader>mp :r !xclip -sel clip -t text/html -o \| pandoc -f html -t markdown<CR>
-
 " Other options
 " ======================================================================
+" Paste HTML as Pandoc markdown
+command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
+
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
 
