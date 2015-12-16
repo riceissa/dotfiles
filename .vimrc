@@ -1,42 +1,11 @@
-" This is free and unencumbered software released into the public
-" domain.
-"
-" Anyone is free to copy, modify, publish, use, compile, sell, or
-" distribute this software, either in source code form or as a compiled
-" binary, for any purpose, commercial or non-commercial, and by any
-" means.
-"
-" In jurisdictions that recognize copyright laws, the author or authors
-" of this software dedicate any and all copyright interest in the
-" software to the public domain. We make this dedication for the benefit
-" of the public at large and to the detriment of our heirs and
-" successors. We intend this dedication to be an overt act of
-" relinquishment in perpetuity of all present and future rights to this
-" software under copyright law.
-"
-" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-" EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-" IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-" OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-" ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-" OTHER DEALINGS IN THE SOFTWARE.
-"
-" For more information, please refer to <http://unlicense.org/>
-
-" The intention here is to produce a sane .vimrc that makes both Vim and
-" Neovim act in the same way. As such, where Neovim changes a default option
-" from that in Vim, this is set explicitly here. For a more minimal
-" configuration that is still very good, there is sensible.vim:
-" https://github.com/tpope/vim-sensible
-
 " Get the latest version at
 " https://raw.githubusercontent.com/riceissa/dotfiles/master/.vimrc
-
 set nocompatible
 if filereadable(expand("~/.vim/plugins.vim"))
     " This includes 'set nocompatible' again
     source ~/.vim/plugins.vim
+else
+    filetype plugin indent on
 endif
 " Secure Vim by disabling modelines; see
 " http://usevim.com/2012/03/28/modelines/ and
@@ -74,7 +43,7 @@ set mouse=a
 set nrformats=hex
 set number
 set ruler
-set scrolloff=5
+"set scrolloff=5
 set sessionoptions-=options
 set showcmd
 set noshowmatch
@@ -223,51 +192,52 @@ nnoremap <leader>mp :r !xclip -sel clip -t text/html -o \| pandoc -f html -t mar
 
 " Other options
 " ======================================================================
-" Easy editing of vimrc
-command! EditVimrc :tabnew $MYVIMRC
-command! SourceVimrc :source $MYVIMRC
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
-command! ExplorePwd :edit `pwd`
-command! PwdExplore :edit `pwd`
+
+" from Practical Vim
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Saner copy-pasting
 " ------------------
-function! ToggleVisual(echo, force_on)
-    if (hasmapto('"+gP', 'n') || hasmapto('gP', 'n')) && !a:force_on
-        nunmap <C-v>
-        iunmap <C-v>
-        cunmap <C-v>
-        vunmap <C-c>
-        vunmap <C-x>
-        if a:echo
-            echom('unmapped <C-v>, <C-c>, <C-x>')
-        endif
-    else
-        if has('clipboard')
-            nnoremap <C-v> "+gP
-            inoremap <C-v> <C-g>u<C-\><C-o>"+gP
-            cnoremap <C-v> <C-R>+
-            vnoremap <C-c> "+y
-            vnoremap <C-x> "+x
-        else
-            nnoremap <C-v> gP
-            inoremap <C-v> <C-g>u<C-\><C-o>gP
-            cnoremap <C-v> <C-R>"
-            vnoremap <C-c> y
-            vnoremap <C-x> x
-        endif
-        if a:echo
-            echom('remapped <C-v>, <C-c>, <C-x>')
-        endif
-    endif
-endfunction
-nnoremap <silent> cov :call ToggleVisual(1, 0)<CR>
-call ToggleVisual(0, 1)
 if has('clipboard')
     command! Copy :normal gg"+yG``
     command! Clip :normal gg"+yG``
+    inoremap <C-b> <C-g>u<C-\><C-o>"+gP
+else
+    inoremap <C-b> <C-g>u<C-\><C-o>gP
 endif
+"function! ToggleVisual(echo, force_on)
+    "if (hasmapto('"+gP', 'n') || hasmapto('gP', 'n')) && !a:force_on
+        "nunmap <C-v>
+        "iunmap <C-v>
+        "cunmap <C-v>
+        "vunmap <C-c>
+        "vunmap <C-x>
+        "if a:echo
+            "echom('unmapped <C-v>, <C-c>, <C-x>')
+        "endif
+    "else
+        "if has('clipboard')
+            "nnoremap <C-v> "+gP
+            "inoremap <C-v> <C-g>u<C-\><C-o>"+gP
+            "cnoremap <C-v> <C-R>+
+            "vnoremap <C-c> "+y
+            "vnoremap <C-x> "+x
+        "else
+            "nnoremap <C-v> gP
+            "inoremap <C-v> <C-g>u<C-\><C-o>gP
+            "cnoremap <C-v> <C-R>"
+            "vnoremap <C-c> y
+            "vnoremap <C-x> x
+        "endif
+        "if a:echo
+            "echom('remapped <C-v>, <C-c>, <C-x>')
+        "endif
+    "endif
+"endfunction
+"nnoremap <silent> cov :call ToggleVisual(1, 0)<CR>
+"call ToggleVisual(0, 1)
 
 " Leave paste mode after escaping
 augroup paste

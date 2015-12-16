@@ -35,3 +35,16 @@ vim todo:
 
 - learn how to move to fancy characters like `“` quickly; e.g. doing `f"` works to move to quotes, but moving to `“` would require `f<C-k>"6` which is cumbersome to type
 - learn to navigate japanese documents better
+- Description: The intention here is to produce a sane .vimrc that makes both Vim and
+Neovim act in the same way. As such, where Neovim changes a default option
+from that in Vim, this is set explicitly here. For a more minimal
+configuration that is still very good, there is sensible.vim:
+<https://github.com/tpope/vim-sensible>
+
+
+# License
+
+Ideally I want to make everything in this repository available under the public domain (specifically released to the public domain according to the Unlicense), but some of the files here are forks of default config files, which are usually GPL or BSD.
+I'll try to keep track of licenses for each file here.
+
+- `.vimrc`: Unlicense
