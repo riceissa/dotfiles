@@ -205,6 +205,7 @@ augroup END
 let g:tex_flavor='latex'
 augroup filetype_tex
     autocmd!
+    " prevent overzealous autoindent
     autocmd filetype tex setlocal indentexpr=
 augroup END
 
