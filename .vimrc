@@ -205,7 +205,6 @@ augroup END
 let g:tex_flavor='latex'
 augroup filetype_tex
     autocmd!
-    " Make visually selected region be mathematically typeset
     autocmd filetype tex setlocal indentexpr=
 augroup END
 
