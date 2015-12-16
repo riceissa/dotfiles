@@ -151,7 +151,11 @@ function! PasteLink(fmt)
     let link = substitute(@+, '"', '%22', 'g')
     let link = substitute(link, "'", "%27", "g")
     let link = substitute(link, '\', "%5C", "g")
-    let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+    if a:fmt ==? ''
+        let command = "autolink.py --clean --format none '" . link . "'"
+    else
+        let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+    endif
     return system(command)
 endfunction
 " Break up the undo first in case the output is messed up
