@@ -155,7 +155,10 @@ function! PasteLink(fmt)
     return system(command)
 endfunction
 " Break up the undo first in case the output is messed up
-inoremap <C-l> <C-G>u<C-r>=PasteLink('none')<CR>
+inoremap <C-l> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+
+" from Practical Vim
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Other options
 " ======================================================================
@@ -165,12 +168,8 @@ command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t m
 " Change pwd to directory of current file
 command! CD :lcd %:p:h
 
-" from Practical Vim
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-" Saner copy-pasting
-" ------------------
 if has('clipboard')
+    " quickly grab the whole buffer
     command! Copy :normal gg"+yG``
     command! Clip :normal gg"+yG``
 endif
@@ -195,7 +194,6 @@ augroup filetype_html
     autocmd filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd filetype xhtml setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd filetype xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd filetype html inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('html')<CR>
 augroup END
 
 " LaTeX options
@@ -204,7 +202,6 @@ let g:tex_flavor='latex'
 augroup filetype_tex
     autocmd!
     " Make visually selected region be mathematically typeset
-    autocmd filetype tex inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('latex')<CR>
     autocmd filetype tex setlocal indentexpr=
 augroup END
 
@@ -231,7 +228,6 @@ augroup filetype_markdown
     autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd filetype markdown setlocal linebreak nolist spell
-    autocmd filetype markdown inoremap <buffer> <C-l> <C-G>u<C-r>=PasteLink('markdown')<CR>
 augroup END
 
 " Custom digraphs
