@@ -158,8 +158,10 @@ function! PasteLink(fmt)
     endif
     return system(command)
 endfunction
-" Break up the undo first in case the output is messed up
-inoremap <C-l> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+if executable('autolink.py') && has('clipboard')
+    " Break up the undo first in case the output is messed up
+    inoremap <C-l> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+endif
 
 " from Practical Vim
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
