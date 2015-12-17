@@ -49,9 +49,7 @@ set showmode " Show mode name on last line
 set smarttab
 set nospell
 set spellfile=~/.spell.en.add
-if &tabpagemax < 50
-  set tabpagemax=50
-endif
+set tabpagemax=50
 set tags=./tags;,tags
 set title
 set ttyfast
@@ -87,9 +85,7 @@ set shiftround
 " -----------------
 set nohlsearch
 set incsearch
-" Sane casing
-set ignorecase
-set smartcase
+set ignorecase smartcase " Sane casing
 
 " Maps
 " ======================================================================
