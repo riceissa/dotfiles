@@ -2,17 +2,11 @@
 " https://raw.githubusercontent.com/riceissa/dotfiles/master/.vimrc
 set nocompatible
 if filereadable(expand('~/.vim/plugins.vim'))
-    " This includes 'set nocompatible' again
     source ~/.vim/plugins.vim
 else
     filetype plugin indent on
 endif
-" Secure Vim by disabling modelines; see
-" http://usevim.com/2012/03/28/modelines/ and
-" http://www.techrepublic.com/blog/it-security/turn-off-modeline-support-in-vim/
-" for more information
-set nomodeline
-set modelines=0
+set nomodeline set modelines=0 " secure Vim
 syntax enable
 
 " Main options
@@ -221,20 +215,13 @@ augroup END
 " ----------------
 augroup filetype_markdown
     autocmd!
-    autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-    autocmd BufNewFile,BufRead *.pdc setlocal filetype=markdown
-    autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
+    autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
     autocmd filetype markdown setlocal linebreak nolist spell
 augroup END
 
 " Custom digraphs
 " ---------------
-" Use Python's ord() to obtain the integer value of a character. Hit
-" <C-k> in insert mode then type the characters following 'dig' to produce
-" the special character.
-
-" Ellipsis, …
-dig el 8230
+dig el 8230 " Ellipsis, …
 " Left and right angle brackets, ⟨ ⟩
 dig (< 10216
 dig <( 10216
