@@ -72,8 +72,6 @@ set wrap
 " Indenting options
 " -----------------
 set autoindent
-set nocindent
-set nosmartindent
 set expandtab
 set shiftwidth=4
 set softtabstop=4
