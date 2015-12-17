@@ -88,6 +88,7 @@ nnoremap Q @@
 nnoremap <Enter> o<Esc>
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
+inoremap <C-r> <C-g>u<C-r>
 nnoremap <silent> K <C-^>
 
 " Option toggling (similar to vim-unimpaired)
