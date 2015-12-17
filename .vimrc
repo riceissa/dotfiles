@@ -21,6 +21,9 @@ set noautoread
 set background=light
 set backspace=indent,eol,start
 set complete-=i
+if filereadable('/usr/share/dict/words')
+    set dictionary+=/usr/share/dict/words
+endif
 " Show last line instead of the @ column
 set display=lastline
 if &encoding !=? 'utf-8'
@@ -160,7 +163,7 @@ function! PasteLink(fmt)
 endfunction
 if executable('autolink.py') && has('clipboard')
     " Break up the undo first in case the output is messed up
-    inoremap <C-l> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+    inoremap <C-b> <C-G>u<C-r>=PasteLink(&filetype)<CR>
 endif
 
 " from Practical Vim
