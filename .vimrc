@@ -1,7 +1,7 @@
 " Get the latest version at
 " https://raw.githubusercontent.com/riceissa/dotfiles/master/.vimrc
 set nocompatible
-if filereadable(expand("~/.vim/plugins.vim"))
+if filereadable(expand('~/.vim/plugins.vim'))
     " This includes 'set nocompatible' again
     source ~/.vim/plugins.vim
 else
