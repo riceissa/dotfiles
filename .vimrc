@@ -6,7 +6,7 @@ if filereadable(expand('~/.vim/plugins.vim'))
 else
     filetype plugin indent on
 endif
-set nomodeline set modelines=0 " secure Vim
+set nomodeline modelines=0 " secure Vim
 syntax enable
 
 " Main options
