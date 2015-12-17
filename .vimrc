@@ -47,7 +47,6 @@ set showcmd
 set noshowmatch
 set showmode " Show mode name on last line
 set smarttab
-set nospell
 set spellfile=~/.spell.en.add
 set tabpagemax=50
 set tags=./tags;,tags
