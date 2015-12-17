@@ -178,13 +178,11 @@ augroup filetype_gitcommit
     autocmd filetype gitcommit setlocal spell
 augroup END
 
-" {HT,X}ML options
+" X?(HT)?ML options
 " ----------------
 augroup filetype_html
     autocmd!
-    autocmd filetype html setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd filetype xhtml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd filetype xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 augroup END
 
 " LaTeX options
