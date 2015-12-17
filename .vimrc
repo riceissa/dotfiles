@@ -35,22 +35,17 @@ set history=10000
 if exists('+langnoremap')
     set langnoremap
 endif
-" Always show status line
-set laststatus=2
-" Show invisible characters
-set list
+set laststatus=2 " Always show status line
+set list " Show invisible characters
 set listchars=nbsp:_,tab:>\ ,trail:@
-" Always enable mouse
-set mouse=a
+set mouse=a " Always enable mouse
 set nrformats=hex
 set number
 set ruler
-"set scrolloff=5
 set sessionoptions-=options
 set showcmd
 set noshowmatch
-" Show mode name on last line
-set showmode
+set showmode " Show mode name on last line
 set smarttab
 set nospell
 set spellfile=~/.spell.en.add
