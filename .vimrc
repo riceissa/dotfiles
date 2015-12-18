@@ -1,6 +1,10 @@
 set nocompatible
+if filereadable(expand('~/.vim/plugins.vim'))
+    source ~/.vim/plugins.vim
+else
+    filetype plugin indent on
+endif
 set nomodeline modelines=0
-filetype plugin indent on
 syntax enable
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
@@ -18,6 +22,25 @@ endif
 
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
+endif
+
+" See https://github.com/riceissa/autolink for source
+function! PasteLink(fmt)
+    " escape double and single quotes and backslashes to prevent
+    " potential attacks against oneself
+    let link = substitute(@+, '"', '%22', 'g')
+    let link = substitute(link, "'", "%27", "g")
+    let link = substitute(link, '\', "%5C", "g")
+    if a:fmt ==? ''
+        let command = "autolink.py --clean --format none '" . link . "'"
+    else
+        let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+    endif
+    return system(command)
+endfunction
+if executable('autolink.py') && has('clipboard')
+    " Break up the undo first in case the output is messed up
+    inoremap <C-b> <C-G>u<C-r>=PasteLink(&filetype)<CR>
 endif
 
 " Explicitly set options that are changed by Neovim, for compatibility.  This
