@@ -47,4 +47,4 @@ configuration that is still very good, there is sensible.vim:
 Ideally I want to make everything in this repository available under the public domain (specifically released to the public domain according to the Unlicense), but some of the files here are forks of default config files, which are usually GPL or BSD.
 I'll try to keep track of licenses for each file here.
 
-- `.vimrc`: Unlicense
+- `.vimrc`: Same license as Vim.
