@@ -15,15 +15,6 @@ set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
-if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
-    set t_Co=256
-    highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-endif
-
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
-
 " See https://github.com/riceissa/autolink for source
 function! PasteLink(fmt)
     " escape double and single quotes and backslashes to prevent
@@ -71,6 +62,15 @@ setglobal tags=./tags;,tags
 set ttyfast
 set viminfo^=!
 set wildmenu
+
+if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
+    set t_Co=256
+    highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+endif
+
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+    runtime! macros/matchit.vim
+endif
 
 let g:tex_flavor='latex'
 augroup filetype_specific
