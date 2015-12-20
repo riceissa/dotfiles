@@ -27,7 +27,7 @@ Plugin 'altercation/vim-colors-solarized'
 " since we have to clone the YouCompleteMe repository)
 "       cd ~/.vim/bundle/YouCompleteMe
 "       ./install.py --clang-completer
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
