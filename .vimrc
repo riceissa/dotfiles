@@ -6,9 +6,13 @@ else
 endif
 set nomodeline modelines=0
 syntax enable
+
+" It's too easy to do something unexpected with these commands, so break the
+" undo sequence beforehand
 inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
+
 nnoremap K <C-^>
 set hidden number ruler showcmd
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
@@ -17,7 +21,7 @@ set wildmode=list:longest,full
 
 " See https://github.com/riceissa/autolink for source
 function! PasteLink(fmt)
-    " escape double and single quotes and backslashes to prevent
+    " Escape double and single quotes and backslashes to prevent
     " potential attacks against oneself
     let link = substitute(@+, '"', '%22', 'g')
     let link = substitute(link, "'", "%27", "g")
@@ -53,7 +57,7 @@ if exists('+langnoremap')
 endif
 set laststatus=1
 set listchars=tab:>\ ,trail:@,nbsp:_
-set mouse=a " Always enable mouse
+set mouse=a         " Always enable mouse
 set nrformats=hex
 set sessionoptions-=options
 set smarttab
@@ -72,16 +76,24 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
 endif
 
+" Paste HTML as Pandoc markdown
+if executable('xclip') && executable('pandoc')
+    command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
+endif
+
 let g:tex_flavor='latex'
 if has('autocmd')
     augroup filetype_specific
         autocmd!
+        " Leave paste mode after escaping
+        autocmd InsertLeave * set nopaste
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        " Prevent overzealous autoindent
         autocmd filetype tex setlocal indentexpr=
-        autocmd filetype mail setlocal linebreak spell
+        autocmd filetype mail setlocal linebreak nolist spell
         autocmd filetype make setlocal noexpandtab
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
-        autocmd filetype markdown setlocal linebreak spell
+        autocmd filetype markdown setlocal linebreak nolist spell
     augroup END
 endif
