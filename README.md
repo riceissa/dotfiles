@@ -35,11 +35,14 @@ vim todo:
 
 - learn how to move to fancy characters like `“` quickly; e.g. doing `f"` works to move to quotes, but moving to `“` would require `f<C-k>"6` which is cumbersome to type
 - learn to navigate japanese documents better
-- Description: The intention here is to produce a sane .vimrc that makes both Vim and
-Neovim act in the same way. As such, where Neovim changes a default option
-from that in Vim, this is set explicitly here. For a more minimal
-configuration that is still very good, there is sensible.vim:
-<https://github.com/tpope/vim-sensible>
+- Description: The intention here is to produce a sane .vimrc that makes
+  both Vim and Neovim act in the same way. As such, where Neovim changes
+  a default option from that in Vim, this is set explicitly here. For a
+  more minimal configuration that is still very good, there is
+  sensible.vim: <https://github.com/tpope/vim-sensible>
+- Another way to describe my intention with my .vimrc: it's basically
+  sensible.vim + Neovim's defaults, with a few tweaks to make it easier
+  for my (idiosyncratically).
 
 
 # License
