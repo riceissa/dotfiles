@@ -73,13 +73,15 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 let g:tex_flavor='latex'
-augroup filetype_specific
-    autocmd!
-    autocmd filetype gitcommit setlocal spell
-    autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd filetype tex setlocal indentexpr=
-    autocmd filetype mail setlocal linebreak spell
-    autocmd filetype make setlocal noexpandtab
-    autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
-    autocmd filetype markdown setlocal linebreak spell
-augroup END
+if has('autocmd')
+    augroup filetype_specific
+        autocmd!
+        autocmd filetype gitcommit setlocal spell
+        autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd filetype tex setlocal indentexpr=
+        autocmd filetype mail setlocal linebreak spell
+        autocmd filetype make setlocal noexpandtab
+        autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
+        autocmd filetype markdown setlocal linebreak spell
+    augroup END
+endif
