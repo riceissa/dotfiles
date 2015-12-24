@@ -87,13 +87,14 @@ if has('autocmd')
         autocmd!
         " Leave paste mode after escaping
         autocmd InsertLeave * set nopaste
+        autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
+        autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=html
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         " Prevent overzealous autoindent
         autocmd filetype tex setlocal indentexpr=
         autocmd filetype mail setlocal linebreak nolist spell
         autocmd filetype make setlocal noexpandtab
-        autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd filetype markdown setlocal linebreak nolist spell
     augroup END
 endif
