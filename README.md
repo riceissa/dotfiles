@@ -22,14 +22,31 @@ To install, edit `install.sh` and `debian_software.py` (these are the main scrip
 - bitlbee
 - git config
 - ensure vim/neovim/gvim all work nicely everywhere
-- newsbeuter: change cache size so all content can be backed up.
-- elinks: merge keys with VimFX? I'm still not sure how much application-specific keybinding I'm willing to allow. In general I want everything to work like Vim, but many programs (e.g. elinks) don't support key combinations (except with hold-down combination with ctrl, alt, etc.).
-- w3m
+- newsbeuter: change cache size so all content can be backed up
+  (actually I now think this might be done by default). Also figure out
+  how to sync cache.db.
+- elinks: merge keys with VimFX? I'm still not sure how much
+  application-specific keybinding I'm willing to allow. In general I
+  want everything to work like Vim, but many programs (e.g. elinks)
+  don't support key combinations (except with hold-down combination with
+  ctrl, alt, etc.).
+- w3m, because elinks can't read Japanese characters unless they're in
+  UTF-8! (should follow closely as possible the keybindings of elinks,
+  in order to not confuse the user; actually, use the same keybindings
+  for "newsbeuter", "elinks", and "w3m")
 - terminator/gnome terminal configs (esp. getting solarized to work)
-    - on gnome terminal I just set the background color to `#FDF6E3` and the text color to `#586E75`; I use the Tango colors (they work well enough with the solarized base) and Source Code Pro size 10
-    - newer versions of terminator have solarized built in; however, the colors don't work very well with vim (not sure why) so I stick to solarized base and Tango colors (just like in gnome terminal)
+    - on gnome terminal I just set the background color to `#FDF6E3` and
+      the text color to `#586E75`; I use the Tango colors (they work
+      well enough with the solarized base) and Source Code Pro size 10
+    - newer versions of terminator have solarized built in; however, the
+      colors don't work very well with vim (not sure why) so I stick to
+      solarized base and Tango colors (just like in gnome terminal)
 - bash aliases, etc. bash config
 - set up python to work (e.g. getting pip to work...)
+- emacs: emacs config for Japanese input (see [my page on
+  this](http://issarice.com/japanese-input-on-the-command-line-framebuffer))
+- framebuffer stuff, like fbterm command to change the font (probably
+  include in .bashrc)
 
 vim todo:
 
