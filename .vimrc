@@ -18,6 +18,7 @@ set hidden number ruler showcmd
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
+set ignorecase smartcase
 
 " Explicitly set options that are changed by Neovim, for compatibility.  This
 " allows a single .vimrc file to be used for both Vim and Neovim.
@@ -98,3 +99,11 @@ if has('autocmd')
         autocmd filetype markdown setlocal linebreak nolist spell
     augroup END
 endif
+
+" Ellipsis, …
+dig el 8230
+" Left and right angle brackets, ⟨ ⟩
+dig (< 10216
+dig <( 10216
+dig )> 10217
+dig >) 10217
