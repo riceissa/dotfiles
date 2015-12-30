@@ -27,6 +27,7 @@ PROGRAMS = [
     #"vim-gtk", # for gundo, which requires python
     "python3",
     "python-pip",
+    "python3-pip",
     "python-dev", # for website and YouCompleteMe
     "htop",
     "pandoc",
