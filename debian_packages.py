@@ -77,6 +77,8 @@ PROGRAMS = [
     "ghc",
     "ghc-haddock",
     "libghc-zlib-dev",
+    "ghc-prof",
+    "ghc-dynamic",
 
     # Music On Console is a lightweight and easy-to-use commandline
     # audio player.
