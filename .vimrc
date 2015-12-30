@@ -92,7 +92,7 @@ if has('autocmd')
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=html
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-        " Prevent overzealous autoindent
+        " Prevent overzealous autoindent in align environment
         autocmd filetype tex setlocal indentexpr=
         autocmd filetype mail setlocal linebreak nolist spell
         autocmd filetype make setlocal noexpandtab
