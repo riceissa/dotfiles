@@ -47,6 +47,12 @@ To install, edit `install.sh` and `debian_software.py` (these are the main scrip
   this](http://issarice.com/japanese-input-on-the-command-line-framebuffer))
 - framebuffer stuff, like fbterm command to change the font (probably
   include in .bashrc)
+- document firefox plugins: adblock plus, vimfx, noscript, duckduckgo.
+  maybe also epub plugin.
+- On LMDE `less` searches aren't highlighting for some reason under
+  tmux. It's not a big deal, but I should fix it at some point. I tried
+  [this](http://stackoverflow.com/questions/10535432/tmux-man-page-search-highlighting/10563271#10563271)
+  but it didn't work.
 
 vim todo:
 
