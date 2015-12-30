@@ -27,6 +27,7 @@ PROGRAMS = [
     #"vim-gtk", # for gundo, which requires python
     "python3",
     "python-pip",
+    "python3-pip",
     "python-dev", # for website and YouCompleteMe
     "htop",
     "pandoc",
@@ -49,6 +50,7 @@ PROGRAMS = [
     "moreutils", # contains sponge
     "tree",
     "lm-sensors", # check temperature
+    "keepassx",
 
     # Tmux and screen ... and byobu
     "tmux",
@@ -75,6 +77,8 @@ PROGRAMS = [
     "ghc",
     "ghc-haddock",
     "libghc-zlib-dev",
+    "ghc-prof",
+    "ghc-dynamic",
 
     # Music On Console is a lightweight and easy-to-use commandline
     # audio player.
@@ -97,6 +101,8 @@ PROGRAMS = [
 
     # LaTeX (warning: large download)
     #"texlive-full",
+    #"fonts-linuxlibertine",
+    #"fonts-lato",
 
     "gdebi",
 
