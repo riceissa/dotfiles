@@ -101,6 +101,8 @@ PROGRAMS = [
 
     # LaTeX (warning: large download)
     #"texlive-full",
+    #"fonts-linuxlibertine",
+    #"fonts-lato",
 
     "gdebi",
 
