@@ -50,6 +50,7 @@ PROGRAMS = [
     "moreutils", # contains sponge
     "tree",
     "lm-sensors", # check temperature
+    "keepassx",
 
     # Tmux and screen ... and byobu
     "tmux",
