@@ -82,6 +82,9 @@ if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
 
+command! ShortLines :%s/.\{72}/&\r/g
+command! LongLines :%s/\n//
+
 let g:tex_flavor='latex'
 if has('autocmd')
     augroup filetype_specific
