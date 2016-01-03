@@ -94,6 +94,8 @@ if has('autocmd')
         autocmd InsertLeave * set nopaste
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=html
+        autocmd BufNewFile,BufRead *.mediawiki nnoremap <buffer> j gj
+        autocmd BufNewFile,BufRead *.mediawiki nnoremap <buffer> k gk
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         " Prevent overzealous autoindent in align environment
