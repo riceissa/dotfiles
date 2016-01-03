@@ -82,7 +82,8 @@ if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
 
-command! ShortLines :%s/.\{72}/&↵\r/g | 0
+command! ShortLines :%s/.\{71}/&↵\r/g | 0
+command! ShortLinesAtSpace :%s/.\{,70} /&↵\r/g | 0
 command! LongLines :%s/↵\n// | 0
 
 let g:tex_flavor='latex'
