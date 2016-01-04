@@ -52,7 +52,9 @@ set nrformats=hex
 set sessionoptions-=options
 set smarttab
 set tabpagemax=50
-setglobal tags=./tags;,tags
+if has('path_extra')
+    setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
 set ttyfast
 set viminfo^=!
 set wildmenu
