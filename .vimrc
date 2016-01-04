@@ -14,6 +14,14 @@ inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
 
 nnoremap K <C-^>
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap gj j
+nnoremap gk k
+vnoremap gj j
+vnoremap gk k
 set hidden number ruler showcmd
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set spellfile=~/.spell.en.add
@@ -82,10 +90,6 @@ if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
 
-command! ShortLines :%s/.\{71}/&↵\r/g | 0
-command! ShortLinesAtSpace :%s/.\{,70} /&↵\r/g | 0
-command! LongLines :%s/↵\n// | 0
-
 let g:tex_flavor='latex'
 if has('autocmd')
     augroup filetype_specific
@@ -94,8 +98,6 @@ if has('autocmd')
         autocmd InsertLeave * set nopaste
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=html
-        autocmd BufNewFile,BufRead *.mediawiki nnoremap <buffer> j gj
-        autocmd BufNewFile,BufRead *.mediawiki nnoremap <buffer> k gk
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         " Prevent overzealous autoindent in align environment
