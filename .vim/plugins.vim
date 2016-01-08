@@ -55,10 +55,12 @@ let g:ycm_filetype_blacklist = {
     \ 'mail' : 1,
     \ 'gitcommit': 1,
     \ 'tex': 1,
+    \ 'html': 1,
     \}
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:EclimCompletionMethod = 'omnifunc'
 
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
