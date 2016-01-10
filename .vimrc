@@ -68,6 +68,13 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
 endif
 
+if has("autocmd") && exists("+omnifunc")
+autocmd Filetype *
+        \    if &omnifunc == "" |
+        \        setlocal omnifunc=syntaxcomplete#Complete |
+        \    endif
+endif
+
 " See https://github.com/riceissa/autolink for source
 function! PasteLink(fmt)
     " Escape double and single quotes and backslashes to prevent
