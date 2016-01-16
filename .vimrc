@@ -22,7 +22,7 @@ nnoremap gj j
 nnoremap gk k
 vnoremap gj j
 vnoremap gk k
-set hidden number ruler showcmd
+set hidden number ruler showcmd list
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
@@ -106,7 +106,7 @@ if has('autocmd')
         " Leave paste mode after escaping
         autocmd InsertLeave * set nopaste
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
-        autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=html
+        autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=mediawiki
         autocmd filetype gitcommit setlocal spell
         autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         " Prevent overzealous autoindent in align environment
@@ -114,6 +114,7 @@ if has('autocmd')
         autocmd filetype mail setlocal linebreak nolist spell
         autocmd filetype make setlocal noexpandtab
         autocmd filetype markdown setlocal linebreak nolist spell
+        autocmd filetype mediawiki runtime! syntax/html.vim
     augroup END
 endif
 
