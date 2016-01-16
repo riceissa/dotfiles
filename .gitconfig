@@ -4,6 +4,7 @@
 [core]
     pager = less -+S
 	quotepath = false
+	excludesfile = ~/.gitignore
 [pager]
     log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
     show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
