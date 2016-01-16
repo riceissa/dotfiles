@@ -1,0 +1,18 @@
+# snippets for editing wikipedia
+
+snippet citeweb "cite a webpage"
+<ref${1: name="${2}"}>{{cite web |url=${3} |title=${4} |accessdate=`!v strftime("%B %-d, %Y")`${5: |date=${6}}}}</ref>
+endsnippet
+
+snippet bold
+'''${1}'''${0}
+endsnippet
+
+snippet wikitable
+{| class="wikitable"
+|-
+! ${1:colname}
+|-
+| ${2:cell}
+|}
+endsnippet
