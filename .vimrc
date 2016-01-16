@@ -68,11 +68,12 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     runtime! macros/matchit.vim
 endif
 
+" See :help ft-syntax-omni
 if has("autocmd") && exists("+omnifunc")
-autocmd Filetype *
-        \    if &omnifunc == "" |
-        \        setlocal omnifunc=syntaxcomplete#Complete |
-        \    endif
+    autocmd Filetype *
+            \    if &omnifunc == "" |
+            \        setlocal omnifunc=syntaxcomplete#Complete |
+            \    endif
 endif
 
 " See https://github.com/riceissa/autolink for source
