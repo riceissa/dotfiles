@@ -76,21 +76,21 @@ if has("autocmd") && exists("+omnifunc")
             \    endif
 endif
 
-" See https://github.com/riceissa/autolink for source
-function! PasteLink(fmt)
-    " Escape double and single quotes and backslashes to prevent
-    " potential attacks against oneself
-    let link = substitute(@+, '"', '%22', 'g')
-    let link = substitute(link, "'", "%27", "g")
-    let link = substitute(link, '\', "%5C", "g")
-    if a:fmt ==? ''
-        let command = "autolink.py --clean --format none '" . link . "'"
-    else
-        let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
-    endif
-    return system(command)
-endfunction
 if executable('autolink.py') && has('clipboard')
+    " See https://github.com/riceissa/autolink for source
+    function! PasteLink(fmt)
+        " Escape double and single quotes and backslashes to prevent
+        " potential attacks against oneself
+        let link = substitute(@+, '"', '%22', 'g')
+        let link = substitute(link, "'", "%27", "g")
+        let link = substitute(link, '\', "%5C", "g")
+        if a:fmt ==? ''
+            let command = "autolink.py --clean --format none '" . link . "'"
+        else
+            let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+        endif
+        return system(command)
+    endfunction
     " Break up the undo first in case the output is messed up
     inoremap <C-b> <C-G>u<C-r>=PasteLink(&filetype)<CR>
 endif
