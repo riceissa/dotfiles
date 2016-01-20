@@ -18,8 +18,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized' " only for gvim
+"Plugin 'ctrlpvim/ctrlp.vim'
 
 " YouCompleteMe
 " -------------
@@ -46,16 +46,17 @@ let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 " YouCompleteMe
 " -------------
 let g:ycm_filetype_blacklist = {
-    \ 'unite' : 1,
-    \ 'markdown' : 1,
-    \ 'text': 1,
-    \ 'notes' : 1,
-    \ 'pdc' : 1,
-    \ 'pandoc' : 1,
-    \ 'mail' : 1,
     \ 'gitcommit': 1,
-    \ 'tex': 1,
     \ 'html': 1,
+    \ 'mail' : 1,
+    \ 'markdown' : 1,
+    \ 'mediawiki': 1,
+    \ 'notes' : 1,
+    \ 'pandoc' : 1,
+    \ 'pdc' : 1,
+    \ 'tex': 1,
+    \ 'text': 1,
+    \ 'unite' : 1,
     \}
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
