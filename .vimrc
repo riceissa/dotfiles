@@ -13,6 +13,8 @@ inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
 
+inoremap <C-l> <Esc>
+vnoremap <C-l> <Esc>
 nnoremap K <C-^>
 nnoremap j gj
 nnoremap k gk
@@ -45,7 +47,7 @@ set incsearch
 if exists('+langnoremap')
     set langnoremap
 endif
-set laststatus=1
+set laststatus=2
 set listchars=tab:>\ ,trail:@,nbsp:_
 set mouse=a         " Always enable mouse
 set nrformats=hex
@@ -62,6 +64,7 @@ set wildmenu
 if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
     set t_Co=256
     highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+    highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
 endif
 
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
