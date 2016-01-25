@@ -16,6 +16,7 @@ inoremap <C-r> <C-g>u<C-r>
 inoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 nnoremap K <C-^>
+nnoremap Y y$
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -24,8 +25,9 @@ nnoremap gj j
 nnoremap gk k
 vnoremap gj j
 vnoremap gk k
-set hidden number ruler showcmd list
+set hidden number ruler showcmd list noesckeys noequalalways
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
+set matchpairs+=<:>
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 set ignorecase smartcase
@@ -102,6 +104,8 @@ endif
 if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
+
+command! HTMLEscape :%s/&/\&amp;/g | %s/</\&lt;/g | %s/>/\&gt;/g
 
 let g:tex_flavor='latex'
 if has('autocmd')
