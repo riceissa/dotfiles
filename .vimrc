@@ -17,6 +17,7 @@ inoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 nnoremap K <C-^>
 nnoremap Y y$
+nnoremap <C-k> k
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -27,7 +28,7 @@ vnoremap gj j
 vnoremap gk k
 set hidden number ruler showcmd list noesckeys noequalalways
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
-set matchpairs+=<:>
+set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 set ignorecase smartcase
