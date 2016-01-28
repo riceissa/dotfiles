@@ -106,7 +106,7 @@ if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
 
-command! HTMLEscape :%s/&/\&amp;/g | %s/</\&lt;/g | %s/>/\&gt;/g
+command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
 
 let g:tex_flavor='latex'
 if has('autocmd')
