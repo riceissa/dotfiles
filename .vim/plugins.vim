@@ -16,10 +16,12 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'altercation/vim-colors-solarized' " only for gvim
-"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " YouCompleteMe
 " -------------
@@ -62,6 +64,8 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:EclimCompletionMethod = 'omnifunc'
+
+let g:pandoc#syntax#conceal#use = 0
 
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
