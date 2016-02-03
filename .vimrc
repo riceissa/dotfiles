@@ -116,14 +116,14 @@ if has('autocmd')
         autocmd InsertLeave * set nopaste
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=mediawiki
-        autocmd filetype gitcommit setlocal spell
-        autocmd filetype html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-        autocmd filetype mail setlocal linebreak nolist spell
-        autocmd filetype make setlocal noexpandtab
-        autocmd filetype markdown setlocal linebreak nolist spell
-        autocmd filetype mediawiki setlocal syntax=html
+        autocmd FileType gitcommit setlocal spell
+        autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+        autocmd FileType mail setlocal linebreak nolist spell
+        autocmd FileType make setlocal noexpandtab
+        autocmd FileType markdown setlocal linebreak nolist spell
+        autocmd FileType mediawiki setlocal syntax=html
         " Prevent overzealous autoindent in align environment
-        autocmd filetype tex setlocal indentexpr=
+        autocmd FileType tex setlocal indentexpr=
     augroup END
 endif
 
