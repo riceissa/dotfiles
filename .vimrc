@@ -17,7 +17,6 @@ inoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 nnoremap K <C-^>
 nnoremap Y y$
-nnoremap <C-k> k
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
