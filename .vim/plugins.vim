@@ -69,3 +69,4 @@ let g:pandoc#syntax#conceal#use = 0
 
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_map = '<c-k>'
