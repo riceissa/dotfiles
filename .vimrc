@@ -134,7 +134,7 @@ if has('autocmd')
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
         autocmd FileType tex setlocal spell
-        autocmd FileType tex :syntax spell toplevel
+        autocmd FileType tex syntax spell toplevel
     augroup END
 endif
 
