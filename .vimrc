@@ -81,6 +81,16 @@ if has("autocmd") && exists("+omnifunc")
             \    endif
 endif
 
+function! ToggleSyntax()
+    " See :h syntax for the code
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+    endif
+endfunction
+nnoremap <silent> coy :call ToggleSyntax()<CR>
+
 if executable('autolink.py') && has('clipboard')
     " See https://github.com/riceissa/autolink for source
     function! PasteLink(fmt)
