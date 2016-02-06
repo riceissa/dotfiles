@@ -123,6 +123,8 @@ if has('autocmd')
         autocmd FileType mediawiki setlocal syntax=html
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
+        autocmd FileType tex setlocal spell
+        autocmd FileType tex :syntax spell toplevel
     augroup END
 endif
 
