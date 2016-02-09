@@ -13,10 +13,13 @@ inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
 
+let mapleader = ' '
 inoremap <C-l> <Esc>
 vnoremap <C-l> <Esc>
 nnoremap K <C-^>
 nnoremap Y y$
+nnoremap <leader>y :%y +<CR>
+nnoremap <leader>f F<Space>xpA
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
