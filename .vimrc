@@ -18,6 +18,7 @@ nnoremap <C-l> :noh<CR><C-l>
 nnoremap K <C-^>
 nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
+" quickly fix a form of typo I often make
 nnoremap <leader>f F<Space>xpA
 nnoremap <leader>m :write \| make<CR>
 nnoremap j gj
@@ -94,6 +95,8 @@ function! ToggleSyntax()
 endfunction
 nnoremap <silent> coy :call ToggleSyntax()<CR>
 
+" Use with <C-r>=Today<tab><CR>
+" This is useful when I don't have UltiSnips
 function! Today()
     return strftime("%Y-%m-%d")
 endfunction
@@ -122,6 +125,8 @@ if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
 endif
 
+" vim-unimpaired has better HTML escaping, but this is for when I don't have
+" plugins
 command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
 
 let g:tex_flavor='latex'
