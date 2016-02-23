@@ -14,12 +14,12 @@ inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
 
 let mapleader = ' '
-inoremap <C-l> <Esc>
-vnoremap <C-l> <Esc>
+nnoremap <C-l> :noh<CR><C-l>
 nnoremap K <C-^>
 nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
 nnoremap <leader>f F<Space>xpA
+nnoremap <leader>m :write \| make<CR>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -93,6 +93,10 @@ function! ToggleSyntax()
     endif
 endfunction
 nnoremap <silent> coy :call ToggleSyntax()<CR>
+
+function! Today()
+    return strftime("%Y-%m-%d")
+endfunction
 
 if executable('autolink.py') && has('clipboard')
     " See https://github.com/riceissa/autolink for source
