@@ -20,7 +20,7 @@ nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
 " quickly fix a form of typo I often make
 nnoremap <leader>f F<Space>xpA
-nnoremap <leader>m :write \| make<CR>
+nnoremap <leader>m :write \| !make<CR><CR>
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -128,6 +128,12 @@ endif
 " vim-unimpaired has better HTML escaping, but this is for when I don't have
 " plugins
 command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
+
+" filter text pasted from PDFs, so that formatting is suitable; progress
+" ongoing; join must be called at the very end because vim assigns <line1> and
+" <line2> when the command is invoked, so we can't change the boundaries of the
+" line markers
+command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<line2>s/\-\s\+$//e | silent <line1>,<line2>s/\s\+/ /ge | silent <line1>,<line2>s/^\s\+//e | <line1>,<line2>join!
 
 let g:tex_flavor='latex'
 if has('autocmd')
