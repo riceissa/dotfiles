@@ -18,6 +18,8 @@
 (define-key evil-normal-state-map "gj" 'evil-next-line)
 (define-key evil-normal-state-map "gk" 'evil-previous-line)
 
+(define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
+
 ; Change L, M, H to use screen lines all the time instead of hard
 ; lines, just like how gj and gk do screen lines.
 (define-key evil-normal-state-map (kbd "L") (lambda () (interactive) (move-to-window-line-top-bottom -1)))
