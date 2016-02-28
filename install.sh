@@ -60,3 +60,7 @@ echo elinks.conf >> ~/.elinks/elinks.conf
 # ----------
 mkdir -p ~/.newsbeuter
 ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
+
+# Emacs
+# -----
+ln -s "$(pwd)/.emacs" ~/.emacs
