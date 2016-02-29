@@ -132,7 +132,7 @@ command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
 " filter text pasted from PDFs, so that formatting is suitable; progress
 " ongoing; join must be called at the very end because vim assigns <line1> and
 " <line2> when the command is invoked, so we can't change the boundaries of the
-" line markers
+" line markers; for the same reason, we can't regex replace new lines
 command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<line2>s/\-\s\+$//e | silent <line1>,<line2>s/\s\+/ /ge | silent <line1>,<line2>s/^\s\+//e | <line1>,<line2>join!
 
 let g:tex_flavor='latex'
