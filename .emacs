@@ -29,6 +29,9 @@
 ; enable line numbers all the time
 (global-linum-mode t)
 
+; nnoremap Y y$
+(setq evil-want-Y-yank-to-eol t)
+
 ; disable tool bar
 (tool-bar-mode -1)
 
