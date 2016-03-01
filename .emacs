@@ -93,9 +93,6 @@
             (if arg (forward-sexp (prefix-numeric-value arg)))
             (insert "\\)"))))))
 
-; load markdown mode by placing it in path
-;(add-to-list 'load-path "~/projects/markdown-mode")
-
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
