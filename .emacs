@@ -26,48 +26,35 @@
 (define-key evil-normal-state-map "gj" 'evil-next-line)
 (define-key evil-normal-state-map "gk" 'evil-previous-line)
 
+; nnoremap K <C-^>
 (define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
 
-; Change L, M, H to use screen lines all the time instead of hard
+; Change H, M, L to use screen lines all the time instead of logical
 ; lines, just like how gj and gk do screen lines.
 ;; TODO: make this work in visual mode as well
-(define-key evil-normal-state-map (kbd "L") (lambda () (interactive) (move-to-window-line-top-bottom -1)))
 (define-key evil-normal-state-map (kbd "H") (lambda () (interactive) (move-to-window-line-top-bottom 0)))
 (define-key evil-normal-state-map (kbd "M") (lambda () (interactive) (move-to-window-line-top-bottom)))
+(define-key evil-normal-state-map (kbd "L") (lambda () (interactive) (move-to-window-line-top-bottom -1)))
 
-; let evil insert use emacs keybindings instead of vim insert keybindings
-;(setcdr evil-insert-state-map nil)
-;(define-key evil-insert-state-map
-;            (read-kbd-macro evil-toggle-key) 'evil-normal-state)
-;(define-key evil-insert-state-map [escape] 'evil-normal-state)
-; i don't think this one is valid:
-;(define-key evil-normal-state-map
-;            (read-kbd-macro evil-insert-toggle-key) 'evil-emacs-state)
-
-; FIXME make this paste to the current spot the formatted link of the
+; TODO: make this paste to the current spot the formatted link of the
 ; URL in the clipboard, like in my Vim configuration; it would
-; actually be handy too if this coul be added for emacs in general and
-; not just evil insert state.
+; actually be handy too if this could be added for emacs in general
+; and not just evil insert state.
+; UPDATE: evil insert no longer exists in my setup, so now just get
+; this working for emacs proper
 ;(define-key evil-insert-state-map (kbd "C-b") (lambda () (interactive) (shell-command "autolink.py ")))
-
-; enable line numbers all the time
-(global-linum-mode t)
 
 ; nnoremap Y y$
 (setq evil-want-Y-yank-to-eol t)
 
-; disable tool bar
-(tool-bar-mode -1)
+; More regular emacs configuration (not Evil)
+(global-linum-mode t)   ; enable line numbers all the time
+(tool-bar-mode -1)   ; disable tool bar
+(setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
+(define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
+(show-paren-mode t)   ; show matching paren
 
-; use 4 spaces instead of tabs
-(setq-default tab-width 4 indent-tabs-mode nil)
-
-; indent when returning
-(define-key global-map (kbd "RET") 'newline-and-indent)
-
-; show matching paren
-(show-paren-mode t)
-
+; Settings from Custom
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -75,19 +62,22 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monospace" :slant normal :height 102 :width normal)))))
 
-; I got this from somewhere - I no longer remember where - but
-; I think it's supposed to make previewing easier when writing
-; LaTeX documents.
+; I got this from somewhere - I no longer remember where - but I think
+; it's supposed to make previewing easier when writing LaTeX
+; documents. It might not even be necessary, and I should at some
+; point document what this does...
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 
-; wrap lines in org mode
-(setq org-startup-truncated nil)
+(setq org-startup-truncated nil)   ; wrap lines in org mode
 
 ; from https://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
+; basically, allow C-c m to enter math in LaTeX with delimiters
+; \(...\) instead of the TeX $...$ (you'd think AUCTeX was smart
+; enough to do this, but alas...)
 (add-hook 'LaTeX-mode-hook
   '(lambda ()
     (define-key TeX-mode-map "\C-cm" 'TeX-insert-inline-math)
@@ -104,7 +94,7 @@
             (insert "\\)"))))))
 
 ; load markdown mode by placing it in path
-(add-to-list 'load-path "~/projects/markdown-mode")
+;(add-to-list 'load-path "~/projects/markdown-mode")
 
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
@@ -112,6 +102,8 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+
+; more settings from Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
