@@ -4,9 +4,11 @@
 (package-initialize)
 
 ; use evil mode
-;(add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 (evil-mode 1)
+
+; make emacs state the default
+(setq evil-default-state 'emacs)
 
 ; Equivalent of
 ;     nnoremap j gj
@@ -18,13 +20,30 @@
 (define-key evil-normal-state-map "gj" 'evil-next-line)
 (define-key evil-normal-state-map "gk" 'evil-previous-line)
 
+; use emacs state instead of insert mode
+; TODO do this for o, O, a, A, and possibly others
+(define-key evil-normal-state-map "i" 'evil-emacs-state)
+
 (define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
 
 ; Change L, M, H to use screen lines all the time instead of hard
 ; lines, just like how gj and gk do screen lines.
+;; TODO: make this work in visual mode as well
 (define-key evil-normal-state-map (kbd "L") (lambda () (interactive) (move-to-window-line-top-bottom -1)))
 (define-key evil-normal-state-map (kbd "H") (lambda () (interactive) (move-to-window-line-top-bottom 0)))
 (define-key evil-normal-state-map (kbd "M") (lambda () (interactive) (move-to-window-line-top-bottom)))
+
+; let evil insert use emacs keybindings instead of vim insert keybindings
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map
+            (read-kbd-macro evil-toggle-key) 'evil-normal-state)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+; FIXME make this paste to the current spot the formatted link of the
+; URL in the clipboard, like in my Vim configuration; it would
+; actually be handy too if this coul be added for emacs in general and
+; not just evil insert state.
+;(define-key evil-insert-state-map (kbd "C-b") (lambda () (interactive) (shell-command "autolink.py ")))
 
 ; enable line numbers all the time
 (global-linum-mode t)
@@ -49,7 +68,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monospace" :slant normal :height 98 :width normal)))))
+ '(default ((t (:family "monospace" :slant normal :height 102 :width normal)))))
 
 ; I got this from somewhere - I no longer remember where - but
 ; I think it's supposed to make previewing easier when writing
@@ -59,6 +78,25 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+
+; wrap lines in org mode
+(setq org-startup-truncated nil)
+
+; from https://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
+(add-hook 'LaTeX-mode-hook
+  '(lambda ()
+    (define-key TeX-mode-map "\C-cm" 'TeX-insert-inline-math)
+    (defun TeX-insert-inline-math (arg)
+      "Like TeX-insert-brackes but for \(...\)" (interactive "P")
+      (if (TeX-active-mark)
+        (progn
+          (if (< (point) (mark)) (exchange-point-and-mark))
+          (insert "\\)")
+          (save-excursion (goto-char (mark)) (insert "\\(")))
+          (insert "\\(")
+          (save-excursion
+            (if arg (forward-sexp (prefix-numeric-value arg)))
+            (insert "\\)"))))))
 
 ; load markdown mode by placing it in path
 (add-to-list 'load-path "~/projects/markdown-mode")
