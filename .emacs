@@ -10,19 +10,21 @@
 ; make emacs state the default
 (setq evil-default-state 'emacs)
 
+; don't even use evil insert state; instead, just use regular emacs
+; state
+; from https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automaticly
+(defalias 'evil-insert-state 'evil-emacs-state)
+
 ; Equivalent of
 ;     nnoremap j gj
 ;     nnoremap k gk
 ;     nnoremap gj j
 ;     nnoremap gk k
+; TODO make this work with visual state as well
 (define-key evil-normal-state-map "j" 'evil-next-visual-line)
 (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
 (define-key evil-normal-state-map "gj" 'evil-next-line)
 (define-key evil-normal-state-map "gk" 'evil-previous-line)
-
-; use emacs state instead of insert mode
-; TODO do this for o, O, a, A, and possibly others
-(define-key evil-normal-state-map "i" 'evil-emacs-state)
 
 (define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
 
