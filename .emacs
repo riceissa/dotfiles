@@ -34,10 +34,13 @@
 (define-key evil-normal-state-map (kbd "M") (lambda () (interactive) (move-to-window-line-top-bottom)))
 
 ; let evil insert use emacs keybindings instead of vim insert keybindings
-(setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map
-            (read-kbd-macro evil-toggle-key) 'evil-normal-state)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
+;(setcdr evil-insert-state-map nil)
+;(define-key evil-insert-state-map
+;            (read-kbd-macro evil-toggle-key) 'evil-normal-state)
+;(define-key evil-insert-state-map [escape] 'evil-normal-state)
+; i don't think this one is valid:
+;(define-key evil-normal-state-map
+;            (read-kbd-macro evil-insert-toggle-key) 'evil-emacs-state)
 
 ; FIXME make this paste to the current spot the formatted link of the
 ; URL in the clipboard, like in my Vim configuration; it would
