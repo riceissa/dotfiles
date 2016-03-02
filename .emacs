@@ -3,6 +3,18 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
+; another thing to do when first setting up emacs:
+; see https://stackoverflow.com/questions/22710964/emacs24-not-rendering-fonts-properly
+; in essence: in ~/.Xresources , add:
+;     Xft.hintstyle:  hintfull
+;     Xft.lcdfilter:  lcddefault
+; this will improve font rendering; in particular, Source Code Pro will
+; look much nicer.
+
+; no startup screen
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
 ; use evil mode
 (require 'evil)
 (evil-mode 1)
@@ -13,6 +25,8 @@
 ; don't even use evil insert state; instead, just use regular emacs
 ; state
 ; from https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automaticly
+; this causes some problems because doing 'I' after multi-line visual block
+; will not insert in each row, but that's the only problem I've had so far.
 (defalias 'evil-insert-state 'evil-emacs-state)
 
 ; Equivalent of
@@ -53,6 +67,10 @@
 (setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
 (define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
 (show-paren-mode t)   ; show matching paren
+; enable flyspell mode by default; see https://stackoverflow.com/questions/15891808/emacs-how-to-enable-automatic-spell-check-by-default
+;(add-hook 'text-mode-hook 'flyspell-mode)
+;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'find-file-hooks 'turn-on-flyspell)
 
 ; Settings from Custom
 (custom-set-faces
@@ -60,7 +78,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monospace" :slant normal :height 102 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :slant normal :height 98 :width normal)))))
 
 ; I got this from somewhere - I no longer remember where - but I think
 ; it's supposed to make previewing easier when writing LaTeX
