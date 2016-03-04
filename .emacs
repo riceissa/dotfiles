@@ -15,6 +15,14 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+; don't double-space after sentences
+(setq sentence-end-double-space nil)
+
+; always follow symlinks controlled by git
+(setq vc-follow-symlinks t)
+
+(ido-mode 1)
+
 ; use evil mode
 (require 'evil)
 (evil-mode 1)
@@ -27,18 +35,22 @@
 ; from https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automaticly
 ; this causes some problems because doing 'I' after multi-line visual block
 ; will not insert in each row, but that's the only problem I've had so far.
-(defalias 'evil-insert-state 'evil-emacs-state)
+;(defalias 'evil-insert-state 'evil-emacs-state)
 
 ; Equivalent of
 ;     nnoremap j gj
 ;     nnoremap k gk
 ;     nnoremap gj j
 ;     nnoremap gk k
-; TODO make this work with visual state as well
+;     (and same for visual mode)
 (define-key evil-normal-state-map "j" 'evil-next-visual-line)
 (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
 (define-key evil-normal-state-map "gj" 'evil-next-line)
 (define-key evil-normal-state-map "gk" 'evil-previous-line)
+(define-key evil-visual-state-map "j" 'evil-next-visual-line)
+(define-key evil-visual-state-map "k" 'evil-previous-visual-line)
+(define-key evil-visual-state-map "gj" 'evil-next-line)
+(define-key evil-visual-state-map "gk" 'evil-previous-line)
 
 ; nnoremap K <C-^>
 (define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
@@ -61,16 +73,33 @@
 ; nnoremap Y y$
 (setq evil-want-Y-yank-to-eol t)
 
+; magit status should wrap lines
+; from https://emacs.stackexchange.com/questions/2890/how-to-make-truncate-lines-nil-and-auto-fill-mode-off-in-magit-buffers
+(add-hook 'magit-status-mode-hook
+          (lambda ()
+             (setq truncate-lines nil)))
+; easy access to magit status; from http://stackoverflow.com/a/5682737
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ; More regular emacs configuration (not Evil)
 (global-linum-mode t)   ; enable line numbers all the time
 (tool-bar-mode -1)   ; disable tool bar
 (setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
-(define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
+;(define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
+(global-set-key (kbd "RET") 'newline-and-indent) ; same as previous? from http://stackoverflow.com/a/345291
 (show-paren-mode t)   ; show matching paren
 ; enable flyspell mode by default; see https://stackoverflow.com/questions/15891808/emacs-how-to-enable-automatic-spell-check-by-default
 ;(add-hook 'text-mode-hook 'flyspell-mode)
 ;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'find-file-hooks 'turn-on-flyspell)
+; "smooth scroll"; from http://stackoverflow.com/a/4160949
+(setq redisplay-dont-pause t
+  scroll-margin 1
+  scroll-step 1
+  scroll-conservatively 10000
+  scroll-preserve-screen-position 1)
+; "smooth scroll" for mouse wheel; from https://www.emacswiki.org/emacs/SmoothScrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 
 ; Settings from Custom
 (custom-set-faces
