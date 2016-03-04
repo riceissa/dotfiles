@@ -78,7 +78,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :slant normal :height 98 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :slant normal :height 98 :width normal))))
+ '(magit-item-highlight ((t nil)))
+ '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :height 1.3 :family "Lato")))))
 
 ; I got this from somewhere - I no longer remember where - but I think
 ; it's supposed to make previewing easier when writing LaTeX
