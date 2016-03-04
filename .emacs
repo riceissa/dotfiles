@@ -119,6 +119,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+(setq markdown-command "pandoc -f markdown -t html5 --mathjax -Ss")
 
 ; more settings from Custom
 (custom-set-variables
