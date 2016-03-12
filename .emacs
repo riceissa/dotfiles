@@ -22,6 +22,7 @@
 (setq vc-follow-symlinks t)
 
 (ido-mode 1)
+(require 'mediawiki)
 
 ; use evil mode
 (require 'evil)
@@ -29,6 +30,10 @@
 
 ; make emacs state the default
 (setq evil-default-state 'emacs)
+
+; Make :Gst :Gwr work like in fugitive
+(evil-ex-define-cmd "Gst[atus]" 'magit-status)
+;(evil-ex-define-cmd "Gwr[ite]" 'magit-stage-item)
 
 ; don't even use evil insert state; instead, just use regular emacs
 ; state
@@ -108,8 +113,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Source Code Pro" :slant normal :height 98 :width normal))))
- '(magit-item-highlight ((t nil)))
- '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :height 1.3 :family "Lato")))))
+ '(magit-item-highlight ((t nil)) t)
+ '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :height 1.3 :family "Lato"))) t))
 
 ; I got this from somewhere - I no longer remember where - but I think
 ; it's supposed to make previewing easier when writing LaTeX
@@ -148,6 +153,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
 (setq markdown-command "pandoc -f markdown -t html5 --mathjax -Ss")
 
 ; more settings from Custom
@@ -158,5 +164,6 @@
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (solarized-light)))
  '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(ispell-program-name "/usr/bin/hunspell")
  '(magit-diff-refine-hunk t)
  '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . default) ("\\.pdf\\'" . "atril %s")))))
