@@ -1,3 +1,8 @@
+; regular emacs configuration (not Evil)
+(global-linum-mode t)   ; enable line numbers all the time
+(tool-bar-mode -1)   ; disable tool bar
+(setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
+(global-font-lock-mode 't)
 ; for installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
