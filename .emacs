@@ -91,10 +91,6 @@
 ; easy access to magit status; from http://stackoverflow.com/a/5682737
 (global-set-key (kbd "C-x g") 'magit-status)
 
-; More regular emacs configuration (not Evil)
-(global-linum-mode t)   ; enable line numbers all the time
-(tool-bar-mode -1)   ; disable tool bar
-(setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
 ;(define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
 (global-set-key (kbd "RET") 'newline-and-indent) ; same as previous? from http://stackoverflow.com/a/345291
 (show-paren-mode t)   ; show matching paren
