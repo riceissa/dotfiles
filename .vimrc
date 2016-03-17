@@ -20,6 +20,7 @@ nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
 " quickly fix a form of typo I often make
 nnoremap <leader>f F<Space>xpA
+nnoremap <leader>F F<Space>gExpA
 nnoremap <leader>m :write \| !make<CR><CR>
 nnoremap j gj
 nnoremap k gk
