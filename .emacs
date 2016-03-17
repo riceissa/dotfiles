@@ -157,6 +157,10 @@
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
 (setq markdown-command "pandoc -f markdown -t html5 --mathjax -Ss")
 
+(setq mediawiki-mode-hook
+      (lambda ()
+        (define-key mediawiki-mode-map (kbd "C-x C-s") 'save-buffer)))
+
 ; more settings from Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
