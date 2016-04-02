@@ -27,8 +27,6 @@
 ;      (lambda ()
 ;        (define-key mediawiki-mode-map (kbd "C-x C-s") 'save-buffer)))
 
-(setq org-startup-truncated nil) ; wrap lines in ord mode
-
 ; magit settings
 (global-set-key (kbd "C-x g") 'magit-status)
 ; magit status should wrap lines
@@ -61,6 +59,7 @@
  '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "Riceissa" "PASSWORD" "" "User:Riceissa"))))
  '(mouse-wheel-progressive-speed nil)
  '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . default) ("\\.pdf\\'" . "atril %s"))))
+ '(org-startup-truncated nil)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(tab-width 4)
