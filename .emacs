@@ -1,174 +1,74 @@
-; regular emacs configuration (not Evil)
-(global-linum-mode t)   ; enable line numbers all the time
-(tool-bar-mode -1)   ; disable tool bar
-(setq-default tab-width 4 indent-tabs-mode nil)  ; use 4 spaces instead of tabs
-(global-font-lock-mode 't)
-; for installing packages
+; No startup screen
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t)
+
+; Another thing to do when first setting up Emacs.  In the file ~/.Xresources,
+; add the lines:
+;    Xft.hintstyle:  hintfull
+;    Xft.lcdfilter:  lcddefault
+; This will improve font rendering; in particular, Source Code Pro will look
+; much nicer.
+; Source: https://stackoverflow.com/questions/22710964/emacs24-not-rendering-fonts-properly
+
+; For installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
-; another thing to do when first setting up emacs:
-; see https://stackoverflow.com/questions/22710964/emacs24-not-rendering-fonts-properly
-; in essence: in ~/.Xresources , add:
-;     Xft.hintstyle:  hintfull
-;     Xft.lcdfilter:  lcddefault
-; this will improve font rendering; in particular, Source Code Pro will
-; look much nicer.
+(ido-mode t)
 
-; no startup screen
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-
-; don't double-space after sentences
-(setq sentence-end-double-space nil)
-
-; always follow symlinks controlled by git
-(setq vc-follow-symlinks t)
-
-(ido-mode 1)
+; mediawiki mode
 (require 'mediawiki)
+(add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
+(setq mediawiki-mode-hook
+      (lambda ()
+        (define-key mediawiki-mode-map (kbd "M-r") 'move-to-window-line-top-bottom)))
+;(setq mediawiki-mode-hook
+;      (lambda ()
+;        (define-key mediawiki-mode-map (kbd "C-x C-s") 'save-buffer)))
 
-; use evil mode
-(require 'evil)
-(evil-mode 1)
+(setq org-startup-truncated nil) ; wrap lines in ord mode
 
-; make emacs state the default
-(setq evil-default-state 'emacs)
-
-; Make :Gst :Gwr work like in fugitive
-(evil-ex-define-cmd "Gst[atus]" 'magit-status)
-;(evil-ex-define-cmd "Gwr[ite]" 'magit-stage-item)
-
-; don't even use evil insert state; instead, just use regular emacs
-; state
-; from https://stackoverflow.com/questions/25542097/emacs-evil-mode-how-to-change-insert-state-to-emacs-state-automaticly
-; this causes some problems because doing 'I' after multi-line visual block
-; will not insert in each row, but that's the only problem I've had so far.
-;(defalias 'evil-insert-state 'evil-emacs-state)
-
-; Equivalent of
-;     nnoremap j gj
-;     nnoremap k gk
-;     nnoremap gj j
-;     nnoremap gk k
-;     (and same for visual mode)
-(define-key evil-normal-state-map "j" 'evil-next-visual-line)
-(define-key evil-normal-state-map "k" 'evil-previous-visual-line)
-(define-key evil-normal-state-map "gj" 'evil-next-line)
-(define-key evil-normal-state-map "gk" 'evil-previous-line)
-(define-key evil-visual-state-map "j" 'evil-next-visual-line)
-(define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-(define-key evil-visual-state-map "gj" 'evil-next-line)
-(define-key evil-visual-state-map "gk" 'evil-previous-line)
-
-; nnoremap K <C-^>
-(define-key evil-normal-state-map (kbd "K") (lambda () (interactive) (evil-buffer nil)))
-
-; Change H, M, L to use screen lines all the time instead of logical
-; lines, just like how gj and gk do screen lines.
-;; TODO: make this work in visual mode as well
-(define-key evil-normal-state-map (kbd "H") (lambda () (interactive) (move-to-window-line-top-bottom 0)))
-(define-key evil-normal-state-map (kbd "M") (lambda () (interactive) (move-to-window-line-top-bottom)))
-(define-key evil-normal-state-map (kbd "L") (lambda () (interactive) (move-to-window-line-top-bottom -1)))
-
-; TODO: make this paste to the current spot the formatted link of the
-; URL in the clipboard, like in my Vim configuration; it would
-; actually be handy too if this could be added for emacs in general
-; and not just evil insert state.
-; UPDATE: evil insert no longer exists in my setup, so now just get
-; this working for emacs proper
-;(define-key evil-insert-state-map (kbd "C-b") (lambda () (interactive) (shell-command "autolink.py ")))
-
-; nnoremap Y y$
-(setq evil-want-Y-yank-to-eol t)
-
+; magit settings
+(global-set-key (kbd "C-x g") 'magit-status)
 ; magit status should wrap lines
 ; from https://emacs.stackexchange.com/questions/2890/how-to-make-truncate-lines-nil-and-auto-fill-mode-off-in-magit-buffers
 (add-hook 'magit-status-mode-hook
           (lambda ()
-             (setq truncate-lines nil)))
-; easy access to magit status; from http://stackoverflow.com/a/5682737
-(global-set-key (kbd "C-x g") 'magit-status)
+            (setq truncate-lines nil)))
+(add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
-;(define-key global-map (kbd "RET") 'newline-and-indent)   ; indent when returning
-(global-set-key (kbd "RET") 'newline-and-indent) ; same as previous? from http://stackoverflow.com/a/345291
-(show-paren-mode t)   ; show matching paren
-; enable flyspell mode by default; see https://stackoverflow.com/questions/15891808/emacs-how-to-enable-automatic-spell-check-by-default
-;(add-hook 'text-mode-hook 'flyspell-mode)
-;(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'find-file-hooks 'turn-on-flyspell)
-; "smooth scroll"; from http://stackoverflow.com/a/4160949
-(setq redisplay-dont-pause t
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
-; "smooth scroll" for mouse wheel; from https://www.emacswiki.org/emacs/SmoothScrolling
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-
-; Settings from Custom
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :slant normal :height 98 :width normal))))
- '(magit-item-highlight ((t nil)) t)
- '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :height 1.3 :family "Lato"))) t))
-
-; I got this from somewhere - I no longer remember where - but I think
-; it's supposed to make previewing easier when writing LaTeX
-; documents. It might not even be necessary, and I should at some
-; point document what this does...
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-
-(setq org-startup-truncated nil)   ; wrap lines in org mode
-
-; from https://tex.stackexchange.com/questions/27241/entering-math-mode-in-auctex-using-and
-; basically, allow C-c m to enter math in LaTeX with delimiters
-; \(...\) instead of the TeX $...$ (you'd think AUCTeX was smart
-; enough to do this, but alas...)
-(add-hook 'LaTeX-mode-hook
-  '(lambda ()
-    (define-key TeX-mode-map "\C-cm" 'TeX-insert-inline-math)
-    (defun TeX-insert-inline-math (arg)
-      "Like TeX-insert-brackes but for \(...\)" (interactive "P")
-      (if (TeX-active-mark)
-        (progn
-          (if (< (point) (mark)) (exchange-point-and-mark))
-          (insert "\\)")
-          (save-excursion (goto-char (mark)) (insert "\\(")))
-          (insert "\\(")
-          (save-excursion
-            (if arg (forward-sexp (prefix-numeric-value arg)))
-            (insert "\\)"))))))
-
+; markdown mode
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
 (setq markdown-command "pandoc -f markdown -t html5 --mathjax -Ss")
 
-(setq mediawiki-mode-hook
-      (lambda ()
-        (define-key mediawiki-mode-map (kbd "C-x C-s") 'save-buffer)))
-
-; more settings from Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (solarized-light)))
- '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(global-linum-mode t)
+ '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
- '(magit-diff-refine-hunk t)
- '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . default) ("\\.pdf\\'" . "atril %s")))))
+ '(make-backup-files nil)
+ '(mediawiki-site-alist (quote (("Wikipedia" "http://en.wikipedia.org/w/" "Riceissa" "PASSWORD" "" "User:Riceissa"))))
+ '(mouse-wheel-progressive-speed nil)
+ '(org-file-apps (quote ((auto-mode . emacs) ("\\.mm\\'" . default) ("\\.x?html?\\'" . default) ("\\.pdf\\'" . "atril %s"))))
+ '(sentence-end-double-space nil)
+ '(show-paren-mode t)
+ '(tab-width 4)
+ '(tool-bar-mode nil)
+ '(vc-follow-symlinks t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#fdf6e3" :foreground "#657b83" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :height 98 :width normal :foundry "adobe" :family "Source Code Pro")))))
