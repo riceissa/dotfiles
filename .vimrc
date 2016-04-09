@@ -9,9 +9,9 @@ syntax enable
 
 " It's too easy to do something unexpected with these commands, so break the
 " undo sequence beforehand
-inoremap <C-u> <C-g>u<C-u>
-inoremap <C-w> <C-g>u<C-w>
-inoremap <C-r> <C-g>u<C-r>
+inoremap <C-u> <C-g>u<C-u><C-g>u
+inoremap <C-w> <C-g>u<C-w><C-g>u
+inoremap <C-r> <C-g>u<C-r><C-g>u
 
 inoremap <Up> <C-g>u<Up>
 inoremap <Down> <C-g>u<Down>
