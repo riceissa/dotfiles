@@ -13,6 +13,11 @@ inoremap <C-u> <C-g>u<C-u>
 inoremap <C-w> <C-g>u<C-w>
 inoremap <C-r> <C-g>u<C-r>
 
+inoremap <Up> <C-g>u<Up>
+inoremap <Down> <C-g>u<Down>
+inoremap <Left> <C-g>u<Left>
+inoremap <Right> <C-g>u<Right>
+
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
 nnoremap K <C-^>
@@ -30,7 +35,7 @@ nnoremap gj j
 nnoremap gk k
 vnoremap gj j
 vnoremap gk k
-set hidden number ruler showcmd list noesckeys noequalalways
+set hidden number ruler showcmd list noequalalways
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
