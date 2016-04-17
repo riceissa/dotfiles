@@ -11,12 +11,15 @@ syntax enable
 " undo sequence beforehand
 inoremap <C-u> <C-g>u<C-u><C-g>u
 inoremap <C-w> <C-g>u<C-w><C-g>u
-inoremap <C-r> <C-g>u<C-r><C-g>u
+inoremap <C-r> <C-g>u<C-r>
 
 inoremap <Up> <C-g>u<Up>
 inoremap <Down> <C-g>u<Down>
 inoremap <Left> <C-g>u<Left>
 inoremap <Right> <C-g>u<Right>
+inoremap <C-f> <C-g>u<Right>
+inoremap <C-b> <C-g>u<Left>
+inoremap <C-l> <C-g>u<C-o>zz
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
