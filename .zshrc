@@ -15,7 +15,8 @@ compinit
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
-export WORDCHARS='*?_[]~&;!#$%^(){}<>'
+autoload -U select-word-style
+select-word-style bash
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 PS1='%m:%c%# '
