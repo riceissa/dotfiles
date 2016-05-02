@@ -126,7 +126,7 @@ if executable('autolink.py') && has('clipboard')
         return system(command)
     endfunction
     " Break up the undo first in case the output is messed up
-    inoremap <C-b> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+    "inoremap <C-b> <C-G>u<C-r>=PasteLink(&filetype)<CR>
 endif
 
 " Paste HTML as Pandoc markdown
