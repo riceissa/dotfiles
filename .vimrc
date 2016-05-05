@@ -158,7 +158,7 @@ if has('autocmd')
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
-        autocmd FileType markdown setlocal linebreak nolist spell syntax=pandoc.markdown
+        autocmd FileType markdown setlocal linebreak nolist spell syntax=
         autocmd FileType mediawiki setlocal spell syntax=html
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
