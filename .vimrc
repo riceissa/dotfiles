@@ -30,6 +30,8 @@ nnoremap <leader>y :%y +<CR>
 nnoremap <leader>f F<Space>xpA
 nnoremap <leader>F F<Space>gExpA
 nnoremap <leader>m :write \| !make<CR><CR>
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -159,6 +161,9 @@ if has('autocmd')
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
         autocmd FileType markdown setlocal linebreak nolist spell syntax=
+        " from $VIM/vim74/syntax/mail.vim
+        autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>"]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>"]+)[a-z0-9/]`
+        hi def link markdownURL String
         autocmd FileType mediawiki setlocal spell syntax=html
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
