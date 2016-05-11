@@ -20,6 +20,7 @@ inoremap <Right> <C-g>u<Right>
 inoremap <C-f> <C-g>u<Right>
 inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
+inoremap <C-e> <Esc>A
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
