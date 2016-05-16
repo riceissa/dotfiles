@@ -20,7 +20,6 @@ inoremap <Right> <C-g>u<Right>
 inoremap <C-f> <C-g>u<Right>
 inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
-inoremap <C-e> <Esc>A
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
@@ -31,8 +30,8 @@ nnoremap <leader>y :%y +<CR>
 nnoremap <leader>f F<Space>xpA
 nnoremap <leader>F F<Space>gExpA
 nnoremap <leader>m :write \| !make<CR><CR>
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
+nnoremap <leader>p "+gp
+nnoremap <leader>P "+gP
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
