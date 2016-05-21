@@ -50,3 +50,5 @@
     st = status
     wd = diff --color-words
     wdiff = diff --color-words
+[push]
+	default = simple
