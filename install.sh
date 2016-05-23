@@ -54,7 +54,7 @@ ln -s "$(pwd)/.gitconfig" ~/.gitconfig
 # ELinks
 # ------
 mkdir -p ~/.elinks
-echo "$(pwd)/.elinks/elinks.conf" >> ~/.elinks/elinks.conf
+cat "$(pwd)/.elinks/elinks.conf" >> ~/.elinks/elinks.conf
 
 # Newsbeuter
 # ----------
