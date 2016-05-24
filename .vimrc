@@ -27,12 +27,14 @@ nnoremap <C-l> :noh<CR><C-l>
 nnoremap K <C-^>
 nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
+vnoremap <leader>y "+y
 " quickly fix a form of typo I often make
 nnoremap <leader>f F<Space>xpA
 nnoremap <leader>F F<Space>gExpA
 nnoremap <leader>m :update \| !make<CR><CR>
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+vnoremap <leader>p "+p
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
@@ -168,6 +170,7 @@ if has('autocmd')
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>")]+)[a-z0-9/]`
         hi def link markdownURL String
         autocmd FileType mediawiki setlocal spell syntax=html
+        autocmd FileType mediawiki setlocal complete+=k~/.vim/mediawiki_words.txt
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
         autocmd FileType tex setlocal spell
