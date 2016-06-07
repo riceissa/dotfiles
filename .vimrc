@@ -168,8 +168,10 @@ if has('autocmd')
         autocmd FileType markdown setlocal linebreak nolist spell syntax=
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>")]+)[a-z0-9/]`
+        autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
+        hi def link mediawikiRef Comment
         hi def link markdownURL String
-        autocmd FileType mediawiki setlocal spell syntax=html
+        autocmd FileType mediawiki setlocal spell
         autocmd FileType mediawiki setlocal complete+=k~/.vim/mediawiki_words.txt
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
