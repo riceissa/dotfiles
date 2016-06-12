@@ -20,7 +20,8 @@ inoremap <Right> <C-g>u<Right>
 inoremap <C-f> <C-g>u<Right>
 inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
-inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
+"inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
+inoremap <C-r>+ <C-g>u<C-r><C-o>+
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
@@ -167,7 +168,7 @@ if has('autocmd')
         autocmd FileType make setlocal noexpandtab
         autocmd FileType markdown setlocal linebreak nolist spell syntax=
         " modified from $VIM/vim74/syntax/mail.vim
-        autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^' 	<>")]+)[a-z0-9/]`
+        autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
         autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
         hi def link mediawikiRef Comment
         hi def link markdownURL String
