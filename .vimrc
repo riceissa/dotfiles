@@ -159,6 +159,14 @@ if has('autocmd')
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=mediawiki
         autocmd BufNewFile,BufRead */itsalltext/*wikipedia* setlocal filetype=mediawiki
         autocmd FileType gitcommit setlocal spell
+        " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not
+        " python support. However, the omnifunc check above tries to use
+        " pythoncomplete#Complete here, which doesn't exist since there is no
+        " python support. The solution is to force the python3 complete
+        " function. (This is my guess as to what is going on, and will allow
+        " completion to work, but I haven't investigated this issue in
+        " detail.)
+        autocmd FileType python setlocal omnifunc=python3complete#Complete
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
