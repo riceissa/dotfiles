@@ -88,10 +88,6 @@ if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
     highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
 endif
 
-if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-    runtime! macros/matchit.vim
-endif
-
 " See :help ft-syntax-omni
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
