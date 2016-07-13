@@ -20,8 +20,14 @@ inoremap <Right> <C-g>u<Right>
 inoremap <C-f> <C-g>u<Right>
 inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
-"inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
-inoremap <C-r>+ <C-g>u<C-r><C-o>+
+inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
+"inoremap <C-r>+ <C-g>u<C-r><C-o>+
+
+"vnoremap <C-q> "+y
+"cnoremap <C-q> <C-r>+
+"inoremap <C-q> <C-g>u<C-r><C-o>+
+"inoremap <C-q> <C-g>u<C-\><C-o>"+gP
+"nnoremap <C-q> "+P
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
@@ -135,6 +141,8 @@ endif
 " Paste HTML as Pandoc markdown
 if executable('xclip') && executable('pandoc')
     command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
+    " The following one is useful when pasting from a messy site (e.g. Quora)
+    command! MarkdownCleanPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown-raw_html-native_divs-native_spans-link_attributes --wrap=none
 endif
 
 " vim-unimpaired has better HTML escaping, but this is for when I don't have
@@ -148,6 +156,8 @@ command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
 command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<line2>s/\-\s\+$//e | silent <line1>,<line2>s/\s\+/ /ge | silent <line1>,<line2>s/^\s\+//e | <line1>,<line2>join!
 
 nnoremap <leader>q :'{,'}FilterPDFText<CR>:s/\s\+$//e<CR>O<Esc>jo<Esc>kgqip
+
+runtime! ftplugin/man.vim
 
 let g:tex_flavor='latex'
 if has('autocmd')
@@ -170,6 +180,7 @@ if has('autocmd')
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
+        autocmd FileType man setlocal nolist
         autocmd FileType markdown setlocal linebreak nolist spell syntax=
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
