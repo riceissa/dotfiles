@@ -1,30 +1,26 @@
-" Use Vundle to manage Vim plugins; see
-" https://github.com/VundleVim/Vundle.vim for more
+" Use vim-plug to manage Vim plugins. See https://github.com/junegunn/vim-plug
+" for full instructions.
 "
-" Once all Vim config files are in the right places, just do :PluginInstall in
-" Vim to install the plugins. The exception is YouCompleteMe, which probably
+" Once all Vim config files are in the right places, just do :PlugInstall in
+" Vim to install the plugins. The exception is YouCompleteMe, which probably "
 " needs to be compiled; see below for more.
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible              " be iMproved, required?
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'altercation/vim-colors-solarized' " only for gvim
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'altercation/vim-colors-solarized' " only for gvim
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " YouCompleteMe
 " -------------
+" TODO: YCM might actually automatically install now that I'm using Ubuntu
+" 16.04 and vim-plug instead of Ubuntu 14.04 and Vundle.
+"
 " This plugin doesn't seem to work with just :PluginInstall, so compile it as
 " follows after calling :PluginInstall in Vim (this step is still necessary
 " since we have to clone the YouCompleteMe repository)
@@ -33,10 +29,7 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 "Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+call plug#end()
 
 " UltiSnips
 " ---------
