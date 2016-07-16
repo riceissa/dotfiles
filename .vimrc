@@ -50,7 +50,7 @@ nnoremap gj j
 nnoremap gk k
 vnoremap gj j
 vnoremap gk k
-set hidden number ruler showcmd list noequalalways
+set hidden number ruler showcmd list noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
@@ -183,6 +183,7 @@ if has('autocmd')
         autocmd FileType make setlocal noexpandtab
         autocmd FileType man setlocal nolist
         autocmd FileType markdown setlocal linebreak nolist spell syntax=
+        autocmd FileType markdown nnoremap <leader>r "zya[/\V<C-r>z<CR>
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
         autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
