@@ -15,6 +15,13 @@ Plug 'honza/vim-snippets'
 Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 " YouCompleteMe
 " -------------
