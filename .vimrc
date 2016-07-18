@@ -17,22 +17,19 @@ inoremap <Up> <C-g>u<Up>
 inoremap <Down> <C-g>u<Down>
 inoremap <Left> <C-g>u<Left>
 inoremap <Right> <C-g>u<Right>
+inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
+inoremap <C-r>* <C-g>u<C-\><C-o>"*gP
+
+" Mappings that conflict with the muscle memory from using default Vim
 inoremap <C-f> <C-g>u<Right>
 inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
-inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
-"inoremap <C-r>+ <C-g>u<C-r><C-o>+
-
-"vnoremap <C-q> "+y
-"cnoremap <C-q> <C-r>+
-"inoremap <C-q> <C-g>u<C-r><C-o>+
-"inoremap <C-q> <C-g>u<C-\><C-o>"+gP
-"nnoremap <C-q> "+P
+" With man.vim loaded, <leader>K is more useful anyway
+nnoremap K <C-^>
+nnoremap Y y$
 
 let mapleader = ' '
 nnoremap <C-l> :noh<CR><C-l>
-nnoremap K <C-^>
-nnoremap Y y$
 nnoremap <leader>y :%y +<CR>
 vnoremap <leader>y "+y
 " quickly fix a form of typo I often make
