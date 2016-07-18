@@ -193,7 +193,6 @@ if has('autocmd')
         hi def link mediawikiRef Comment
         hi def link markdownURL String
         autocmd FileType mediawiki setlocal spell
-        autocmd FileType mediawiki setlocal complete+=k~/.vim/mediawiki_words.txt
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
         autocmd FileType tex setlocal spell
