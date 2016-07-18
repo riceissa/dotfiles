@@ -39,14 +39,6 @@ nnoremap <leader>m :update \| !make<CR><CR>
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap gj j
-nnoremap gk k
-vnoremap gj j
-vnoremap gk k
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 set hidden number ruler showcmd list noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
@@ -187,6 +179,14 @@ if has('autocmd')
         autocmd FileType markdown setlocal nonumber showbreak=\\
         " make this more like visual-star when I get a chance
         autocmd FileType markdown nnoremap <buffer> <C-]> "zya[/\V<C-r>z<CR>
+        autocmd FileType mediawiki nnoremap <buffer> j gj
+        autocmd FileType mediawiki nnoremap <buffer> k gk
+        autocmd FileType mediawiki vnoremap <buffer> j gj
+        autocmd FileType mediawiki vnoremap <buffer> k gk
+        autocmd FileType mediawiki nnoremap <buffer> gj j
+        autocmd FileType mediawiki nnoremap <buffer> gk k
+        autocmd FileType mediawiki vnoremap <buffer> gj j
+        autocmd FileType mediawiki vnoremap <buffer> gk k
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
         autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
