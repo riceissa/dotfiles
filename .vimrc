@@ -27,8 +27,10 @@ inoremap <C-l> <C-g>u<C-o>zz
 nnoremap K <C-^>
 nnoremap Y y$
 
+" From sensible.vim
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+
 let mapleader = ' '
-nnoremap <C-l> :noh<CR><C-l>
 nnoremap <leader>y :%y +<CR>
 vnoremap <leader>y "+y
 " quickly fix a form of typo I often make
