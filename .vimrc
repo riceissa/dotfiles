@@ -202,9 +202,9 @@ if has('autocmd')
 endif
 
 " Ellipsis, …
-dig el 8230
+digraph el 8230
 " Left and right angle brackets, ⟨ ⟩
-dig (< 10216
-dig <( 10216
-dig )> 10217
-dig >) 10217
+digraph (< 10216
+digraph <( 10216
+digraph )> 10217
+digraph >) 10217
