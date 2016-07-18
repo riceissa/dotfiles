@@ -1,9 +1,8 @@
 set nocompatible
 if filereadable(expand('~/.vim/plugins.vim'))
     source ~/.vim/plugins.vim
-else
-    filetype plugin indent on
 endif
+filetype plugin indent on
 set nomodeline modelines=0
 syntax enable
 
