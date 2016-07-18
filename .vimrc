@@ -21,7 +21,7 @@ inoremap <Right> <C-g>u<Right>
 " http://vim.wikia.com/wiki/Unconditional_linewise_or_characterwise_paste
 function! PasteCharacterwise(regname)
     let reg_type = getregtype(a:regname)
-    call setreg(a:regname, "", "ac")
+    call setreg(a:regname, getreg(a:regname), "c")
     " There is an annoying edge case when trying to paste at the end of the
     " line: normally, <C-\><C-o> wouldn't move the cursor (say, if you do "+gP
     " next), but in the case of executing :normal!, the cursor somehow moves
@@ -31,7 +31,7 @@ function! PasteCharacterwise(regname)
     else
         exe 'normal! "' . a:regname . 'gP'
     endif
-    call setreg(a:regname, "", "a".reg_type)
+    call setreg(a:regname, getreg(a:regname), reg_type)
 endfunction
 
 " In insert mode, it doesn't make sense to do linewise paste when pasting from
