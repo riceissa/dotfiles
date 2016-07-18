@@ -47,6 +47,7 @@ nnoremap gj j
 nnoremap gk k
 vnoremap gj j
 vnoremap gk k
+cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 set hidden number ruler showcmd list noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
