@@ -39,7 +39,6 @@ endfunction
 inoremap <expr> <C-r>+ col(".") >= col("$") ?
     \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR><Right>' :
     \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR>'
-" Fix this one later
 inoremap <expr> <C-r>* col(".") >= col("$") ?
     \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("*")<CR><Right>' :
     \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("*")<CR>'
