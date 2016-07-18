@@ -26,7 +26,7 @@ function! PasteCharacterwise(regname)
     " line: normally, <C-\><C-o> wouldn't move the cursor (say, if you do "+gP
     " next), but in the case of executing :normal!, the cursor somehow moves
     " back anyway. In that case, we give up and use gp instead.
-    if col(".") >= col("$") - 1
+    if col(".") >= col("$")
         exe 'normal! "' . a:regname . 'gp'
     else
         exe 'normal! "' . a:regname . 'gP'
