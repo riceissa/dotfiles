@@ -174,7 +174,9 @@ if has('autocmd')
         " function. (This is my guess as to what is going on, and will allow
         " completion to work, but I haven't investigated this issue in
         " detail.)
-        autocmd FileType python setlocal omnifunc=python3complete#Complete
+        if has('python3')
+            autocmd FileType python setlocal omnifunc=python3complete#Complete
+        endif
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
