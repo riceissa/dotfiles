@@ -181,8 +181,11 @@ if has('autocmd')
         autocmd FileType mail setlocal linebreak nolist spell
         autocmd FileType make setlocal noexpandtab
         autocmd FileType man setlocal nolist
-        autocmd FileType markdown setlocal linebreak nolist spell syntax=
-        autocmd FileType markdown nnoremap <leader>r "zya[/\V<C-r>z<CR>
+        autocmd FileType markdown setlocal syntax=markdown.pandoc
+        autocmd FileType markdown setlocal linebreak nolist spell textwidth=80
+        autocmd FileType markdown setlocal nonumber showbreak=\\
+        " make this more like visual-star when I get a chance
+        autocmd FileType markdown nnoremap <buffer> <C-]> "zya[/\V<C-r>z<CR>
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
         autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
