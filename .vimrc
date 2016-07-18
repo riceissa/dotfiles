@@ -36,7 +36,8 @@ endfunction
 
 " In insert mode, it doesn't make sense to do linewise paste when pasting from
 " the system clipboard, so we force characterwise paste.
-inoremap <C-r>+ <C-g>u<C-\><C-o>:call PasteCharacterwise('+')<CR>
+inoremap <expr> <C-r>+ col(".") >= col("$") ? '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR><Right>' : '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR>'
+" Fix this one later
 inoremap <C-r>* <C-g>u<C-\><C-o>:call PasteCharacterwise('*')<CR>
 " The old versions of the mappings
 "inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
