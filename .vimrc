@@ -68,7 +68,7 @@ endif
 set laststatus=2
 set listchars=tab:>\ ,trail:@,nbsp:_
 set mouse=a         " Always enable mouse
-set nrformats=hex
+set nrformats-=octal
 set sessionoptions-=options
 set smarttab
 set tabpagemax=50
