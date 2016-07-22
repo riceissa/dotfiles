@@ -8,20 +8,20 @@
 set nocompatible              " be iMproved, required?
 
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'honza/vim-snippets'
 Plug 'nelstrom/vim-visual-star-search'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " YouCompleteMe
 " -------------
