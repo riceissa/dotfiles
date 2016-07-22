@@ -130,6 +130,20 @@ function! ToggleSyntax()
 endfunction
 nnoremap <silent> coy :call ToggleSyntax()<CR>
 
+" Useful for when working with Japanese files
+function! ToggleMultibyte()
+    if &formatoptions =~ 'm'
+        setlocal formatoptions-=mB
+        echom "formatoptions-=mB"
+    else
+        setlocal formatoptions+=mB
+        echom "formatoptions+=mB"
+    endif
+endfunction
+" This is chosen to work as in vim-unimpaired. I should add the on and off
+" versions as well at some point.
+nnoremap com :call ToggleMultibyte()<CR>
+
 " Use with <C-r>=Today<tab><CR>
 " This is useful when I don't have UltiSnips
 function! Today()
