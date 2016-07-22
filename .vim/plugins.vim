@@ -33,7 +33,7 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 " since we have to clone the YouCompleteMe repository)
 "       cd ~/.vim/bundle/YouCompleteMe
 "       ./install.py --clang-completer
-"Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call plug#end()
