@@ -221,7 +221,7 @@ if has('autocmd')
         "autocmd FileType markdown setlocal nonumber showbreak=\\
         " Make this more like visual-star when I get a chance; also lol this
         " is really ugly so factor it out to a function.
-        autocmd FileType markdown nnoremap <buffer> <C-]> "zya[:let @z=substitute(@z, "\n", ' ', "g")<CR>:let @z=substitute(@z, "\\s\\+", " ", "g")<CR>:let @z=substitute(@z, " ", "\\\\(\\\\s\\\\\\|\\\\n\\\\)\\\\+", "")<CR>/\V<C-r>z<CR>
+        autocmd FileType markdown nnoremap <buffer> <C-]> "zya[:let @z=substitute(@z, "\n", ' ', "g")<CR>:let @z=substitute(@z, "\\s\\+", " ", "g")<CR>:let @z=substitute(@z, " ", "\\\\(\\\\s\\\\\\|\\\\n\\\\)\\\\+", "g")<CR>/\V<C-r>z<CR>
         autocmd FileType mediawiki nnoremap <buffer> j gj
         autocmd FileType mediawiki nnoremap <buffer> k gk
         autocmd FileType mediawiki vnoremap <buffer> j gj
