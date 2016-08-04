@@ -12,11 +12,6 @@ inoremap <C-u> <C-g>u<C-u><C-g>u
 inoremap <C-w> <C-g>u<C-w><C-g>u
 inoremap <C-r> <C-g>u<C-r>
 
-inoremap <Up> <C-g>u<Up>
-inoremap <Down> <C-g>u<Down>
-inoremap <Left> <C-g>u<Left>
-inoremap <Right> <C-g>u<Right>
-
 " Modified from
 " http://vim.wikia.com/wiki/Unconditional_linewise_or_characterwise_paste
 function! PasteCharacterwise(regname)
