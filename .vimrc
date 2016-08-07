@@ -63,7 +63,7 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-set hidden number ruler showcmd list noequalalways nojoinspaces
+set hidden number ruler showcmd noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
@@ -193,6 +193,10 @@ if has('autocmd')
         autocmd!
         " Leave paste mode after escaping
         autocmd InsertLeave * set nopaste
+        " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think
+        " it's better than resetting list or nolist by filetype.
+        autocmd InsertEnter * setlocal nolist
+        autocmd InsertLeave * setlocal list
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=mediawiki
         autocmd BufNewFile,BufRead */itsalltext/*wikipedia* setlocal filetype=mediawiki
@@ -208,14 +212,16 @@ if has('autocmd')
             autocmd FileType python setlocal omnifunc=python3complete#Complete
         endif
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-        autocmd FileType mail setlocal linebreak nolist spell
+        autocmd FileType mail setlocal linebreak spell
         autocmd FileType make setlocal noexpandtab
-        autocmd FileType man setlocal nolist
+        autocmd FileType man setlocal
         autocmd FileType markdown setlocal syntax=
-        autocmd FileType markdown setlocal linebreak nolist spell textwidth=80
+        autocmd FileType markdown setlocal linebreak spell textwidth=80
         "autocmd FileType markdown setlocal nonumber showbreak=\\
         " Make this more like visual-star when I get a chance; also lol this
-        " is really ugly so factor it out to a function.
+        " is really ugly so factor it out to a function. Also seems to require
+        " an extra manual <CR> when used in Neovim (which is plausibly
+        " remedied if a function is defined instead).
         autocmd FileType markdown nnoremap <buffer> <C-]> "zya[:let @z=substitute(@z, "\n", ' ', "g")<CR>:let @z=substitute(@z, "\\s\\+", " ", "g")<CR>:let @z=substitute(@z, " ", "\\\\(\\\\s\\\\\\|\\\\n\\\\)\\\\+", "g")<CR>/\V<C-r>z<CR>
         autocmd FileType mediawiki nnoremap <buffer> j gj
         autocmd FileType mediawiki nnoremap <buffer> k gk
