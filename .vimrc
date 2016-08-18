@@ -195,7 +195,6 @@ if has('autocmd')
         " is really ugly so factor it out to a function. Also seems to require
         " an extra manual <CR> when used in Neovim (which is plausibly
         " remedied if a function is defined instead).
-        autocmd FileType markdown nnoremap <buffer> <C-]> "zya[:let @z=substitute(@z, "\n", ' ', "g")<CR>:let @z=substitute(@z, "\\s\\+", " ", "g")<CR>:let @z=substitute(@z, " ", "\\\\(\\\\s\\\\\\|\\\\n\\\\)\\\\+", "g")<CR>/\V<C-r>z<CR>
         autocmd FileType mediawiki nnoremap <buffer> j gj
         autocmd FileType mediawiki nnoremap <buffer> k gk
         autocmd FileType mediawiki vnoremap <buffer> j gj
