@@ -49,9 +49,6 @@ inoremap <C-l> <C-g>u<C-o>zz
 nnoremap K <C-^>
 nnoremap Y y$
 
-" From sensible.vim
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-
 let mapleader = ' '
 nnoremap <leader>y :%y +<CR>
 vnoremap <leader>y "+y
