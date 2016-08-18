@@ -35,37 +35,24 @@ set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 set ignorecase smartcase
-
-" Explicitly set options that are changed by Neovim, for compatibility.  This
-" allows a single .vimrc file to be used for both Vim and Neovim.
-set autoindent
-set noautoread
-set backspace=indent,eol,start
-set complete-=i
-set display=lastline
 if &encoding !=? 'utf-8'
     set encoding=utf-8
 endif
-set formatoptions=tcqj
-set history=10000
+
+" If `vim -Nu sensible.vim` and `nvim -u sensible.vim` disagree on an option,
+" this file will resolve the dispute.
+if &history < 10000
+  set history=10000
+endif
 set nohlsearch
-set incsearch
-if exists('+langnoremap')
-    set langnoremap
+if has('langmap') && exists('+langnoremap')
+  set langnoremap
 endif
-set laststatus=2
-set listchars=tab:>\ ,trail:@,nbsp:_
-set mouse=a         " Always enable mouse
-set nrformats-=octal
-set sessionoptions-=options
-set smarttab
-set tabpagemax=50
+set listchars=tab:>\ ,trail:-,nbsp:+
+set mouse=a
 if has('path_extra')
-    setglobal tags-=./tags tags-=./tags; tags^=./tags;
+  setglobal tags=./tags;,tags
 endif
-set ttyfast
-set viminfo^=!
-set wildmenu
 
 if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
     set t_Co=256
