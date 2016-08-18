@@ -12,35 +12,6 @@ inoremap <C-u> <C-g>u<C-u><C-g>u
 inoremap <C-w> <C-g>u<C-w><C-g>u
 inoremap <C-r> <C-g>u<C-r>
 
-" Modified from
-" http://vim.wikia.com/wiki/Unconditional_linewise_or_characterwise_paste
-function! PasteCharacterwise(regname)
-    let reg_type = getregtype(a:regname)
-    call setreg(a:regname, getreg(a:regname), "c")
-    " There is an annoying edge case when trying to paste at the end of the
-    " line: normally, <C-\><C-o> wouldn't move the cursor (say, if you do "+gP
-    " next), but in the case of executing :normal!, the cursor somehow moves
-    " back anyway. In that case, we give up and use gp instead.
-    if col(".") >= col("$")
-        exe 'normal! "' . a:regname . 'gp'
-    else
-        exe 'normal! "' . a:regname . 'gP'
-    endif
-    call setreg(a:regname, getreg(a:regname), reg_type)
-endfunction
-
-" In insert mode, it doesn't make sense to do linewise paste when pasting from
-" the system clipboard, so we force characterwise paste.
-inoremap <expr> <C-r>+ col(".") >= col("$") ?
-    \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR><Right>' :
-    \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("+")<CR>'
-inoremap <expr> <C-r>* col(".") >= col("$") ?
-    \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("*")<CR><Right>' :
-    \ '<C-g>u<C-\><C-o>:call PasteCharacterwise("*")<CR>'
-" The old versions of the mappings
-"inoremap <C-r>+ <C-g>u<C-\><C-o>"+gP
-"inoremap <C-r>* <C-g>u<C-\><C-o>"*gP
-
 " Mappings that conflict with the muscle memory from using default Vim
 inoremap <C-l> <C-g>u<C-o>zz
 " With man.vim loaded, <leader>K is more useful anyway
