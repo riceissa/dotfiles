@@ -13,6 +13,7 @@ Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'riceissa/vim-more-toggling'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
@@ -33,7 +34,7 @@ Plug 'tpope/vim-unimpaired'
 " since we have to clone the YouCompleteMe repository)
 "       cd ~/.vim/bundle/YouCompleteMe
 "       ./install.py --clang-completer
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'java', 'c']}
 
 " All of your Plugins must be added before the following line
 call plug#end()
