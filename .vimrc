@@ -127,7 +127,9 @@ command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<li
 
 nnoremap <leader>q :'{,'}FilterPDFText<CR>:s/\s\+$//e<CR>O<Esc>jo<Esc>kgqip
 
-runtime! ftplugin/man.vim
+if !has('nvim')
+    runtime! ftplugin/man.vim
+endif
 
 let g:tex_flavor='latex'
 if has('autocmd')
