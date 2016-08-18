@@ -171,8 +171,6 @@ if has('autocmd')
         autocmd InsertEnter * setlocal nolist
         autocmd InsertLeave * setlocal list
         autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
-        autocmd BufNewFile,BufRead *.mediawiki setlocal filetype=mediawiki
-        autocmd BufNewFile,BufRead */itsalltext/*wikipedia* setlocal filetype=mediawiki
         autocmd FileType gitcommit setlocal spell
         " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not
         " python support. However, the omnifunc check above tries to use
@@ -191,20 +189,9 @@ if has('autocmd')
         autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
         "autocmd FileType markdown setlocal nonumber showbreak=\\
-        autocmd FileType mediawiki nnoremap <buffer> j gj
-        autocmd FileType mediawiki nnoremap <buffer> k gk
-        autocmd FileType mediawiki vnoremap <buffer> j gj
-        autocmd FileType mediawiki vnoremap <buffer> k gk
-        autocmd FileType mediawiki nnoremap <buffer> gj j
-        autocmd FileType mediawiki nnoremap <buffer> gk k
-        autocmd FileType mediawiki vnoremap <buffer> gj j
-        autocmd FileType mediawiki vnoremap <buffer> gk k
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
-        autocmd FileType mediawiki syn region mediawikiRef start="\v\<ref[^>/]*\>?" end="\v(\<\/ref\>|/\>)" contains=@NoSpell
-        hi def link mediawikiRef Comment
         hi def link markdownURL String
-        autocmd FileType mediawiki setlocal spell
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
         autocmd FileType tex setlocal spell
