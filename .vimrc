@@ -42,8 +42,6 @@ inoremap <expr> <C-r>* col(".") >= col("$") ?
 "inoremap <C-r>* <C-g>u<C-\><C-o>"*gP
 
 " Mappings that conflict with the muscle memory from using default Vim
-inoremap <C-f> <C-g>u<Right>
-inoremap <C-b> <C-g>u<Left>
 inoremap <C-l> <C-g>u<C-o>zz
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
