@@ -191,10 +191,6 @@ if has('autocmd')
         autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
         "autocmd FileType markdown setlocal nonumber showbreak=\\
-        " Make this more like visual-star when I get a chance; also lol this
-        " is really ugly so factor it out to a function. Also seems to require
-        " an extra manual <CR> when used in Neovim (which is plausibly
-        " remedied if a function is defined instead).
         autocmd FileType mediawiki nnoremap <buffer> j gj
         autocmd FileType mediawiki nnoremap <buffer> k gk
         autocmd FileType mediawiki vnoremap <buffer> j gj
