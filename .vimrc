@@ -6,10 +6,6 @@ filetype plugin indent on
 set nomodeline modelines=0
 syntax enable
 
-" It's too easy to do something unexpected with these commands, so break the
-" undo sequence beforehand
-inoremap <C-u> <C-g>u<C-u><C-g>u
-inoremap <C-w> <C-g>u<C-w><C-g>u
 inoremap <C-r> <C-g>u<C-r>
 
 " Mappings that conflict with the muscle memory from using default Vim
@@ -19,17 +15,19 @@ nnoremap K <C-^>
 nnoremap Y y$
 
 let mapleader = ' '
-nnoremap <leader>y :%y +<CR>
-vnoremap <leader>y "+y
+vnoremap gy "+y
+vnoremap gp "+p
+vnoremap gP "+P
+nnoremap gy "+y
+nnoremap gygy "+yy
+nnoremap gp "+p
+nnoremap gP "+P
 " quickly fix a form of typo I often make
-nnoremap <leader>f F<Space>xpA
-nnoremap <leader>F F<Space>gExpA
+nnoremap gh F<Space>xpA
+nnoremap gH F<Space>gExpA
 nnoremap <leader>m :update \| !make<CR><CR>
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-set hidden number ruler showcmd noequalalways nojoinspaces
+set hidden number showcmd noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
@@ -94,26 +92,6 @@ if executable('autolink.py') && has('clipboard')
     inoremap <C-_> <C-G>u<C-r>=PasteLink(&filetype)<CR>
 endif
 
-" Paste HTML as Pandoc markdown
-if executable('xclip') && executable('pandoc')
-    command! MarkdownPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown
-    " The following one is useful when pasting from a messy site (e.g. Quora).
-    " After :MarkdownCleanPaste, doing :%s/\\\n\\/\r/ also helps.
-    command! MarkdownCleanPaste :r !xclip -sel clip -t text/html -o | pandoc -f html -t markdown-raw_html-native_divs-native_spans-link_attributes --wrap=none
-endif
-
-" vim-unimpaired has better HTML escaping, but this is for when I don't have
-" plugins
-command! HTMLEscape :%s/&/\&amp;/ge | %s/</\&lt;/ge | %s/>/\&gt;/ge
-
-" filter text pasted from PDFs, so that formatting is suitable; progress
-" ongoing; join must be called at the very end because vim assigns <line1> and
-" <line2> when the command is invoked, so we can't change the boundaries of the
-" line markers; for the same reason, we can't regex replace new lines
-command! -range FilterPDFText silent <line1>,<line2>s/$/ /e | silent <line1>,<line2>s/\-\s\+$//e | silent <line1>,<line2>s/\s\+/ /ge | silent <line1>,<line2>s/^\s\+//e | <line1>,<line2>join!
-
-nnoremap <leader>q :'{,'}FilterPDFText<CR>:s/\s\+$//e<CR>O<Esc>jo<Esc>kgqip
-
 if !has('nvim')
     runtime! ftplugin/man.vim
 endif
@@ -122,8 +100,6 @@ let g:tex_flavor='latex'
 if has('autocmd')
     augroup filetype_specific
         autocmd!
-        " Leave paste mode after escaping
-        autocmd InsertLeave * set nopaste
         " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think
         " it's better than resetting list or nolist by filetype.
         autocmd InsertEnter * setlocal nolist
@@ -143,7 +119,6 @@ if has('autocmd')
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType mail setlocal linebreak spell
         autocmd FileType make setlocal noexpandtab
-        autocmd FileType man setlocal
         autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
         "autocmd FileType markdown setlocal nonumber showbreak=\\
