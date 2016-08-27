@@ -64,3 +64,5 @@ ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 # Emacs
 # -----
 ln -s "$(pwd)/.emacs" ~/.emacs
+
+ln -s "$(pwd)/.ctags" ~/.ctags
