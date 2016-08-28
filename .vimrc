@@ -140,9 +140,7 @@ if has('autocmd')
         if has('python3')
             autocmd FileType python setlocal omnifunc=python3complete#Complete
         endif
-        autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
         autocmd FileType make setlocal noexpandtab
-        autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
         autocmd FileType gitcommit,markdown,mail,mediawiki,tex setlocal spell
         autocmd FileType mediawiki noremap <buffer> j gj
