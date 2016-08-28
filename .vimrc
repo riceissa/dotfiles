@@ -1,15 +1,48 @@
-set nocompatible
-if filereadable(expand('~/.vim/plugins.vim'))
-    source ~/.vim/plugins.vim
+call plug#begin('~/.vim/plugged')
+Plug 'justinmk/vim-sneak'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'riceissa/vim-easy-quoteplus'
+Plug 'riceissa/vim-markdown'
+Plug 'riceissa/vim-markdown-paste'
+Plug 'riceissa/vim-mediawiki'
+Plug 'riceissa/vim-more-toggling'
+Plug 'riceissa/vim-pdf-text-tools'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+call plug#end()
+
+" Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
+" sleuth.vim for some filetypes.
+runtime! plugin/sleuth.vim
+
+" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
+if &history < 10000
+  set history=10000
 endif
-filetype plugin indent on
-set nomodeline modelines=0
-syntax enable
+set nohlsearch
+" From $VIMRUNTIME/vimrc_example.vim @ 97
+if has('langmap') && exists('+langnoremap')
+  set langnoremap
+endif
+set listchars=tab:>\ ,trail:-,nbsp:+
+if has('mouse')
+  set mouse=a
+endif
+if has('path_extra')
+  setglobal tags=./tags;,tags
+endif
 
 inoremap <C-R> <C-G>u<C-R>
-
-" Mappings that conflict with the muscle memory from using default Vim
-inoremap <C-L> <C-G>u<C-O>zz
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
@@ -17,11 +50,13 @@ nnoremap Y y$
 " $VIMRUNTIME/autoload/nocompatiblexpaste.vim
 inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
 
-let mapleader = ' '
 nnoremap gh F<Space>xpA
 nnoremap gH F<Space>gExpA
-nnoremap <leader>m :update \| !make<CR><CR>
+" First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
+" particular version is from
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
+
 set hidden number showcmd noequalalways nojoinspaces
 set expandtab shiftwidth=4 softtabstop=4 tabstop=4
 set matchpairs+=<:>,“:”,«:»
@@ -32,25 +67,9 @@ if &encoding !=? 'utf-8'
     set encoding=utf-8
 endif
 
-" If `vim -Nu sensible.vim` and `nvim -u sensible.vim` disagree on an option,
-" this file will resolve the dispute.
-if &history < 10000
-  set history=10000
-endif
-set nohlsearch
-if has('langmap') && exists('+langnoremap')
-  set langnoremap
-endif
-set listchars=tab:>\ ,trail:-,nbsp:+
-set mouse=a
-if has('path_extra')
-  setglobal tags=./tags;,tags
-endif
-
-if $TERM ==? "xterm-256color" || $TERM ==? "screen-256color"
-    set t_Co=256
-    highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-    highlight StatusLine ctermbg=LightGray ctermfg=DarkGray cterm=none
+if &t_Co >= 16
+  " Changing ctermbg is useful for seeing tab with :set list
+  highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
 endif
 
 " See :help ft-syntax-omni
@@ -61,11 +80,21 @@ if has("autocmd") && exists("+omnifunc")
             \    endif
 endif
 
-" Use with <C-r>=Today<tab><CR>
-" This is useful when I don't have UltiSnips
-function! Today()
-    return strftime("%Y-%m-%d")
-endfunction
+" HT Tim Pope https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
+" I'm still not sure what the repeat(,0) is for...
+if exists("*strftime")
+  inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'), map([
+    \ "%F",
+    \ "%B %-d, %Y",
+    \ "%Y-%m-%d %H:%M:%S",
+    \ "%a, %d %b %Y %H:%M:%S %z",
+    \ "%Y %b %d",
+    \ "%d-%b-%y",
+    \ "%a %b %d %T %Z %Y"
+  \ ], 'strftime(v:val)') + [
+    \ localtime()
+  \ ]), 0)<CR>
+endif
 
 if executable('autolink.py') && has('clipboard')
     " See https://github.com/riceissa/autolink for source
