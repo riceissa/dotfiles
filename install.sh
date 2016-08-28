@@ -9,20 +9,15 @@ cd dotfiles
 # Install software
 python debian_packages.py
 
-# Bash
-# ----
 ln -s "$(pwd)/.bashrc" ~/.bashrc
+ln -s "$(pwd)/.zshrc" ~/.zshrc
 
-# Vim and Neovim
-# --------------
-# Get Vundle to manage Vim plugins
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+# Get vim-plug to manage plugins
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Mirror config files and dirs
 ln -s "$(pwd)/.vimrc" ~/.vimrc
 ln -s "$(pwd)/.gvimrc" ~/.gvimrc
-ln -s "$(pwd)/.vim/plugins.vim" ~/.vim/plugins.vim
 ln -s "$(pwd)/.vim/UltiSnips-custom-snippets" ~/.vim/UltiSnips-custom-snippets
 ln -s "$(pwd)/.ycm_extra_conf.py" ~/.ycm_extra_conf.py
 
@@ -34,36 +29,24 @@ mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 ln -s ~/.vim $XDG_CONFIG_HOME/nvim
 ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
-# tmux
-# ----
 ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
 # tmux doesn't read from .bashrc so copy contents to .bash_profile
 echo 'source ~/.bashrc' >> ~/.bash_profile
 
-# MOC
-# ---
 mkdir -p ~/.moc/themes
 ln -s "$(pwd)/.moc/config" ~/.moc/config
 ln -s "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
 ln -s "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 
-# git
-# ---
 ln -s "$(pwd)/.gitconfig" ~/.gitconfig
+ln -s "$(pwd)/.gitignore_global" ~/.gitignore_global
 
-# ELinks
-# ------
 mkdir -p ~/.elinks
 cat "$(pwd)/.elinks/elinks.conf" >> ~/.elinks/elinks.conf
 
-# Newsbeuter
-# ----------
 mkdir -p ~/.newsbeuter
 ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 
-# Emacs
-# -----
 ln -s "$(pwd)/.emacs" ~/.emacs
 
 ln -s "$(pwd)/.ctags" ~/.ctags
-ln -s "$(pwd)/.gitignore_global" ~/.gitignore_global
