@@ -6,23 +6,18 @@ filetype plugin indent on
 set nomodeline modelines=0
 syntax enable
 
-inoremap <C-r> <C-g>u<C-r>
+inoremap <C-R> <C-G>u<C-R>
 
 " Mappings that conflict with the muscle memory from using default Vim
-inoremap <C-l> <C-g>u<C-o>zz
+inoremap <C-L> <C-G>u<C-O>zz
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
+" Condensed version of the characterwise insert mode mapping from
+" $VIMRUNTIME/autoload/nocompatiblexpaste.vim
+inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
 
 let mapleader = ' '
-vnoremap gy "+y
-vnoremap gp "+p
-vnoremap gP "+P
-nnoremap gy "+y
-nnoremap gygy "+yy
-nnoremap gp "+p
-nnoremap gP "+P
-" quickly fix a form of typo I often make
 nnoremap gh F<Space>xpA
 nnoremap gH F<Space>gExpA
 nnoremap <leader>m :update \| !make<CR><CR>
@@ -121,6 +116,11 @@ if has('autocmd')
         autocmd FileType make setlocal noexpandtab
         autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
+        autocmd FileType gitcommit,markdown,mail,mediawiki,tex setlocal spell
+        autocmd FileType mediawiki noremap <buffer> j gj
+        autocmd FileType mediawiki noremap <buffer> k gk
+        autocmd FileType mediawiki noremap <buffer> gj j
+        autocmd FileType mediawiki noremap <buffer> gk k
         "autocmd FileType markdown setlocal nonumber showbreak=\\
         " modified from $VIM/vim74/syntax/mail.vim
         autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
