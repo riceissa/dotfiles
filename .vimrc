@@ -42,13 +42,9 @@ if has('path_extra')
   setglobal tags=./tags;,tags
 endif
 
-set hidden number showcmd noequalalways nojoinspaces
+set list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
-set ignorecase smartcase
-if &encoding !=? 'utf-8'
-    set encoding=utf-8
-endif
 
 inoremap <C-R> <C-G>u<C-R>
 " With man.vim loaded, <leader>K is more useful anyway
