@@ -42,24 +42,7 @@ if has('path_extra')
   setglobal tags=./tags;,tags
 endif
 
-inoremap <C-R> <C-G>u<C-R>
-" With man.vim loaded, <leader>K is more useful anyway
-nnoremap K <C-^>
-nnoremap Y y$
-" Condensed version of the characterwise insert mode mapping from
-" $VIMRUNTIME/autoload/nocompatiblexpaste.vim
-inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-
-nnoremap gh F<Space>xpA
-nnoremap gH F<Space>gExpA
-" First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
-" particular version is from
-" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
-cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-
 set hidden number showcmd noequalalways nojoinspaces
-set expandtab shiftwidth=4 softtabstop=4 tabstop=4
-set matchpairs+=<:>,“:”,«:»
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 set ignorecase smartcase
@@ -67,18 +50,39 @@ if &encoding !=? 'utf-8'
     set encoding=utf-8
 endif
 
-if &t_Co >= 16
-  " Changing ctermbg is useful for seeing tab with :set list
-  highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+inoremap <C-R> <C-G>u<C-R>
+" With man.vim loaded, <leader>K is more useful anyway
+nnoremap K <C-^>
+nnoremap Y y$
+
+" Condensed version of the characterwise insert mode mapping from
+" $VIMRUNTIME/autoload/paste.vim
+" Hmm I notice a slight lag with this mapping compared to safe-paste.vim. I
+" suspect this is because this mapping has to type in the extra 'x' and 'xy'
+" into the buffer only to delete them again (somehow causing the momentary
+" lag), whereas safe-paste.vim does all the calculation "away from the
+" buffer", and only pastes when the positioning has been done. The 'xy' is
+" what forces pasting to be characterwise, because it causes the expression
+" not to end in a newline.
+" One more problem: this mapping clears out the ". register; the default
+" mapping keeps the pasted text in it.
+" See http://vim.wikia.com/wiki/Pasting_registers?oldid=39352?useskin=monobook#In_insert_and_command-line_modes
+if has('clipboard')
+  inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
 endif
 
-" See :help ft-syntax-omni
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-            \    if &omnifunc == "" |
-            \        setlocal omnifunc=syntaxcomplete#Complete |
-            \    endif
-endif
+" Quickly fix two forms of typo I often make. The default gh and gH, used to
+" enter select mode, are only useful in mappings anyway. To quote Drew Neil,
+" "If you are happy to embrace the modal nature of Vim, then you should find
+" little use for Select mode, which holds the hand of users who want to make
+" Vim behave more like other text editors." (Practical Vim, pg 41)
+nnoremap gh F<Space>xpA
+nnoremap gH F<Space>gExpA
+
+" First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
+" particular version is from
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
+cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
 " HT Tim Pope https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
 " I'm still not sure what the repeat(,0) is for...
@@ -94,6 +98,29 @@ if exists("*strftime")
   \ ], 'strftime(v:val)') + [
     \ localtime()
   \ ]), 0)<CR>
+endif
+
+" Quickly find characters that are not printable ASCII, which are sometimes
+" undesirable to have in a file. This is best used along with
+"     :setlocal nospell hlsearch syntax=OFF
+" so that the characters in question stand out.
+command! FindNonAscii /[^\d32-\d126]
+
+if &t_Co >= 16
+  " Changing ctermbg is useful for seeing tab with :set list
+  highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+endif
+
+if !has('nvim')
+    runtime! ftplugin/man.vim
+endif
+
+" See :help ft-syntax-omni
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+            \    if &omnifunc == "" |
+            \        setlocal omnifunc=syntaxcomplete#Complete |
+            \    endif
 endif
 
 if executable('autolink.py') && has('clipboard')
@@ -114,10 +141,6 @@ if executable('autolink.py') && has('clipboard')
     " Break up the undo first in case the output is messed up
     " Note that this map also works with Ctrl-/
     inoremap <C-_> <C-G>u<C-r>=PasteLink(&filetype)<CR>
-endif
-
-if !has('nvim')
-    runtime! ftplugin/man.vim
 endif
 
 let g:tex_flavor='latex'
