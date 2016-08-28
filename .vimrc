@@ -29,11 +29,11 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'SirVer/ultisnips'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'honza/vim-snippets'
-" This plugin doesn't seem to work with just :PluginInstall, so compile it as
-" follows after calling :PluginInstall in Vim (this step is still necessary
-" since we have to clone the YouCompleteMe repository)
-"       cd ~/.vim/bundle/YouCompleteMe
-"       ./install.py --clang-completer
+" YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
+" after calling :PlugInstall in Vim (which is still necessary since we have to
+" clone the YouCompleteMe repository).
+"    cd ~/.vim/plugged/YouCompleteMe
+"    ./install.py --clang-completer
 " Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'java', 'c']}
 call plug#end()
 
@@ -68,17 +68,16 @@ nnoremap K <C-^>
 nnoremap Y y$
 
 " Condensed version of the characterwise insert mode mapping from
-" $VIMRUNTIME/autoload/paste.vim
-" Hmm I notice a slight lag with this mapping compared to safe-paste.vim. I
-" suspect this is because this mapping has to type in the extra 'x' and 'xy'
-" into the buffer only to delete them again (somehow causing the momentary
-" lag), whereas safe-paste.vim does all the calculation "away from the
-" buffer", and only pastes when the positioning has been done. The 'xy' is
-" what forces pasting to be characterwise, because it causes the expression
-" not to end in a newline.
-" One more problem: this mapping clears out the ". register; the default
-" mapping keeps the pasted text in it.
-" See http://vim.wikia.com/wiki/Pasting_registers?oldid=39352?useskin=monobook#In_insert_and_command-line_modes
+" $VIMRUNTIME/autoload/paste.vim. I notice a slight lag with this mapping
+" compared to riceissa/safe-paste.vim. I suspect this is because this mapping
+" has to type in the extra 'x' and 'xy' into the buffer only to delete them
+" again (somehow causing the momentary lag), whereas safe-paste.vim does all
+" the calculation "away from the buffer", and only pastes when the positioning
+" has been done. The 'xy' is what forces pasting to be characterwise, because
+" it causes the expression not to end in a newline. One more problem: this
+" mapping clears out the ". register; the default mapping keeps the pasted
+" text in it. See
+" http://vim.wikia.com/wiki/Pasting_registers?oldid=39352?useskin=monobook#In_insert_and_command-line_modes
 if has('clipboard')
   inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
 endif
