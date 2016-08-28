@@ -122,13 +122,13 @@ endif
 
 let g:tex_flavor='latex'
 if has('autocmd')
-    augroup filetype_specific
+    augroup vimrc_au
         autocmd!
-        " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think
-        " it's better than resetting list or nolist by filetype.
+        " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think it's
+        " better than resetting list or nolist by filetype, though one exception
+        " is files that are meant to be read-only.
         autocmd InsertEnter * setlocal nolist
         autocmd InsertLeave * setlocal list
-        autocmd BufNewFile,BufRead *.md,*.page,*.pdc setlocal filetype=markdown
         autocmd FileType gitcommit setlocal spell
         " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not
         " python support. However, the omnifunc check above tries to use
@@ -141,7 +141,6 @@ if has('autocmd')
             autocmd FileType python setlocal omnifunc=python3complete#Complete
         endif
         autocmd FileType html,xhtml,xml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-        autocmd FileType mail setlocal linebreak spell
         autocmd FileType make setlocal noexpandtab
         autocmd FileType markdown setlocal syntax=
         autocmd FileType markdown setlocal linebreak spell textwidth=80
@@ -150,10 +149,6 @@ if has('autocmd')
         autocmd FileType mediawiki noremap <buffer> k gk
         autocmd FileType mediawiki noremap <buffer> gj j
         autocmd FileType mediawiki noremap <buffer> gk k
-        "autocmd FileType markdown setlocal nonumber showbreak=\\
-        " modified from $VIM/vim74/syntax/mail.vim
-        autocmd FileType markdown syn match markdownURL contains=@NoSpell `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^' 	<>")]+|(www|web|w3)[a-zA-Z0-9_-]*\.[a-zA-Z0-9._-]+\.[^' 	<>")]+)[a-zA-Z0-9/]`
-        hi def link markdownURL String
         " Prevent overzealous autoindent in align environment
         autocmd FileType tex setlocal indentexpr=
         autocmd FileType tex setlocal spell
@@ -161,10 +156,7 @@ if has('autocmd')
     augroup END
 endif
 
-" Ellipsis, …
-digraph el 8230
-" Left and right angle brackets, ⟨ ⟩
-digraph (< 10216
-digraph <( 10216
-digraph )> 10217
-digraph >) 10217
+if has('digraphs')
+  " Horizontal ellipsis, …
+  digraph el 8230
+endif
