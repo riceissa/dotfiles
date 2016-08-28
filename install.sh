@@ -66,3 +66,4 @@ ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 ln -s "$(pwd)/.emacs" ~/.emacs
 
 ln -s "$(pwd)/.ctags" ~/.ctags
+ln -s "$(pwd)/.gitignore_global" ~/.gitignore_global
