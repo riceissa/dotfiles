@@ -5,15 +5,6 @@
 " Vim to install the plugins. The exception is YouCompleteMe, which probably
 " needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
-" Plug 'SirVer/ultisnips'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'honza/vim-snippets'
-" This plugin doesn't seem to work with just :PluginInstall, so compile it as
-" follows after calling :PluginInstall in Vim (this step is still necessary
-" since we have to clone the YouCompleteMe repository)
-"       cd ~/.vim/bundle/YouCompleteMe
-"       ./install.py --clang-completer
-" Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'java', 'c']}
 Plug 'justinmk/vim-sneak'
 Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'nelstrom/vim-visual-star-search'
@@ -35,6 +26,15 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+" Plug 'SirVer/ultisnips'
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'honza/vim-snippets'
+" This plugin doesn't seem to work with just :PluginInstall, so compile it as
+" follows after calling :PluginInstall in Vim (this step is still necessary
+" since we have to clone the YouCompleteMe repository)
+"       cd ~/.vim/bundle/YouCompleteMe
+"       ./install.py --clang-completer
+" Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'java', 'c']}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -127,24 +127,25 @@ if !has('nvim')
   runtime! ftplugin/man.vim
 endif
 
+" This should be a plugin once I merge autolink.py and cite.py
 if executable('autolink.py') && has('clipboard')
-    " See https://github.com/riceissa/autolink for source
-    function! PasteLink(fmt)
-        " Escape double and single quotes and backslashes to prevent
-        " potential attacks against oneself
-        let link = substitute(@+, '"', '%22', 'g')
-        let link = substitute(link, "'", "%27", "g")
-        let link = substitute(link, '\', "%5C", "g")
-        if a:fmt ==? ''
-            let command = "autolink.py --clean --format none '" . link . "'"
-        else
-            let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
-        endif
-        return system(command)
-    endfunction
-    " Break up the undo first in case the output is messed up
-    " Note that this map also works with Ctrl-/
-    inoremap <C-_> <C-G>u<C-R>=PasteLink(&filetype)<CR>
+  " See https://github.com/riceissa/autolink for source
+  function! PasteLink(fmt)
+    " Escape double and single quotes and backslashes to prevent
+    " potential attacks against oneself
+    let link = substitute(@+, '"', '%22', 'g')
+    let link = substitute(link, "'", "%27", "g")
+    let link = substitute(link, '\', "%5C", "g")
+    if a:fmt ==? ''
+      let command = "autolink.py --clean --format none '" . link . "'"
+    else
+      let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+    endif
+    return system(command)
+  endfunction
+  " Break up the undo first in case the output is messed up
+  " Note that this map also works with Ctrl-/
+  inoremap <C-_> <C-G>u<C-R>=PasteLink(&filetype)<CR>
 endif
 
 let g:tex_flavor='latex'
