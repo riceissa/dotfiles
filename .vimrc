@@ -108,15 +108,7 @@ if &t_Co >= 16
 endif
 
 if !has('nvim')
-    runtime! ftplugin/man.vim
-endif
-
-" See :help ft-syntax-omni
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-            \    if &omnifunc == "" |
-            \        setlocal omnifunc=syntaxcomplete#Complete |
-            \    endif
+  runtime! ftplugin/man.vim
 endif
 
 if executable('autolink.py') && has('clipboard')
@@ -136,41 +128,48 @@ if executable('autolink.py') && has('clipboard')
     endfunction
     " Break up the undo first in case the output is messed up
     " Note that this map also works with Ctrl-/
-    inoremap <C-_> <C-G>u<C-r>=PasteLink(&filetype)<CR>
+    inoremap <C-_> <C-G>u<C-R>=PasteLink(&filetype)<CR>
 endif
 
 let g:tex_flavor='latex'
 if has('autocmd')
-    augroup vimrc_au
-        autocmd!
-        " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think it's
-        " better than resetting list or nolist by filetype, though one exception
-        " is files that are meant to be read-only.
-        autocmd InsertEnter * setlocal nolist
-        autocmd InsertLeave * setlocal list
-        autocmd FileType gitcommit setlocal spell
-        " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not
-        " python support. However, the omnifunc check above tries to use
-        " pythoncomplete#Complete here, which doesn't exist since there is no
-        " python support. The solution is to force the python3 complete
-        " function. (This is my guess as to what is going on, and will allow
-        " completion to work, but I haven't investigated this issue in
-        " detail.)
-        if has('python3')
-            autocmd FileType python setlocal omnifunc=python3complete#Complete
-        endif
-        autocmd FileType make setlocal noexpandtab
-        autocmd FileType markdown setlocal linebreak spell textwidth=80
-        autocmd FileType gitcommit,markdown,mail,mediawiki,tex setlocal spell
-        autocmd FileType mediawiki noremap <buffer> j gj
-        autocmd FileType mediawiki noremap <buffer> k gk
-        autocmd FileType mediawiki noremap <buffer> gj j
-        autocmd FileType mediawiki noremap <buffer> gk k
-        " Prevent overzealous autoindent in align environment
-        autocmd FileType tex setlocal indentexpr=
-        autocmd FileType tex setlocal spell
-        autocmd FileType tex syntax spell toplevel
-    augroup END
+  augroup vimrc_au
+    autocmd!
+    " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think it's
+    " better than resetting list or nolist by filetype, though one exception
+    " is files that are meant to be read-only.
+    autocmd InsertEnter * setlocal nolist
+    autocmd InsertLeave * setlocal list
+    autocmd FileType help,man setlocal nolist
+    " Modified from :help ft-syntax-omni
+    if exists("+omnifunc")
+      autocmd FileType *
+              \  if &omnifunc == "" |
+              \    setlocal omnifunc=syntaxcomplete#Complete |
+              \  endif
+    endif
+    autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
+    autocmd FileType make setlocal noexpandtab
+    autocmd FileType markdown,python setlocal expandtab shiftwidth=4
+    autocmd FileType mediawiki noremap <buffer> j gj
+    autocmd FileType mediawiki noremap <buffer> k gk
+    autocmd FileType mediawiki noremap <buffer> gj j
+    autocmd FileType mediawiki noremap <buffer> gk k
+    " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not python
+    " support. However, the omnifunc check above tries to use
+    " pythoncomplete#Complete here, which doesn't exist since there is no
+    " python support. The solution is to force the python3 complete function.
+    " (This is my guess as to what is going on, and will allow completion to
+    " work, but I haven't investigated this issue in detail.)
+    if has('python3')
+      autocmd FileType python setlocal omnifunc=python3complete#Complete
+    endif
+    " Prevent overzealous autoindent in align environment
+    autocmd FileType tex setlocal indentexpr=
+    " More aggressively check spelling in LaTeX; see
+    " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
+    autocmd FileType tex syntax spell toplevel
+  augroup END
 endif
 
 if has('digraphs')
