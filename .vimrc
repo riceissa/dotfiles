@@ -64,6 +64,25 @@ set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
 inoremap <C-R> <C-G>u<C-R>
+" HT Emacs for the idea; I think this algorithm (which is similar to but not
+" the same as what Emacs uses) works for *most* files but I can't promise
+" anything.
+function! EmacsCtrlL()
+  if abs(line(".") - line("w$")) <= &scrolloff
+    echom "got to 1"
+    return 'zz'
+  elseif abs(line(".") - line("w0")) <= &scrolloff
+    echom "got to 2"
+    return 'zb'
+  elseif abs(line(".") - (line("w0")+line("w$"))/2) <= 2
+    echom "got to 3"
+    return 'zt'
+  else
+    echom "got to 4"
+    return 'zz'
+  endif
+endfunction
+inoremap <expr> <C-L> '<C-\><C-O>' . EmacsCtrlL()
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
