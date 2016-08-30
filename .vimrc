@@ -68,12 +68,12 @@ inoremap <C-R> <C-G>u<C-R>
 " the same as what Emacs uses) works for *most* files but I can't promise
 " anything.
 function! EmacsCtrlL()
-  if abs(line(".") - line("w$")) <= &scrolloff
-    return 'zz'
-  elseif abs(line(".") - line("w0")) <= &scrolloff
+  if abs(winline()) <= 1+&scrolloff
     return 'zb'
-  elseif abs(line(".") - (line("w0")+line("w$"))/2) <= 2
+  elseif abs(winline() - winheight(0)/2) <= 2
     return 'zt'
+  elseif abs(winline() - winheight(0)) <= 1+&scrolloff
+    return 'zz'
   else
     return 'zz'
   endif
