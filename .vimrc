@@ -69,16 +69,12 @@ inoremap <C-R> <C-G>u<C-R>
 " anything.
 function! EmacsCtrlL()
   if abs(line(".") - line("w$")) <= &scrolloff
-    echom "got to 1"
     return 'zz'
   elseif abs(line(".") - line("w0")) <= &scrolloff
-    echom "got to 2"
     return 'zb'
   elseif abs(line(".") - (line("w0")+line("w$"))/2) <= 2
-    echom "got to 3"
     return 'zt'
   else
-    echom "got to 4"
     return 'zz'
   endif
 endfunction
