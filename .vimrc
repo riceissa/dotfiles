@@ -5,6 +5,7 @@
 " Vim to install the plugins. The exception is YouCompleteMe, which probably
 " needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
+Plug 'derekwyatt/vim-scala'
 Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'justinmk/vim-sneak'
 Plug 'nelstrom/vim-visual-star-search'
