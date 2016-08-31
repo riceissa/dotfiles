@@ -59,6 +59,7 @@ if has('path_extra')
   setglobal tags=./tags;,tags
 endif
 
+set modeline " Debian disables modeline
 set list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
