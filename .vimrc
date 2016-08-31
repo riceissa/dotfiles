@@ -149,9 +149,9 @@ if !has('nvim')
 endif
 
 " This should be a plugin once I merge autolink.py and cite.py
-if executable('autolink.py') && has('clipboard')
+if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
   " See https://github.com/riceissa/autolink for source
-  function! PasteLink(fmt)
+  function! PasteLink(fmt, flags)
     " Escape double and single quotes and backslashes to prevent
     " potential attacks against oneself
     let link = substitute(@+, '"', '%22', 'g')
@@ -162,12 +162,18 @@ if executable('autolink.py') && has('clipboard')
     else
       let ftype = a:fmt
     endif
-    let command = "wget --quiet -O - '" . link . "' | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " '" . link . "'"
-    return system(command)
+    let command = "wget --quiet -O - '" . link . "' | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " '" . link . "' " . a:flags
+    let out = system(command)
+    " I think Vim stores '\n' as NULL so we can't filter out \d0
+    " Try the following:
+    "   let @a = substitute("echo 'a\rb\nc'", '[\d0]', '', 'g')
+    " Now check with :reg to see that the linefeed has disappeared
+    return substitute(out, '[\d1-\d9\d11\d12\d14-\d31\d127]', '', 'g')
   endfunction
   " Break up the undo first in case the output is messed up
   " Note that this map also works with Ctrl-/
-  inoremap <C-G><C-L> <C-G>u<C-R>=PasteLink(&filetype)<CR>
+  inoremap <C-G><C-L> <C-G>u<C-R>=PasteLink(&filetype, "")<CR>
+  inoremap <C-G><C-R> <C-G>u<C-R>=PasteLink(&filetype, "-C")<CR>
 endif
 
 let g:tex_flavor='latex'
