@@ -70,15 +70,20 @@ inoremap <C-R> <C-G>u<C-R>
 " anything.
 function! EmacsCtrlL()
   if abs(winline()) <= 1+&scrolloff
+    echom "case 1"
     return 'zb'
   elseif abs(winline() - winheight(0)/2) <= 2
+    echom "case 2"
     return 'zt'
   elseif abs(winline() - winheight(0)) <= 1+&scrolloff
+    echom "case 3"
     return 'zz'
   else
+    echom "case 4"
     return 'zz'
   endif
 endfunction
+"inoremap <expr> <C-L> '<C-\><C-O>' . ':setl nowrap<CR><C-\><C-O>' . ':let p = EmacsCtrlL()<CR>' . '<C-\><C-O>:setl wrap<CR><C-\><C-O>' . p
 inoremap <expr> <C-L> '<C-\><C-O>' . EmacsCtrlL()
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
@@ -153,15 +158,16 @@ if executable('autolink.py') && has('clipboard')
     let link = substitute(link, "'", "%27", "g")
     let link = substitute(link, '\', "%5C", "g")
     if a:fmt ==? ''
-      let command = "autolink.py --clean --format none '" . link . "'"
+      let ftype = "plaintext"
     else
-      let command = "autolink.py --clean --format " . a:fmt . " '" . link . "'"
+      let ftype = a:fmt
     endif
+    let command = "wget --quiet -O - '" . link . "' | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " '" . link . "'"
     return system(command)
   endfunction
   " Break up the undo first in case the output is messed up
   " Note that this map also works with Ctrl-/
-  inoremap <C-_> <C-G>u<C-R>=PasteLink(&filetype)<CR>
+  inoremap <C-G><C-L> <C-G>u<C-R>=PasteLink(&filetype)<CR>
 endif
 
 let g:tex_flavor='latex'
