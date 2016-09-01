@@ -158,7 +158,7 @@ if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
     let link = substitute(link, "'", "%27", "g")
     let link = substitute(link, '\', "%5C", "g")
     if a:fmt ==? ''
-      let ftype = "plaintext"
+      let ftype = "text"
     else
       let ftype = a:fmt
     endif
