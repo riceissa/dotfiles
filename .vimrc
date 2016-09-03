@@ -60,6 +60,7 @@ if has('path_extra')
 endif
 
 set modeline " Debian disables modeline
+set notimeout ttimeout
 set list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
