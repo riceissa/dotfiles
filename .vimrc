@@ -174,7 +174,7 @@ if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
   " Break up the undo first in case the output is messed up
   " Note that this map also works with Ctrl-/
   inoremap <C-G><C-L> <C-G>u<C-R>=PasteLink(&filetype, "")<CR>
-  inoremap <C-G><C-R> <C-G>u<C-R>=PasteLink(&filetype, "-C")<CR>
+  inoremap <C-G><C-R> <C-G>u<C-R>=PasteLink(&filetype, "-C -R")<CR>
 endif
 
 let g:tex_flavor='latex'
@@ -195,6 +195,7 @@ if has('autocmd')
               \  endif
     endif
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
+    autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown,python setlocal expandtab shiftwidth=4
     autocmd FileType mediawiki noremap <buffer> j gj
