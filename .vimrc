@@ -172,9 +172,8 @@ if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
     return substitute(out, '[\d1-\d9\d11\d12\d14-\d31\d127]', '', 'g')
   endfunction
   " Break up the undo first in case the output is messed up
-  " Note that this map also works with Ctrl-/
-  inoremap <C-G><C-L> <C-G>u<C-R>=PasteLink(&filetype, "")<CR>
-  inoremap <C-G><C-R> <C-G>u<C-R>=PasteLink(&filetype, "-C -R")<CR>
+  inoremap <C-G><C-L> <C-G>ux<Esc>"=PasteLink(&filetype, "").'xy'<CR>gPFx"_2x"_s
+  inoremap <C-G><C-R> <C-G>ux<Esc>"=PasteLink(&filetype, "-C -R").'xy'<CR>gPFx"_2x"_s
 endif
 
 let g:tex_flavor='latex'
