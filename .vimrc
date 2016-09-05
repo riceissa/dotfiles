@@ -163,7 +163,7 @@ if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
     else
       let ftype = a:fmt
     endif
-    let command = "wget --quiet -O - '" . link . "' | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " '" . link . "' " . a:flags
+    let command = "wget --quiet -O - " . shellescape(link) . " | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " " . shellescape(link) . " " . a:flags
     let out = system(command)
     " I think Vim stores '\n' as NULL so we can't filter out \d0
     " Try the following:
