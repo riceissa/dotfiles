@@ -198,7 +198,7 @@ if has('digraphs')
 endif
 
 let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
-let g:autolink_download_provider = 'curl --silent --compressed'
+let g:autolink_download_provider = 'curl -L --silent --compressed'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
 let g:UltiSnipsExpandTrigger="<C-j>"
