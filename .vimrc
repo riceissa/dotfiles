@@ -197,7 +197,7 @@ if has('digraphs')
   digraph el 8230
 endif
 
-let g:autolink_executable = '/home/issa/projects/autolink/autolink2.py'
+let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
 let g:autolink_download_provider = 'curl --silent --compressed'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
