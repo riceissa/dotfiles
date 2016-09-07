@@ -70,9 +70,9 @@ inoremap <C-R> <C-G>u<C-R>
 
 " HT Emacs for the idea; I think this algorithm (which is similar to but not
 " the same as what Emacs uses) works for *most* files but I can't promise
-" anything.  In particular, it's usually crapshoot whether this works if there
-" are any logical lines that take up more than one visual line.  If hitting
-" <C-L> doesn't move the screen, there is always <C-O>zz.
+" anything.  In particular, it's usually a crapshoot whether this works if
+" there are any logical lines that take up more than one visual line.  If
+" hitting <C-L> doesn't move the screen, there is always <C-O>zz.
 function! EmacsCtrlL()
   if abs(winline()) <= 1+&scrolloff
     echom "EmacsCtrlL debug: case 1"
