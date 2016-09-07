@@ -72,16 +72,16 @@ inoremap <C-R> <C-G>u<C-R>
 " anything.
 function! EmacsCtrlL()
   if abs(winline()) <= 1+&scrolloff
-    echom "case 1"
+    echom "EmacsCtrlL debug: case 1"
     return 'zb'
   elseif abs(winline() - winheight(0)/2) <= 2
-    echom "case 2"
+    echom "EmacsCtrlL debug: case 2"
     return 'zt'
   elseif abs(winline() - winheight(0)) <= 1+&scrolloff
-    echom "case 3"
+    echom "EmacsCtrlL debug: case 3"
     return 'zz'
   else
-    echom "case 4"
+    echom "EmacsCtrlL debug: case 4"
     return 'zz'
   endif
 endfunction
