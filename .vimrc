@@ -9,6 +9,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'justinmk/vim-sneak'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'riceissa/vim-autolink'
 Plug 'riceissa/vim-easy-quoteplus'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
@@ -149,33 +150,6 @@ if !has('nvim')
   runtime! ftplugin/man.vim
 endif
 
-" This should be a plugin once I merge autolink.py and cite.py
-if executable('/home/issa/projects/autolink/autolink2.py') && has('clipboard')
-  " See https://github.com/riceissa/autolink for source
-  function! PasteLink(fmt, flags)
-    " Escape double and single quotes and backslashes to prevent
-    " potential attacks against oneself
-    let link = substitute(@+, '"', '%22', 'g')
-    let link = substitute(link, "'", "%27", "g")
-    let link = substitute(link, '\', "%5C", "g")
-    if a:fmt ==? ''
-      let ftype = "text"
-    else
-      let ftype = a:fmt
-    endif
-    let command = "wget --quiet -O - " . shellescape(link) . " | python3 /home/issa/projects/autolink/autolink2.py --filetype " . ftype . " " . shellescape(link) . " " . a:flags
-    let out = system(command)
-    " I think Vim stores '\n' as NULL so we can't filter out \d0
-    " Try the following:
-    "   let @a = substitute("echo 'a\rb\nc'", '[\d0]', '', 'g')
-    " Now check with :reg to see that the linefeed has disappeared
-    return substitute(out, '[\d1-\d9\d11\d12\d14-\d31\d127]', '', 'g')
-  endfunction
-  " Break up the undo first in case the output is messed up
-  inoremap <C-G><C-L> <C-G>ux<Esc>"=PasteLink(&filetype, "").'xy'<CR>gPFx"_2x"_s
-  inoremap <C-G><C-R> <C-G>ux<Esc>"=PasteLink(&filetype, "-C -R").'xy'<CR>gPFx"_2x"_s
-endif
-
 let g:tex_flavor='latex'
 if has('autocmd')
   augroup vimrc_au
@@ -222,6 +196,9 @@ if has('digraphs')
   " Horizontal ellipsis, …
   digraph el 8230
 endif
+
+let g:autolink_executable = '/home/issa/projects/autolink/autolink2.py'
+let g:autolink_download_provider = 'curl --silent --compressed'
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
 let g:UltiSnipsExpandTrigger="<C-j>"
