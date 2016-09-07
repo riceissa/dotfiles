@@ -86,7 +86,7 @@ function! EmacsCtrlL()
   endif
 endfunction
 "inoremap <expr> <C-L> '<C-\><C-O>' . ':setl nowrap<CR><C-\><C-O>' . ':let p = EmacsCtrlL()<CR>' . '<C-\><C-O>:setl wrap<CR><C-\><C-O>' . p
-inoremap <expr> <C-L> '<C-\><C-O>' . EmacsCtrlL()
+inoremap <expr> <C-L> pumvisible() ? '<C-L>' : '<C-\><C-O>' . EmacsCtrlL()
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
