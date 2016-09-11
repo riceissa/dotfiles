@@ -61,7 +61,6 @@ if has('path_extra')
 endif
 
 set modeline " Debian disables modeline
-set notimeout ttimeout
 set list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
@@ -94,6 +93,13 @@ inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<C-\><C
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
+
+if !has('nvim')
+  runtime! ftplugin/man.vim
+endif
+if has('nvim') && maparg('<Leader>K', 'n') ==# ''
+  nnoremap <expr> <Leader>K ":Man " . expand('<cword>') . "\<Lt>CR>"
+endif
 
 " Condensed version of the characterwise insert mode mapping from
 " $VIMRUNTIME/autoload/paste.vim. I notice a slight lag with this mapping
@@ -148,10 +154,6 @@ command! FindNonAscii /[^\d32-\d126]
 if &t_Co >= 16
   " Changing ctermbg is useful for seeing tab with :set list
   highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-endif
-
-if !has('nvim')
-  runtime! ftplugin/man.vim
 endif
 
 let g:tex_flavor='latex'
