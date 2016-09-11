@@ -98,8 +98,7 @@ if !has('nvim')
   runtime! ftplugin/man.vim
 endif
 if has('nvim') && maparg('<Leader>K', 'n') ==# ''
-  " Change this later; Vim does something more involved in man.vim.
-  nnoremap <expr> <Leader>K ":Man " . expand('<cword>') . "\<Lt>CR>"
+  noremap <Leader>K :Man<CR>
 endif
 
 " Condensed version of the characterwise insert mode mapping from
