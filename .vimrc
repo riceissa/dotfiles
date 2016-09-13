@@ -68,6 +68,15 @@ set wildmode=list:longest,full
 
 inoremap <C-R> <C-G>u<C-R>
 
+function! GQ(tw)
+  let tmp = &tw
+  let &tw = a:tw
+  normal! gvgq
+  let &tw = tmp
+endfunction
+
+vnoremap <expr> gq v:count ? ':call GQ(' . v:count . ')<CR>' : 'gq'
+
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
 nnoremap Y y$
