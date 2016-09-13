@@ -67,29 +67,8 @@ set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
 inoremap <C-R> <C-G>u<C-R>
-
-" HT Emacs for the idea; I think this algorithm (which is similar to but not
-" the same as what Emacs uses) works for *most* files but I can't promise
-" anything.  In particular, it's usually a crapshoot whether this works if
-" there are any logical lines that take up more than one visual line.  If
-" hitting <C-L> doesn't move the screen, there is always <C-O>zz.
-function! EmacsCtrlL()
-  if abs(winline()) <= 1+&scrolloff
-    echom "EmacsCtrlL debug: case 1"
-    return 'zb'
-  elseif abs(winline() - winheight(0)/2) <= 2
-    echom "EmacsCtrlL debug: case 2"
-    return 'zt'
-  elseif abs(winline() - winheight(0)) <= 1+&scrolloff
-    echom "EmacsCtrlL debug: case 3"
-    return 'zz'
-  else
-    echom "EmacsCtrlL debug: case 4"
-    return 'zz'
-  endif
-endfunction
-"inoremap <expr> <C-L> '<C-\><C-O>' . ':setl nowrap<CR><C-\><C-O>' . ':let p = EmacsCtrlL()<CR>' . '<C-\><C-O>:setl wrap<CR><C-\><C-O>' . p
-inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<C-\><C-O>' . EmacsCtrlL()
+inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<Esc>'
+inoremap <expr> <C-Z> &insertmode ? '<C-Z>' : '<C-\><C-O>zz'
 
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
