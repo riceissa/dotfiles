@@ -67,8 +67,6 @@ set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
 inoremap <C-R> <C-G>u<C-R>
-inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<Esc>'
-inoremap <expr> <C-Z> &insertmode ? '<C-Z>' : '<C-\><C-O>zz'
 
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
