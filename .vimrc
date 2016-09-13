@@ -62,7 +62,7 @@ if has('path_extra')
 endif
 
 set modeline " Debian disables modeline
-set list ignorecase smartcase showcmd noequalalways nojoinspaces
+set number list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
@@ -174,7 +174,8 @@ if has('autocmd')
               \    setlocal omnifunc=syntaxcomplete#Complete |
               \  endif
     endif
-    autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
+    autocmd FileType
+      \ gitcommit,mail,markdown,mediawiki,tex,text setlocal nonumber spell
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown,python setlocal expandtab shiftwidth=4
