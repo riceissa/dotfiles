@@ -1,3 +1,4 @@
+set nocompatible
 " Use vim-plug to manage Vim plugins. See https://github.com/junegunn/vim-plug
 " for full instructions.
 "
