@@ -68,15 +68,22 @@ set wildmode=list:longest,full
 
 inoremap <C-R> <C-G>u<C-R>
 
-function! GQ(tw, command)
-  let tmp = &tw
-  let &tw = a:tw
-  exe 'normal! gv' . a:command
-  let &tw = tmp
-endfunction
+" Make gq and gw accept a count in visual mode. So 72gq formats as if
+" 'textwidth' is 72 regardless of what value it actually is. When no count is
+" given, the commands work as usual.
+vnoremap <silent> gq :<C-U>call <SID>GQ(v:count, 'gq')<CR>
+vnoremap <silent> gw :<C-U>call <SID>GQ(v:count, 'gw')<CR>
 
-vnoremap <expr> gq v:count ? ':<C-U>call GQ(' . v:count . ', "gq")<CR>' : 'gq'
-vnoremap <expr> gw v:count ? ':<C-U>call GQ(' . v:count . ', "gw")<CR>' : 'gw'
+function! s:GQ(tw, command)
+  if v:count > 0
+    let tmp = &tw
+    let &tw = a:tw
+    exe 'normal! gv' . a:command
+    let &tw = tmp
+  else
+    exe 'normal! gv' . a:command
+  endif
+endfunction
 
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
