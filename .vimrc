@@ -49,7 +49,8 @@ if &history < 10000
   set history=10000
 endif
 set nohlsearch
-" From $VIMRUNTIME/vimrc_example.vim @ 97
+" From $VIMRUNTIME/vimrc_example.vim @ 97 if you have Vim 7.4.
+" $VIMRUNTIME/defaults.vim @ 120 for Vim 8.0.
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
