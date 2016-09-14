@@ -147,6 +147,12 @@ endif
 " so that the characters in question stand out.
 command! FindNonAscii /[^\d32-\d126]
 
+" From defaults.vim; see also :help :DiffOrig
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+                  \ | wincmd p | diffthis
+endif
+
 if &t_Co >= 16
   " Changing ctermbg is useful for seeing tab with :set list
   highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
