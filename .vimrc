@@ -75,8 +75,8 @@ function! GQ(tw, command)
   let &tw = tmp
 endfunction
 
-vnoremap <expr> gq v:count ? ':call GQ(' . v:count . ', "gq")<CR>' : 'gq'
-vnoremap <expr> gw v:count ? ':call GQ(' . v:count . ', "gw")<CR>' : 'gw'
+vnoremap <expr> gq v:count ? ':<C-U>call GQ(' . v:count . ', "gq")<CR>' : 'gq'
+vnoremap <expr> gw v:count ? ':<C-U>call GQ(' . v:count . ', "gw")<CR>' : 'gw'
 
 " With man.vim loaded, <leader>K is more useful anyway
 nnoremap K <C-^>
