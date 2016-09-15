@@ -176,7 +176,7 @@ if has('autocmd')
               \  endif
     endif
     autocmd FileType
-      \ gitcommit,mail,markdown,mediawiki,tex,text setlocal nonumber spell
+      \ gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown,python setlocal expandtab shiftwidth=4
