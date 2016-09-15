@@ -67,6 +67,9 @@ set number list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
 
+" From debian.vim
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+
 inoremap <C-R> <C-G>u<C-R>
 
 " Make gq and gw accept a count in visual mode. So 72gq formats as if
