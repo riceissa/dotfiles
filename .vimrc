@@ -146,6 +146,9 @@ endfunction
 " Vim behave more like other text editors." (Practical Vim, pg 41)
 nnoremap gh F<Space>xpA
 nnoremap gH F<Space>gExpA
+" inoremap <C-G>h <Esc>F<Space>xpgi
+inoremap <C-G>h <C-G>u<Esc>BxgEpgi
+inoremap <C-G>l <C-G>u<Esc>gExpgi
 
 " First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
 " particular version is from
