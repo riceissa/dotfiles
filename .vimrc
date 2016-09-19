@@ -112,30 +112,6 @@ endif
 "   inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
 " endif
 
-" The idea for this mapping comes from Emacs. I think this algorithm (which is
-" similar to but not the same as what Emacs uses) works for *most* situations
-" but I can't promise anything.  In particular, it's usually a crapshoot
-" whether this works if there are any logical lines that take up more than one
-" visual line.  If hitting <C-L> doesn't move the screen, there is always
-" <C-O>zz.
-inoremap <expr> <C-L> (pumvisible() <bar><bar> &insertmode) ? '<C-L>' : '<C-\><C-O>' . <SID>EmacsCtrlL()
-
-function! s:EmacsCtrlL()
-  if abs(winline()) <= 1+&scrolloff
-    echom "EmacsCtrlL debug: case 1"
-    return 'zb'
-  elseif abs(winline() - winheight(0)/2) <= 2
-    echom "EmacsCtrlL debug: case 2"
-    return 'zt'
-  elseif abs(winline() - winheight(0)) <= 1+&scrolloff
-    echom "EmacsCtrlL debug: case 3"
-    return 'zz'
-  else
-    echom "EmacsCtrlL debug: case 4"
-    return 'zz'
-  endif
-endfunction
-
 " Quickly fix two forms of typo I often make. The default gh and gH, used to
 " enter select mode, are only useful in mappings anyway. To quote Drew Neil,
 " "If you are happy to embrace the modal nature of Vim, then you should find
