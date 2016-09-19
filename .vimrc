@@ -11,6 +11,7 @@ Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'justinmk/vim-sneak'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
+Plug 'riceissa/vim-emacsctrll'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
