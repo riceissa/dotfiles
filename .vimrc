@@ -11,7 +11,6 @@ Plug 'altercation/vim-colors-solarized' " only for gvim
 Plug 'justinmk/vim-sneak'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
-Plug 'riceissa/vim-easy-quoteplus'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
@@ -70,8 +69,6 @@ set wildmode=list:longest,full
 " From debian.vim
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
-inoremap <C-R> <C-G>u<C-R>
-
 " Make gq and gw accept a count in visual mode. So 72gq formats as if
 " 'textwidth' is 72 regardless of what value it actually is. When no count is
 " given, the commands work as usual.
@@ -111,9 +108,9 @@ endif
 " mapping clears out the ". register; the default mapping keeps the pasted
 " text in it. See
 " http://vim.wikia.com/wiki/Pasting_registers?oldid=39352?useskin=monobook#In_insert_and_command-line_modes
-if has('clipboard')
-  inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-endif
+" if has('clipboard')
+"   inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
+" endif
 
 " The idea for this mapping comes from Emacs. I think this algorithm (which is
 " similar to but not the same as what Emacs uses) works for *most* situations
@@ -144,11 +141,11 @@ endfunction
 " "If you are happy to embrace the modal nature of Vim, then you should find
 " little use for Select mode, which holds the hand of users who want to make
 " Vim behave more like other text editors." (Practical Vim, pg 41)
-nnoremap gh F<Space>xpA
-nnoremap gH F<Space>gExpA
+" nnoremap gh F<Space>xpA
+" nnoremap gH F<Space>gExpA
 " inoremap <C-G>h <Esc>F<Space>xpgi
-inoremap <C-G>h <C-G>u<Esc>BxgEpgi
-inoremap <C-G>l <C-G>u<Esc>gExpgi
+" inoremap <C-G>h <C-G>u<Esc>BxgEpgi
+" inoremap <C-G>l <C-G>u<Esc>gExpgi
 
 " First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
 " particular version is from
@@ -260,10 +257,3 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:EclimCompletionMethod = 'omnifunc'
-
-let g:pandoc#syntax#conceal#use = 0
-
-" Ignore files in .gitignore
-let g:ctrlp_user_command = ['.git/',
-  \ 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_map = '<c-k>'
