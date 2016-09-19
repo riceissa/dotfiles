@@ -92,7 +92,7 @@ seek_forward          = RIGHT
 seek_backward         = LEFT
 seek_forward_fast     = ]
 seek_backward_fast    = [
-pause                 = p SPACE
+pause                 = SPACE
 stop                  = s
 next                  = n
 previous              = b
@@ -131,7 +131,7 @@ go_to_fast_dir7       = &
 go_to_fast_dir8       = *
 go_to_fast_dir9       = (
 go_to_fast_dir10      = )
-#go_to_playing_file    = G
+go_to_playing_file    = p
 go_up                 = -
 
 # Playlist specific keys:
