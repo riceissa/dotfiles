@@ -126,12 +126,10 @@ let g:tex_flavor='latex'
 if has('autocmd')
   augroup vimrc_au
     autocmd!
-    " Seen at https://github.com/tpope/vim-sensible/issues/5 ; I think it's
-    " better than resetting list or nolist by filetype, though one exception
-    " is files that are meant to be read-only.
-    autocmd InsertEnter * setlocal nolist
-    autocmd InsertLeave * setlocal list
-    autocmd FileType help,man setlocal nolist
+    autocmd FileType gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
+    autocmd InsertEnter * set listchars=tab:>\ ,nbsp:+
+    autocmd InsertLeave * set listchars=tab:>\ ,trail:-,nbsp:+
+    autocmd FileType help,man setlocal nolist nospell
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
       autocmd FileType *
@@ -139,7 +137,6 @@ if has('autocmd')
               \    setlocal omnifunc=syntaxcomplete#Complete |
               \  endif
     endif
-    autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown,python setlocal expandtab shiftwidth=4
