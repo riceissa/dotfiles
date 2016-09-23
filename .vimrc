@@ -28,9 +28,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-" Plug 'SirVer/ultisnips'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'honza/vim-snippets'
 " YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
 " after calling :PlugInstall in Vim (which is still necessary since we have to
 " clone the YouCompleteMe repository).
@@ -97,32 +94,6 @@ if has('nvim') && maparg('<Leader>K', 'n') ==# ''
   noremap <Leader>K :Man<CR>
 endif
 
-" Condensed version of the characterwise insert mode mapping from
-" $VIMRUNTIME/autoload/paste.vim. I notice a slight lag with this mapping
-" compared to riceissa/safe-paste.vim. I suspect this is because this mapping
-" has to type in the extra 'x' and 'xy' into the buffer only to delete them
-" again (somehow causing the momentary lag), whereas safe-paste.vim does all
-" the calculation "away from the buffer", and only pastes when the positioning
-" has been done. The 'xy' is what forces pasting to be characterwise, because
-" it causes the expression not to end in a newline. One more problem: this
-" mapping clears out the ". register; the default mapping keeps the pasted
-" text in it. See
-" http://vim.wikia.com/wiki/Pasting_registers?oldid=39352?useskin=monobook#In_insert_and_command-line_modes
-" if has('clipboard')
-"   inoremap <C-R>+ <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-" endif
-
-" Quickly fix two forms of typo I often make. The default gh and gH, used to
-" enter select mode, are only useful in mappings anyway. To quote Drew Neil,
-" "If you are happy to embrace the modal nature of Vim, then you should find
-" little use for Select mode, which holds the hand of users who want to make
-" Vim behave more like other text editors." (Practical Vim, pg 41)
-" nnoremap gh F<Space>xpA
-" nnoremap gH F<Space>gExpA
-" inoremap <C-G>h <Esc>F<Space>xpgi
-" inoremap <C-G>h <C-G>u<Esc>BxgEpgi
-" inoremap <C-G>l <C-G>u<Esc>gExpgi
-
 " First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
 " particular version is from
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
@@ -131,17 +102,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 " HT Tim Pope https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
 " I'm still not sure what the repeat(,0) is for...
 if exists("*strftime")
-  inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'), map([
-    \ "%F",
-    \ "%B %-d, %Y",
-    \ "%Y-%m-%d %H:%M:%S",
-    \ "%a, %d %b %Y %H:%M:%S %z",
-    \ "%Y %b %d",
-    \ "%d-%b-%y",
-    \ "%a %b %d %T %Z %Y"
-  \ ], 'strftime(v:val)') + [
-    \ localtime()
-  \ ]), 0)<CR>
+  inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%F","%B %-d, %Y","%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
 endif
 
 " Quickly find characters that are not printable ASCII, which are sometimes
@@ -178,10 +139,7 @@ if has('autocmd')
               \    setlocal omnifunc=syntaxcomplete#Complete |
               \  endif
     endif
-    autocmd FileType gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
-    autocmd FileType help setlocal nospell
-    " autocmd FileType
-    "   \ gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
+    autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown,python setlocal expandtab shiftwidth=4
@@ -214,10 +172,6 @@ endif
 let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
 let g:autolink_download_provider = 'curl -L --silent --compressed'
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "UltiSnips-custom-snippets"]
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 let g:ycm_filetype_blacklist = {
     \ 'gitcommit': 1,
     \ 'html': 1,
