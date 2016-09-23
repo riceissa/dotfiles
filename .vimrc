@@ -83,10 +83,10 @@ function! s:GQ(tw, command)
   endif
 endfunction
 
-" With man.vim loaded, <leader>K is more useful anyway
-nnoremap K <C-^>
 nnoremap Y y$
 
+" With man.vim loaded, <leader>K is more useful anyway
+nnoremap K <C-^>
 if !has('nvim')
   runtime! ftplugin/man.vim
 endif
@@ -94,7 +94,7 @@ if has('nvim') && maparg('<Leader>K', 'n') ==# ''
   noremap <Leader>K :Man<CR>
 endif
 
-" First seen at http://vimcasts.org/episodes/the-edit-command/ , but this
+" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
 " particular version is from
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
