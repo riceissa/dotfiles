@@ -131,33 +131,25 @@ endif
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
-" HT Tim Pope https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
-" For repeat(,0), see https://github.com/noahfrederick/dots/blob/9299cdff1e7e6d3a7c3f69608bc69e7699c2fc13/vim/vimrc#L510
-" It is like returning the empty string in a :call.  From :help complete():
-" 'Note that the after calling this function you need to avoid inserting
-" anything that would cause completion to stop.' -- In other words, we want to
-" avoid returning the default 0.  Of course, we could have defined a function
-" that invokes a :call to complete(), and then returns the empty string, but I
-" guess tpope likes these one-liners.
+" Credit goes to Tim Pope for the idea
+" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
 if exists("*strftime")
-  inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(["%F","%B %-d, %Y","%Y-%m-%d %H:%M:%S","%a, %d %b %Y %H:%M:%S %z","%Y %b %d","%d-%b-%y","%a %b %d %T %Z %Y"],'strftime(v:val)')+[localtime()]),0)<CR>
-  inoremap <silent> <C-G><C-Y> <C-R>=<SID>ListDatetime()<CR>
+  inoremap <silent> <C-G><C-T> <C-R>=<SID>ListDatetime()<CR>
+  function! s:ListDatetime()
+    let date_fmts = [
+          \ "%F",
+          \ "%B %-d, %Y",
+          \ "%Y-%m-%d %H:%M:%S",
+          \ "%a, %d %b %Y %H:%M:%S %z",
+          \ "%Y %b %d",
+          \ "%d-%b-%y",
+          \ "%a %b %d %T %Z %Y"
+          \ ]
+    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
+    call complete(col('.'), compl_lst)
+    return ''
+  endfunction
 endif
-
-function! s:ListDatetime()
-  let date_fmts = [
-        \ "%F",
-        \ "%B %-d, %Y",
-        \ "%Y-%m-%d %H:%M:%S",
-        \ "%a, %d %b %Y %H:%M:%S %z",
-        \ "%Y %b %d",
-        \ "%d-%b-%y",
-        \ "%a %b %d %T %Z %Y"
-        \ ]
-  let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-  call complete(col('.'), compl_lst)
-  return ''
-endfunction
 
 " Quickly find characters that are not printable ASCII, which are sometimes
 " undesirable to have in a file. This is best used along with
