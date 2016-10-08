@@ -7,6 +7,8 @@ set nocompatible
 " needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized' " only for gvim
+Plug 'majutsushi/tagbar'
+Plug 'chrisbra/unicode.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
@@ -46,7 +48,9 @@ if &history < 10000
 endif
 set nohlsearch
 " From $VIMRUNTIME/vimrc_example.vim @ 97 if you have Vim 7.4.
-" $VIMRUNTIME/defaults.vim @ 120 for Vim 8.0.
+" See
+"   :edit +/langmap $VIMRUNTIME/defaults.vim
+" for Vim 8.0.
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
@@ -94,6 +98,22 @@ nnoremap <expr> g<C-U> ':normal ' . (winheight(0) / 2) . 'gk<CR>'
 " Experimental
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
+
+" Something I like from Acme
+command! EditAtRegex call <SID>EditAtRegex()
+
+function! s:EditAtRegex()
+  " Convert filename:/regex to :edit +/regex filename
+  " Regex will be used as-is and cannot contain whitespace, since we select it
+  " using <cWORD>. Use only for simple references.
+  " Possibly dangerous in case of filename:dangerous_cmd
+  let fname = expand('<cfile>')
+  let cmd = get(split(expand('<cWORD>'), ':'), 1, "")
+  if cmd !=# ""
+    let cmd = "+" . cmd
+  endif
+  exe ":edit " . cmd . " " . fname
+endfunction
 
 nnoremap Y y$
 
