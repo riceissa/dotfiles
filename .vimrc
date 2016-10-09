@@ -86,6 +86,9 @@ function! s:GQ(tw, command)
   endif
 endfunction
 
+" Experimental
+" ------------------------------------------------------------------------
+
 " TODO: account for &scrolloff
 " Also various bugs like 0gj being passed out
 nnoremap <expr> gL ':normal ' . (winheight(0) - winline()) . 'gj<CR>'
@@ -94,7 +97,6 @@ nnoremap <expr> gM winheight(0)/2 - winline() > 0 ? ':normal ' . winheight(0)/2 
 nnoremap <expr> g<C-D> ':normal ' . (winheight(0) - winline()) . 'gj<CR>' . ':normal ' . (winheight(0) / 2) . 'gj<CR>'
 nnoremap <expr> g<C-U> ':normal ' . (winheight(0) / 2) . 'gk<CR>'
 
-" Experimental
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
 
@@ -205,6 +207,9 @@ function! s:DoCompl(base)
   endfor
   return res
 endfunction
+
+" End of experimental
+" ------------------------------------------------------------------------
 
 nnoremap Y y$
 
