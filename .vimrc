@@ -1,15 +1,14 @@
 set nocompatible
 " Use vim-plug to manage Vim plugins. See https://github.com/junegunn/vim-plug
-" for full instructions.
-"
-" Once all Vim config files are in the right places, just do :PlugInstall in
-" Vim to install the plugins. The exception is YouCompleteMe, which probably
-" needs to be compiled; see below for more.
+" for full instructions. Once all Vim config files are in the right places,
+" just do :PlugInstall in Vim to install the plugins. The exception is
+" YouCompleteMe, which needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized' " only for gvim
-Plug 'majutsushi/tagbar'
+Plug 'altercation/vim-colors-solarized' " Only for gvim
 Plug 'chrisbra/unicode.vim'
+Plug 'fatih/vim-go'
 Plug 'justinmk/vim-sneak'
+Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
 Plug 'riceissa/vim-emacsctrll'
@@ -32,10 +31,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 " YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
 " after calling :PlugInstall in Vim (which is still necessary since we have to
-" clone the YouCompleteMe repository).
-"    cd ~/.vim/plugged/YouCompleteMe
-"    ./install.py --clang-completer
-" Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'java', 'c']}
+" clone various repositories).
+"     cd ~/.vim/plugged/YouCompleteMe
+"     ./install.py --clang-completer
+Plug 'Valloric/YouCompleteMe', {'for': ['python', 'java', 'c']}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -183,12 +182,12 @@ function! s:DoCompl(base)
         \ {"word": "∖", "menu": "SET MINUS", "matches": ['setminus', '\setminus', '\\']},
         \ {"word": "∈", "menu": "ELEMENT OF", "matches": ['\in', 'in', '(-', 'isin', 'is_in', 'is-in']},
         \ {"word": "∉", "menu": "NOT AN ELEMENT OF", "matches": ['notin', '\notin', '\not\in', '(-/']},
-        \ {"word": "→", "menu": "RIGHTWARDS ARROW", "matches": ['\rightarrow', 'rightarrow', 'right_arrow', 'right-arrow', '->', '>-']},
-        \ {"word": "←", "menu": "LEFTWARDS ARROW", "matches": ['\leftarrow', 'leftarrow', 'left_arrow', 'left-arrow', '<-', '-<']},
-        \ {"word": "↓", "menu": "DOWNWARDS ARROW", "matches": ['\downarrow', 'downarrow', 'down_arrow', 'down-arrow', 'v|', '|v', 'v-', '-v']},
-        \ {"word": "↑", "menu": "UPWARDS ARROW", "matches": ['\uparrow', 'uparrow', 'up_arrow', 'up-arrow', '^|', '|^', '!-', '-!', '^-', '-^']},
+        \ {"word": "→", "menu": "RIGHTWARDS ARROW", "matches": ['\rightarrow', 'rightarrow', 'right_arrow', 'right-arrow', '->', '>-', 'arrow']},
+        \ {"word": "←", "menu": "LEFTWARDS ARROW", "matches": ['\leftarrow', 'leftarrow', 'left_arrow', 'left-arrow', '<-', '-<', 'arrow']},
+        \ {"word": "↓", "menu": "DOWNWARDS ARROW", "matches": ['\downarrow', 'downarrow', 'down_arrow', 'down-arrow', 'v|', '|v', 'v-', '-v', 'arrow']},
+        \ {"word": "↑", "menu": "UPWARDS ARROW", "matches": ['\uparrow', 'uparrow', 'up_arrow', 'up-arrow', '^|', '|^', '!-', '-!', '^-', '-^', 'arrow']},
         \ {"word": "↦", "menu": "RIGHTWARDS ARROW FROM BAR", "matches": ['\mapsto', 'mapsto', '|>', '|->']},
-        \ {"word": "↔", "menu": "LEFT RIGHT ARROW", "matches": ['\leftrightarrow', 'leftrightarrow', '<>', 'left_right_arrow', 'left-right-arrow', '<->']},
+        \ {"word": "↔", "menu": "LEFT RIGHT ARROW", "matches": ['\leftrightarrow', 'leftrightarrow', '<>', 'left_right_arrow', 'left-right-arrow', '<->', 'arrow']},
         \ {"word": "∞", "menu": "INFINITY", "matches": ['\infty', 'infinity', 'infty', '00', 'oo']},
         \ {"word": '∀', "menu": "FOR ALL", "matches": ['\forall', 'forall', 'for_all', 'for-all', 'V-', 'FA']},
         \ {"word": '∃', "menu": "THERE EXISTS", "matches": ['\exists', 'exists', 'there_exists', 'there-exists', 'TE', 'thereexists']},
