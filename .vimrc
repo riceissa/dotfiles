@@ -89,6 +89,7 @@ endfunction
 " Experimental
 " ------------------------------------------------------------------------
 
+" Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
 " TODO: account for &scrolloff
 " Also various bugs like 0gj being passed out
 nnoremap <expr> gL ':normal ' . (winheight(0) - winline()) . 'gj<CR>'
@@ -97,13 +98,20 @@ nnoremap <expr> gM winheight(0)/2 - winline() > 0 ? ':normal ' . winheight(0)/2 
 nnoremap <expr> g<C-D> ':normal ' . (winheight(0) - winline()) . 'gj<CR>' . ':normal ' . (winheight(0) / 2) . 'gj<CR>'
 nnoremap <expr> g<C-U> ':normal ' . (winheight(0) / 2) . 'gk<CR>'
 
+" Fix common typos where one character is stuck to the beginning of the next
+" word or the end of the last word.
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
 
-" Something I like from Acme
-command! EditAtRegex call <SID>EditAtRegex()
+" Something I like from Acme. The problem with this is that it's only useful
+" when people refer to files using "filename:/regex", and I haven't
+" encountered a lot of this myself.
+command! EditAtRegex call <SID>EditAtRegex(":edit")
+command! SplitAtRegex call <SID>EditAtRegex(":split")
+command! VsplitAtRegex call <SID>EditAtRegex(":vsplit")
+command! TabeditAtRegex call <SID>EditAtRegex(":tabedit")
 
-function! s:EditAtRegex()
+function! s:EditAtRegex(edit)
   " Convert filename:/regex to :edit +/regex filename
   " Regex will be used as-is and cannot contain whitespace, since we select it
   " using <cWORD>. Use only for simple references.
@@ -113,7 +121,7 @@ function! s:EditAtRegex()
   if cmd !=# ""
     let cmd = "+" . cmd
   endif
-  exe ":edit " . cmd . " " . fname
+  exe a:edit . " " . cmd . " " . fname
 endfunction
 
 if exists("+completefunc")
