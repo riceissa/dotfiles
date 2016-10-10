@@ -218,6 +218,15 @@ function! s:DoCompl(base)
   return res
 endfunction
 
+" Now that I have a unified way to search for common Unicode characters
+" (unicode.vim and my own completefunc), I'm not sure I'll need this digraph
+" anymore. Keeping it in experimental; if I don't use it for a while I'll just
+" remove it in favor of completefunc.
+if has('digraphs')
+  " Horizontal ellipsis, …
+  digraph el 8230
+endif
+
 cnoremap <expr> <C-X><C-U> '<C-F>i<C-R>=<SID>CommandlineComplete("' . getcmdtype() . '")<CR>'
 
 function! s:CommandlineComplete(cmdtype)
@@ -314,11 +323,6 @@ if has('autocmd')
     " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
     autocmd FileType tex syntax spell toplevel
   augroup END
-endif
-
-if has('digraphs')
-  " Horizontal ellipsis, …
-  digraph el 8230
 endif
 
 let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
