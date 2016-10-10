@@ -218,8 +218,6 @@ function! s:DoCompl(base)
   return res
 endfunction
 
-" cnoremap <expr> <C-X><C-U> getcmdtype() == '/' ? '<C-F>i<C-R>=SearchComplete()<CR>' : '<C-X><C-U>'
-" cnoremap <expr> <C-X><C-U> getcmdtype() == ':' ? '<C-F>i<C-R>=<SID>CommandlineComplete()<CR>' : '<C-X><C-U>'
 cnoremap <expr> <C-X><C-U> '<C-F>i<C-R>=<SID>CommandlineComplete("' . getcmdtype() . '")<CR>'
 
 function! s:CommandlineComplete(cmdtype)
