@@ -218,21 +218,24 @@ function! s:DoCompl(base)
   return res
 endfunction
 
-" Same idea as
-"       command! FindNonAscii /[^\d32-\d126]
-cnoremap <expr> <C-X><C-U> getcmdtype() == '/' ? '<C-F>i<C-R>=SearchComplete()<CR>' : '<C-X><C-U>'
-cnoremap <expr> <C-X><C-U> getcmdtype() == ':' ? '<C-F>i<C-R>=CommandlineComplete()<CR>' : '<C-X><C-U>'
+" cnoremap <expr> <C-X><C-U> getcmdtype() == '/' ? '<C-F>i<C-R>=SearchComplete()<CR>' : '<C-X><C-U>'
+" cnoremap <expr> <C-X><C-U> getcmdtype() == ':' ? '<C-F>i<C-R>=<SID>CommandlineComplete()<CR>' : '<C-X><C-U>'
+cnoremap <expr> <C-X><C-U> '<C-F>i<C-R>=<SID>CommandlineComplete("' . getcmdtype() . '")<CR>'
 
-function! SearchComplete()
-  call complete(col('.'), [{"word": '[^\d32-\d126]', "menu": "Find non-ASCII"}, {"word": '\c\<todo\>', "menu": "TODO"}])
-  return ''
-endfunction
-
-function! CommandlineComplete()
-  " You'd think expand('%:h') would work, but the commandline window itself has
-  " a filename and directory ('.') assigned to it, so you need to use the
-  " previous buffer.
-  call complete(col('.'), [{"word": fnameescape(expand('#:h')).'/'}])
+function! s:CommandlineComplete(cmdtype)
+  if a:cmdtype == ':'
+    " You'd think expand('%:h') would work, but the commandline window itself has
+    " a filename and directory ('.') assigned to it, so you need to use the
+    " previous buffer.
+    call complete(col('.'), [{"word": fnameescape(expand('#:h')).'/'}])
+  elseif a:cmdtype == '/' || a:cmdtype == '?'
+    let compl_lst = [
+          \ {"word": '[^\d32-\d126]', "menu": "Not printable ASCII"},
+          \ {"word": '\s\+$', "menu": "Trailing whitespace"},
+          \ {"word": '\c\<todo\>', "menu": "TODO"},
+          \ ]
+    call complete(col('.'), compl_lst)
+  endif
   return ''
 endfunction
 
