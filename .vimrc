@@ -237,6 +237,21 @@ function! s:CommandlineComplete(cmdtype)
   return ''
 endfunction
 
+" %% and :FindNonAscii are sort of the "old way" to do things. I'm wondering
+" if commandline mode <C-X><C-U> could replace both of them in a unified way.
+" Keeping both in the experimental section to see what I prefer over time.
+
+" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
+" particular version is from
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
+cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
+
+" Quickly find characters that are not printable ASCII, which are sometimes
+" undesirable to have in a file. This is best used along with
+"     :setlocal nospell hlsearch syntax=OFF
+" so that the characters in question stand out.
+command! FindNonAscii /[^\d32-\d126]
+
 " End of experimental
 " ------------------------------------------------------------------------
 
@@ -250,17 +265,6 @@ endif
 if has('nvim') && maparg('<Leader>K', 'n') ==# ''
   noremap <Leader>K :Man<CR>
 endif
-
-" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
-" particular version is from
-" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
-cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-
-" Quickly find characters that are not printable ASCII, which are sometimes
-" undesirable to have in a file. This is best used along with
-"     :setlocal nospell hlsearch syntax=OFF
-" so that the characters in question stand out.
-command! FindNonAscii /[^\d32-\d126]
 
 " From defaults.vim; see also :help :DiffOrig
 if !exists(":DiffOrig")
