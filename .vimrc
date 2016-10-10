@@ -163,7 +163,9 @@ endif
 
 function! s:DoCompl(base)
   let res = []
-  if (a:base ==? "date") || (a:base ==? "datetime")
+  " Credit for the datetime completion idea goes to Tim Pope
+  " https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
+  if exists("*strftime") && ((a:base ==? "date") || (a:base ==? "datetime"))
     let date_fmts = [
           \ "%F",
           \ "%B %-d, %Y",
@@ -216,6 +218,24 @@ function! s:DoCompl(base)
   return res
 endfunction
 
+" Same idea as
+"       command! FindNonAscii /[^\d32-\d126]
+cnoremap <expr> <C-X><C-U> getcmdtype() == '/' ? '<C-F>i<C-R>=SearchComplete()<CR>' : '<C-X><C-U>'
+cnoremap <expr> <C-X><C-U> getcmdtype() == ':' ? '<C-F>i<C-R>=CommandlineComplete()<CR>' : '<C-X><C-U>'
+
+function! SearchComplete()
+  call complete(col('.'), [{"word": '[^\d32-\d126]', "menu": "Find non-ASCII"}, {"word": '\c\<todo\>', "menu": "TODO"}])
+  return ''
+endfunction
+
+function! CommandlineComplete()
+  " You'd think expand('%:h') would work, but the commandline window itself has
+  " a filename and directory ('.') assigned to it, so you need to use the
+  " previous buffer.
+  call complete(col('.'), [{"word": fnameescape(expand('#:h')).'/'}])
+  return ''
+endfunction
+
 " End of experimental
 " ------------------------------------------------------------------------
 
@@ -234,26 +254,6 @@ endif
 " particular version is from
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-
-" Credit goes to Tim Pope for the idea
-" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
-if exists("*strftime")
-  inoremap <silent> <C-G><C-T> <C-R>=<SID>ListDatetime()<CR>
-  function! s:ListDatetime()
-    let date_fmts = [
-          \ "%F",
-          \ "%B %-d, %Y",
-          \ "%Y-%m-%d %H:%M:%S",
-          \ "%a, %d %b %Y %H:%M:%S %z",
-          \ "%Y %b %d",
-          \ "%d-%b-%y",
-          \ "%a %b %d %T %Z %Y"
-          \ ]
-    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-    call complete(col('.'), compl_lst)
-    return ''
-  endfunction
-endif
 
 " Quickly find characters that are not printable ASCII, which are sometimes
 " undesirable to have in a file. This is best used along with
