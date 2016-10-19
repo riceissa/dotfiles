@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized' " Only for gvim
 Plug 'chrisbra/unicode.vim'
 Plug 'fatih/vim-go'
+Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
@@ -53,7 +54,7 @@ set nohlsearch
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
-set listchars=tab:▸\ ,trail:·,nbsp:+
+set listchars=tab:▸\ ,trail:·,nbsp:·
 if has('mouse')
   set mouse=a
 endif
@@ -206,6 +207,7 @@ function! s:DoCompl(base)
         \ {"word": '¬', "menu": "NOT SIGN", "matches": ['-,', 'NO', 'NOT', 'not_sign', 'not-sign']},
         \ {"word": '∧', "menu": "LOGICAL AND", "matches": ['AN', 'AND', '^', 'logicaland', '\wedge', 'wedge', 'logical_and', 'logical-and']},
         \ {"word": '∨', "menu": "LOGICAL OR", "matches": ['OR', 'logicalor', 'logical_or', 'logical-or', 'v', '\vee', 'vee']},
+        \ {"word": '≡', "menu": "IDENTICAL TO", "matches": ['identical', 'equivalent', '3-', '3=', '=3', '-3']},
         \ ]
   let typed = substitute(a:base, '\', '\\\\', 'g')
   for cand in candidates
@@ -225,6 +227,17 @@ endfunction
 if has('digraphs')
   " Horizontal ellipsis, …
   digraph el 8230
+  digraph ./ 8230
+  digraph ^\| 8593
+  digraph \\ 8726
+  digraph \- 8726
+  digraph -\ 8726
+  digraph \|> 8614
+  " Run under exe so that syntax highlighting isn't messed up
+  exe 'digraph (/ 8713'
+  exe 'digraph (\ 8713'
+  exe 'digraph (< 10216'
+  exe 'digraph >) 10217'
 endif
 
 cnoremap <expr> <C-X><C-U> '<C-F>i<C-R>=<SID>CommandlineComplete("' . getcmdtype() . '")<CR>'
@@ -234,7 +247,12 @@ function! s:CommandlineComplete(cmdtype)
     " You'd think expand('%:h') would work, but the commandline window itself has
     " a filename and directory ('.') assigned to it, so you need to use the
     " previous buffer.
-    call complete(col('.'), [{"word": fnameescape(expand('#:h')).'/'}])
+    let compl_lst = [
+          \ {"word": fnameescape(expand('#:h')).'/'},
+          \ {"word": 'exe "$normal o\<esc>" | g/./,/^$/join | %s/\s\+$//', "menu": "Join each para into one line"},
+          \ {"word": '%s/\s\+$//', "menu": "Strip trailing whitespace"},
+          \ ]
+    call complete(col('.'), compl_lst)
   elseif a:cmdtype == '/' || a:cmdtype == '?'
     let compl_lst = [
           \ {"word": '[^\d32-\d126]', "menu": "Not printable ASCII"},
@@ -291,8 +309,8 @@ if has('autocmd')
   augroup vimrc_au
     autocmd!
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
-    autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:+
-    autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:+
+    autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:·
+    autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:·
     autocmd FileType help,man setlocal nolist nospell
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
@@ -344,4 +362,5 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:EclimCompletionMethod = 'omnifunc'
