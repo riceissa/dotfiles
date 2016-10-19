@@ -321,7 +321,7 @@ if has('autocmd')
     endif
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
-    autocmd FileType markdown,python setlocal expandtab shiftwidth=4
+    autocmd FileType markdown setlocal expandtab shiftwidth=4
     autocmd FileType mediawiki noremap <buffer> j gj
     autocmd FileType mediawiki noremap <buffer> k gk
     autocmd FileType mediawiki noremap <buffer> gj j
