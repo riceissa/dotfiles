@@ -7,8 +7,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized' " Only for gvim
 Plug 'chrisbra/unicode.vim'
 Plug 'fatih/vim-go'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'justinmk/vim-sneak'
+Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
@@ -35,7 +38,7 @@ Plug 'tpope/vim-unimpaired'
 " clone various repositories).
 "     cd ~/.vim/plugged/YouCompleteMe
 "     ./install.py --clang-completer
-Plug 'Valloric/YouCompleteMe', {'for': ['python', 'java', 'c']}
+Plug 'Valloric/YouCompleteMe', {'on': 'YcmRestartServer'}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -322,11 +325,9 @@ if has('autocmd')
     endif
     autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
+    " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
+    " the Markdown is written.
     autocmd FileType markdown setlocal expandtab shiftwidth=4
-    autocmd FileType mediawiki noremap <buffer> j gj
-    autocmd FileType mediawiki noremap <buffer> k gk
-    autocmd FileType mediawiki noremap <buffer> gj j
-    autocmd FileType mediawiki noremap <buffer> gk k
     " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not python
     " support. However, the omnifunc check above tries to use
     " pythoncomplete#Complete here, which doesn't exist since there is no
