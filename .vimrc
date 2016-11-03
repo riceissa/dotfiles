@@ -95,8 +95,6 @@ endfunction
 " ------------------------------------------------------------------------
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-" TODO: account for &scrolloff
-" Also various bugs like 0gj being passed out
 nnoremap <silent> <expr> gH winline() - 1 - &scrolloff
       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
       \ : 'g^'
@@ -109,8 +107,9 @@ nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
       \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
       \ : 'g^'
 
-nnoremap <expr> g<C-D> ':normal ' . (winheight(0) - winline()) . 'gj<CR>' . ':normal ' . (winheight(0) / 2) . 'gj<CR>'
-nnoremap <expr> g<C-U> ':normal ' . (winheight(0) / 2) . 'gk<CR>'
+" These are still buggy
+nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
+nmap <expr> g<C-U> 'gH' . ':normal! ' . (winheight(0) / 2) . 'gkg^<CR>'
 
 " Fix common typos where one character is stuck to the beginning of the next
 " word or the end of the last word.
