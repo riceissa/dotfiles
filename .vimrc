@@ -113,8 +113,12 @@ nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
 function! s:gH()
   let l:amt = winline() - 1 - &scrolloff
   let l:c = v:count - 1 - &scrolloff
-  if l:c > winheight(0) - 2 * &scrolloff - 1
-    let l:c = winheight(0) - 2 * &scrolloff - 1
+  let l:c_max = winheight(0) - 2 * &scrolloff - 1
+  " If the count is too large, keep cursor inside the window. This better
+  " emulates the behavior of H, e.g. 800H keeps the cursor in the window
+  " without scrolling.
+  if l:c > l:c_max
+    let l:c = l:c_max
   endif
   if l:amt > 0
     exe ':normal! ' . l:amt . 'gk'
