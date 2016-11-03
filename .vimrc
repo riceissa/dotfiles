@@ -95,9 +95,12 @@ endfunction
 " ------------------------------------------------------------------------
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
-      \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
-      \ : 'g^'
+" These still don't accept counts :(
+" Also these don't respect 'startofline'.
+" nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
+"       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+"       \ : 'g^'
+nnoremap <silent> gH :call <SID>gH(v:count)<CR>
 nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
       \ ? ':normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
       \ : winline() == (winheight(0)+1)/2
@@ -106,6 +109,14 @@ nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
 nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
       \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
       \ : 'g^'
+
+function! s:gH(count)
+  if winline() - 1 - &scrolloff > 0
+    exe ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+  else
+    exe ':normal! g^'
+  endif
+endfunction
 
 " These are still buggy
 nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
