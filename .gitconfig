@@ -50,5 +50,6 @@
     st = status
     wd = diff --color-words
     wdiff = diff --color-words
+	up = "!git remote update -p; git merge --ff-only @{u}"
 [push]
 	default = simple
