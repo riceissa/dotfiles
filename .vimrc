@@ -95,7 +95,7 @@ endfunction
 " ------------------------------------------------------------------------
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-nnoremap <silent> <expr> gH winline() - 1 - &scrolloff
+nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
       \ : 'g^'
 nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
@@ -110,6 +110,8 @@ nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
 " These are still buggy
 nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
 nmap <expr> g<C-U> 'gH' . ':normal! ' . (winheight(0) / 2) . 'gkg^<CR>'
+nmap g<C-E> gLgjgH
+nmap g<C-Y> gHgk
 
 " Fix common typos where one character is stuck to the beginning of the next
 " word or the end of the last word.
