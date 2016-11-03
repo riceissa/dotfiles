@@ -113,14 +113,15 @@ nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
 function! s:gH()
   " TODO 800gH will keep scrolling down, even though 800H wouldn't
   let l:amt = winline() - 1 - &scrolloff
-  let c = v:count - 1 - &scrolloff
+  let l:c = v:count - 1 - &scrolloff
   if l:amt > 0
-    exe ':normal! ' . l:amt . 'gkg^'
-  else
-    exe ':normal! g^'
+    exe ':normal! ' . l:amt . 'gk'
   endif
-  if c > 0
-    exe ':normal! ' . c . 'gjg^'
+  if l:c > 0
+    exe ':normal! ' . l:c . 'gj'
+  endif
+  if &startofline
+    exe ':normal! g^'
   endif
 endfunction
 
