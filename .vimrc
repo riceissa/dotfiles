@@ -100,11 +100,11 @@ endfunction
 nnoremap <silent> <expr> gH winline() - 1 - &scrolloff
       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
       \ : 'g^'
-nnoremap <silent> <expr> gM winline() < winheight(0)/2
-      \ ? ':normal! ' . (winheight(0)/2 - winline()) . 'gjg^<CR>'
-      \ : winline() == winheight(0)/2
+nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
+      \ ? ':normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
+      \ : winline() == (winheight(0)+1)/2
       \         ? 'g^'
-      \         : ':normal! ' . (winline() - winheight(0)/2) . 'gkg^<CR>'
+      \         : ':normal! ' . (winline() - (winheight(0)+1)/2) . 'gkg^<CR>'
 nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
       \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
       \ : 'g^'
