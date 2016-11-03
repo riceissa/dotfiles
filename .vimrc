@@ -100,7 +100,7 @@ endfunction
 " nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
 "       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
 "       \ : 'g^'
-nnoremap <silent> gH :call <SID>gH(v:count)<CR>
+nnoremap <silent> gH :<C-U>call <SID>gH()<CR>
 nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
       \ ? ':normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
       \ : winline() == (winheight(0)+1)/2
@@ -110,11 +110,17 @@ nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
       \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
       \ : 'g^'
 
-function! s:gH(count)
-  if winline() - 1 - &scrolloff > 0
-    exe ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+function! s:gH()
+  " TODO 800gH will keep scrolling down, even though 800H wouldn't
+  let l:amt = winline() - 1 - &scrolloff
+  let c = v:count - 1 - &scrolloff
+  if l:amt > 0
+    exe ':normal! ' . l:amt . 'gkg^'
   else
     exe ':normal! g^'
+  endif
+  if c > 0
+    exe ':normal! ' . c . 'gjg^'
   endif
 endfunction
 
