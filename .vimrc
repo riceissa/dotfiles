@@ -97,9 +97,18 @@ endfunction
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
 " TODO: account for &scrolloff
 " Also various bugs like 0gj being passed out
-nnoremap <expr> gL ':normal ' . (winheight(0) - winline()) . 'gj<CR>'
-nnoremap <expr> gH ':normal ' . (winline() - 1) . 'gk<CR>'
-nnoremap <expr> gM winheight(0)/2 - winline() > 0 ? ':normal ' . winheight(0)/2 - winline() . 'gj<CR>' : ':normal ' . winheight(0)/2 - winline() . 'gk<CR>'
+nnoremap <silent> <expr> gH winline() - 1 - &scrolloff
+      \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+      \ : 'g^'
+nnoremap <silent> <expr> gM winline() < winheight(0)/2
+      \ ? ':normal! ' . (winheight(0)/2 - winline()) . 'gjg^<CR>'
+      \ : winline() == winheight(0)/2
+      \         ? 'g^'
+      \         : ':normal! ' . (winline() - winheight(0)/2) . 'gkg^<CR>'
+nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
+      \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
+      \ : 'g^'
+
 nnoremap <expr> g<C-D> ':normal ' . (winheight(0) - winline()) . 'gj<CR>' . ':normal ' . (winheight(0) / 2) . 'gj<CR>'
 nnoremap <expr> g<C-U> ':normal ' . (winheight(0) / 2) . 'gk<CR>'
 
@@ -309,6 +318,23 @@ cnoremap <expr> <SID>(ctrl_w_before) <SID>ctrl_w_before()
 cnoremap <expr> <SID>(ctrl_w_after) <SID>ctrl_w_after()
 cmap   <script> <C-W> <SID>(ctrl_w_before)<SID>(ctrl_w_after)
 cnoremap        <C-Y> <C-R>-
+
+inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
+function! s:ListDate()
+    let date_fmts = [
+          \ "%F",
+          \ "%B %-d, %Y",
+          \ "%-d %B %Y",
+          \ "%Y-%m-%d %H:%M:%S",
+          \ "%a, %d %b %Y %H:%M:%S %z",
+          \ "%Y %b %d",
+          \ "%d-%b-%y",
+          \ "%a %b %d %T %Z %Y"
+          \ ]
+    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
+    call complete(col('.'), compl_lst)
+    return ''
+endfunction
 
 " End of experimental
 " ------------------------------------------------------------------------
