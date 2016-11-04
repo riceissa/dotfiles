@@ -16,6 +16,7 @@ Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
 Plug 'riceissa/vim-emacsctrll'
+Plug 'riceissa/vim-longmove'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
@@ -95,63 +96,6 @@ endfunction
 " ------------------------------------------------------------------------
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-nnoremap <silent> gH :<C-U>call <SID>gH()<CR>
-nnoremap <silent> gM :<C-U>call <SID>gM()<CR>
-nnoremap <silent> gL :<C-U>call <SID>gL()<CR>
-
-function! s:gH()
-  let l:amt = winline() - 1 - &scrolloff
-  let l:c = v:count - 1 - &scrolloff
-  let l:c_max = winheight(0) - 2 * &scrolloff - 1
-  " If the count is too large, keep cursor inside the window. This better
-  " emulates the behavior of H, e.g. 800H keeps the cursor in the window
-  " without scrolling.
-  if l:c > l:c_max
-    let l:c = l:c_max
-  endif
-  if l:amt > 0
-    exe ':normal! ' . l:amt . 'gk'
-  endif
-  if l:c > 0
-    exe ':normal! ' . l:c . 'gj'
-  endif
-  if &startofline
-    exe ':normal! g^'
-  endif
-endfunction
-
-function! s:gL()
-  let l:amt = winheight(0) - winline() - &scrolloff
-  let l:c = v:count - 1 - &scrolloff
-  let l:c_max = winheight(0) - 2 * &scrolloff - 1
-  if l:c > l:c_max
-    let l:c = l:c_max
-  endif
-  if l:amt > 0
-    exe ':normal! ' . l:amt . 'gj'
-  endif
-  if l:c > 0
-    exe ':normal! ' . l:c . 'gk'
-  endif
-  if &startofline
-    exe ':normal! g^'
-  endif
-endfunction
-
-function! s:gM()
-  let a:amt = (winheight(0)+1)/2 - winline()
-  if a:amt > 0
-    " Cursor is in the top half of window so go down.
-    exe ':normal! ' . abs(a:amt) . 'gj'
-  elseif a:amt < 0
-    " Cursor is in the bottom half of window so go down.
-    exe ':normal! ' . abs(a:amt) . 'gk'
-  endif
-  if &startofline
-    exe ':normal! g^'
-  endif
-endfunction
-
 " These are still buggy
 nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
 nmap <expr> g<C-U> 'gH' . ':normal! ' . (winheight(0) / 2) . 'gkg^<CR>'
