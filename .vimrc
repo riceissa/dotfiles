@@ -95,20 +95,9 @@ endfunction
 " ------------------------------------------------------------------------
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-" These still don't accept counts :(
-" Also these don't respect 'startofline'.
-" nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
-"       \ ? ':normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
-"       \ : 'g^'
 nnoremap <silent> gH :<C-U>call <SID>gH()<CR>
-nnoremap <silent> <expr> gM winline() < (winheight(0)+1)/2
-      \ ? ':normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
-      \ : winline() == (winheight(0)+1)/2
-      \         ? 'g^'
-      \         : ':normal! ' . (winline() - (winheight(0)+1)/2) . 'gkg^<CR>'
-nnoremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
-      \ ? ':normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
-      \ : 'g^'
+nnoremap <silent> gM :<C-U>call <SID>gM()<CR>
+nnoremap <silent> gL :<C-U>call <SID>gL()<CR>
 
 function! s:gH()
   let l:amt = winline() - 1 - &scrolloff
@@ -125,6 +114,38 @@ function! s:gH()
   endif
   if l:c > 0
     exe ':normal! ' . l:c . 'gj'
+  endif
+  if &startofline
+    exe ':normal! g^'
+  endif
+endfunction
+
+function! s:gL()
+  let l:amt = winheight(0) - winline() - &scrolloff
+  let l:c = v:count - 1 - &scrolloff
+  let l:c_max = winheight(0) - 2 * &scrolloff - 1
+  if l:c > l:c_max
+    let l:c = l:c_max
+  endif
+  if l:amt > 0
+    exe ':normal! ' . l:amt . 'gj'
+  endif
+  if l:c > 0
+    exe ':normal! ' . l:c . 'gk'
+  endif
+  if &startofline
+    exe ':normal! g^'
+  endif
+endfunction
+
+function! s:gM()
+  let a:amt = (winheight(0)+1)/2 - winline()
+  if a:amt > 0
+    " Cursor is in the top half of window so go down.
+    exe ':normal! ' . abs(a:amt) . 'gj'
+  elseif a:amt < 0
+    " Cursor is in the bottom half of window so go down.
+    exe ':normal! ' . abs(a:amt) . 'gk'
   endif
   if &startofline
     exe ':normal! g^'
