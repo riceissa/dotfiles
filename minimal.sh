@@ -6,7 +6,7 @@ promptFunc() {
     # right before prompting for the next command, save the previous
     # command in a file.
     echo "$(date -Iseconds) $(hostname) $PWD $(history 1)" \
-        ~/.full_history
+        >> ~/.full_history
 }
 PROMPT_COMMAND=promptFunc
 
