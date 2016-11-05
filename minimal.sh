@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Modified from http://www.jefftk.com/p/you-should-be-logging-shell-history
-cat <<EOF >> ~/.bashrc
+cat <<'EOF' >> ~/.bashrc
 promptFunc() {
     # right before prompting for the next command, save the previous
     # command in a file.
@@ -13,7 +13,7 @@ PROMPT_COMMAND=promptFunc
 stty -ixon
 EOF
 
-cat <<EOF >> ~/.tmux.conf
+cat <<'EOF' >> ~/.tmux.conf
 set -s escape-time 0
 unbind C-b
 set -g prefix C-Space
@@ -26,8 +26,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 cat <<'EOF' >> ~/.vimrc
 set nocompatible
 call plug#begin('~/.vim/plugged')
-Plug 'riceissa/vim-emacsctrll'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'riceissa/vim-emacsctrll'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
