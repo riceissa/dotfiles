@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# From http://www.jefftk.com/p/you-should-be-logging-shell-history
+# Modified from http://www.jefftk.com/p/you-should-be-logging-shell-history
 cat <<EOF >> ~/.bashrc
 promptFunc() {
     # right before prompting for the next command, save the previous
     # command in a file.
-    echo "$(date +%Y-%m-%d--%H-%M-%S) $(hostname) $PWD $(history 1)" \
+    echo "$(date -Iseconds) $(hostname) $PWD $(history 1)" \
         ~/.full_history
 }
 PROMPT_COMMAND=promptFunc
@@ -15,14 +15,19 @@ EOF
 
 cat <<EOF >> ~/.tmux.conf
 set -s escape-time 0
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
 EOF
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 cat <<EOF >> ~/.vimrc
+set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'riceissa/vim-emacsctrll'
+Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -41,6 +46,9 @@ call plug#end()
 runtime! plugin/sleuth.vim
 
 set number nohlsearch
+if &history < 10000
+  set history=10000
+endif
 set ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.add
 set wildmode=list:longest,full
@@ -64,8 +72,10 @@ exe 'digraph (\ 8713'
 exe 'digraph (< 10216'
 exe 'digraph >) 10217'
 
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
+" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
 inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
 function! s:ListDate()
     let date_fmts = [
