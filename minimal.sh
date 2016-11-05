@@ -23,7 +23,7 @@ EOF
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-cat <<EOF >> ~/.vimrc
+cat <<'EOF' >> ~/.vimrc
 set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'riceissa/vim-emacsctrll'
