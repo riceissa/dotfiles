@@ -1,4 +1,4 @@
-PS1='[\u:\W]> '
+PS1='\h:\W\$ '
 alias {upgrade,update}='sudo aptitude update && sudo aptitude -y upgrade'
 alias ls='ls --color=auto'
 export HISTCONTROL=ignoreboth:erasedups
