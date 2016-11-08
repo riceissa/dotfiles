@@ -16,7 +16,7 @@ Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
 Plug 'riceissa/vim-emacsctrll'
-Plug 'riceissa/vim-longmove'
+Plug '~/projects/vim-longmove'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
@@ -68,7 +68,7 @@ endif
 
 set modeline " Debian disables modeline
 set number list ignorecase smartcase showcmd noequalalways nojoinspaces
-set spellfile=~/.spell.en.add
+set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 set ttimeoutlen=50
 
@@ -94,6 +94,20 @@ endfunction
 
 " Experimental
 " ------------------------------------------------------------------------
+" nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
+"       \ ? ':<C-U>normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+"       \ : 'g^'
+" vnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
+"       \ ? ':<C-U>normal! gv' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
+"       \ : 'g^'
+" noremap <silent> <expr> gM winline() < (winheight(0)+1)/2
+"       \ ? ':<C-U>normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
+"       \ : winline() == (winheight(0)+1)/2
+"       \         ? 'g^'
+"       \         : ':normal! ' . (winline() - (winheight(0)+1)/2) . 'gkg^<CR>'
+" noremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
+"       \ ? ':<C-U>normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
+"       \ : 'g^'
 
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
 " These are still buggy
@@ -326,6 +340,8 @@ function! s:ListDate()
     return ''
 endfunction
 
+inoremap <C-G><C-V> "<C-O>"+gp<C-O>A"
+
 " End of experimental
 " ------------------------------------------------------------------------
 
@@ -353,9 +369,9 @@ endif
 
 let g:tex_flavor='latex'
 if has('autocmd')
-  augroup vimrc_au
+  augroup my_init
     autocmd!
-    autocmd FileType gitcommit,mail,markdown,mediawiki,tex,text setlocal spell
+    autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:·
     autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:·
     autocmd FileType help,man setlocal nolist nospell
