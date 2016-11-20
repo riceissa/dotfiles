@@ -39,7 +39,7 @@ Plug 'tpope/vim-unimpaired'
 " clone various repositories).
 "     cd ~/.vim/plugged/YouCompleteMe
 "     ./install.py --clang-completer
-Plug 'Valloric/YouCompleteMe', {'on': 'YcmRestartServer'}
+Plug 'Valloric/YouCompleteMe', {'for': ['python']}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -58,7 +58,7 @@ set nohlsearch
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
-set listchars=tab:▸\ ,trail:·,nbsp:·
+set listchars=tab:▸\ ,trail:·,nbsp:+
 if has('mouse')
   set mouse=a
 endif
@@ -362,18 +362,27 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
-if &t_Co >= 16
-  " Changing ctermbg is useful for seeing tab with :set list
-  highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-endif
+function! s:ColorListChars()
+  if &t_Co >= 16
+    " Changing ctermbg is useful for seeing tab with :set list
+    if &background ==# "dark"
+      highlight SpecialKey ctermfg=LightGray ctermbg=DarkGray
+    else
+      highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+    endif
+  endif
+endfunction
+call <SID>ColorListChars()
 
 let g:tex_flavor='latex'
 if has('autocmd')
   augroup my_init
     autocmd!
+    autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
-    autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:·
-    autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:·
+    autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:+
+    autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:+
+    autocmd OptionSet background call <SID>ColorListChars()
     autocmd FileType help,man setlocal nolist nospell
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
