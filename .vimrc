@@ -342,6 +342,16 @@ endfunction
 
 inoremap <C-G><C-V> "<C-O>"+gp<C-O>A"
 
+function! s:BrowseNewTab(progname)
+  tabnew
+  set bt=nofile
+  setl nonumber
+  exec "0r !/home/issa/fetch-page.sh " . a:progname
+  1
+endfunction
+command! BrowseNewTab :call <SID>BrowseNewTab("wget")
+command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
+
 " End of experimental
 " ------------------------------------------------------------------------
 
@@ -354,6 +364,10 @@ if !has('nvim')
 endif
 if has('nvim') && maparg('<Leader>K', 'n') ==# ''
   noremap <Leader>K :Man<CR>
+endif
+
+if exists('&inccommand')
+  set inccommand=split
 endif
 
 " From defaults.vim; see also :help :DiffOrig
