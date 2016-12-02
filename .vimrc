@@ -46,6 +46,8 @@ call plug#end()
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
 
+runtime! plugin/rsi.vim
+
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
 if &history < 10000
   set history=10000
@@ -347,10 +349,18 @@ function! s:BrowseNewTab(progname)
   set bt=nofile
   setl nonumber
   exec "0r !/home/issa/fetch-page.sh " . a:progname
+  let b:url = @+
   1
 endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
+
+" Attempt to make <C-X><C-S><C-N><C-E> work. There is a delay after <C-G> that
+" I don't like, but I don't think I use it often enough to make this more
+" annoying than always having to do <C-Y><C-E> to jump to the end of the line
+" after a completion.
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
+inoremap <expr> <C-G> pumvisible() ? '<C-E>' : '<C-G>'
 
 " End of experimental
 " ------------------------------------------------------------------------
