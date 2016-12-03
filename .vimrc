@@ -432,6 +432,8 @@ if has('autocmd')
     endif
     " Prevent overzealous autoindent in align environment
     autocmd FileType tex setlocal indentexpr=
+    autocmd FileType tex let b:surround_{char2nr('m')} = "\\(\r\\)"
+    autocmd FileType tex let b:surround_{char2nr('M')} = "\\[\n\r\n\\]"
     " More aggressively check spelling in LaTeX; see
     " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
     autocmd FileType tex syntax spell toplevel
