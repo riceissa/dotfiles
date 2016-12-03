@@ -46,6 +46,7 @@ call plug#end()
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
 
+" I override <C-E> so force this to load early.
 runtime! plugin/rsi.vim
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
