@@ -361,6 +361,7 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 " after a completion.
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 inoremap <expr> <C-G> pumvisible() ? '<C-E>' : '<C-G>'
+inoremap <expr> <C-G><C-G> pumvisible() ? "\<C-E>" : '<C-G><C-G>'
 
 " End of experimental
 " ------------------------------------------------------------------------
