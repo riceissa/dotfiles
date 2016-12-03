@@ -50,7 +50,7 @@ if &history < 10000
   set history=10000
 endif
 set ignorecase smartcase showcmd noequalalways nojoinspaces
-set spellfile=~/.spell.en.add
+set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 
 nnoremap Y y$
