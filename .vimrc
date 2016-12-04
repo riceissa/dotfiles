@@ -364,12 +364,14 @@ inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 inoremap <expr> <C-G> pumvisible() ? '<C-E>' : '<C-G>'
 inoremap <expr> <C-G><C-G> pumvisible() ? "\<C-E>" : '<C-G><C-G>'
 
-" See $VIMRUNTIME/autoload/paste.vim
-nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
-inoremap <C-V> <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
+if has('clipboard')
+  " See $VIMRUNTIME/autoload/paste.vim
+  nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
+  inoremap <C-V> <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
+  vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
 
-vnoremap <C-C> "+y
+  vnoremap <C-C> "+y
+endif
 
 " End of experimental
 " ------------------------------------------------------------------------
