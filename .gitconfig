@@ -17,26 +17,16 @@
     a = add
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-    br = branch
-    c = commit
-    ca = commit -a --verbose
-    cam = commit -a -m
-    ci = commit
     cm = commit -m
-    co = checkout
-    cob = checkout -b
+    diff = diff --color
     d = diff
     d1 = diff HEAD~1 HEAD
     d2 = diff HEAD~2 HEAD
     d21 = diff HEAD~2 HEAD~1
     dc = diff --cached
-    df = diff
-    diff = diff --color
-    ds = diff --stat
     # list aliases
     la = "!git config -l | grep alias | cut -c 7-"
     logn = log --name-only
-    s = status -s
     st = status
     wd = diff --color-words
     wdiff = diff --color-words
