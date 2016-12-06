@@ -356,13 +356,11 @@ endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
-" Attempt to make <C-X><C-S><C-N><C-E> work. There is a delay after <C-G> that
-" I don't like, but I don't think I use it often enough to make this more
-" annoying than always having to do <C-Y><C-E> to jump to the end of the line
-" after a completion.
+" Attempt to make a completion followed by <C-E> work. I try to do this often
+" enough that doing <C-Y><C-E> to jump to the end of the line after a
+" completion becomes very annoying.
 inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
-inoremap <expr> <C-G> pumvisible() ? '<C-E>' : '<C-G>'
-inoremap <expr> <C-G><C-G> pumvisible() ? "\<C-E>" : '<C-G><C-G>'
+inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 if has('clipboard')
   " See $VIMRUNTIME/autoload/paste.vim
