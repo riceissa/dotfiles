@@ -22,13 +22,13 @@ Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
 Plug 'riceissa/vim-more-toggling'
 Plug 'riceissa/vim-pdf-text-tools'
+Plug 'riceissa/vim-rsi'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
@@ -45,9 +45,6 @@ call plug#end()
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
-
-" I override <C-E> so force this to load early.
-runtime! plugin/rsi.vim
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
 if &history < 10000
@@ -356,10 +353,6 @@ endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
-" Attempt to make a completion followed by <C-E> work. I try to do this often
-" enough that doing <C-Y><C-E> to jump to the end of the line after a
-" completion becomes very annoying.
-inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 if has('clipboard')
