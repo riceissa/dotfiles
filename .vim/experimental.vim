@@ -270,5 +270,8 @@ if has('clipboard')
   vnoremap <C-C> "+y
 endif
 
+nnoremap Q Vip:!pdftextfmt<CR>
+vnoremap Q :!pdftextfmt<CR>
+
 " End of experimental
 " ------------------------------------------------------------------------
