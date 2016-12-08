@@ -187,3 +187,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:EclimCompletionMethod = 'omnifunc'
+
+if filereadable(expand('~/.vim/experimental.vim'))
+  source ~/.vim/experimental.vim
+endif
