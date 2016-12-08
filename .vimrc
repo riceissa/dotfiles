@@ -9,14 +9,14 @@ Plug 'chrisbra/unicode.vim'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'justinmk/vim-sneak'
 Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
 Plug 'riceissa/vim-emacsctrll'
-Plug '~/projects/vim-longmove'
+Plug 'riceissa/vim-longmove'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdown-paste'
 Plug 'riceissa/vim-mediawiki'
@@ -39,7 +39,7 @@ Plug 'tpope/vim-unimpaired'
 " clone various repositories).
 "     cd ~/.vim/plugged/YouCompleteMe
 "     ./install.py --clang-completer
-Plug 'Valloric/YouCompleteMe', {'for': ['python']}
+" Plug 'Valloric/YouCompleteMe', {'for': ['python']}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
