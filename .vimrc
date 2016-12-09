@@ -128,6 +128,7 @@ let g:tex_flavor='latex'
 if has('autocmd')
   augroup my_init
     autocmd!
+    autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:+
