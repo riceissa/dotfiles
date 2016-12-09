@@ -1,0 +1,18 @@
+#!/usr/bin/python3
+
+import sys
+
+def slug(s):
+    '''
+    "Slugify" the string s as follows: keep only the characters that are
+    alphabetic or numerical, and group them together; all other characters are
+    replaced by "-" and squeezed together.
+    '''
+    s = s.lower()
+    s = "".join(c if (c.isalpha() or c.isdigit()) else "-" for c in s)
+    s = "-".join(filter(bool, s.split("-")))
+    return s
+
+if __name__ == '__main__':
+    s = next(sys.stdin)
+    print(slug(s), file=sys.stdout)
