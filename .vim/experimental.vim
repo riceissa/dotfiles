@@ -262,13 +262,18 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 if has('clipboard')
-  " See $VIMRUNTIME/autoload/paste.vim
+  " See $VIMRUNTIME/autoload/paste.vim; almost always pasting from the
+  " clipboard means pasting from a different application that doesn't have any
+  " conception of linewise or blockwise registers, so unconditional
+  " characterwise pasting is more intuitive.
   nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
   inoremap <C-V> <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
   vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
 
+  " From $VIMRUNTIME/mswin.vim
+  vnoremap <C-X> "+x
   vnoremap <C-C> "+y
-  vnoremap <C-X> "+d
+  cnoremap <C-V> <C-R>+
 endif
 
 nnoremap Q Vip:!pdftextfmt<CR>gqq
