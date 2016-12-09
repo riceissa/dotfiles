@@ -68,6 +68,13 @@ vim todo:
   for my (idiosyncratically).
 - figure out how to configure YCM; see [here](https://www.reddit.com/r/vim/comments/2ez19c/an_allaround_solution_for_ycms_ycm_extra_confpy/) and [here](https://github.com/vheon/dotvim/blob/5321347027c21e4c22dc6fcea4cc315052ed25f1/ycm.py) for some example config files.
 
+# History
+
+I think parts of my vimrc date back to sometime in 2010 or 2011 when I really
+first started using Vim.
+Something like `debian_packages.py` was also originally written fairly early
+on, but I don't remember when that was.
+This repository itself began in August 2015.
 
 # License
 
