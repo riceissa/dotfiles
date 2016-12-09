@@ -248,7 +248,7 @@ endfunction
 
 inoremap <C-G><C-V> <C-R><C-R>+
 inoremap <C-G><C-W> <C-\><C-O>"-dB
-inoremap <C-G><C-K> <C-O>"-D
+inoremap <C-G><C-K> <C-\><C-O>"-D
 
 function! s:BrowseNewTab(progname)
   tabnew
