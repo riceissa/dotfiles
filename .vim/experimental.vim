@@ -271,7 +271,6 @@ if has('clipboard')
   vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
 
   " From $VIMRUNTIME/mswin.vim
-  vnoremap <C-X> "+x
   vnoremap <C-C> "+y
   cnoremap <C-V> <C-R>+
 endif
