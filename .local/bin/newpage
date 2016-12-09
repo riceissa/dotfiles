@@ -1,0 +1,29 @@
+#!/bin/bash
+
+sitedir="$HOME/projects/issarice.com"
+
+read -p 'Title: ' -e title
+
+# You must have slug installed
+slug=$(echo "${title}" | slug | tr -d '\n')
+pagename="$slug.md"
+pagepath="${sitedir}/wiki/$slug.md"
+
+if [ -f $pagepath ];
+then
+	echo "File $pagename exists.  Opening..."
+	vim $pagepath
+else
+	echo "Creating $pagepath"
+	cat <<-EOF > $pagepath
+		---
+		title: $title
+		author: Issa Rice
+		created: `date +'%Y-%m-%d'`
+		date: `date +'%Y-%m-%d'`
+		---
+
+
+EOF
+	vim + $pagepath
+fi
