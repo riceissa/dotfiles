@@ -246,7 +246,9 @@ function! s:ListDate()
     return ''
 endfunction
 
-inoremap <C-G><C-V> "<C-O>"+gp<C-O>A"
+inoremap <C-G><C-V> <C-R><C-R>+
+inoremap <C-G><C-W> <C-\><C-O>"-dB
+inoremap <C-G><C-K> <C-O>"-D
 
 function! s:BrowseNewTab(progname)
   tabnew
