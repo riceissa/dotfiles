@@ -1,20 +1,5 @@
 " Experimental
 " ------------------------------------------------------------------------
-" nnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
-"       \ ? ':<C-U>normal! ' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
-"       \ : 'g^'
-" vnoremap <silent> <expr> gH winline() - 1 - &scrolloff > 0
-"       \ ? ':<C-U>normal! gv' . (winline() - 1 - &scrolloff) . 'gkg^<CR>'
-"       \ : 'g^'
-" noremap <silent> <expr> gM winline() < (winheight(0)+1)/2
-"       \ ? ':<C-U>normal! ' . ((winheight(0)+1)/2 - winline()) . 'gjg^<CR>'
-"       \ : winline() == (winheight(0)+1)/2
-"       \         ? 'g^'
-"       \         : ':normal! ' . (winline() - (winheight(0)+1)/2) . 'gkg^<CR>'
-" noremap <silent> <expr> gL winheight(0) - winline() - &scrolloff > 0
-"       \ ? ':<C-U>normal! ' . (winheight(0) - winline() - &scrolloff) . 'gjg^<CR>'
-"       \ : 'g^'
-
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
 " These are still buggy
 nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
