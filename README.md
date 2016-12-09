@@ -71,7 +71,7 @@ vim todo:
 # History
 
 I think parts of my vimrc date back to sometime in 2010 or 2011 when I really
-first started using Vim.
+first started using Vim (my old [Vim repo][vim-repo] was created in May 2014).
 Something like `debian_packages.py` was also originally written fairly early
 on, but I don't remember when that was.
 This repository itself began in August 2015.
