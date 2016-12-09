@@ -268,6 +268,7 @@ if has('clipboard')
   vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
 
   vnoremap <C-C> "+y
+  vnoremap <C-X> "+d
 endif
 
 nnoremap Q Vip:!pdftextfmt<CR>gqq
