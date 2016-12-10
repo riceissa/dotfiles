@@ -248,32 +248,31 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
-" Destructively remove blank lines from a register and set it to be
-" characterwise.
-function! s:MakeCharacterwise(reg)
-  let reg_cont = getreg(a:reg, 1, 1)
-
-  " Remove empty lines at the beginning and end of the register
-  while (!empty(reg_cont)) && (reg_cont[-1] ==# '')
-    call remove(reg_cont, -1)
-  endwhile
-  while (!empty(reg_cont)) && (reg_cont[0] ==# '')
-    call remove(reg_cont, 0)
-  endwhile
-
-  call setreg(a:reg, reg_cont, 'c')
-endfunction
-
 if has('clipboard')
-  " See $VIMRUNTIME/autoload/paste.vim; almost always pasting from the
-  " clipboard means pasting from a different application that doesn't have any
-  " conception of linewise or blockwise registers, so unconditional
-  " characterwise pasting is more intuitive.
-  " nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
+  " Destructively remove blank lines from a register and set it to be
+  " characterwise. This is intended espeically for pasting from the quoteplus
+  " register; in almost all cases, pasting from the clipboard means pasting
+  " from a different application that doesn't have any conception of linewise
+  " or blockwise registers, so unconditional characterwise pasting is more
+  " intuitive.
+  function! s:MakeCharacterwise(reg)
+    let reg_cont = getreg(a:reg, 1, 1)
+
+    " Remove empty lines at the beginning and end of the register
+    while (!empty(reg_cont)) && (reg_cont[-1] ==# '')
+      call remove(reg_cont, -1)
+    endwhile
+    while (!empty(reg_cont)) && (reg_cont[0] ==# '')
+      call remove(reg_cont, 0)
+    endwhile
+
+    call setreg(a:reg, reg_cont, 'c')
+  endfunction
+
   nnoremap <silent> <C-V> :<C-U>call <SID>MakeCharacterwise('+')<CR>"+gP
-  " inoremap <C-V> <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-  inoremap <silent> <C-V> <C-G>u<C-\><C-O>:call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
-  vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
+  inoremap <silent> <C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
+  " vnoremap <silent> <C-V> "-c<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+<Esc>
+  vnoremap <C-V> "-ygv"+gp
 
   " From $VIMRUNTIME/mswin.vim
   vnoremap <C-C> "+y
