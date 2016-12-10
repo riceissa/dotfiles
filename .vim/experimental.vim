@@ -269,9 +269,10 @@ if has('clipboard')
   " clipboard means pasting from a different application that doesn't have any
   " conception of linewise or blockwise registers, so unconditional
   " characterwise pasting is more intuitive.
-  nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
+  " nnoremap <C-V> "=@+.'xy'<CR>gPFx"_2x
+  nnoremap <silent> <C-V> :<C-U>call <SID>MakeCharacterwise('+')<CR>"+gP
   " inoremap <C-V> <C-G>ux<Esc>"=@+.'xy'<CR>gPFx"_2x"_s
-  inoremap <C-V> <C-G>u<C-\><C-O>:call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
+  inoremap <silent> <C-V> <C-G>u<C-\><C-O>:call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
   vnoremap <C-V> "-c<Esc>gix<Esc>"=@+.'xy'<CR>gPFx"_2x"_x
 
   " From $VIMRUNTIME/mswin.vim
