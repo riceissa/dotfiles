@@ -48,5 +48,3 @@ mkdir -p ~/.newsbeuter
 ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 
 ln -s "$(pwd)/.emacs" ~/.emacs
-
-ln -s "$(pwd)/.ctags" ~/.ctags
