@@ -2,6 +2,8 @@
 set -e
 set -o nounset
 
+# First version written on or around November 22, 2016.
+
 datetime=$(date +"%Y-%m-%dT%H-%M-%S%z")
 fname="$datetime".html
 dir=$HOME/www/"${datetime%T*}"

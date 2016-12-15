@@ -1,4 +1,6 @@
 #!/bin/bash
+# First version written on or around December 4, 2016.
+#
 # This script is to be run periodically (e.g. each minute as a cron job) to
 # keep Vim and Mutt cached and ever-present in memory. This way, it is very
 # quick to split a new tmux window and write an email.
