@@ -235,6 +235,7 @@ inoremap <C-G><C-V> <C-R><C-R>+
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
 inoremap <C-G><C-D> <C-\><C-O>"-dE
+inoremap <C-G><C-G> <C-\><C-O>gww
 
 function! s:BrowseNewTab(progname)
   tabnew
