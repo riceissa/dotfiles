@@ -3,6 +3,12 @@ set -e
 set -o nounset
 
 # First version written on or around November 22, 2016.
+#
+# This script takes a URL from the clipboard and downloads it to the directory
+# $dir, which is ~/www/YYYY-MM-DD (and makes a record in an index file).  It
+# then uses lynx to read the file and print a formatted plaintext dump to
+# standard output.  It's mostly useful when invoked from within Vim, so that
+# one can read a webpage in the editor.
 
 datetime=$(date +"%Y-%m-%dT%H-%M-%S%z")
 fname="$datetime".html
