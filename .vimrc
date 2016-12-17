@@ -33,6 +33,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'davidhalter/jedi-vim'
 " YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
 " after calling :PlugInstall in Vim (which is still necessary since we have to
 " clone various repositories).
@@ -187,6 +188,8 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_python_binary_path = '/usr/bin/python3'
 let g:EclimCompletionMethod = 'omnifunc'
+
+let g:jedi#documentation_command = "<leader>K"
 
 if filereadable(expand('~/.vim/experimental.vim'))
   source ~/.vim/experimental.vim
