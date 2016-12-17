@@ -70,7 +70,7 @@ set modeline " Debian disables modeline
 set number list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
-set ttimeoutlen=50
+set ttimeoutlen=50 sidescroll=1
 
 " From debian.vim
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
