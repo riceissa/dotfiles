@@ -284,5 +284,11 @@ endif
 nnoremap Q Vip:!pdftextfmt<CR>gqq
 vnoremap Q :!pdftextfmt<CR>gqq
 
+" From Tim Pope:
+" <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
+nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+
+nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+
 " End of experimental
 " ------------------------------------------------------------------------
