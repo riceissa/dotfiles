@@ -69,7 +69,10 @@ vim todo:
 
 I think parts of my vimrc date back to sometime in 2010 or 2011 when I really
 first started using Vim (my [really old Vim repo][vim_old] was created on July
-7, 2012 and  [old Vim repo][vim-repo] was created in May 2014).
+7, 2012 and  [old Vim repo][vim-repo] was created in May 2014; on a Git
+repository that I don't think I ever mirrored to a public place, I have a
+`.vimrc` with commit datestamp `Mon Aug 22 20:36:58 2011 -0700`, which *might*
+be the first).
 Something like `debian_packages.py` was also originally written fairly early
 on, but I don't remember when that was.
 This repository itself began in August 2015.
