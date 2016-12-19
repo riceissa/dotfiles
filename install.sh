@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 git clone git://github.com/riceissa/dotfiles.git
 # The following might work better if I don't have SSH configured
