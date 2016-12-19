@@ -5,9 +5,6 @@ programs. This repository supersedes previous program-specific
 configuration repositories like my old [Vim][vim-repo] and
 [Neovim][neovim-repo] repositories.
 
-[vim-repo]: https://github.com/riceissa/vim
-[neovim-repo]: https://github.com/riceissa/neovim
-
 All paths are relative to `~/`.
 
 To install, edit `install.sh` and `debian_software.py` (these are the main scripts; the rest are config files) then run `./install.sh`.
@@ -71,7 +68,8 @@ vim todo:
 # History
 
 I think parts of my vimrc date back to sometime in 2010 or 2011 when I really
-first started using Vim (my old [Vim repo][vim-repo] was created in May 2014).
+first started using Vim (my [really old Vim repo][vim_old] was created on July
+7, 2012 and  [old Vim repo][vim-repo] was created in May 2014).
 Something like `debian_packages.py` was also originally written fairly early
 on, but I don't remember when that was.
 This repository itself began in August 2015.
@@ -85,3 +83,7 @@ files, which are usually GPL or BSD.
 I'll try to keep track of licenses for each file here.
 
 - `.vimrc`: Same license as Vim.
+
+[vim-repo]: https://github.com/riceissa/vim
+[neovim-repo]: https://github.com/riceissa/neovim
+[vim_old]: https://github.com/riceissa/vim-old
