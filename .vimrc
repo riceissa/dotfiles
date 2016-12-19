@@ -11,7 +11,7 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'lervag/vimtex', {'for': 'tex'}
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
@@ -33,7 +33,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': ['python']}
 " YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
 " after calling :PlugInstall in Vim (which is still necessary since we have to
 " clone various repositories).
