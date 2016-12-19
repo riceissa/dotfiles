@@ -38,7 +38,7 @@ To install, edit `install.sh` and `debian_software.py` (these are the main scrip
       colors don't work very well with vim (not sure why) so I stick to
       solarized base and Tango colors (just like in gnome terminal)
 - bash aliases, etc. bash config
-- set up python to work (e.g. getting pip to work...)
+- set up python to work (e.g. getting pip to work...), as well as other development environments (e.g. haskell)
 - emacs: emacs config for Japanese input (see [my page on
   this](http://issarice.com/japanese-input-on-the-command-line-framebuffer))
 - framebuffer stuff, like fbterm command to change the font (probably
