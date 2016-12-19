@@ -17,7 +17,6 @@ To install, edit `install.sh` and `debian_software.py` (these are the main scrip
 - add mutt
 - irssi
 - bitlbee
-- git config
 - ensure vim/neovim/gvim all work nicely everywhere
 - newsbeuter: change cache size so all content can be backed up
   (actually I now think this might be done by default). Also figure out
