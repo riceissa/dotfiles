@@ -136,6 +136,7 @@ if has('autocmd')
     autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:+
     autocmd OptionSet background call <SID>ColorListChars()
     autocmd FileType help,man setlocal nolist nospell
+    autocmd FileType help nnoremap <buffer> q :q<CR>
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
       autocmd FileType *
