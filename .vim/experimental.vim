@@ -288,6 +288,8 @@ vnoremap Q :!pdftextfmt<CR>gqq
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
 nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 
+nnoremap <silent> <F5> :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'write !diff ' . shellescape(expand("%")) . ' - <Bar> less'<Bar>update<Bar>endif<CR>
+
 nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 " End of experimental
