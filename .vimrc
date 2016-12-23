@@ -144,7 +144,7 @@ if has('autocmd')
               \    setlocal omnifunc=syntaxcomplete#Complete |
               \  endif
     endif
-    autocmd FileType mail,text setlocal comments=fb:*,fb:-,fb:+,n:>
+    autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
     " the Markdown is written.
