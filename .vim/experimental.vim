@@ -235,7 +235,14 @@ inoremap <C-G><C-V> <C-R><C-R>+
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
 inoremap <C-G><C-D> <C-\><C-O>"-dE
-inoremap <C-G><C-G> <C-\><C-O>gww
+" Reverse the effects of 'textwidth' in insert mode. This is useful if most of
+" the lines in a file have one textwidth but a couple have a different one
+" (e.g. a Markdown file that has a textwidth of 80 but where link references
+" have unlimited line length so that they can be sorted). When 'textwidth' is
+" disabled, it will format the current line; otherwise it will join back the
+" current line with the previous one. The latter works well with :setl fo+=l
+" to prevent repeatedly breaking the line.
+inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 
 function! s:BrowseNewTab(progname)
   tabnew
@@ -287,8 +294,10 @@ vnoremap <silent> Q :!pdftextfmt<CR>gqq
 " From Tim Pope:
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
 nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 
 nnoremap <silent> <F5> :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'write !diff ' . shellescape(expand("%")) . ' - <Bar> less'<Bar>update<Bar>endif<CR>
+nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'write !diff ' . shellescape(expand("%")) . ' - <Bar> less'<Bar>update<Bar>endif<CR>
 
 nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
