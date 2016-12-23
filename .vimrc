@@ -9,7 +9,6 @@ Plug 'chrisbra/unicode.vim'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
-Plug 'justinmk/vim-sneak'
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
