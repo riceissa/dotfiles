@@ -179,11 +179,12 @@ endfunction
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
-" Quickly find characters that are not printable ASCII, which are sometimes
-" undesirable to have in a file. This is best used along with
+" Quickly find potentially problematic characters (things like non-printing
+" ASCII, exotic whitespace, and lookalike Unicode letters). This is best used
+" along with
 "     :setlocal nospell hlsearch syntax=OFF
 " so that the characters in question stand out.
-command! FindNonAscii /[^\d32-\d126]
+nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 
 " From justinmk/config. See https://github.com/tpope/vim-rsi/pull/17/files for
 " more details.
