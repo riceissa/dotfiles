@@ -181,6 +181,8 @@ cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
 cnoremap <C-X><C-F> <C-\>e<SID>PhraseEscape(getcmdline())<CR>
 function! s:PhraseEscape(s)
+  " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
+  " moment this won't search across lines for birdtrack quotes.
   if &commentstring !=# ""
     " Try to get the left side of the commentstring, e.g. "<!--" for HTML,
     " "/*" for C.
