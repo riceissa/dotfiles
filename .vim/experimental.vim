@@ -179,6 +179,22 @@ endfunction
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
+cnoremap <C-X><C-F> <C-\>e<SID>PhraseEscape(getcmdline())<CR>
+function! s:PhraseEscape(s)
+  if &commentstring !=# ""
+    " Try to get the left side of the commentstring, e.g. "<!--" for HTML,
+    " "/*" for C.
+    let l:cmt = get(split(&commentstring, '%s', 1), 0, "")
+    " Strip whitespace
+    let l:cmt = substitute(l:cmt, '^\s*\(.\{-}\)\s*$', '\1', '')
+    if l:cmt !=# ""
+      return substitute(a:s, ' ', '\\(\\_s\\+\\|^\\s\*\\V' . l:cmt . '\\m\\)\\+', 'g')
+    endif
+  endif
+  " Fallback
+  return substitute(a:s, ' ', '\\_s\\+', 'g')
+endfunction
+
 " Quickly find potentially problematic characters (things like non-printing
 " ASCII, exotic whitespace, and lookalike Unicode letters). This is best used
 " along with
