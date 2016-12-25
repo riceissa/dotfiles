@@ -304,5 +304,11 @@ nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'
 iabbrev ADd Add
 iabbrev REmove Remove
 
+autocmd FileType markdown setlocal textwidth=79
+
+let g:surround_{char2nr('q')} = "“\r”"
+let g:surround_{char2nr('Q')} = "‘\r’"
+
+
 " End of experimental
 " ------------------------------------------------------------------------
