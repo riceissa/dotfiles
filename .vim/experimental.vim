@@ -1,5 +1,3 @@
-" Experimental
-" ------------------------------------------------------------------------
 " Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
 " These are still buggy
 nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
@@ -308,7 +306,3 @@ autocmd FileType markdown setlocal textwidth=79
 
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
-
-
-" End of experimental
-" ------------------------------------------------------------------------
