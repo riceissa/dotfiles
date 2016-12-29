@@ -10,12 +10,12 @@ cd dotfiles
 python debian_packages.py
 
 bashline="[ -f $(pwd)/.bashrc ] && source $(pwd)/.bashrc"
-if grep -q -F "$bashline" ~/.bashrc; then
+if ! (grep -q -F "$bashline" ~/.bashrc); then
     echo "$bashline" >> ~/.bashrc
 fi
 
 binline="export PATH=$(pwd)/.local/bin:\$PATH"
-if grep -q -F "$binline" ~/.bashrc; then
+if ! (grep -q -F "$binline" ~/.bashrc); then
     echo "$binline" >> ~/.bashrc
 fi
 
