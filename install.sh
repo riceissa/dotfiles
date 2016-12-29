@@ -41,9 +41,6 @@ ln -svf "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 ln -svf "$(pwd)/.gitconfig" ~/.gitconfig
 ln -svf "$(pwd)/.gitignore_global" ~/.gitignore_global
 
-mkdir -p ~/.elinks
-cat "$(pwd)/.elinks/elinks.conf" >> ~/.elinks/elinks.conf
-
 mkdir -p ~/.newsbeuter
 ln -svf "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 
