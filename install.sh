@@ -10,7 +10,7 @@ cd dotfiles
 python debian_packages.py
 
 ln -s "$(pwd)/.bashrc" ~/.bashrc
-ln -s "$(pwd)/.zshrc" ~/.zshrc
+# ln -s "$(pwd)/.zshrc" ~/.zshrc
 
 # Get vim-plug to manage plugins
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
