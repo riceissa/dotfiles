@@ -25,10 +25,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 mv -v ~/.vimrc ~/.vimrc.$(date -Idate).bak 2> /dev/null
 mv -v ~/.gvimrc ~/.gvimrc.$(date -Idate).bak 2> /dev/null
-ln -s "$(pwd)/.vimrc" ~/.vimrc
-ln -s "$(pwd)/.gvimrc" ~/.gvimrc
-ln -s "$(pwd)/.vim/UltiSnips-custom-snippets" ~/.vim/UltiSnips-custom-snippets
-ln -s "$(pwd)/.ycm_extra_conf.py" ~/.ycm_extra_conf.py
+ln -svf "$(pwd)/.vimrc" ~/.vimrc
+ln -svf "$(pwd)/.gvimrc" ~/.gvimrc
+ln -svf "$(pwd)/.vim/UltiSnips-custom-snippets" ~/.vim/UltiSnips-custom-snippets
+ln -svf "$(pwd)/.ycm_extra_conf.py" ~/.ycm_extra_conf.py
 
 # for UltiSnips
 pip install --user neovim
@@ -36,10 +36,10 @@ pip install --user neovim
 # Neovim support
 mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
 mv -v $XDG_CONFIG_HOME/nvim $XDG_CONFIG_HOME/nvim.$(date -Idate).bak 2> /dev/null
-ln -s ~/.vim $XDG_CONFIG_HOME/nvim
-ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+ln -svf ~/.vim $XDG_CONFIG_HOME/nvim
+ln -svf ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
-ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
+ln -svf "$(pwd)/.tmux.conf" ~/.tmux.conf
 # tmux doesn't read from .bashrc so copy contents to .bash_profile
 echo 'source ~/.bashrc' >> ~/.bash_profile
 
