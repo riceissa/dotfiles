@@ -1,8 +1,9 @@
 #!/bin/bash
 
-git clone git://github.com/riceissa/dotfiles.git
-# The following might work better if I don't have SSH configured
-#git clone git@github.com:riceissa/dotfiles.git
+git clone https://github.com/riceissa/dotfiles.git
+# To switch to SSH later do:
+#     git remote remove origin
+#     git remote add origin git@github.com:riceissa/dotfiles.git
 cd dotfiles
 
 # Install software
