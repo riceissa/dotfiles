@@ -138,7 +138,7 @@ if has('autocmd')
       autocmd OptionSet background call <SID>ColorListChars()
     endif
     autocmd FileType help,man setlocal nolist nospell
-    autocmd FileType help nnoremap <buffer> q :q<CR>
+    autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
       autocmd FileType *
