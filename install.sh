@@ -9,8 +9,10 @@ cd dotfiles
 # Install software
 python debian_packages.py
 
-ln -s "$(pwd)/.bashrc" ~/.bashrc
-# ln -s "$(pwd)/.zshrc" ~/.zshrc
+bashline="[ -f $(pwd)/.bashrc ] && source $(pwd)/.bashrc"
+if grep -q -F "$bashline" ~/.bashrc; then
+    echo "$bashline" >> ~/.bashrc
+fi
 
 # Get vim-plug to manage plugins
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
