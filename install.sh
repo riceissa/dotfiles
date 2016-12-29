@@ -34,17 +34,18 @@ ln -s "$(pwd)/.tmux.conf" ~/.tmux.conf
 echo 'source ~/.bashrc' >> ~/.bash_profile
 
 mkdir -p ~/.moc/themes
-ln -s "$(pwd)/.moc/config" ~/.moc/config
-ln -s "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
-ln -s "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
+ln -svf "$(pwd)/.moc/config" ~/.moc/config
+ln -svf "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
+ln -svf "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 
-ln -s "$(pwd)/.gitconfig" ~/.gitconfig
-ln -s "$(pwd)/.gitignore_global" ~/.gitignore_global
+ln -svf "$(pwd)/.gitconfig" ~/.gitconfig
+ln -svf "$(pwd)/.gitignore_global" ~/.gitignore_global
 
 mkdir -p ~/.elinks
 cat "$(pwd)/.elinks/elinks.conf" >> ~/.elinks/elinks.conf
 
 mkdir -p ~/.newsbeuter
-ln -s "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
+ln -svf "$(pwd)/.newsbeuter/config" ~/.newsbeuter/config
 
-ln -s "$(pwd)/.emacs" ~/.emacs
+mv -v ~/.emacs ~/.emacs.$(date -Idate).bak 2> /dev/null
+ln -svf "$(pwd)/.emacs" ~/.emacs
