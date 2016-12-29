@@ -14,6 +14,12 @@ if grep -q -F "$bashline" ~/.bashrc; then
     echo "$bashline" >> ~/.bashrc
 fi
 
+binline="[ -f $(pwd)/.local/bin ] && source $(pwd)/.local/bin"
+binline="export PATH=$(pwd)/.local/bin:\$PATH"
+if grep -q -F "$binline" ~/.bashrc; then
+    echo "$binline" >> ~/.bashrc
+fi
+
 # Get vim-plug to manage plugins
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
