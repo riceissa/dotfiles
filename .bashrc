@@ -9,7 +9,6 @@ promptFunc() {
 }
 PROMPT_COMMAND=promptFunc
 
-alias {upgrade,update}='sudo aptitude update && sudo aptitude -y upgrade'
 alias ls='ls --color=auto'
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
