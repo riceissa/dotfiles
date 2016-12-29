@@ -20,3 +20,5 @@ alias deploy='git push origin master && git push bitbucket master && python3 gen
 
 alias swapswap='sudo swapoff -a && sudo swapon -a'
 alias mupdf='mupdf -C FDF6E3'
+
+stty -ixon
