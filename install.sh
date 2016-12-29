@@ -16,6 +16,8 @@ ln -s "$(pwd)/.bashrc" ~/.bashrc
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+mv -v ~/.vimrc ~/.vimrc.$(date -Idate).bak 2> /dev/null
+mv -v ~/.gvimrc ~/.gvimrc.$(date -Idate).bak 2> /dev/null
 ln -s "$(pwd)/.vimrc" ~/.vimrc
 ln -s "$(pwd)/.gvimrc" ~/.gvimrc
 ln -s "$(pwd)/.vim/UltiSnips-custom-snippets" ~/.vim/UltiSnips-custom-snippets
@@ -26,6 +28,7 @@ pip install --user neovim
 
 # Neovim support
 mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
+mv -v $XDG_CONFIG_HOME/nvim $XDG_CONFIG_HOME/nvim.$(date -Idate).bak 2> /dev/null
 ln -s ~/.vim $XDG_CONFIG_HOME/nvim
 ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
