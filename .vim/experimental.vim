@@ -282,15 +282,34 @@ if has('clipboard')
   " or blockwise registers, so unconditional characterwise pasting is more
   " intuitive.
   function! s:MakeCharacterwise(reg)
-    let reg_cont = getreg(a:reg, 1, 1)
+    " In Vim 7.4 with patches 1-488 and 576 (Debian), the call to setreg() at
+    " the end on the list reg_cont crashes Vim with 'Caught deadly signal
+    " ABRT'. I have no idea when this was fixed, but on Vim 8.0 it doesn't
+    " crash. Possibly related is
+    " <https://groups.google.com/forum/#!msg/vim_dev/54smHb4DVlM/AkJNLTzRAAAJ>
+    " from April 2016, but that bug causes a segmentation fault whereas this
+    " one doesn't.
+    if v:version >= 800
+      let reg_cont = getreg(a:reg, 1, 1)
 
-    " Remove empty lines at the beginning and end of the register
-    while (!empty(reg_cont)) && (reg_cont[-1] ==# '')
-      call remove(reg_cont, -1)
-    endwhile
-    while (!empty(reg_cont)) && (reg_cont[0] ==# '')
-      call remove(reg_cont, 0)
-    endwhile
+      " Remove empty lines at the beginning and end of the register
+      while (!empty(reg_cont)) && (reg_cont[-1] ==# '')
+        call remove(reg_cont, -1)
+      endwhile
+      while (!empty(reg_cont)) && (reg_cont[0] ==# '')
+        call remove(reg_cont, 0)
+      endwhile
+    else
+      let reg_cont = getreg(a:reg)
+
+      " Same idea as above; remove empty lines
+      while char2nr(strpart(reg_cont, len(reg_cont)-1)) == 10
+        let reg_cont = strpart(reg_cont, 0, len(reg_cont)-1)
+      endwhile
+      while char2nr(strpart(reg_cont, 0, 1)) == 10
+        let reg_cont = strpart(reg_cont, 1)
+      endwhile
+    endif
 
     call setreg(a:reg, reg_cont, 'c')
   endfunction
@@ -317,6 +336,8 @@ nnoremap <silent> <F5> :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar
 nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'write !diff ' . shellescape(expand("%")) . ' - <Bar> less'<Bar>update<Bar>endif<CR>
 
 nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+
+vnoremap K <nop>
 
 iabbrev ADd Add
 iabbrev REmove Remove
