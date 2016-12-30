@@ -34,8 +34,6 @@ scripts; the rest are config files) then run `./install.sh` (which calls
 - set up python to work (e.g. getting pip to work...), as well as other development environments (e.g. haskell)
 - emacs: emacs config for Japanese input (see [my page on
   this](http://issarice.com/japanese-input-on-the-command-line-framebuffer))
-- framebuffer stuff, like fbterm command to change the font (probably
-  include in .bashrc)
 - document firefox plugins: adblock plus, vimfx, noscript, duckduckgo.
   maybe also epub plugin.
 - On LMDE `less` searches aren't highlighting for some reason under
