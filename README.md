@@ -78,4 +78,4 @@ I'll try to keep track of licenses for each file here.
 
 [vim-repo]: https://github.com/riceissa/vim
 [neovim-repo]: https://github.com/riceissa/neovim
-[vim_old]: https://github.com/riceissa/vim-old
+[vim_old]: https://github.com/riceissa/vim-old "Originally at riceissa/.vim."
