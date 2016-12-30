@@ -278,12 +278,12 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 if has('clipboard')
-  " Destructively remove blank lines from a register and set it to be
-  " characterwise. This is intended espeically for pasting from the quoteplus
-  " register; in almost all cases, pasting from the clipboard means pasting
-  " from a different application that doesn't have any conception of linewise
-  " or blockwise registers, so unconditional characterwise pasting is more
-  " intuitive.
+  " Destructively remove blank lines from both ends of a register and set it
+  " to be characterwise. This is intended espeically for pasting from the
+  " quoteplus register; in almost all cases, pasting from the clipboard means
+  " pasting from a different application that doesn't have any conception of
+  " linewise or blockwise registers, so unconditional characterwise pasting is
+  " more intuitive.
   function! s:MakeCharacterwise(reg)
     " In Vim 7.4 with patches 1-488 and 576 (Debian), the call to setreg() at
     " the end on the list reg_cont crashes Vim with 'Caught deadly signal
