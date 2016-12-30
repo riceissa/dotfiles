@@ -12,6 +12,9 @@ PROMPT_COMMAND=promptFunc
 alias ls='ls --color=auto'
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
+# Unset so that the history is not truncated when initialized from the history
+# file.
+export HISTFILESIZE=
 PLAN9=/home/issa/projects/plan9port export PLAN9
 PATH=$PATH:$PLAN9/bin export PATH
 PATH=$PATH:/usr/games export PATH
