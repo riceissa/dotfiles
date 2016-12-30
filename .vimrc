@@ -134,9 +134,11 @@ if has('autocmd')
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:+
     autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:+
-    autocmd OptionSet background call <SID>ColorListChars()
+    if exists('##OptionSet')
+      autocmd OptionSet background call <SID>ColorListChars()
+    endif
     autocmd FileType help,man setlocal nolist nospell
-    autocmd FileType help nnoremap <buffer> q :q<CR>
+    autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
     if exists("+omnifunc")
       autocmd FileType *
