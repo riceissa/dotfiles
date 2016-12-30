@@ -23,15 +23,6 @@ scripts; the rest are config files) then run `./install.sh` (which calls
 - newsbeuter: change cache size so all content can be backed up
   (actually I now think this might be done by default). Also figure out
   how to sync cache.db.
-- elinks: merge keys with VimFX? I'm still not sure how much
-  application-specific keybinding I'm willing to allow. In general I
-  want everything to work like Vim, but many programs (e.g. elinks)
-  don't support key combinations (except with hold-down combination with
-  ctrl, alt, etc.).
-- w3m, because elinks can't read Japanese characters unless they're in
-  UTF-8! (should follow closely as possible the keybindings of elinks,
-  in order to not confuse the user; actually, use the same keybindings
-  for "newsbeuter", "elinks", and "w3m")
 - terminator/gnome terminal configs (esp. getting solarized to work)
     - on gnome terminal I just set the background color to `#FDF6E3` and
       the text color to `#586E75`; I use the Tango colors (they work
