@@ -39,7 +39,8 @@ ln -svf ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
 ln -svf "$(pwd)/.tmux.conf" ~/.tmux.conf
 # tmux doesn't read from .bashrc so copy contents to .bash_profile
-echo 'source ~/.bashrc' >> ~/.bash_profile
+# Actually I don't think this is necessary?
+# echo 'source ~/.bashrc' >> ~/.bash_profile
 
 mkdir -p ~/.moc/themes
 ln -svf "$(pwd)/.moc/config" ~/.moc/config
