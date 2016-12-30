@@ -3,6 +3,7 @@
 	name = Issa Rice
 [core]
 	pager = less -+S
+	# For CJK characters; see <http://stackoverflow.com/a/4416780>.
 	quotepath = false
 	excludesfile = ~/.gitignore_global
 [pager]
