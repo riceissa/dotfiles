@@ -9,20 +9,26 @@ promptFunc() {
 }
 PROMPT_COMMAND=promptFunc
 
-alias ls='ls --color=auto'
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 # Unset so that the history is not truncated when initialized from the history
 # file.
 export HISTFILESIZE=
+
+export EDITOR="vim"
+export GOPATH=/home/issa/go/packages
 PLAN9=/home/issa/projects/plan9port export PLAN9
-PATH=$PATH:$PLAN9/bin export PATH
-PATH=$PATH:/usr/games export PATH
-# PATH="$HOME/.local/bin:$PATH"
+
 PATH="$PATH:$GOPATH/bin"
-export PATH="$HOME/.cabal/bin:$PATH"
+PATH="$PATH:$PLAN9/bin"
+PATH="$PATH:/usr/games"
+PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.cabal/bin:$PATH"
+export PATH
+
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 
+alias ls='ls --color=auto'
 alias swapswap='sudo swapoff -a && sudo swapon -a'
 alias mupdf='mupdf -C FDF6E3'
 
@@ -32,6 +38,3 @@ stty -ixon
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_R_OPTS='-e'
-
-export EDITOR="vim"
-export GOPATH=/home/issa/go/packages
