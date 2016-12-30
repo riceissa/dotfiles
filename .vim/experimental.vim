@@ -268,7 +268,7 @@ function! s:BrowseNewTab(progname)
   tabnew
   set bt=nofile
   setl nonumber
-  exec "0r !/home/issa/fetch-page.sh " . a:progname
+  exec "0r !fetch-page " . a:progname
   let b:url = @+
   1
 endfunction
