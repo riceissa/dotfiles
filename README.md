@@ -52,9 +52,6 @@ vim todo:
   a default option from that in Vim, this is set explicitly here. For a
   more minimal configuration that is still very good, there is
   sensible.vim: <https://github.com/tpope/vim-sensible>
-- Another way to describe my intention with my .vimrc: it's basically
-  sensible.vim + Neovim's defaults, with a few tweaks to make it easier
-  for my (idiosyncratically).
 - figure out how to configure YCM; see [here](https://www.reddit.com/r/vim/comments/2ez19c/an_allaround_solution_for_ycms_ycm_extra_confpy/) and [here](https://github.com/vheon/dotvim/blob/5321347027c21e4c22dc6fcea4cc315052ed25f1/ycm.py) for some example config files.
 
 # History
