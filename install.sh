@@ -7,7 +7,7 @@ git clone https://github.com/riceissa/dotfiles.git
 cd dotfiles
 
 # Install software
-python debian_packages.py
+# python debian_packages.py
 
 bashline="[ -f $(pwd)/.bashrc ] && source $(pwd)/.bashrc"
 if ! (grep -q -F "$bashline" ~/.bashrc); then
