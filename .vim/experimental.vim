@@ -282,7 +282,7 @@ inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 if has('clipboard')
   " Destructively remove blank lines from both ends of a register and set it
-  " to be characterwise. This is intended espeically for pasting from the
+  " to be characterwise. This is intended especially for pasting from the
   " quoteplus register; in almost all cases, pasting from the clipboard means
   " pasting from a different application that doesn't have any conception of
   " linewise or blockwise registers, so unconditional characterwise pasting is
