@@ -273,7 +273,7 @@ function! s:BrowseNewTab(progname)
   1
   " If the buffer is the output of lynx -dump, then with the cursor on a
   " number, the following will jump to the link reference with that number.
-  nnoremap <buffer><expr> <C-]> 'G?^ \+' . expand("<cword>") . '\.<CR>WW'
+  nnoremap <buffer><expr> <C-]> 'm'':$?^ \+' . expand("<cword>") . '\.?<CR>W'
 endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
