@@ -271,7 +271,9 @@ function! s:BrowseNewTab(progname)
   exec "0r !fetch-page " . a:progname
   let b:url = @+
   1
-  nnoremap <buffer> <C-]> yiwG?^ \+<C-R>"\.<CR>WW
+  " If the buffer is the output of lynx -dump, then with the cursor on a
+  " number, the following will jump to the link reference with that number.
+  nnoremap <buffer><expr> <C-]> 'G?^ \+' . expand("<cword>") . '\.<CR>WW'
 endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
