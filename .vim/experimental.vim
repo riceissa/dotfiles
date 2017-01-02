@@ -271,6 +271,7 @@ function! s:BrowseNewTab(progname)
   exec "0r !fetch-page " . a:progname
   let b:url = @+
   1
+  nnoremap <buffer> <C-]> yiwG?^ \+<C-R>"\.<CR>WW
 endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
