@@ -183,8 +183,8 @@ cnoremap <expr> <C-X><Space> "<C-R>=<SID>InclusiveSpace('" . getcmdtype() . "')<
 function! s:InclusiveSpace(cmdtype)
   " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
   " moment this won't search across lines for birdtrack quotes.
+  let l:result = '\(\_s\+'
   if &commentstring !=# ""
-    let l:result = '\(\_s\+'
     " Try to get the parts of the commentstring, e.g. "<!--" and "-->" for
     " HTML, "/*" and "*/" for C.
     for l:cmt in split(&commentstring, '%s')
@@ -194,11 +194,20 @@ function! s:InclusiveSpace(cmdtype)
         let l:result .= '\|\V' . escape(l:cmt, a:cmdtype.'\') . '\m'
       endif
     endfor
-    let l:result .= '\)\+'
-    return l:result
   endif
-  " Fallback
-  return '\_s\+'
+  if &comments !=# ""
+    for l:cmt in split(&comments, ',')
+      if l:cmt =~# "n:"
+        " Strip the "n:"
+        let l:cmt = strpart(l:cmt, 2)
+        " Strip whitespace
+        let l:cmt = substitute(l:cmt, '^\s*\(.\{-}\)\s*$', '\1', '')
+        let l:result .= '\|\V' . escape(l:cmt, a:cmdtype.'\') . '\m'
+      endif
+    endfor
+  endif
+  let l:result .= '\)\+'
+  return l:result
 endfunction
 
 " Quickly find potentially problematic characters (things like non-printing
