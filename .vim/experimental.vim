@@ -181,7 +181,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
 cnoremap <expr> <C-X><Space> "<C-R>=<SID>InclusiveSpace('" . getcmdtype() . "')<CR>"
 function! s:InclusiveSpace(cmdtype)
-  " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
+  " TODO also get 'm' (and others?) from &comments. In particular, at the
   " moment this won't search across lines for birdtrack quotes.
   let l:result = '\(\_s\+'
   if &commentstring !=# ""
