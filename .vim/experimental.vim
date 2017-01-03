@@ -179,6 +179,17 @@ endfunction
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
+" This map makes it easier to search across linebreaks. If you want to
+" search for "hello there" but there might be a linebreak in between
+" the "hello" and the "there", you will have to do something like
+" "hello[ \n]there". But what about other whitespace? Okay, you say, I'll
+" search for "hello\_s\+there" to catch one or more whitespace characters,
+" including newlines. But what if the phrase occurs in a comment? In that case
+" there might be a comment character in front of the "there". And what if this
+" is a Markdown document and the phrase occurs inside a blockquote? You don't
+" *really* want to search for
+" "hello\(\_s\+\|\V<!--\m\|\V-->\m\|\V>\m\)\+there" each time, do you?
+" Instead, with this map, just type "hello" then <C-X><Space> then "there".
 cnoremap <expr> <C-X><Space> "<C-R>=<SID>InclusiveSpace('" . getcmdtype() . "')<CR>"
 function! s:InclusiveSpace(cmdtype)
   " TODO also get 'm' (and others?) from &comments.
