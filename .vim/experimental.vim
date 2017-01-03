@@ -180,7 +180,6 @@ endfunction
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
 cnoremap <expr> <C-X><Space> "<C-R>=<SID>InclusiveSpace('" . getcmdtype() . "')<CR>"
-cnoremap <C-X><C-F> <C-\>e<SID>PhraseEscape(getcmdline())<CR>
 function! s:InclusiveSpace(cmdtype)
   " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
   " moment this won't search across lines for birdtrack quotes.
@@ -200,22 +199,6 @@ function! s:InclusiveSpace(cmdtype)
   endif
   " Fallback
   return '\_s\+'
-endfunction
-function! s:PhraseEscape(s)
-  " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
-  " moment this won't search across lines for birdtrack quotes.
-  if &commentstring !=# ""
-    " Try to get the left side of the commentstring, e.g. "<!--" for HTML,
-    " "/*" for C.
-    let l:cmt = get(split(&commentstring, '%s', 1), 0, "")
-    " Strip whitespace
-    let l:cmt = substitute(l:cmt, '^\s*\(.\{-}\)\s*$', '\1', '')
-    if l:cmt !=# ""
-      return substitute(a:s, ' ', '\\(\\_s\\+\\|^\\s\*\\V' . l:cmt . '\\m\\)\\+', 'g')
-    endif
-  endif
-  " Fallback
-  return substitute(a:s, ' ', '\\_s\\+', 'g')
 endfunction
 
 " Quickly find potentially problematic characters (things like non-printing
