@@ -179,7 +179,28 @@ endfunction
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
+cnoremap <C-X><Space> <C-R>=<SID>InclusiveSpace()<CR>
 cnoremap <C-X><C-F> <C-\>e<SID>PhraseEscape(getcmdline())<CR>
+function! s:InclusiveSpace()
+  " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
+  " moment this won't search across lines for birdtrack quotes.
+  if &commentstring !=# ""
+    let l:result = '\(\_s\+'
+    " Try to get the parts of the commentstring, e.g. "<!--" and "-->" for
+    " HTML, "/*" and "*/" for C.
+    for l:cmt in split(&commentstring, '%s')
+      if l:cmt !=# ""
+        " Strip whitespace
+        let l:cmt = substitute(l:cmt, '^\s*\(.\{-}\)\s*$', '\1', '')
+        let l:result .= '\|\V' . l:cmt . '\m'
+      endif
+    endfor
+    let l:result .= '\)\+'
+    return l:result
+  endif
+  " Fallback
+  return '\_s\+'
+endfunction
 function! s:PhraseEscape(s)
   " TODO also get 'n', 'm' (and others?) from &comments. In particular, at the
   " moment this won't search across lines for birdtrack quotes.
