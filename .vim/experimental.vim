@@ -376,3 +376,8 @@ autocmd FileType markdown setlocal textwidth=79
 
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
+
+xnoremap iq :<C-U>normal! T“vt”<CR>
+xnoremap aq :<C-U>normal! F“vf”<CR>
+onoremap iq :normal viq<CR>
+onoremap aq :normal vaq<CR>
