@@ -74,6 +74,8 @@ if !has('nvim')
   set ttimeout
   set ttimeoutlen=50
 endif
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+inoremap <C-U> <C-G>u<C-U>
 
 set modeline " Debian disables modeline
 set number list ignorecase smartcase showcmd noequalalways nojoinspaces
