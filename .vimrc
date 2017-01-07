@@ -28,7 +28,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
+if !has('nvim')
+  Plug 'tpope/vim-sensible'
+endif
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
@@ -46,7 +48,7 @@ call plug#end()
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
 
-" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
+" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u NORC`
 if &history < 10000
   set history=10000
 endif
@@ -62,15 +64,22 @@ set listchars=tab:▸\ ,trail:·,nbsp:+
 if has('mouse')
   set mouse=a
 endif
+set ruler
+set scrolloff=1
+set sidescrolloff=5
 if has('path_extra')
   setglobal tags=./tags;,tags
+endif
+if !has('nvim')
+  set ttimeout
+  set ttimeoutlen=50
 endif
 
 set modeline " Debian disables modeline
 set number list ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
-set ttimeoutlen=50 sidescroll=1
+set sidescroll=1
 
 " From debian.vim
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
