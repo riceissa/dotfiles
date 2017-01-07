@@ -101,12 +101,6 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
-" From defaults.vim; see also :help :DiffOrig
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                  \ | wincmd p | diffthis
-endif
-
 function! s:ColorListChars()
   if &t_Co >= 16
     " Changing ctermbg is useful for seeing tab with :set list
