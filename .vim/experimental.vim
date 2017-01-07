@@ -353,6 +353,7 @@ if has('clipboard')
   " From $VIMRUNTIME/mswin.vim
   vnoremap <C-C> "+y
   cnoremap <C-V> <C-R>+
+  vnoremap <C-X> "+x
 endif
 
 nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
@@ -381,3 +382,14 @@ xnoremap iq :<C-U>normal! T“vt”<CR>
 xnoremap aq :<C-U>normal! F“vf”<CR>
 onoremap iq :normal viq<CR>
 onoremap aq :normal vaq<CR>
+
+" I want to use my own <C-X> in visual mode, so disable mappings for
+" speeddating and then define them myself. Without setting this variable,
+" speeddating seems to override my mapping.
+let g:speeddating_no_mappings = 1
+nmap  <C-A>     <Plug>SpeedDatingUp
+nmap  <C-X>     <Plug>SpeedDatingDown
+xmap  <C-A>     <Plug>SpeedDatingUp
+xmap  <C-S>     <Plug>SpeedDatingDown
+nmap d<C-A>     <Plug>SpeedDatingNowUTC
+nmap d<C-X>     <Plug>SpeedDatingNowLocal
