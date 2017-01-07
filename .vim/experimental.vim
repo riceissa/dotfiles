@@ -303,6 +303,14 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
+" This block follows three principles:
+"   (1) Any text editor that breaks CUA bindings for copy/cut/paste is broken.
+"   (2) Any text editor that introduces security problems from pasting text
+"       that was copied from a web browser is broken.
+"   (3) Any text editor that, when the cursor is between two quote marks,
+"       pastes text *outside* of those quote marks, is broken.
+" Note that Vim breaks all three principles by default, whereas gedit breaks
+" none.
 if has('clipboard')
   " Destructively remove blank lines from both ends of a register and set it
   " to be characterwise. This is intended especially for pasting from the
