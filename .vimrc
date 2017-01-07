@@ -164,27 +164,6 @@ endif
 let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
 let g:autolink_download_provider = 'curl -L --silent --compressed'
 
-let g:ycm_filetype_blacklist = {
-    \ 'gitcommit': 1,
-    \ 'html': 1,
-    \ 'mail' : 1,
-    \ 'markdown' : 1,
-    \ 'mediawiki': 1,
-    \ 'notes' : 1,
-    \ 'pandoc' : 1,
-    \ 'pdc' : 1,
-    \ 'tex': 1,
-    \ 'text': 1,
-    \ 'unite' : 1,
-    \}
-
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:EclimCompletionMethod = 'omnifunc'
-
-let g:jedi#documentation_command = "<leader>K"
-
 if filereadable(expand('~/.vim/experimental.vim'))
   source ~/.vim/experimental.vim
 endif
