@@ -25,12 +25,16 @@
 	d2 = diff HEAD~2 HEAD
 	d21 = diff HEAD~2 HEAD~1
 	dc = diff --cached
+	ds = diff --stat
 	# list aliases
 	la = "!git config -l | grep alias | cut -c 7-"
 	logn = log --name-only
 	st = status
 	wd = diff --color-words
 	wdiff = diff --color-words
+	wd1 = diff --color-words HEAD~1 HEAD
+	wd2 = diff --color-words HEAD~2 HEAD
+	wd21 = diff --color-words HEAD~2 HEAD~1
 	# From http://stackoverflow.com/a/15316602
 	up = "!git remote update -p; git merge --ff-only @{u}"
 [push]
