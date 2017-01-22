@@ -9,6 +9,9 @@
 
 (require 'evil)
 (evil-mode 1)
+(define-key evil-insert-state-map (kbd "C-a") nil)
+(define-key evil-insert-state-map (kbd "C-d") nil)
+(define-key evil-insert-state-map (kbd "C-e") nil)
 
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
