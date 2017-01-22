@@ -36,7 +36,6 @@
  '(save-interprogram-paste-before-kill t)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
- '(tab-width 4)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
 (custom-set-faces
