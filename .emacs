@@ -15,8 +15,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(ido-mode t)
-
 ; mediawiki mode
 (require 'mediawiki)
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
@@ -81,3 +79,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#fdf6e3" :foreground "#657b83" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :height 98 :width normal :foundry "adobe" :family "Source Code Pro")))))
+
+(ido-mode t)
