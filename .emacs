@@ -19,15 +19,6 @@
             (setq truncate-lines nil)))
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
-; markdown mode
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.page\\'" . markdown-mode))
-(setq markdown-command "pandoc -f markdown -t html5 --mathjax -Ss")
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
