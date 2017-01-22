@@ -15,15 +15,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-; mediawiki mode
-(require 'mediawiki)
-(add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
-(setq mediawiki-mode-hook
-      (lambda ()
-        (define-key mediawiki-mode-map (kbd "M-r") 'move-to-window-line-top-bottom)))
-;(setq mediawiki-mode-hook
-;      (lambda ()
-;        (define-key mediawiki-mode-map (kbd "C-x C-s") 'save-buffer)))
+; (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
 
 ; magit settings
 (global-set-key (kbd "C-x g") 'magit-status)
