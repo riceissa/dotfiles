@@ -56,6 +56,7 @@
    (quote
     (("Wikipedia" "http://en.wikipedia.org/w/" "Riceissa" "PASSWORD" "" "User:Riceissa"))))
  '(mouse-wheel-progressive-speed nil)
+ '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
