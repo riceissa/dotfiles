@@ -2,14 +2,6 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-; Another thing to do when first setting up Emacs.  In the file ~/.Xresources,
-; add the lines:
-;    Xft.hintstyle:  hintfull
-;    Xft.lcdfilter:  lcddefault
-; This will improve font rendering; in particular, Source Code Pro will look
-; much nicer.
-; Source: https://stackoverflow.com/questions/22710964/emacs24-not-rendering-fonts-properly
-
 ; For installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
