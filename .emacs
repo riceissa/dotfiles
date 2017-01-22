@@ -7,6 +7,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+;; cursor-type is buffer-local, so we must use setq-default
+; (setq-default cursor-type 'bar)
+
 ; (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
 
 ; magit settings
@@ -57,5 +60,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "MS  " :family "Consolas")))))
+
+; MediaWiki setup
+(setq sentence-end-without-space (concat sentence-end-without-space "<"))
+(setq mymediawiki-highlights
+      '(("<ref[^>/]*>?[^<]*\\(</ref>\\|/>\\)" . font-lock-constant-face)))
+(define-derived-mode mymediawiki-mode text-mode "mymediawiki"
+  "Major mode for editing MediaWiki files"
+  (setq font-lock-defaults '(mymediawiki-highlights)))
 
 (ido-mode t)
