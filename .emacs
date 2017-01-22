@@ -10,13 +10,6 @@
 (require 'evil)
 (evil-mode 1)
 
-; magit settings
-(global-set-key (kbd "C-x g") 'magit-status)
-; magit status should wrap lines
-; from https://emacs.stackexchange.com/questions/2890/how-to-make-truncate-lines-nil-and-auto-fill-mode-off-in-magit-buffers
-(add-hook 'magit-status-mode-hook
-          (lambda ()
-            (setq truncate-lines nil)))
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
 (custom-set-variables
