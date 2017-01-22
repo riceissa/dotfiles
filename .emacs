@@ -52,9 +52,6 @@
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
  '(make-backup-files nil)
- '(mediawiki-site-alist
-   (quote
-    (("Wikipedia" "http://en.wikipedia.org/w/" "Riceissa" "PASSWORD" "" "User:Riceissa"))))
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-file-apps
