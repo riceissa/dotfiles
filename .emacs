@@ -11,11 +11,6 @@
 (require 'evil)
 (evil-mode 1)
 
-;; cursor-type is buffer-local, so we must use setq-default
-; (setq-default cursor-type 'bar)
-
-; (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mediawiki-mode))
-
 ; magit settings
 (global-set-key (kbd "C-x g") 'magit-status)
 ; magit status should wrap lines
@@ -72,5 +67,6 @@
 (define-derived-mode mymediawiki-mode text-mode "mymediawiki"
   "Major mode for editing MediaWiki files"
   (setq font-lock-defaults '(mymediawiki-highlights)))
+(add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
 
 (ido-mode t)
