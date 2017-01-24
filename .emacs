@@ -26,6 +26,7 @@
  '(make-backup-files nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+ '(org-agenda-files (quote ("~/todo.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
@@ -33,6 +34,9 @@
      ("\\.x?html?\\'" . default)
      ("\\.pdf\\'" . "atril %s"))))
  '(org-startup-truncated nil)
+ '(org-todo-keywords
+   (quote
+    ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
  '(save-interprogram-paste-before-kill t)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
@@ -53,5 +57,12 @@
   "Major mode for editing MediaWiki files"
   (setq font-lock-defaults '(mymediawiki-highlights)))
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
+
+(evil-set-initial-state 'org-mode 'emacs)
+(setq org-default-notes-file "~/todo.org")
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 (ido-mode t)
