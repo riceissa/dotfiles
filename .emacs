@@ -27,6 +27,11 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-agenda-files (quote ("~/todo.org")))
+ '(org-capture-templates
+   (quote
+    (("t" "TODO item" entry
+      (file+headline "~/todo.org" "Tasks")
+      "* TODO %?\n  %i\n  %a"))))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
@@ -58,7 +63,9 @@
   (setq font-lock-defaults '(mymediawiki-highlights)))
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
 
-(evil-set-initial-state 'org-mode 'emacs)
+; (evil-set-initial-state 'org-mode 'emacs)
+(setq evil-default-state 'emacs)
+
 (setq org-default-notes-file "~/todo.org")
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
