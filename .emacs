@@ -26,11 +26,11 @@
  '(make-backup-files nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
- '(org-agenda-files (quote ("~/todo.org")))
+ '(org-agenda-files (quote ("~/todo.txt")))
  '(org-capture-templates
    (quote
     (("t" "TODO item" entry
-      (file+headline "~/todo.org" "Tasks")
+      (file+headline "~/todo.txt" "Tasks")
       "* TODO %?\n  %i\n  %a"))))
  '(org-file-apps
    (quote
@@ -67,7 +67,7 @@
 ; (evil-set-initial-state 'org-mode 'emacs)
 (setq evil-default-state 'emacs)
 
-(setq org-default-notes-file "~/todo.org")
+(setq org-default-notes-file "~/todo.txt")
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
