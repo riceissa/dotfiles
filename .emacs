@@ -31,7 +31,7 @@
    (quote
     (("t" "TODO item" entry
       (file+headline "~/todo.txt" "Tasks")
-      "* TODO %?\n  %i\n  %a"))))
+      "* TODO %?\n  %i"))))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
