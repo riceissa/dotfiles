@@ -62,6 +62,7 @@
   "Major mode for editing MediaWiki files"
   (setq font-lock-defaults '(mymediawiki-highlights)))
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
+(add-to-list 'auto-mode-alist '("\\.wikipedia\\.org" . mymediawiki-mode))
 
 ; (evil-set-initial-state 'org-mode 'emacs)
 (setq evil-default-state 'emacs)
