@@ -29,7 +29,10 @@
  '(org-agenda-files (quote ("~/todo.txt")))
  '(org-capture-templates
    (quote
-    (("t" "TODO item" entry
+    (("m" "Mood" entry
+      (file+headline "~/todo.txt" "Mood tracking")
+      "* %T\n  happiness: %^{Rate your happiness from 0-10}\n  energy level: %^{Rate your energy level from 0-10}\n  frustration: %^{Rate your frustration from 0-10}\n  current task: %^{What are you doing now?|%k}\n  %i%?")
+     ("t" "TODO item" entry
       (file+headline "~/todo.txt" "Tasks")
       "* TODO %?\n  %i"))))
  '(org-file-apps
@@ -72,5 +75,11 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
+
+(global-set-key (kbd "C-x w")
+                (shell-command
+                 (concat "git add "
+                         buffer-file-name
+                         "; git commit -m 'snapshot'")))
 
 (ido-mode t)
