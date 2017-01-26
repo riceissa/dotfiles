@@ -76,10 +76,13 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
-(global-set-key (kbd "C-x w")
-                (shell-command
-                 (concat "git add "
-                         buffer-file-name
-                         "; git commit -m 'snapshot'")))
+(global-set-key
+ (kbd "C-x w")
+ (lambda ()
+   (interactive)
+   (shell-command
+    (concat "git add "
+            buffer-file-name
+            "; git commit -m 'snapshot'"))))
 
 (ido-mode t)
