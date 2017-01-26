@@ -76,6 +76,7 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
+; Quickly make a Git snapshot of the file on disk
 (global-set-key
  (kbd "C-x w")
  (lambda ()
