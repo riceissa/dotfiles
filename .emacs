@@ -31,7 +31,16 @@
    (quote
     (("m" "Mood" entry
       (file+headline "~/todo.txt" "Mood tracking")
-      "* %T\n  happiness: %^{Rate your happiness from 0-10}\n  energy level: %^{Rate your energy level from 0-10}\n  frustration: %^{Rate your frustration from 0-10}\n  current task: %^{What are you doing now?|%k}\n  %i%?")
+      ;; ad hoc mood tracking proof-of-concept for now
+      "* Mood tracking entry
+  %T
+  happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, \
+3-neutral, 4-happy, 5-very happy}
+  energy level: %^{Rate your energy level 1-very tired, \
+2-tired, 3-neutral, 4-alert, 5-very alert}
+  frustration: %^{Rate your frustration 1-serene, 2-calm, \
+3-neutral, 4-frustrated, 5-very frustrated}
+  current task: %^{What are you doing now?|%k}\n  %i%?")
      ("t" "TODO item" entry
       (file+headline "~/todo.txt" "Tasks")
       "* TODO %?\n  %i"))))
