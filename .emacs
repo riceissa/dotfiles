@@ -7,11 +7,13 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(require 'evil)
-(evil-mode 1)
-(define-key evil-insert-state-map (kbd "C-a") nil)
-(define-key evil-insert-state-map (kbd "C-d") nil)
-(define-key evil-insert-state-map (kbd "C-e") nil)
+;; (require 'evil)
+;; (evil-mode 1)
+;; (define-key evil-insert-state-map (kbd "C-a") nil)
+;; (define-key evil-insert-state-map (kbd "C-d") nil)
+;; (define-key evil-insert-state-map (kbd "C-e") nil)
+; (evil-set-initial-state 'org-mode 'emacs)
+(setq evil-default-state 'emacs)
 
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
@@ -20,6 +22,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cursor-type (quote bar))
  '(global-linum-mode t)
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
@@ -31,22 +34,19 @@
    (quote
     (("m" "Mood" entry
       (file+headline "~/todo.txt" "Mood tracking")
-      ;; ad hoc mood tracking proof-of-concept for now
       "* Mood tracking entry
   %T
   :PROPERTIES:
-  :happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, \
-3-neutral, 4-happy, 5-very happy}
-  :energy level: %^{Rate your energy level 1-very tired, \
-2-tired, 3-neutral, 4-alert, 5-very alert}
-  :frustration: %^{Rate your frustration 1-serene, 2-calm, \
-3-neutral, 4-frustrated, 5-very frustrated}
+  :happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, 3-neutral, 4-happy, 5-very happy}
+  :energy level: %^{Rate your energy level 1-very tired, 2-tired, 3-neutral, 4-alert, 5-very alert}
+  :frustration: %^{Rate your frustration 1-serene, 2-calm, 3-neutral, 4-frustrated, 5-very frustrated}
   :current task: %^{What are you doing now?|%k}
   :END:
   %i%?")
      ("t" "TODO item" entry
       (file+headline "~/todo.txt" "Tasks")
-      "* TODO %?\n  %i"))))
+      "* TODO %?
+  %i"))))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
@@ -58,6 +58,7 @@
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
  '(save-interprogram-paste-before-kill t)
+ '(scroll-conservatively 1000)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
@@ -78,9 +79,6 @@
   (setq font-lock-defaults '(mymediawiki-highlights)))
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
 (add-to-list 'auto-mode-alist '("\\.wikipedia\\.org" . mymediawiki-mode))
-
-; (evil-set-initial-state 'org-mode 'emacs)
-(setq evil-default-state 'emacs)
 
 (setq org-default-notes-file "~/todo.txt")
 (global-set-key (kbd "C-c l") 'org-store-link)
