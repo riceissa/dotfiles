@@ -100,6 +100,8 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-c f") 'company-complete)
 
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; From <https://github.com/nonsequitur/smex/>
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
