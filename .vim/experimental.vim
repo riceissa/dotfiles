@@ -311,6 +311,14 @@ inoremap <C-G><C-D> <C-\><C-O>"-dE
 inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 
 nnoremap <expr> <C-X><C-F> exists(':FZF') ? ':FZF<CR>' : ':edit<Space><C-D>'
+nnoremap <C-X>0 <C-W>c
+nnoremap <C-X>1 <C-W>o
+nnoremap <C-X>2 <C-W>s
+nnoremap <C-X>3 <C-W>v
+nnoremap <C-X>o <C-W>w
+nnoremap <C-X><C-B> :ls<CR>
+nnoremap <C-X>b :buffer<Space><C-D>
+nnoremap <C-X>f :set textwidth=
 
 function! s:BrowseNewTab(progname)
   tabnew
