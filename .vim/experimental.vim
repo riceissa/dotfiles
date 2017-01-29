@@ -282,6 +282,7 @@ function! s:ListDate()
     let date_fmts = [
           \ "%F",
           \ "%B %-d, %Y",
+          \ "%F %a",
           \ "%-d %B %Y",
           \ "%Y-%m-%d %H:%M:%S",
           \ "%a, %d %b %Y %H:%M:%S %z",
