@@ -384,9 +384,9 @@ if has('clipboard')
   vnoremap <C-V> "-ygv"+gp
 
   " From $VIMRUNTIME/mswin.vim
-  vnoremap <C-C> "+y
+  vnoremap <silent> <C-C> "+y:<C-U>call <SID>MakeCharacterwise('+')<CR>
   cnoremap <C-V> <C-R>+
-  vnoremap <C-X> "+x
+  vnoremap <silent> <C-X> "+x:<C-U>call <SID>MakeCharacterwise('+')<CR>
 endif
 
 nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
