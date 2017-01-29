@@ -283,6 +283,7 @@ function! s:ListDate()
           \ "%F",
           \ "%B %-d, %Y",
           \ "%F %a",
+          \ "%F %a %H:%M",
           \ "%-d %B %Y",
           \ "%Y-%m-%d %H:%M:%S",
           \ "%a, %d %b %Y %H:%M:%S %z",
