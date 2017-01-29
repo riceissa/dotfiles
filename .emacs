@@ -34,13 +34,16 @@
       ;; ad hoc mood tracking proof-of-concept for now
       "* Mood tracking entry
   %T
-  happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, \
+  :PROPERTIES:
+  :happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, \
 3-neutral, 4-happy, 5-very happy}
-  energy level: %^{Rate your energy level 1-very tired, \
+  :energy level: %^{Rate your energy level 1-very tired, \
 2-tired, 3-neutral, 4-alert, 5-very alert}
-  frustration: %^{Rate your frustration 1-serene, 2-calm, \
+  :frustration: %^{Rate your frustration 1-serene, 2-calm, \
 3-neutral, 4-frustrated, 5-very frustrated}
-  current task: %^{What are you doing now?|%k}\n  %i%?")
+  :current task: %^{What are you doing now?|%k}
+  :END:
+  %i%?")
      ("t" "TODO item" entry
       (file+headline "~/todo.txt" "Tasks")
       "* TODO %?\n  %i"))))
@@ -96,3 +99,11 @@
             "; git commit -m 'snapshot'"))))
 
 (ido-mode t)
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "C-c f") 'company-complete)
+
+;; From <https://github.com/nonsequitur/smex/>
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
