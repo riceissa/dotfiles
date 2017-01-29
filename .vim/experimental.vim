@@ -310,6 +310,8 @@ inoremap <C-G><C-D> <C-\><C-O>"-dE
 " to prevent repeatedly breaking the line.
 inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 
+nnoremap <expr> <C-X><C-F> exists(':FZF') ? ':FZF<CR>' : ':edit<Space><C-D>'
+
 function! s:BrowseNewTab(progname)
   tabnew
   set bt=nofile
@@ -397,7 +399,7 @@ nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>
 " The 'else' case here is just :DiffOrig
 nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>vert new<Bar>set buftype=nofile<Bar>read ++edit #<Bar>0d_<Bar>diffthis<Bar>wincmd p<Bar>diffthis<Bar>endif<CR>
 
-nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+nnoremap <silent> <C-X><C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 vnoremap K <nop>
 
@@ -419,11 +421,11 @@ onoremap aq :normal vaq<CR>
 " speeddating seems to override my mapping.
 let g:speeddating_no_mappings = 1
 nmap  <C-A>     <Plug>SpeedDatingUp
-nmap  <C-X>     <Plug>SpeedDatingDown
+nmap  <C-S>     <Plug>SpeedDatingDown
 xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
-nmap d<C-X>     <Plug>SpeedDatingNowLocal
+nmap d<C-S>     <Plug>SpeedDatingNowLocal
 
 let g:ycm_filetype_blacklist = {
     \ 'gitcommit': 1,
