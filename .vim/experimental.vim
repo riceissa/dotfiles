@@ -402,7 +402,7 @@ if has('clipboard')
   nnoremap <silent> <C-V> :<C-U>call <SID>MakeCharacterwise('+')<CR>"+gP
   cnoremap <C-V> <C-R><C-R>+
   inoremap <silent> <C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
-  vnoremap <C-V> "-ygv"+gp
+  vnoremap <silent> <C-V> "-y:<C-U>call <SID>MakeCharacterwise('+')<CR>gv"+gp
   " vnoremap <silent> <C-V> "-c<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+<Esc>
 endif
 
