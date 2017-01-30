@@ -354,14 +354,15 @@ if has('clipboard')
   " linewise or blockwise registers, so unconditional characterwise pasting is
   " more intuitive.
   function! s:MakeCharacterwise(reg)
-    " In Vim 7.4 with patches 1-488 and 576 (Debian), the call to setreg() at
-    " the end on the list reg_cont crashes Vim with 'Caught deadly signal
-    " ABRT'. I have no idea when this was fixed, but on Vim 8.0 it doesn't
-    " crash. Possibly related is
-    " <https://groups.google.com/forum/#!msg/vim_dev/54smHb4DVlM/AkJNLTzRAAAJ>
-    " from April 2016, but that bug causes a segmentation fault whereas this
-    " one doesn't.
-    if v:version >= 800
+    " In older versions of Vim, the call to setreg() at the end on the list
+    " reg_cont crashes Vim with 'Caught deadly signal ABRT'. Git bisect
+    " reveals that this is fixed with Vim 7.4 patch 513, 'Crash because
+    " reference count is wrong for list returned by getreg().' Searching the
+    " Git log reveals that there have been several bugs related to
+    " setreg()/getreg(). The following conditional *should* fix things, but if
+    " you are really worried, it's best to upgrade Vim or use the mapping from
+    " $VIMRUNTIME/mswin.vim and $VIMRUNTIME/autoload/paste.vim.
+    if has('nvim') || v:version > 704 || (v:version == 704 && has("patch513"))
       let reg_cont = getreg(a:reg, 1, 1)
 
       " Remove empty lines at the beginning and end of the register
