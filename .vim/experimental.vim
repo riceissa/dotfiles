@@ -286,20 +286,6 @@ inoremap <C-G><C-D> <C-\><C-O>"-dE
 " to prevent repeatedly breaking the line.
 inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 
-nnoremap <C-X> <nop>
-
-nnoremap <expr> <C-X><C-F> exists(':FZF') ? ':FZF<CR>' : ':edit<Space><C-D>'
-nnoremap <expr> <C-X>f exists(':FZF') ? ':FZF ' . fnameescape(expand('%:h')).'/<CR>' : ':edit<Space>' . fnameescape(expand('%:h')).'/<C-D>'
-nnoremap <C-X>0 <C-W>c
-nnoremap <C-X>1 <C-W>o
-nnoremap <C-X>2 <C-W>s
-nnoremap <C-X>3 <C-W>v
-nnoremap <C-X>o <C-W>w
-nnoremap <C-X><C-B> :ls<CR>
-nnoremap <C-X>b :buffer<Space><C-D>
-" nnoremap <C-X>f :set textwidth=
-nnoremap <C-X>c :confirm qall<CR>
-
 function! s:BrowseNewTab(progname)
   tabnew
   set bt=nofile
@@ -387,7 +373,7 @@ nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>
 " The 'else' case here is just :DiffOrig
 nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>vert new<Bar>set buftype=nofile<Bar>read ++edit #<Bar>0d_<Bar>diffthis<Bar>wincmd p<Bar>diffthis<Bar>endif<CR>
 
-nnoremap <silent> <C-X><C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 vnoremap K <nop>
 
@@ -399,39 +385,13 @@ autocmd FileType markdown setlocal textwidth=79
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 
-xnoremap iq :<C-U>normal! T“vt”<CR>
-xnoremap aq :<C-U>normal! F“vf”<CR>
-onoremap iq :normal viq<CR>
-onoremap aq :normal vaq<CR>
-
 " I want to use my own <C-X> in visual mode, so disable mappings for
 " speeddating and then define them myself. Without setting this variable,
 " speeddating seems to override my mapping.
 let g:speeddating_no_mappings = 1
 nmap  <C-A>     <Plug>SpeedDatingUp
-nmap  <C-S>     <Plug>SpeedDatingDown
+nmap  <C-X>     <Plug>SpeedDatingDown
 xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
-nmap d<C-S>     <Plug>SpeedDatingNowLocal
-
-let g:ycm_filetype_blacklist = {
-    \ 'gitcommit': 1,
-    \ 'html': 1,
-    \ 'mail' : 1,
-    \ 'markdown' : 1,
-    \ 'mediawiki': 1,
-    \ 'notes' : 1,
-    \ 'pandoc' : 1,
-    \ 'pdc' : 1,
-    \ 'tex': 1,
-    \ 'text': 1,
-    \ 'unite' : 1,
-    \}
-
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_python_binary_path = '/usr/bin/python3'
-let g:EclimCompletionMethod = 'omnifunc'
-
-let g:jedi#documentation_command = "<leader>K"
+nmap d<C-X>     <Plug>SpeedDatingNowLocal
