@@ -21,13 +21,6 @@ if !exists(":DiffOrig")
                   \ | wincmd p | diffthis
 endif
 
-" Try to make gH gM gL g<C-E> g<C-Y> g<C-D> g<C-U> g<C-F> g<C-B>
-" These are still buggy
-nmap <expr> g<C-D> 'gL' . ':normal! ' . (winheight(0) / 2) . 'gjg^<CR>'
-nmap <expr> g<C-U> 'gH' . ':normal! ' . (winheight(0) / 2) . 'gkg^<CR>'
-nmap g<C-E> gLgjgH
-nmap g<C-Y> gHgk
-
 nnoremap <C-N> gj
 nnoremap <C-P> gk
 
@@ -35,27 +28,6 @@ nnoremap <C-P> gk
 " word or the end of the last word.
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
-
-" Something I like from Acme. The problem with this is that it's only useful
-" when people refer to files using "filename:/regex", and I haven't
-" encountered a lot of this myself.
-command! EditAtRegex call <SID>EditAtRegex(":edit")
-command! SplitAtRegex call <SID>EditAtRegex(":split")
-command! VsplitAtRegex call <SID>EditAtRegex(":vsplit")
-command! TabeditAtRegex call <SID>EditAtRegex(":tabedit")
-
-function! s:EditAtRegex(edit)
-  " Convert filename:/regex to :edit +/regex filename
-  " Regex will be used as-is and cannot contain whitespace, since we select it
-  " using <cWORD>. Use only for simple references.
-  " Possibly dangerous in case of filename:dangerous_cmd
-  let fname = expand('<cfile>')
-  let cmd = get(split(expand('<cWORD>'), ':'), 1, "")
-  if cmd !=# ""
-    let cmd = "+" . cmd
-  endif
-  exe a:edit . " " . cmd . " " . fname
-endfunction
 
 if exists("+completefunc")
   " Adapted from :help complete-functions.
@@ -299,7 +271,6 @@ function! s:ListDate()
     return ''
 endfunction
 
-inoremap <C-G><C-V> <C-R><C-R>+
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
 inoremap <C-G><C-D> <C-\><C-O>"-dE
@@ -403,7 +374,7 @@ if has('clipboard')
   cnoremap <C-V> <C-R><C-R>+
   inoremap <silent> <C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
   vnoremap <silent> <C-V> "-y:<C-U>call <SID>MakeCharacterwise('+')<CR>gv"+gp
-  " vnoremap <silent> <C-V> "-c<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+<Esc>
+  inoremap <silent> <C-G><C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-R>+
 endif
 
 nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
