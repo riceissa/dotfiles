@@ -28,6 +28,9 @@ nmap <expr> g<C-U> 'gH' . ':normal! ' . (winheight(0) / 2) . 'gkg^<CR>'
 nmap g<C-E> gLgjgH
 nmap g<C-Y> gHgk
 
+nnoremap <C-N> gj
+nnoremap <C-P> gk
+
 " Fix common typos where one character is stuck to the beginning of the next
 " word or the end of the last word.
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
@@ -200,6 +203,9 @@ endfunction
 " First seen at http://vimcasts.org/episodes/the-edit-command/ but this
 " particular version is from
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
+" Using this in some directories (e.g. those with control characters in them)
+" can be dangerous. For instance, editing a file in the directory "a^R=b" and
+" doing ":edit %%" will try to evaluate b.
 cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
 
 " This map makes it easier to search across linebreaks. If you want to
@@ -315,6 +321,7 @@ inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 nnoremap <C-X> <nop>
 
 nnoremap <expr> <C-X><C-F> exists(':FZF') ? ':FZF<CR>' : ':edit<Space><C-D>'
+nnoremap <expr> <C-X>f exists(':FZF') ? ':FZF ' . fnameescape(expand('%:h')).'/<CR>' : ':edit<Space>' . fnameescape(expand('%:h')).'/<C-D>'
 nnoremap <C-X>0 <C-W>c
 nnoremap <C-X>1 <C-W>o
 nnoremap <C-X>2 <C-W>s
@@ -322,7 +329,7 @@ nnoremap <C-X>3 <C-W>v
 nnoremap <C-X>o <C-W>w
 nnoremap <C-X><C-B> :ls<CR>
 nnoremap <C-X>b :buffer<Space><C-D>
-nnoremap <C-X>f :set textwidth=
+" nnoremap <C-X>f :set textwidth=
 nnoremap <C-X>c :confirm qall<CR>
 
 function! s:BrowseNewTab(progname)
