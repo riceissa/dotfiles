@@ -403,7 +403,7 @@ if has('clipboard')
 
   " From $VIMRUNTIME/mswin.vim
   vnoremap <silent> <C-C> "+y:<C-U>call <SID>MakeCharacterwise('+')<CR>
-  cnoremap <C-V> <C-R>+
+  cnoremap <C-V> <C-R><C-R>+
   vnoremap <silent> <C-X> "+x:<C-U>call <SID>MakeCharacterwise('+')<CR>
 endif
 
