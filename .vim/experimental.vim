@@ -396,15 +396,14 @@ if has('clipboard')
     call setreg(a:reg, reg_cont, 'c')
   endfunction
 
-  nnoremap <silent> <C-V> :<C-U>call <SID>MakeCharacterwise('+')<CR>"+gP
-  inoremap <silent> <C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
-  " vnoremap <silent> <C-V> "-c<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+<Esc>
-  vnoremap <C-V> "-ygv"+gp
-
-  " From $VIMRUNTIME/mswin.vim
-  vnoremap <silent> <C-C> "+y:<C-U>call <SID>MakeCharacterwise('+')<CR>
-  cnoremap <C-V> <C-R><C-R>+
   vnoremap <silent> <C-X> "+x:<C-U>call <SID>MakeCharacterwise('+')<CR>
+  vnoremap <silent> <C-C> "+y:<C-U>call <SID>MakeCharacterwise('+')<CR>
+
+  nnoremap <silent> <C-V> :<C-U>call <SID>MakeCharacterwise('+')<CR>"+gP
+  cnoremap <C-V> <C-R><C-R>+
+  inoremap <silent> <C-V> <C-G>u<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+
+  vnoremap <C-V> "-ygv"+gp
+  " vnoremap <silent> <C-V> "-c<C-\><C-O>:<C-U>call <SID>MakeCharacterwise('+')<CR><C-R><C-O>+<Esc>
 endif
 
 nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
