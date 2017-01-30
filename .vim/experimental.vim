@@ -201,12 +201,9 @@ endfunction
 " Keeping both in the experimental section to see what I prefer over time.
 
 " First seen at http://vimcasts.org/episodes/the-edit-command/ but this
-" particular version is from
+" particular version is modified from
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
-" Using this in some directories (e.g. those with control characters in them)
-" can be dangerous. For instance, editing a file in the directory "a^R=b" and
-" doing ":edit %%" will try to evaluate b.
-cnoremap <expr> %% getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
+cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 
 " This map makes it easier to search across linebreaks. If you want to
 " search for "hello there" but there might be a linebreak in between
