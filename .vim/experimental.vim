@@ -312,6 +312,8 @@ inoremap <C-G><C-D> <C-\><C-O>"-dE
 " to prevent repeatedly breaking the line.
 inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
 
+nnoremap <C-X> <nop>
+
 nnoremap <expr> <C-X><C-F> exists(':FZF') ? ':FZF<CR>' : ':edit<Space><C-D>'
 nnoremap <C-X>0 <C-W>c
 nnoremap <C-X>1 <C-W>o
@@ -321,6 +323,7 @@ nnoremap <C-X>o <C-W>w
 nnoremap <C-X><C-B> :ls<CR>
 nnoremap <C-X>b :buffer<Space><C-D>
 nnoremap <C-X>f :set textwidth=
+nnoremap <C-X>c :confirm qall<CR>
 
 function! s:BrowseNewTab(progname)
   tabnew
