@@ -381,6 +381,7 @@ iabbrev ADd Add
 iabbrev REmove Remove
 
 autocmd FileType markdown setlocal textwidth=79
+autocmd BufNewFile,BufRead .arbtt/categorize.cfg setlocal filetype=haskell
 
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
