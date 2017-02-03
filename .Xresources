@@ -1,14 +1,20 @@
 /* URxvt.font: xft:Consolas:style=Regular:size=11 */
-URxvt.font: xft:Source Code Pro:style=Medium:size=10
+/* URxvt.font: xft:Source Code Pro:style=Medium:size=10 */
+URxvt.font: xft:Monaco:style=Regular:size=9
+URxvt.italicFont: xft:Monaco:italic:autohint=true
 URxvt.letterSpace: -1
 /* URxvt.depth: 0 */
 Xft.hinting: true
 /* Xft.hintstyle: hintslight */
 /* Xft.antialias: false */
 URxvt*scrollBar: false
-URxvt*lineSpace: -5
+/* URxvt*lineSpace: -5 */
 URxvt.cursorBlink: true
-URxvt.geometry: 88x37
+URxvt.geometry: 88x42
+/* For Source Code Pro */
+/* URxvt.geometry: 88x37 */
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 /* Solarized light from
  * https://github.com/solarized/xresources/blob/master/Xresources.light */
