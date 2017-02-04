@@ -19,6 +19,16 @@ URxvt.cursorBlink: true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
+/* Allow copying to the clipboard with Ctrl-Shift-c. This requires installing
+ * the clipboard extension. */
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.C-C: perl:clipboard:copy
+
+/* Disable some mappings that urxvt includes by default */
+URxvt.keysym.C-M-c: builtin-string:
+URxvt.keysym.C-M-v: builtin-string:
+URxvt.keysym.M-s: builtin-string:
+
 /* Solarized light from
  * https://github.com/solarized/xresources/blob/master/Xresources.light */
 #define S_base03        #002b36
