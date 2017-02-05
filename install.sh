@@ -42,6 +42,12 @@ ln -svf "$(pwd)/.tmux.conf" ~/.tmux.conf
 # Actually I don't think this is necessary?
 # echo 'source ~/.bashrc' >> ~/.bash_profile
 
+mv -v ~/.Xresources ~/.Xresources.$(date -Idate).bak 2> /dev/null
+ln -svf "$(pwd)/.Xresources" ~/.Xresources
+
+mkdir -p ~/.urxvt/ext
+ln -svf "$(pwd)/.urxvt/ext/clipboard" ~/.urxvt/ext/clipboard
+
 mkdir -p ~/.moc/themes
 ln -svf "$(pwd)/.moc/config" ~/.moc/config
 ln -svf "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
