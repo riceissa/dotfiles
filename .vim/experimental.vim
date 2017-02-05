@@ -23,6 +23,8 @@ endif
 
 nnoremap <C-N> gj
 nnoremap <C-P> gk
+vnoremap <C-N> gj
+vnoremap <C-P> gk
 
 " Fix common typos where one character is stuck to the beginning of the next
 " word or the end of the last word.
