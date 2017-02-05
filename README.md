@@ -19,7 +19,6 @@ scripts; the rest are config files) then run `./install.sh` (which calls
 - add mutt
 - irssi
 - bitlbee
-- ensure vim/neovim/gvim all work nicely everywhere
 - newsbeuter: change cache size so all content can be backed up
   (actually I now think this might be done by default). Also figure out
   how to sync cache.db.
