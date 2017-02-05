@@ -37,11 +37,6 @@ vim todo:
 
 - learn how to move to fancy characters like `“` quickly; e.g. doing `f"` works to move to quotes, but moving to `“` would require `f<C-k>"6` which is cumbersome to type
 - learn to navigate japanese documents better
-- Description: The intention here is to produce a sane .vimrc that makes
-  both Vim and Neovim act in the same way. As such, where Neovim changes
-  a default option from that in Vim, this is set explicitly here. For a
-  more minimal configuration that is still very good, there is
-  sensible.vim: <https://github.com/tpope/vim-sensible>
 - figure out how to configure YCM; see [here](https://www.reddit.com/r/vim/comments/2ez19c/an_allaround_solution_for_ycms_ycm_extra_confpy/) and [here](https://github.com/vheon/dotvim/blob/5321347027c21e4c22dc6fcea4cc315052ed25f1/ycm.py) for some example config files.
 
 # History
