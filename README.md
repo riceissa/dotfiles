@@ -32,6 +32,9 @@ scripts; the rest are config files) then run `./install.sh` (which calls
   tmux. It's not a big deal, but I should fix it at some point. I tried
   [this](http://stackoverflow.com/questions/10535432/tmux-man-page-search-highlighting/10563271#10563271)
   but it didn't work.
+- figure out how to make key combinations like CTRL-Up and SHIFT-Up work under
+  various conditions (urxvt+tmux in emacs, urxvt in emacs, urxvt+tmux in Vim,
+  and so on).
 
 vim todo:
 
