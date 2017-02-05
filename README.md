@@ -5,13 +5,13 @@ programs. This repository supersedes previous program-specific
 configuration repositories like my old [Vim][vim-repo] and
 [Neovim][neovim-repo] repositories.
 
-All paths are relative to `~/`.
+All paths are relative to `$HOME`.
 
 To install, edit `install.sh` and `debian_software.py` (these are the main
 scripts; the rest are config files) then run `./install.sh` (which calls
 `debian_software.py`).
 
-## To-do
+## TODO
 
 - clarify license for each file (they're all *free* but I often work off
   the example provided by the software, and each software has a
