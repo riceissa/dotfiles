@@ -7,6 +7,7 @@ promptFunc() {
     echo "$(date -Iseconds) $(hostname) $PWD $(history 1)" \
         >> ~/.full_history
 
+    histline=$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//' | sed 's/[^[:print:]]//g')
     case "$TERM" in
         screen*)
             # Display the previous command in the title. This is so that arbtt
@@ -15,10 +16,10 @@ promptFunc() {
             # more. Note that the escape sequence is different from the one
             # given in that page, because tmux uses a different escape
             # sequence.
-            printf "\\033k$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//')\\033\\\\";
+            printf "\\033k$histline\\033\\\\";
             ;;
         xterm*)
-            printf "\\033]2;$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//')\\033\\\\";
+            printf "\\033]2;$histline\\007";
             ;;
     esac
 }
