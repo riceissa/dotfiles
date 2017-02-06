@@ -398,3 +398,9 @@ xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-X>     <Plug>SpeedDatingNowLocal
+
+" This is so that Vim will set the title in tmux
+if &term =~ "screen"
+  set t_ts=k
+  set t_fs=\
+endif

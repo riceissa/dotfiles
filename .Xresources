@@ -29,6 +29,11 @@ URxvt.keysym.C-M-c: builtin-string:
 URxvt.keysym.C-M-v: builtin-string:
 URxvt.keysym.M-s: builtin-string:
 
+URxvt.keysym.S-Up:    string:\033[1;2A
+URxvt.keysym.S-Down:  string:\033[1;2B
+URxvt.keysym.S-Right: string:\033[1;2C
+URxvt.keysym.S-Left:  string:\033[1;2D
+
 /* Solarized light from
  * https://github.com/solarized/xresources/blob/master/Xresources.light */
 #define S_base03        #002b36
