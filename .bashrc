@@ -7,7 +7,7 @@ promptFunc() {
     echo "$(date -Iseconds) $(hostname) $PWD $(history 1)" \
         >> ~/.full_history
 
-    histline=$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//' | sed 's/[^[:print:]]//g')
+    histline=$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//' | sed 's/[^[:print:]]//g' | sed 's/[ \t]*$//')
     case "$TERM" in
         screen*)
             # Display the previous command in the title. This is so that arbtt
