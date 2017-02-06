@@ -45,6 +45,9 @@ ln -svf "$(pwd)/.tmux.conf" ~/.tmux.conf
 mv -v ~/.Xresources ~/.Xresources.$(date -Idate).bak 2> /dev/null
 ln -svf "$(pwd)/.Xresources" ~/.Xresources
 
+mkdir -p ~/.arbtt
+ln -svf "$(pwd)/.arbtt/categorize.cfg" ~/.arbtt/categorize.cfg
+
 mkdir -p ~/.urxvt/ext
 ln -svf "$(pwd)/.urxvt/ext/clipboard" ~/.urxvt/ext/clipboard
 
