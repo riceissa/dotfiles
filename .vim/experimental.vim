@@ -401,6 +401,6 @@ nmap d<C-X>     <Plug>SpeedDatingNowLocal
 
 " This is so that Vim will set the title in tmux
 if &term =~ "screen"
-  set t_ts=k
-  set t_fs=\
+  exec "set t_ts=\<Esc>k"
+  exec "set t_fs=\<Esc>\\"
 endif
