@@ -16,10 +16,10 @@ promptFunc() {
             # more. Note that the escape sequence is different from the one
             # given in that page, because tmux uses a different escape
             # sequence.
-            printf "\\033k$histline\\033\\\\";
+            printf "\\033k\\033\\\\";
             ;;
         xterm*)
-            printf "\\033]2;$histline\\007";
+            printf "\\033]2;\\007";
             ;;
     esac
 }
