@@ -384,6 +384,21 @@ iabbrev REmove Remove
 
 autocmd FileType markdown setlocal textwidth=79
 autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal filetype=haskell
+" From defaults.vim
+" Put these in an autocmd group, so that you can revert them with:
+" ":augroup vimStartup | au! | augroup END"
+augroup vimStartup
+  au!
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+augroup END
 
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
@@ -400,6 +415,7 @@ nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-X>     <Plug>SpeedDatingNowLocal
 
 " This is so that Vim will set the title in tmux
+" Neovim doesn't seem to have &term or t_ts, t_fs so this doesn't work.
 if &term =~ "screen"
   exec "set t_ts=\<Esc>k"
   exec "set t_fs=\<Esc>\\"
