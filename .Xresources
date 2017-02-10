@@ -76,7 +76,8 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 
 !! yellow dark/light
 *color3:                S_yellow
-*color11:               S_base00
+! *color11:               S_base00
+*color11:               #fce94f
 
 !! blue dark/light
 *color4:                S_blue
