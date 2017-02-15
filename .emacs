@@ -7,13 +7,21 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; (require 'evil)
-;; (evil-mode 1)
+(require 'evil)
+(evil-mode 1)
 ;; (define-key evil-insert-state-map (kbd "C-a") nil)
 ;; (define-key evil-insert-state-map (kbd "C-d") nil)
 ;; (define-key evil-insert-state-map (kbd "C-e") nil)
 ; (evil-set-initial-state 'org-mode 'emacs)
+
+;; Start in emacs state
 (setq evil-default-state 'emacs)
+;; Never use insert state; use emacs state instead for any command that invokes
+;; insert state. C-z can be used to toggle between normal and emacs states.
+(defalias 'evil-insert-state 'evil-emacs-state)
+;; I already have cursor-type defined below, but evil mode seems to not use
+;; that, so make sure cursor is a bar in emacs state
+(setq evil-emacs-state-cursor 'bar)
 
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
