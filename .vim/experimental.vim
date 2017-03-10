@@ -305,7 +305,7 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
 inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
-imap <C-G><C-V> <Plug>CuaccpICGCV
+imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
 nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
 vnoremap <silent> Q :!pdftextfmt<CR>gqq
