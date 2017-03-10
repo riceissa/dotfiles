@@ -14,6 +14,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-autolink'
+Plug 'riceissa/vim-cuaccp'
 Plug 'riceissa/vim-emacsctrll'
 Plug 'riceissa/vim-longmove'
 Plug 'riceissa/vim-markdown'
