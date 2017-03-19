@@ -4,20 +4,20 @@ URxvt.italicFont: xft:Source Code Pro:style=Italic:size=10
 URxvt.geometry: 88x37
 
 URxvt.letterSpace: -1
-/* URxvt.depth: 0 */
+! URxvt.depth: 0
 Xft.hinting: true
-/* Xft.hintstyle: hintslight */
-/* Xft.antialias: false */
+! Xft.hintstyle: hintslight
+! Xft.antialias: false
 URxvt*scrollBar: false
-/* Compared to uxterm or MATE Terminal, urxvt seems to put more space between
- * lines. I'm not sure why this happens, since lineSpace should be 0 by default
- * and negative numbers don't work. The end result is that I have to decrease
- * the font size a little to get the same number of lines as in the other
- * terminals. */
-/* URxvt*lineSpace: -5 */
+! Compared to uxterm or MATE Terminal, urxvt seems to put more space between
+! lines. I'm not sure why this happens, since lineSpace should be 0 by default
+! and negative numbers don't work. The end result is that I have to decrease
+! the font size a little to get the same number of lines as in the other
+! terminals.
+! URxvt*lineSpace: -5
 URxvt.cursorBlink: true
-/* For Source Code Pro */
-/* URxvt.geometry: 88x37 */
+! For Source Code Pro
+! URxvt.geometry: 88x37
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
@@ -27,7 +27,7 @@ URxvt.perl-ext-common: default,clipboard
 URxvt.keysym.C-C: perl:clipboard:copy
 URxvt.keysym.C-V: perl:clipboard:paste
 
-/* Disable some mappings that urxvt includes by default */
+! Disable some mappings that urxvt includes by default
 URxvt.keysym.C-M-c: builtin-string:
 URxvt.keysym.C-M-v: builtin-string:
 URxvt.keysym.M-s: builtin-string:
@@ -37,8 +37,8 @@ URxvt.keysym.S-Down:  string:\033[1;2B
 URxvt.keysym.S-Right: string:\033[1;2C
 URxvt.keysym.S-Left:  string:\033[1;2D
 
-/* Solarized light from
- * https://github.com/solarized/xresources/blob/master/Xresources.light */
+! Solarized light from
+! https://github.com/solarized/xresources/blob/master/Xresources.light
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75
@@ -49,7 +49,7 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 #define S_base3         #fdf6e3
 
 *background:            S_base3
-/* *foreground:            S_base00 */
+! *foreground:            S_base00
 *foreground: #384144
 *fadeColor:             S_base3
 *cursorColor:           S_base01
@@ -65,35 +65,35 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 #define S_cyan          #2aa198
 #define S_green         #859900
 
-!! black dark/light
+! black dark/light
 *color0:                S_base02
 *color8:                S_base03
 
-!! red dark/light
+! red dark/light
 *color1:                S_red
 *color9:                S_orange
 
-!! green dark/light
+! green dark/light
 *color2:                S_green
 *color10:               S_base01
 
-!! yellow dark/light
+! yellow dark/light
 *color3:                S_yellow
 ! *color11:               S_base00
 *color11:               #fce94f
 
-!! blue dark/light
+! blue dark/light
 *color4:                S_blue
 *color12:               S_base0
 
-!! magenta dark/light
+! magenta dark/light
 *color5:                S_magenta
 *color13:               S_violet
 
-!! cyan dark/light
+! cyan dark/light
 *color6:                S_cyan
 *color14:               S_base1
 
-!! white dark/light
+! white dark/light
 *color7:                S_base2
 *color15:               S_base3
