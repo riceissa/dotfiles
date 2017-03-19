@@ -21,8 +21,8 @@ URxvt.cursorBlink: true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
 
-/* Allow copying to the clipboard with Ctrl-Shift-c. This requires installing
- * the clipboard extension. */
+! Allow copying to and pasting from the clipboard with Ctrl-Shift-c and
+! Ctrl-Shift-v. This requires installing the clipboard extension.
 URxvt.perl-ext-common: default,clipboard
 URxvt.keysym.C-C: perl:clipboard:copy
 URxvt.keysym.C-V: perl:clipboard:paste
