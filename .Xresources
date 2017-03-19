@@ -10,8 +10,8 @@ Xft.hinting: true
 ! Xft.antialias: false
 URxvt*scrollBar: false
 ! Compared to uxterm or MATE Terminal, urxvt seems to put more space between
-! lines. I'm not sure why this happens, since lineSpace should be 0 by default
-! and negative numbers don't work. The end result is that I have to decrease
+! lines. I’m not sure why this happens, since lineSpace should be 0 by default
+! and negative numbers don’t work. The end result is that I have to decrease
 ! the font size a little to get the same number of lines as in the other
 ! terminals.
 ! URxvt*lineSpace: -5
