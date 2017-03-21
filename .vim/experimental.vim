@@ -307,8 +307,10 @@ inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
-nnoremap <silent> Q Vip:!pdftextfmt<CR>gqq
-vnoremap <silent> Q :!pdftextfmt<CR>gqq
+nnoremap <silent> gQ Vip:!pdftextfmt<CR>gqq
+vnoremap <silent> gQ :!pdftextfmt<CR>gqq
+nnoremap <silent> Q gwip
+vnoremap <silent> Q gw
 
 " From Tim Pope:
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
