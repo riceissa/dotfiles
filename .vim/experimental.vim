@@ -227,33 +227,6 @@ endfunction
 " so that the characters in question stand out.
 nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 
-" From justinmk/config. See https://github.com/tpope/vim-rsi/pull/17/files for
-" more details.
-function! s:ctrl_u() abort
-  if getcmdpos() > 1
-    let @- = getcmdline()[:getcmdpos()-2]
-  endif
-  return "\<C-U>"
-endfunction
-
-function! s:ctrl_w_before() abort
-  let s:cmdline = getcmdpos() > 1 ? getcmdline() : ""
-  return "\<C-W>"
-endfunction
-
-function! s:ctrl_w_after() abort
-  if strlen(s:cmdline) > 0
-    let @- = s:cmdline[(getcmdpos()-1) : (getcmdpos()-2)+(strlen(s:cmdline)-strlen(getcmdline()))]
-  endif
-  return ""
-endfunction
-
-cnoremap <expr> <C-U> <SID>ctrl_u()
-cnoremap <expr> <SID>(ctrl_w_before) <SID>ctrl_w_before()
-cnoremap <expr> <SID>(ctrl_w_after) <SID>ctrl_w_after()
-cmap   <script> <C-W> <SID>(ctrl_w_before)<SID>(ctrl_w_after)
-cnoremap        <C-Y> <C-R>-
-
 inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
 function! s:ListDate()
     let date_fmts = [
