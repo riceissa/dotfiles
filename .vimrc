@@ -5,7 +5,6 @@ set nocompatible
 " YouCompleteMe, which needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized' " Only for gvim
-Plug 'chrisbra/unicode.vim'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
