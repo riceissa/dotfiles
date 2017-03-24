@@ -1,0 +1,22 @@
+#!/bin/bash
+
+file="$HOME/UnicodeData.txt"
+url="http://www.unicode.org/Public/UNIDATA/UnicodeData.txt"
+
+# Download UnicodeData.txt if it is not in the expected location
+if [ ! -f "$file" ]; then
+    if command -v wget >/dev/null 2>&1; then
+        wget "$url" -O "$file"
+    elif command -v curl >/dev/null 2>&1; then
+        curl -fLo "$file" "$url"
+    fi
+fi
+
+if [ -f "$file" ]; then
+    if command -v fzf >/dev/null 2>&1; then
+        cat "$file" | fzf
+    else
+        read -p'Type search term: ' x
+        cat "$file" | grep -i "$x"
+    fi
+fi
