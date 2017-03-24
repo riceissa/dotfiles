@@ -4,7 +4,9 @@ set nocompatible
 " just do :PlugInstall in Vim to install the plugins. The exception is
 " YouCompleteMe, which needs to be compiled; see below for more.
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized' " Only for gvim
+if has("gui_running")
+  Plug 'altercation/vim-colors-solarized' " Only for gvim
+endif
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
