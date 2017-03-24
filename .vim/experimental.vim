@@ -234,7 +234,6 @@ endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
-
 imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
 nnoremap <silent> gQ Vip:!pdftextfmt<CR>gqq
