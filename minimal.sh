@@ -14,10 +14,11 @@ stty -ixon
 EOF
 
 cat <<'EOF' >> ~/.tmux.conf
-set -s escape-time 0
-unbind C-b
-set -g prefix C-Space
-bind C-Space send-prefix
+set-option -g default-terminal "screen-256color"
+set-option -s escape-time 0
+set-option -g prefix C-Space
+unbind-key C-b
+bind-key C-Space send-prefix
 EOF
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
