@@ -181,12 +181,10 @@ if has('autocmd')
     " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
     " the Markdown is written.
     autocmd FileType markdown setlocal expandtab shiftwidth=4 textwidth=79
-    " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not python
-    " support. However, the omnifunc check above tries to use
-    " pythoncomplete#Complete here, which doesn't exist since there is no
-    " python support. The solution is to force the python3 complete function.
-    " (This is my guess as to what is going on, and will allow completion to
-    " work, but I haven't investigated this issue in detail.)
+    " In some versions, when Vim is compiled with python3 support but not
+    " python support, the omnifunc check above tries to use
+    " pythoncomplete#Complete, which doesn't exist since there is no python
+    " support. The solution is to force the python3 complete function.
     if has('python3')
       autocmd FileType python setlocal omnifunc=python3complete#Complete
     endif
