@@ -170,15 +170,6 @@ function! s:CommandlineComplete(cmdtype)
   return ''
 endfunction
 
-" %% and :FindNonAscii are sort of the "old way" to do things. I'm wondering
-" if commandline mode <C-X><C-U> could replace both of them in a unified way.
-" Keeping both in the experimental section to see what I prefer over time.
-
-" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
-" particular version is modified from
-" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
-cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
-
 " This map makes it easier to search across linebreaks. If you want to
 " search for "hello there" but there might be a linebreak in between
 " the "hello" and the "there", you will have to do something like

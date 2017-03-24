@@ -107,6 +107,11 @@ endif
 " so that the characters in question stand out.
 nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 
+" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
+" particular version is modified from
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
+cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
+
 inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
 function! s:ListDate()
     let date_fmts = [
