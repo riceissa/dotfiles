@@ -100,6 +100,13 @@ if has('nvim') && maparg('<Leader>K', 'n') ==# ''
   noremap <Leader>K :Man<CR>
 endif
 
+" Quickly find potentially problematic characters (things like non-printing
+" ASCII, exotic whitespace, and lookalike Unicode letters). This may be
+" combined with something like
+"     :setlocal nospell hlsearch syntax=OFF
+" so that the characters in question stand out.
+nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
+
 if exists('&inccommand')
   set inccommand=split
 endif

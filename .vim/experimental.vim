@@ -220,13 +220,6 @@ function! s:InclusiveSpace(cmdtype)
   return l:result
 endfunction
 
-" Quickly find potentially problematic characters (things like non-printing
-" ASCII, exotic whitespace, and lookalike Unicode letters). This is best used
-" along with
-"     :setlocal nospell hlsearch syntax=OFF
-" so that the characters in question stand out.
-nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
-
 inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
 function! s:ListDate()
     let date_fmts = [
