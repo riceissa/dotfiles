@@ -198,9 +198,6 @@ if has('autocmd')
   augroup END
 endif
 
-let g:autolink_executable = '/home/issa/projects/autolink/autolink.py'
-let g:autolink_download_provider = 'curl -L --silent --compressed'
-
 if filereadable(expand('~/.vim/experimental.vim'))
   source ~/.vim/experimental.vim
 endif
