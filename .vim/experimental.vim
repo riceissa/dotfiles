@@ -220,26 +220,6 @@ function! s:InclusiveSpace(cmdtype)
   return l:result
 endfunction
 
-inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
-function! s:ListDate()
-    let date_fmts = [
-          \ "%F",
-          \ "%B %-d, %Y",
-          \ "%B %Y",
-          \ "%F %a",
-          \ "%F %a %H:%M",
-          \ "%-d %B %Y",
-          \ "%Y-%m-%d %H:%M:%S",
-          \ "%a, %d %b %Y %H:%M:%S %z",
-          \ "%Y %b %d",
-          \ "%d-%b-%y",
-          \ "%a %b %d %T %Z %Y"
-          \ ]
-    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-    call complete(col('.'), compl_lst)
-    return ''
-endfunction
-
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
 inoremap <C-G><C-D> <C-\><C-O>"-dE
