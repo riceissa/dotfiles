@@ -234,7 +234,6 @@ endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
-inoremap <expr> <C-C> pumvisible() ? '<C-E>' : '<C-C>'
 
 imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
