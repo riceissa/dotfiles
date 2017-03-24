@@ -15,12 +15,6 @@ function! s:GQ(tw, command)
   endif
 endfunction
 
-" From defaults.vim; see also :help :DiffOrig
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                  \ | wincmd p | diffthis
-endif
-
 nnoremap <C-N> gj
 nnoremap <C-P> gk
 vnoremap <C-N> gj
