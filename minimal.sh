@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Modified from http://www.jefftk.com/p/you-should-be-logging-shell-history
 cat <<'EOF' >> ~/.bashrc
+# Modified from <https://www.jefftk.com/p/you-should-be-logging-shell-history>
 promptFunc() {
     # right before prompting for the next command, save the previous
     # command in a file.
