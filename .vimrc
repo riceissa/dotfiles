@@ -120,6 +120,7 @@ let g:tex_flavor='latex'
 if has('autocmd')
   augroup my_init
     autocmd!
+    autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal filetype=haskell
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
@@ -141,7 +142,7 @@ if has('autocmd')
     autocmd FileType make setlocal noexpandtab
     " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
     " the Markdown is written.
-    autocmd FileType markdown setlocal expandtab shiftwidth=4
+    autocmd FileType markdown setlocal expandtab shiftwidth=4 textwidth=79
     " In Ubuntu 16.04, vim-gtk is compiled with python3 support but not python
     " support. However, the omnifunc check above tries to use
     " pythoncomplete#Complete here, which doesn't exist since there is no

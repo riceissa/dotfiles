@@ -299,9 +299,7 @@ vnoremap K <nop>
 iabbrev ADd Add
 iabbrev REmove Remove
 
-autocmd FileType markdown setlocal textwidth=79
 autocmd FileType xdefaults setlocal commentstring=!%s
-autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal filetype=haskell
 " From defaults.vim
 " Put these in an autocmd group, so that you can revert them with:
 " ":augroup vimStartup | au! | augroup END"
