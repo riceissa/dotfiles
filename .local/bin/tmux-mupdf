@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Open a PDF with MuPDF in a separate tmux session so that it doesn't clutter
+# up the current shell with a bunch of background jobs.
+
+# Start a new tmux session if there isn't one already
+tmux has-session -t mupdf_dump 2> /dev/null || tmux new-session -s mupdf_dump -d
+tmux send -l -t mupdf_dump.0 "mupdf " "'""$1""'" " &"
+tmux send -t mupdf_dump.0 ENTER
