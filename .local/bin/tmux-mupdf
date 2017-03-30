@@ -5,5 +5,7 @@
 
 # Start a new tmux session if there isn't one already
 tmux has-session -t mupdf_dump 2> /dev/null || tmux new-session -s mupdf_dump -d
-tmux send -l -t mupdf_dump.0 "mupdf " "'""$PWD/$1""'" " &"
+file="$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+# Use "command" to disable the alias
+tmux send -l -t mupdf_dump.0 "command mupdf -C FDF6E3 " "'""$file""'" " &"
 tmux send -t mupdf_dump.0 ENTER
