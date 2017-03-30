@@ -46,7 +46,7 @@ export PATH
 
 alias ls='ls --color=auto'
 alias swapswap='sudo swapoff -a && sudo swapon -a'
-alias mupdf='mupdf -C FDF6E3'
+alias mupdf='tmux-mupdf'
 
 stty -ixon
 
