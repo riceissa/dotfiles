@@ -5,5 +5,5 @@
 
 # Start a new tmux session if there isn't one already
 tmux has-session -t mupdf_dump 2> /dev/null || tmux new-session -s mupdf_dump -d
-tmux send -l -t mupdf_dump.0 "mupdf " "'""$1""'" " &"
+tmux send -l -t mupdf_dump.0 "mupdf " "'""$PWD/$1""'" " &"
 tmux send -t mupdf_dump.0 ENTER
