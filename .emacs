@@ -99,3 +99,7 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(setq c-default-style "linux")
+(add-hook 'c-mode-hook '(lambda ()
+                         (setq indent-tabs-mode t)
+                         (setq tab-width 8)))
