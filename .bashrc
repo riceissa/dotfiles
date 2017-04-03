@@ -45,7 +45,6 @@ export PATH
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 
 alias ls='ls --color=auto'
-alias swapswap='sudo swapoff -a && sudo swapon -a'
 alias mupdf='tmux-mupdf'
 
 stty -ixon
