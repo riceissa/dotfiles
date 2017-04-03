@@ -88,6 +88,14 @@
             buffer-file-name
             "; git commit -m 'snapshot'"))))
 
+(defun stage-and-commit-snapshot ()
+  "Use Git to stage and commit the current file"
+  (interactive)
+  (shell-command
+    (concat "git add "
+            buffer-file-name
+            "&& git commit -m 'snapshot'")))
+
 (ido-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-c f") 'company-complete)
