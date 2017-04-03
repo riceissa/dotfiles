@@ -50,7 +50,7 @@ alias mupdf='tmux-mupdf'
 
 stty -ixon
 
-# Set ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# Set ag as the default source for fzf if it exists
+command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_R_OPTS='-e'
