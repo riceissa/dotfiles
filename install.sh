@@ -37,6 +37,8 @@ mv -v $XDG_CONFIG_HOME/nvim $XDG_CONFIG_HOME/nvim.$(date -Idate).bak 2> /dev/nul
 ln -svf ~/.vim $XDG_CONFIG_HOME/nvim
 ln -svf ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
 
+ln -svf "$(pwd)/.vim/experimental.vim" ~/.vim/experimental.vim
+
 ln -svf "$(pwd)/.tmux.conf" ~/.tmux.conf
 # tmux doesn't read from .bashrc so copy contents to .bash_profile
 # Actually I don't think this is necessary?
