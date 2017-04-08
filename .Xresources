@@ -9,6 +9,7 @@ URxvt*scrollBar: false
 URxvt.cursorBlink: false
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+URxvt.pointerBlank: true
 
 ! Allow copying to and pasting from the clipboard with Ctrl-Shift-c and
 ! Ctrl-Shift-v. This requires installing the clipboard extension.
