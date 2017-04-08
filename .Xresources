@@ -11,6 +11,7 @@ URxvt.iso14755: false
 URxvt.iso14755_52: false
 ! Hide mouse pointer
 URxvt.pointerBlank: true
+URxvt.pointerBlankDelay: 987654321
 
 ! Allow copying to and pasting from the clipboard with Ctrl-Shift-c and
 ! Ctrl-Shift-v. This requires installing the clipboard extension.
