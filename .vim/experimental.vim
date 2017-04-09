@@ -140,30 +140,6 @@ if has('digraphs')
   exe 'digraph >) 10217'
 endif
 
-cnoremap <expr> <C-X><C-U> '<C-F>i<C-R>=<SID>CommandlineComplete("' . getcmdtype() . '")<CR>'
-
-function! s:CommandlineComplete(cmdtype)
-  if a:cmdtype == ':'
-    " You'd think expand('%:h') would work, but the commandline window itself has
-    " a filename and directory ('.') assigned to it, so you need to use the
-    " previous buffer.
-    let compl_lst = [
-          \ {"word": fnameescape(expand('#:h')).'/'},
-          \ {"word": 'exe "$normal o\<esc>" | g/./,/^$/join | %s/\s\+$//', "menu": "Join each para into one line"},
-          \ {"word": '%s/\s\+$//', "menu": "Strip trailing whitespace"},
-          \ ]
-    call complete(col('.'), compl_lst)
-  elseif a:cmdtype == '/' || a:cmdtype == '?'
-    let compl_lst = [
-          \ {"word": '[^\d32-\d126]', "menu": "Not printable ASCII"},
-          \ {"word": '\s\+$', "menu": "Trailing whitespace"},
-          \ {"word": '\c\<todo\>', "menu": "TODO"},
-          \ ]
-    call complete(col('.'), compl_lst)
-  endif
-  return ''
-endfunction
-
 " This map makes it easier to search across linebreaks. If you want to
 " search for "hello there" but there might be a linebreak in between
 " the "hello" and the "there", you will have to do something like
