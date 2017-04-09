@@ -241,15 +241,6 @@ vnoremap <silent> gQ :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR
 nnoremap <silent> Q gwip
 vnoremap <silent> Q gw
 
-" From Tim Pope:
-" <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
-nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
-
-" The 'else' case here is just :DiffOrig
-nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>vert new<Bar>set buftype=nofile<Bar>read ++edit #<Bar>0d_<Bar>diffthis<Bar>wincmd p<Bar>diffthis<Bar>endif<CR>
-
-nnoremap <silent> <C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
-
 vnoremap K <nop>
 
 iabbrev ADd Add
