@@ -1,7 +1,7 @@
 " Dump the values of all settings that either sensible.vim or Neovim alters.
 " Use as follows:
 "    vim -c 'source dump_union_settings.vim|write out.txt|quit'
-redir @a
+function Out()
 filetype
 if has('syntax') && exists('g:syntax_on')
   echo "syntax: " . g:syntax_on
@@ -44,6 +44,10 @@ set wildmenu?
 
 nmap <C-L>
 imap <C-U>
+endfunction
+
+redir @a
+silent call Out()
 redir END
 put a
 
