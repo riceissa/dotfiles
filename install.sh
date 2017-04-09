@@ -27,7 +27,6 @@ mv -v ~/.vimrc ~/.vimrc.$(date -Idate).bak 2> /dev/null
 mv -v ~/.gvimrc ~/.gvimrc.$(date -Idate).bak 2> /dev/null
 ln -svf "$(pwd)/.vimrc" ~/.vimrc
 ln -svf "$(pwd)/.gvimrc" ~/.gvimrc
-ln -svf "$(pwd)/.ycm_extra_conf.py" ~/.ycm_extra_conf.py
 
 pip install --user neovim
 

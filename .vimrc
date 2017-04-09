@@ -34,13 +34,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-" Plug 'davidhalter/jedi-vim', {'for': ['python']}
-" YouCompleteMe doesn't work with just :PlugInstall, so compile it as follows
-" after calling :PlugInstall in Vim (which is still necessary since we have to
-" clone various repositories).
-"     cd ~/.vim/plugged/YouCompleteMe
-"     ./install.py --clang-completer
-" Plug 'Valloric/YouCompleteMe', {'for': ['python']}
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
