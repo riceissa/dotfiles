@@ -2,7 +2,7 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-; For installing packages
+; For installing packages. The packages that I use are magit, company, smex
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
