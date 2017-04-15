@@ -14,6 +14,10 @@
 ;; repository rather than melpa. The package is called emacs-mozc.
 (require 'mozc)
 
+;; Use IPAexGothic for Japanese text. From
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Fontsets.html
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic"))
+
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
 (custom-set-variables
