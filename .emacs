@@ -7,6 +7,10 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+;; For Japanese input. I like to install this from the Ubuntu
+;; repository rather than melpa. The package is called emacs-mozc.
+(require 'mozc)
+
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
 
 (custom-set-variables
