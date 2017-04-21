@@ -60,6 +60,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
+ '(package-selected-packages (quote (markdown-mode smex magit company)))
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
  '(sentence-end-double-space nil)
