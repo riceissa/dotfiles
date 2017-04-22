@@ -5,7 +5,7 @@
 (setq initial-frame-alist
           '((width . 84) (height . 37)))
 
-; For installing packages. The packages that I use are magit, company, smex
+; For installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
