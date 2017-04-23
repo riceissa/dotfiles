@@ -6,22 +6,6 @@ promptFunc() {
     # command in a file.
     echo "$(date -Iseconds) $(hostname) $PWD $(history 1)" \
         >> ~/.full_history
-
-    histline=$(history 1 | sed 's/^[ ]*[0-9]*[ ]*//' | sed 's/[^[:print:]]//g' | sed 's/[ \t]*$//')
-    case "$TERM" in
-        screen*)
-            # Display the previous command in the title. This is so that arbtt
-            # can access this information. See
-            # <http://arbtt.nomeata.de/doc/users_guide/effective-use.html> for
-            # more. Note that the escape sequence is different from the one
-            # given in that page, because tmux uses a different escape
-            # sequence.
-            printf "\\033k\\033\\\\";
-            ;;
-        xterm*)
-            printf "\\033]2;\\007";
-            ;;
-    esac
 }
 PROMPT_COMMAND=promptFunc
 

@@ -252,10 +252,3 @@ xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-X>     <Plug>SpeedDatingNowLocal
-
-" This is so that Vim will set the title in tmux
-" Neovim doesn't seem to have &term or t_ts, t_fs so this doesn't work.
-if &term =~ "screen"
-  exec "set t_ts=\<Esc>k"
-  exec "set t_fs=\<Esc>\\"
-endif
