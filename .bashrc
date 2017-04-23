@@ -15,7 +15,6 @@ export HISTSIZE=10000
 # file.
 export HISTFILESIZE=
 
-export EDITOR="vim"
 export GOPATH=/home/issa/go/packages
 PLAN9=/home/issa/projects/plan9port export PLAN9
 
