@@ -22,8 +22,8 @@ tmux has-session -t keep_vim_mutt 2> /dev/null || tmux new-session -s keep_vim_m
 
 tmux new-window -t keep_vim_mutt 'vim -c quit'
 tmux new-window -t keep_vim_mutt 'mutt -F /dev/null -e "exec quit"'
-# tmux new-window -t keep_vim_mutt 'sleep 30'
 
-# sleep 1 # wait for prompt
-# Quit the bash shell, which is window 0
-# tmux send-keys -t keep_vim_mutt:0 'exit' Enter
+# Bash
+tmux new-window -t keep_vim_mutt
+sleep 3 # wait for prompt
+tmux send-keys -t keep_vim_mutt exit ENTER
