@@ -108,6 +108,19 @@
             buffer-file-name
             "&& git commit -m 'snapshot'")))
 
+(defun paste-clipboard ()
+  "Use xsel to paste content of clipboard at point"
+  (interactive)
+  (insert (shell-command-to-string "xsel -ob")))
+
+(defun copy-clipboard ()
+  "Use xsel to copy region into clipboard"
+  (interactive)
+  (shell-command-on-region
+   (region-beginning)
+   (region-end)
+   "xsel -ib"))
+
 (ido-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-c f") 'company-complete)
