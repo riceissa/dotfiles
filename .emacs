@@ -19,6 +19,7 @@
 (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic"))
 
 (add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
+(global-set-key (kbd "C-c s") 'flyspell-auto-correct-previous-word)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -132,6 +133,7 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 ;; This is your old M-x.
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
 (setq c-default-style "linux")
 (add-hook 'c-mode-hook '(lambda ()
                          (setq indent-tabs-mode t)
