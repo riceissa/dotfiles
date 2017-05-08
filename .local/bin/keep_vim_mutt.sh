@@ -2,8 +2,8 @@
 # First version written on or around December 4, 2016.
 #
 # This script is to be run periodically (e.g. each minute as a cron job) to
-# keep Vim and Mutt cached and ever-present in memory. This way, it is very
-# quick to split a new tmux window and write an email.
+# keep Vim, Mutt, and bash cached and ever-present in memory. This way, it is
+# very quick to split a new tmux window and write an email.
 #
 # For some reason, running 'vim -c quit' prints some escape sequences to
 # stdout. Redirecting with 'vim -c quit &> /dev/null' works, but it takes over
