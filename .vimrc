@@ -144,8 +144,14 @@ function! s:ColorListChars()
     " Changing ctermbg is useful for seeing tab with :set list
     if &background ==# "dark"
       highlight SpecialKey ctermfg=LightGray ctermbg=DarkGray
+      if has('nvim')
+        highlight Whitespace ctermfg=LightGray ctermbg=DarkGray
+      endif
     else
       highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
+      if has('nvim')
+        highlight Whitespace ctermfg=DarkGray ctermbg=LightGray
+      endif
     endif
   endif
 endfunction
