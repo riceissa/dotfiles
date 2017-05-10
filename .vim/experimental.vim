@@ -247,8 +247,10 @@ let g:surround_{char2nr('Q')} = "‘\r’"
 " speeddating seems to override my mapping.
 let g:speeddating_no_mappings = 1
 nmap  <C-A>     <Plug>SpeedDatingUp
-nmap  <C-X>     <Plug>SpeedDatingDown
+nmap  <C-S>     <Plug>SpeedDatingDown
 xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
-nmap d<C-X>     <Plug>SpeedDatingNowLocal
+nmap d<C-S>     <Plug>SpeedDatingNowLocal
+
+nnoremap <C-X><C-F> :FZF<CR>
