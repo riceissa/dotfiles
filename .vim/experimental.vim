@@ -183,6 +183,14 @@ endfunction
 
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
+cnoremap <C-G><C-K> <C-\>eCmdlineKillToEnd()<CR>
+function! CmdlineKillToEnd()
+  let cmd = getcmdline()
+  " subtract two because right index is inclusive and because getcmdpos()
+  " starts at 1
+  return cmd[0 : getcmdpos()-2]
+endfunction
+cnoremap <C-X><C-F> <C-F>
 inoremap <C-G><C-D> <C-\><C-O>"-dE
 " Reverse the effects of 'textwidth' in insert mode. This is useful if most of
 " the lines in a file have one textwidth but a couple have a different one
