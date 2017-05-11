@@ -261,4 +261,6 @@ xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-S>     <Plug>SpeedDatingNowLocal
 
+nnoremap <C-X> <nop>
+
 nnoremap <C-X><C-F> :FZF<CR>
