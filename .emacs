@@ -125,6 +125,7 @@
 (ido-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
 (global-set-key (kbd "C-c f") 'company-complete)
+(setq company-idle-delay nil)
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
