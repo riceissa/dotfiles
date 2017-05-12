@@ -264,3 +264,12 @@ nmap d<C-S>     <Plug>SpeedDatingNowLocal
 nnoremap <C-X> <nop>
 
 nnoremap <C-X><C-F> :FZF<CR>
+
+inoremap <M-q> <C-\><C-O>gwip
+nnoremap <M-q> gwip
+vnoremap <M-q> gw
+if !has("gui_running") && !has('nvim')
+  silent! exe "set <F36>=\<Esc>q"
+  map! <F36> <M-q>
+  map <F36> <M-q>
+endif
