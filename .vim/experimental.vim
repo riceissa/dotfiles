@@ -1,20 +1,3 @@
-" Make gq and gw accept a count in visual mode. So 72gq formats as if
-" 'textwidth' is 72 regardless of what value it actually is. When no count is
-" given, the commands work as usual.
-vnoremap <silent> gq :<C-U>call <SID>GQ(v:count, 'gq')<CR>
-vnoremap <silent> gw :<C-U>call <SID>GQ(v:count, 'gw')<CR>
-
-function! s:GQ(tw, command)
-  if v:count > 0
-    let tmp = &tw
-    let &tw = a:tw
-    exe 'normal! gv' . a:command
-    let &tw = tmp
-  else
-    exe 'normal! gv' . a:command
-  endif
-endfunction
-
 " Fix common typos where one character is stuck to the beginning of the next
 " word or the end of the last word.
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
