@@ -69,10 +69,17 @@ inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
 cnoremap <C-G><C-K> <C-\>eCmdlineKillToEnd()<CR>
 function! CmdlineKillToEnd()
-  let cmd = getcmdline()
-  " subtract two because right index is inclusive and because getcmdpos()
-  " starts at 1
-  return cmd[0 : getcmdpos()-2]
+  let pos = getcmdpos()
+  if pos == 1
+    " Vim's string indexing is messed up so I think we need a special case
+    " here. cmd[0 : -1] would select the whole string.
+    return ""
+  else
+    let cmd = getcmdline()
+    " subtract two because right index is inclusive and because getcmdpos()
+    " starts at 1
+    return cmd[0 : pos-2]
+  endif
 endfunction
 cnoremap <C-X><C-F> <C-F>
 inoremap <C-G><C-D> <C-\><C-O>"-dE
