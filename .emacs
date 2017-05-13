@@ -86,7 +86,6 @@
 (global-set-key (kbd "C-x s")
                 '(lambda () (interactive)
                    (magit-stage-file buffer-file-name)
-                   (split-window-below)
                    (magit-commit)))
 
 (defun paste-clipboard ()
