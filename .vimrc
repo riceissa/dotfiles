@@ -127,7 +127,7 @@ nmap <silent> <C-X>g :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')
 " The 'else' case here is just :DiffOrig
 nnoremap <silent> <C-X><C-D> :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>vert new<Bar>set buftype=nofile<Bar>read ++edit #<Bar>0d_<Bar>diffthis<Bar>wincmd p<Bar>diffthis<Bar>endif<CR>
 
-nnoremap <silent> <C-X><C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+nnoremap <silent> <C-X>s :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 " From defaults.vim; see also :help :DiffOrig
 if !exists(":DiffOrig")
