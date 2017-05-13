@@ -79,8 +79,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 
 nnoremap Y y$
 
-" With man.vim loaded, <leader>K is more useful anyway
-nnoremap K <C-^>
 if !has('nvim')
   runtime! ftplugin/man.vim
 endif
@@ -100,6 +98,8 @@ nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 " https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 
+" From Tim Pope, but I've unrolled it into multiple lines
+" <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284>
 inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
 function! s:ListDate()
     let date_fmts = [
@@ -122,18 +122,23 @@ endfunction
 
 " From Tim Pope:
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
-nmap <silent> <C-X>g :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 
-" The 'else' case here is just :DiffOrig
-nnoremap <silent> <C-X><C-D> :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>vert new<Bar>set buftype=nofile<Bar>read ++edit #<Bar>0d_<Bar>diffthis<Bar>wincmd p<Bar>diffthis<Bar>endif<CR>
+nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'DiffOrig'<Bar>endif<CR>
 
-nnoremap <silent> <C-X>s :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+nnoremap <silent> <C-X><C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
-" From defaults.vim; see also :help :DiffOrig
 if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-                  \ | wincmd p | diffthis
+  command DiffOrig call DiffOrig()
 endif
+function! DiffOrig()
+  " Original DiffOrig; see :help :DiffOrig
+  vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+  " Add a buffer-local mapping to the scratch buffer so that it is easier to
+  " exit the diffing session
+  wincmd p
+  nnoremap <buffer><silent> q :diffoff<Bar>quit<Bar>diffoff<CR>
+endfunction
 
 if exists('&inccommand')
   set inccommand=split
