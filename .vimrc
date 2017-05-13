@@ -137,7 +137,7 @@ function! DiffOrig()
   " Add a buffer-local mapping to the scratch buffer so that it is easier to
   " exit the diffing session
   wincmd p
-  nnoremap <buffer><silent> q :diffoff<Bar>quit<Bar>diffoff<CR>
+  nnoremap <buffer><silent> q :diffoff!<Bar>quit<CR>
 endfunction
 
 if exists('&inccommand')
