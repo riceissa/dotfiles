@@ -33,29 +33,6 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-agenda-files (quote ("~/todo.txt")))
- '(org-capture-templates
-   (quote
-    (("m" "Mood" entry
-      (file+headline "~/todo.txt" "Mood tracking")
-      "* Mood tracking entry
-  %T
-  :PROPERTIES:
-  :happiness: %^{Rate your happiness 1-very unhappy, 2-unhappy, 3-neutral, 4-happy, 5-very happy}
-  :energy level: %^{Rate your energy level 1-very tired, 2-tired, 3-neutral, 4-alert, 5-very alert}
-  :frustration: %^{Rate your frustration 1-serene, 2-calm, 3-neutral, 4-frustrated, 5-very frustrated}
-  :current task: %^{What are you doing now?|%k}
-  :END:
-  %i%?")
-     ("t" "TODO item" entry
-      (file+headline "~/todo.txt" "Tasks")
-      "* TODO %?
-  %i"))))
- '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
-     ("\\.mm\\'" . default)
-     ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . "atril %s"))))
  '(org-startup-truncated nil)
  '(org-todo-keywords
    (quote
@@ -90,16 +67,6 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
-
-; Quickly make a Git snapshot of the file on disk
-(global-set-key
- (kbd "C-x w")
- (lambda ()
-   (interactive)
-   (shell-command
-    (concat "git add "
-            buffer-file-name
-            "; git commit -m 'snapshot'"))))
 
 (defun stage-and-commit-snapshot ()
   "Use Git to stage and commit the current file"
