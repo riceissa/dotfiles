@@ -3,101 +3,6 @@
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
 
-if exists("+completefunc")
-  " Adapted from :help complete-functions.
-  function! CompleteChar(findstart, base)
-    if a:findstart
-      " locate the start of the word
-      let line = getline('.')
-      let start = col('.') - 1
-      " Assume first that the completion term is a WORD.
-      while start > 0 && line[start - 1] =~ '\S'
-        let start -= 1
-      endwhile
-      " The argument passed into DoCompl() here is supposed to be the a:base
-      " that a complete function will take on its second round. In other
-      " words, we end up doing a "test round" of completion before actually
-      " doing it, which is a hack but it's not a big deal as long as the
-      " completion list is small. If this sort of thing isn't done, then we
-      " run into a problem later where when we make the a:base smaller, it
-      " eats up more than it should because start is still the old value. By
-      " the way, the col('.')-2 here is because we don't want to include the
-      " column the cursor is on, and also because Vim's list slicing is
-      " inclusive on the right end.
-      if empty(<SID>DoCompl(line[start:col('.')-2]))
-        " Completion failed assuming that the completion term is a WORD, so
-        " now assume that the completion term is a word and retry.
-        let start = col('.') - 1
-        while start > 0 && line[start - 1] =~ '\w'
-          let start -= 1
-        endwhile
-      endif
-      return start
-    else
-      return <SID>DoCompl(a:base)
-    endif
-  endfunction
-  set completefunc=CompleteChar
-endif
-
-function! s:DoCompl(base)
-  let res = []
-  " Credit for the datetime completion idea goes to Tim Pope
-  " https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
-  if exists("*strftime") && ((a:base ==? "date") || (a:base ==? "datetime"))
-    let date_fmts = [
-          \ "%F",
-          \ "%B %-d, %Y",
-          \ "%-d %B %Y",
-          \ "%Y-%m-%d %H:%M:%S",
-          \ "%a, %d %b %Y %H:%M:%S %z",
-          \ "%Y %b %d",
-          \ "%d-%b-%y",
-          \ "%a %b %d %T %Z %Y"
-          \ ]
-    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-    for compl in compl_lst
-      call add(res, compl)
-    endfor
-  endif
-  let candidates = [
-        \ {"word": "…", "menu": "HORIZONTAL ELLIPSIS", "matches": ['...', "ellipsis", "ellipses", "dots", "hellip"]},
-        \ {"word": "–", "menu": "EN DASH", "matches": ['en-dash', 'ndash', '--']},
-        \ {"word": "—", "menu": "EM DASH", "matches": ['em-dash', 'mdash', '---']},
-        \ {"word": "§", "menu": "SECTION SIGN", "matches": ['section', 'SS', '\S']},
-        \ {"word": "⟨", "menu": "MATHEMATICAL LEFT ANGLE BRACKET", "matches": ['\langle', 'langle', "<"]},
-        \ {"word": "⟩", "menu": "MATHEMATICAL RIGHT ANGLE BRACKET", "matches": ['\rangle', 'rangle', ">"]},
-        \ {"word": "×", "menu": "MULTIPLICATION SIGN", "matches": ['\times', 'times', 'x', '*', "multiplication", "multiply"]},
-        \ {"word": "·", "menu": "MIDDLE DOT", "matches": ['.M', '~.', '\cdot', 'cdot', 'middot', 'middle_dot', 'middle-dot', 'middledot', '.*', '*.']},
-        \ {"word": "©", "menu": "COPYRIGHT SIGN", "matches": ['copyright', '\copyright', '\textcopyright']},
-        \ {"word": "∖", "menu": "SET MINUS", "matches": ['setminus', '\setminus', '\\']},
-        \ {"word": "∈", "menu": "ELEMENT OF", "matches": ['\in', 'in', '(-', 'isin', 'is_in', 'is-in']},
-        \ {"word": "∉", "menu": "NOT AN ELEMENT OF", "matches": ['notin', '\notin', '\not\in', '(-/']},
-        \ {"word": "→", "menu": "RIGHTWARDS ARROW", "matches": ['\rightarrow', 'rightarrow', 'right_arrow', 'right-arrow', '->', '>-', 'arrow']},
-        \ {"word": "←", "menu": "LEFTWARDS ARROW", "matches": ['\leftarrow', 'leftarrow', 'left_arrow', 'left-arrow', '<-', '-<', 'arrow']},
-        \ {"word": "↓", "menu": "DOWNWARDS ARROW", "matches": ['\downarrow', 'downarrow', 'down_arrow', 'down-arrow', 'v|', '|v', 'v-', '-v', 'arrow']},
-        \ {"word": "↑", "menu": "UPWARDS ARROW", "matches": ['\uparrow', 'uparrow', 'up_arrow', 'up-arrow', '^|', '|^', '!-', '-!', '^-', '-^', 'arrow']},
-        \ {"word": "↦", "menu": "RIGHTWARDS ARROW FROM BAR", "matches": ['\mapsto', 'mapsto', '|>', '|->']},
-        \ {"word": "↔", "menu": "LEFT RIGHT ARROW", "matches": ['\leftrightarrow', 'leftrightarrow', '<>', 'left_right_arrow', 'left-right-arrow', '<->', 'arrow']},
-        \ {"word": "∞", "menu": "INFINITY", "matches": ['\infty', 'infinity', 'infty', '00', 'oo']},
-        \ {"word": '∀', "menu": "FOR ALL", "matches": ['\forall', 'forall', 'for_all', 'for-all', 'V-', 'FA']},
-        \ {"word": '∃', "menu": "THERE EXISTS", "matches": ['\exists', 'exists', 'there_exists', 'there-exists', 'TE', 'thereexists']},
-        \ {"word": '¬', "menu": "NOT SIGN", "matches": ['-,', 'NO', 'NOT', 'not_sign', 'not-sign']},
-        \ {"word": '∧', "menu": "LOGICAL AND", "matches": ['AN', 'AND', '^', 'logicaland', '\wedge', 'wedge', 'logical_and', 'logical-and']},
-        \ {"word": '∨', "menu": "LOGICAL OR", "matches": ['OR', 'logicalor', 'logical_or', 'logical-or', 'v', '\vee', 'vee']},
-        \ {"word": '≡', "menu": "IDENTICAL TO", "matches": ['identical', 'equivalent', '3-', '3=', '=3', '-3']},
-        \ ]
-  let typed = substitute(a:base, '\', '\\\\', 'g')
-  for cand in candidates
-    for m in cand["matches"]
-      if m =~? '^\V' . typed
-        call add(res, cand)
-      endif
-    endfor
-  endfor
-  return res
-endfunction
-
 " Now that I have a unified way to search for common Unicode characters
 " (unicode.vim and my own completefunc), I'm not sure I'll need this digraph
 " anymore. Keeping it in experimental; if I don't use it for a while I'll just
@@ -111,6 +16,7 @@ if has('digraphs')
   digraph \- 8726
   digraph -\ 8726
   digraph \|> 8614
+  digraph v\| 8595
   " Run under exe so that syntax highlighting isn't messed up
   exe 'digraph (/ 8713'
   exe 'digraph (\ 8713'
