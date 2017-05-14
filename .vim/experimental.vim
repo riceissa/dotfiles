@@ -67,7 +67,7 @@ endfunction
 
 inoremap <C-G><C-W> <C-\><C-O>"-dB
 inoremap <C-G><C-K> <C-\><C-O>"-D
-cnoremap <C-G><C-K> <C-\>eCmdlineKillToEnd()<CR>
+cnoremap <C-X><C-K> <C-\>eCmdlineKillToEnd()<CR>
 function! CmdlineKillToEnd()
   let pos = getcmdpos()
   if pos == 1
