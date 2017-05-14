@@ -151,12 +151,3 @@ xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-S>     <Plug>SpeedDatingNowLocal
-
-inoremap <M-q> <C-\><C-O>gwip
-nnoremap <M-q> gwip
-vnoremap <M-q> gw
-if !has("gui_running") && !has('nvim')
-  silent! exe "set <F36>=\<Esc>q"
-  map! <F36> <M-q>
-  map <F36> <M-q>
-endif
