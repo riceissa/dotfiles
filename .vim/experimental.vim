@@ -152,10 +152,6 @@ xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-S>     <Plug>SpeedDatingNowLocal
 
-nnoremap <C-X> <nop>
-
-nnoremap <C-X><C-F> :FZF<CR>
-
 inoremap <M-q> <C-\><C-O>gwip
 nnoremap <M-q> gwip
 vnoremap <M-q> gw
