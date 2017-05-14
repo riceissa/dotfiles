@@ -27,6 +27,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 if !has('nvim')
   Plug 'tpope/vim-sensible'
 endif
@@ -126,7 +127,7 @@ nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>
 
 nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'DiffOrig'<Bar>endif<CR>
 
-nnoremap <silent> <C-X><C-S> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+nnoremap <silent> K :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 if !exists(":DiffOrig")
   command DiffOrig call DiffOrig()
