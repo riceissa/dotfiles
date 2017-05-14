@@ -28,7 +28,7 @@
 	ds = diff --stat
 	# list aliases
 	la = "!git config -l | grep alias | cut -c 7-"
-	logn = log --name-only
+	ln = log --name-only
 	st = status
 	wd = diff --color-words
 	wdiff = diff --color-words
