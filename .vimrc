@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 if has("gui_running")
   Plug 'altercation/vim-colors-solarized' " Only for gvim
 endif
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
