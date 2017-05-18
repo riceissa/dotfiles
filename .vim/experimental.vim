@@ -114,8 +114,6 @@ imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
 nnoremap <silent> gQ Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 vnoremap <silent> gQ :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
-nnoremap <silent> Q gwip
-vnoremap <silent> Q gw
 
 vnoremap K <nop>
 
