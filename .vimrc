@@ -353,3 +353,5 @@ xmap  <C-A>     <Plug>SpeedDatingUp
 xmap  <C-S>     <Plug>SpeedDatingDown
 nmap d<C-A>     <Plug>SpeedDatingNowUTC
 nmap d<C-S>     <Plug>SpeedDatingNowLocal
+nmap  <C-X>     <Plug>SpeedDatingDown
+nmap d<C-X>     <Plug>SpeedDatingNowLocal
