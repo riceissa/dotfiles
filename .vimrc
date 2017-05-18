@@ -330,6 +330,8 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
 imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 
+" These use an external program available at
+" https://github.com/riceissa/pdftextfmt
 nnoremap <silent> gQ Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 vnoremap <silent> gQ :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 
