@@ -1,6 +1,8 @@
 " Dump the values of all settings that either sensible.vim or Neovim alters.
 " Use as follows:
 "    vim -c 'source dump_union_settings.vim|write out.txt|quit'
+" The idea is to generate dumps from both Vim and Neovim and compare them and
+" eliminate differences to create a more consistent experience.
 function Out()
 filetype
 if has('syntax') && exists('g:syntax_on')
