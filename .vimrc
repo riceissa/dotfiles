@@ -340,8 +340,6 @@ vnoremap K <nop>
 iabbrev ADd Add
 iabbrev REmove Remove
 
-autocmd FileType xdefaults setlocal commentstring=!%s
-
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 
