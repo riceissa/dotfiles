@@ -1,5 +1,7 @@
-URxvt.font: xft:Source Code Pro:style=Medium:size=10,xft:Monaco:style=Regular:size=9,xft:Consolas:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
-URxvt.boldFont: xft:Source Code Pro:style=Bold:size=10,xft:IPAexGothic:bold:size=9
+/* URxvt.font: xft:Source Code Pro:style=Medium:size=10,xft:Monaco:style=Regular:size=9,xft:Consolas:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10 */
+URxvt.font: xft:monospace:style=Regular:size=10,xft:Monaco:style=Regular:size=9,xft:Consolas:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
+/* URxvt.boldFont: xft:Source Code Pro:style=Bold:size=10,xft:IPAexGothic:bold:size=9 */
+URxvt.boldFont: xft:monospace:bold:size=10,xft:IPAexGothic:bold:size=9
 URxvt.italicFont: xft:Source Code Pro:style=Italic:size=10
 URxvt.geometry: 88x37
 
