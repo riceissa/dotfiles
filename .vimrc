@@ -336,6 +336,7 @@ nnoremap <silent> gQ Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR>
 vnoremap <silent> gQ :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 
 vnoremap K <nop>
+cnoremap <C-O> <Up>
 
 iabbrev ADd Add
 iabbrev REmove Remove
