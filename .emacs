@@ -28,6 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(indent-tabs-mode nil)
  '(ispell-program-name "/usr/bin/hunspell")
+ '(magit-diff-refine-hunk (quote all))
  '(make-backup-files nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
@@ -78,7 +79,7 @@
 ;; This is like ":Git diff %" in fugitive.vim
 (global-set-key (kbd "C-x C-d")
                 '(lambda () (interactive)
-                   (magit-diff "HEAD")
+                   (magit-diff-buffer-file)
                    (setq truncate-lines nil)
                    (diff-refine-hunk)
                    (delete-other-windows)))
