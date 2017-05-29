@@ -299,8 +299,6 @@ function! CmdlineKillToEnd()
     return cmd[0 : pos-2]
   endif
 endfunction
-cnoremap <C-X><C-F> <C-F>
-cnoremap <C-X><C-D> <C-D>
 inoremap <C-G><C-D> <C-\><C-O>"-dE
 " Reverse the effects of 'textwidth' in insert mode. This is useful if most of
 " the lines in a file have one textwidth but a couple have a different one
