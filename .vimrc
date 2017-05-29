@@ -328,8 +328,6 @@ endfunction
 command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
-imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
-
 " These use an external program available at
 " https://github.com/riceissa/pdftextfmt
 nnoremap <silent> gQ Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
@@ -344,15 +342,11 @@ iabbrev REmove Remove
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 
-" I want to use my own <C-X> in visual mode, so disable mappings for
-" speeddating and then define them myself. Without setting this variable,
-" speeddating seems to override my mapping.
-let g:speeddating_no_mappings = 1
-nmap  <C-A>     <Plug>SpeedDatingUp
-nmap  <C-S>     <Plug>SpeedDatingDown
-xmap  <C-A>     <Plug>SpeedDatingUp
-xmap  <C-S>     <Plug>SpeedDatingDown
-nmap d<C-A>     <Plug>SpeedDatingNowUTC
-nmap d<C-S>     <Plug>SpeedDatingNowLocal
-nmap  <C-X>     <Plug>SpeedDatingDown
-nmap d<C-X>     <Plug>SpeedDatingNowLocal
+let g:cuaccp_no_mappings = 1
+vmap x <Plug>CuaccpVCut
+vmap <C-C> <Plug>CuaccpVCopy
+nmap <C-V> <Plug>CuaccpNPaste
+cmap <C-V> <Plug>CuaccpCPaste
+imap <C-V> <Plug>CuaccpIPaste
+vmap <C-V> <Plug>CuaccpVPaste
+imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
