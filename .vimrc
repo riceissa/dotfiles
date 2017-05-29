@@ -131,9 +131,9 @@ nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>ex
 nnoremap <silent> K :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
 
 if !exists(":DiffOrig")
-  command DiffOrig call DiffOrig()
+  command DiffOrig call <SID>DiffOrig()
 endif
-function! DiffOrig()
+function! s:DiffOrig()
   " Original DiffOrig; see :help :DiffOrig
   vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
   " Add a buffer-local mapping to the scratch buffer so that it is easier to
