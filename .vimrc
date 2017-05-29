@@ -283,8 +283,8 @@ function! s:InclusiveSpace(cmdtype)
   return l:result
 endfunction
 
-inoremap <C-G><C-W> <C-\><C-O>"-dB
-inoremap <C-G><C-K> <C-\><C-O>"-D
+inoremap <C-G><C-W> <C-\><C-O>dB
+inoremap <C-G><C-K> <C-\><C-O>D
 cnoremap <C-X><C-K> <C-\>eCmdlineKillToEnd()<CR>
 function! CmdlineKillToEnd()
   let pos = getcmdpos()
