@@ -12,8 +12,6 @@ while [ -n "$1" ]; do
         ;;
     git) install_git=yes
         ;;
-    gvim) install_gvim=yes
-        ;;
     local_bin) install_local_bin=yes
         ;;
     moc) install_moc=yes
@@ -42,7 +40,7 @@ Install script for dotfiles.
 ./install {-h|--help}
 
 Supported programs: arbtt, bashrc, clone (clone the dotfiles repo), emacs, git,
-gvim, local_bin, moc, neovim, newsbeuter, tmux, vim, urxvt
+local_bin, moc, neovim, newsbeuter, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -91,11 +89,6 @@ if [ -n "$install_vim" ]; then
 
     mv -v ~/.vimrc ~/.vimrc.$(date -Idate).bak 2> /dev/null
     ln -svf "$(pwd)/.vimrc" ~/.vimrc
-fi
-
-if [ -n "$install_gvim" ]; then
-    mv -v ~/.gvimrc ~/.gvimrc.$(date -Idate).bak 2> /dev/null
-    ln -svf "$(pwd)/.gvimrc" ~/.gvimrc
 fi
 
 if [ -n "$install_neovim" ]; then
