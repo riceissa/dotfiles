@@ -42,7 +42,7 @@ Install script for dotfiles.
 ./install {-h|--help}
 
 Supported programs: arbtt, bashrc, clone (clone the dotfiles repo), emacs, git,
-gvim, local_bin, moc, neovim, newsbeuter, tmux, vim, xresources (urxvt)
+gvim, local_bin, moc, neovim, newsbeuter, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
