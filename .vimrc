@@ -259,13 +259,15 @@ iabbrev REmove Remove
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 
-let g:cuaccp_no_mappings = 1
-vmap x <Plug>CuaccpVCut
-vmap <C-C> <Plug>CuaccpVCopy
-nmap <C-V> <Plug>CuaccpNPaste
-cmap <C-V> <Plug>CuaccpCPaste
-imap <C-V> <Plug>CuaccpIPaste
-vmap <C-V> <Plug>CuaccpVPaste
-imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
+if has("clipboard")
+  let g:cuaccp_no_mappings = 1
+  vmap x <Plug>CuaccpVCut
+  vmap <C-C> <Plug>CuaccpVCopy
+  nmap <C-V> <Plug>CuaccpNPaste
+  cmap <C-V> <Plug>CuaccpCPaste
+  imap <C-V> <Plug>CuaccpIPaste
+  vmap <C-V> <Plug>CuaccpVPaste
+  imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
+endif
 
 let g:dualist_color_listchars = 1
