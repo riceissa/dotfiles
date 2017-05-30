@@ -100,12 +100,10 @@ fi
 
 if [ -n "$install_neovim" ]; then
     pip install --user neovim
-
-    # Neovim support
-    mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
-    mv -v $XDG_CONFIG_HOME/nvim $XDG_CONFIG_HOME/nvim.$(date -Idate).bak 2> /dev/null
-    ln -svf ~/.vim $XDG_CONFIG_HOME/nvim
-    ln -svf ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+    config_home=${XDG_CONFIG_HOME:=$HOME/.config}
+    mkdir -p $config_home/nvim
+    mv -v $config_home/nvim/init.vim $config_home/nvim/init.vim.$(date -Idate).bak 2> /dev/null
+    ln -svf "$(pwd)/.config/nvim/init.vim" $config_home/nvim/init.vim
 fi
 
 if [ -n "$install_tmux" ]; then
