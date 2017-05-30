@@ -16,6 +16,8 @@ while [ -n "$1" ]; do
         ;;
     moc) install_moc=yes
         ;;
+    mutt) install_mutt=yes
+        ;;
     neovim) install_neovim=yes
         ;;
     newsbeuter) install_newsbeuter=yes
@@ -40,7 +42,7 @@ Install script for dotfiles.
 ./install {-h|--help}
 
 Supported programs: arbtt, bashrc, clone (clone the dotfiles repo), emacs, git,
-local_bin, moc, neovim, newsbeuter, tmux, vim, urxvt
+local_bin, moc, mutt, neovim, newsbeuter, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -124,6 +126,13 @@ if [ -n "$install_moc" ]; then
     ln -svf "$(pwd)/.moc/config" ~/.moc/config
     ln -svf "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
     ln -svf "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
+fi
+
+if [ -n "$install_mutt" ]; then
+    mv -v ~/.muttrc ~/.muttrc.$(date -Idate).bak 2> /dev/null
+    # Mutt config requires changing the password field, so copy rather than
+    # linking
+    cp "$(pwd)/.muttrc" ~/.muttrc
 fi
 
 if [ -n "$install_git" ]; then
