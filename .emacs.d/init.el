@@ -78,19 +78,21 @@
             buffer-file-name
             "&& git commit -m 'snapshot'")))
 
-;; This is like ":Git diff %" in fugitive.vim
-(global-set-key (kbd "C-x C-d")
-                '(lambda () (interactive)
-                   (magit-diff-buffer-file)
-                   (setq truncate-lines nil)
-                   (diff-refine-hunk)
-                   (delete-other-windows)))
+(when (fboundp 'magit-diff-buffer-file)
+  ;; This is like ":Git diff %" in fugitive.vim
+  (global-set-key (kbd "C-x C-d")
+                  '(lambda () (interactive)
+                     (magit-diff-buffer-file)
+                     (setq truncate-lines nil)
+                     (diff-refine-hunk)
+                     (delete-other-windows))))
 
-;; This is like ":Gwrite | Gcommit" in fugitive.vim
-(global-set-key (kbd "C-x s")
-                '(lambda () (interactive)
-                   (magit-stage-file buffer-file-name)
-                   (magit-commit)))
+(when (fboundp 'magit-stage-file)
+  ;; This is like ":Gwrite | Gcommit" in fugitive.vim
+  (global-set-key (kbd "C-x s")
+                  '(lambda () (interactive)
+                     (magit-stage-file buffer-file-name)
+                     (magit-commit))))
 
 (defun paste-clipboard ()
   "Use xsel to paste content of clipboard at point"
