@@ -128,7 +128,7 @@ fi
 
 if [ -n "$install_git" ]; then
     ln -svf "$(pwd)/.gitconfig" ~/.gitconfig
-    ln -svf "$(pwd)/.gitignore_global" ~/.gitignore_global
+    ln -svf "$(pwd)/.cvsignore" ~/.cvsignore
 fi
 
 if [ -n "$install_newsbeuter" ]; then

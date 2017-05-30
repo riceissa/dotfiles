@@ -5,7 +5,7 @@
 	pager = less -+S
 	# For CJK characters; see <http://stackoverflow.com/a/4416780>.
 	quotepath = false
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.cvsignore
 [pager]
 	log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
 	show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
