@@ -49,6 +49,13 @@ set wildmenu?
 
 nmap <C-L>
 imap <C-U>
+
+echo "t_Co=" . &t_Co
+if exists('g:loaded_matchit')
+  echo "matchit: " . g:loaded_matchit
+else
+  echo "matchit: 0"
+endif
 endfunction
 
 redir @a
