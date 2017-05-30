@@ -114,7 +114,8 @@
 (global-set-key (kbd "C-c f") 'company-complete)
 (setq company-idle-delay nil)
 
-(global-set-key (kbd "C-x g") 'magit-status)
+(when (fboundp 'magit-status)
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 ;; From <https://github.com/nonsequitur/smex/>
 (when (fboundp 'smex)
