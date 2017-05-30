@@ -21,6 +21,7 @@ Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-mediawiki'
 Plug 'riceissa/vim-more-toggling'
 Plug 'riceissa/vim-rsi'
+Plug '/home/issa/projects/vim-dualist'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
@@ -53,7 +54,6 @@ set nohlsearch
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
-set listchars=tab:▸\ ,trail:·,nbsp:+
 if has('mouse')
   set mouse=a
 endif
@@ -71,7 +71,7 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 inoremap <C-U> <C-G>u<C-U>
 
 set modeline " Debian disables modeline
-set number list ignorecase smartcase showcmd noequalalways nojoinspaces
+set number ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 set sidescroll=1
@@ -146,24 +146,6 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
-function! s:ColorListChars()
-  if &t_Co >= 16
-    " Changing ctermbg is useful for seeing tab with :set list
-    if &background ==# "dark"
-      highlight SpecialKey ctermfg=LightGray ctermbg=DarkGray
-      if has('nvim')
-        highlight Whitespace ctermfg=LightGray ctermbg=DarkGray
-      endif
-    else
-      highlight SpecialKey ctermfg=DarkGray ctermbg=LightGray
-      if has('nvim')
-        highlight Whitespace ctermfg=DarkGray ctermbg=LightGray
-      endif
-    endif
-  endif
-endfunction
-call <SID>ColorListChars()
-
 let g:tex_flavor='latex'
 if has('autocmd')
   augroup my_init
@@ -172,11 +154,6 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
-    autocmd InsertEnter * set listchars=tab:▸\ ,nbsp:+
-    autocmd InsertLeave * set listchars=tab:▸\ ,trail:·,nbsp:+
-    if exists('##OptionSet')
-      autocmd OptionSet background call <SID>ColorListChars()
-    endif
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
@@ -348,3 +325,5 @@ cmap <C-V> <Plug>CuaccpCPaste
 imap <C-V> <Plug>CuaccpIPaste
 vmap <C-V> <Plug>CuaccpVPaste
 imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
+
+let g:dualist_color_listchars = 1
