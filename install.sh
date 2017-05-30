@@ -144,6 +144,8 @@ if [ -n "$install_newsbeuter" ]; then
 fi
 
 if [ -n "$install_emacs" ]; then
+    mkdir -p ~/.emacs.d
     mv -v ~/.emacs ~/.emacs.$(date -Idate).bak 2> /dev/null
-    ln -svf "$(pwd)/.emacs" ~/.emacs
+    mv -v ~/.emacs.d/init.el ~/.emacs.d/init.el.$(date -Idate).bak 2> /dev/null
+    ln -svf "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
 fi
