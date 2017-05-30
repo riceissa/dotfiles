@@ -16,7 +16,6 @@ To install, run `install.sh` with the program names as arguments, for instance:
 - clarify license for each file (they're all *free* but I often work off
   the example provided by the software, and each software has a
   different license)
-- add mutt
 - irssi
 - bitlbee
 - newsbeuter: change cache size so all content can be backed up
