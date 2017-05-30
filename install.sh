@@ -77,10 +77,17 @@ if [ -n "$install_local_bin" ]; then
 fi
 
 if [ -n "$install_vim" ]; then
-    # TODO curl might not exist
     # Get vim-plug to manage plugins
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if command -v curl >/dev/null 2>&1; then
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    elif command -v wget >/dev/null 2>&1; then
+        mkdir -p ~/.vim/autoload
+        wget "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" \
+            -O ~/.vim/autoload/plug.vim
+    else
+        echo "Could not fetch vim-plug; neither curl nor wget exists."
+    fi
 
     mv -v ~/.vimrc ~/.vimrc.$(date -Idate).bak 2> /dev/null
     ln -svf "$(pwd)/.vimrc" ~/.vimrc
