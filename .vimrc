@@ -269,17 +269,7 @@ function! CmdlineKillToEnd()
   endif
 endfunction
 inoremap <C-G><C-D> <C-\><C-O>"-dE
-" Reverse the effects of 'textwidth' in insert mode. This is useful if most of
-" the lines in a file have one textwidth but a couple have a different one
-" (examples: a Markdown file that has a textwidth of 79 but where link
-" references have unlimited line length so that they can be sorted; a Vim
-" script file that has a textwidth of 78 but where you want one particular
-" line to be just a little longer; a Python file that has a textwidth of 0 but
-" where you want to format docstrings as you write them). When 'textwidth' is
-" disabled, it will format the current line; otherwise it will join back the
-" current line with the previous one. The latter works well with :setl fo+=l
-" to prevent repeatedly breaking the line.
-inoremap <expr> <C-G><C-G> (&textwidth == 0) ? '<C-\><C-O>gww' : '<Esc>kJgi'
+inoremap <C-J> <C-G>u<Esc>kJgi
 
 function! s:BrowseNewTab(progname)
   tabnew
