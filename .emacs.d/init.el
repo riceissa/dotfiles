@@ -117,8 +117,8 @@
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
 
-;; From <https://github.com/nonsequitur/smex/>
 (when (fboundp 'smex)
+  ;; From <https://github.com/nonsequitur/smex/>
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands)
   ;; This is your old M-x.
