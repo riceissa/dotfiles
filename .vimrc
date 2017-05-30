@@ -95,25 +95,27 @@ cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%
 
 " From Tim Pope, but I've unrolled it into multiple lines
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284>
-inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
-function! s:ListDate()
-    let date_fmts = [
-          \ "%F",
-          \ "%B %-d, %Y",
-          \ "%B %Y",
-          \ "%F %a",
-          \ "%F %a %H:%M",
-          \ "%-d %B %Y",
-          \ "%Y-%m-%d %H:%M:%S",
-          \ "%a, %d %b %Y %H:%M:%S %z",
-          \ "%Y %b %d",
-          \ "%d-%b-%y",
-          \ "%a %b %d %T %Z %Y"
-          \ ]
-    let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-    call complete(col('.'), compl_lst)
-    return ''
-endfunction
+if exists("*strftime")
+  inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
+  function! s:ListDate() abort
+      let date_fmts = [
+            \ "%F",
+            \ "%B %-d, %Y",
+            \ "%B %Y",
+            \ "%F %a",
+            \ "%F %a %H:%M",
+            \ "%-d %B %Y",
+            \ "%Y-%m-%d %H:%M:%S",
+            \ "%a, %d %b %Y %H:%M:%S %z",
+            \ "%Y %b %d",
+            \ "%d-%b-%y",
+            \ "%a %b %d %T %Z %Y"
+            \ ]
+      let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
+      call complete(col('.'), compl_lst)
+      return ''
+  endfunction
+endif
 
 " From Tim Pope:
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
