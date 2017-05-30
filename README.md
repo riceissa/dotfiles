@@ -7,9 +7,9 @@ configuration repositories like my old [Vim][vim-repo] and
 
 All paths are relative to `$HOME`.
 
-To install, edit `install.sh` and `debian_software.py` (these are the main
-scripts; the rest are config files) then run `./install.sh` (which calls
-`debian_software.py`).
+To install, run `install.sh` with the program names as arguments, for instance:
+
+    ./install vim tmux
 
 ## TODO
 
