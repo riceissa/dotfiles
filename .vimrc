@@ -1,8 +1,7 @@
 set nocompatible
 " Use vim-plug to manage Vim plugins. See https://github.com/junegunn/vim-plug
 " for full instructions. Once all Vim config files are in the right places,
-" just do :PlugInstall in Vim to install the plugins. The exception is
-" YouCompleteMe, which needs to be compiled; see below for more.
+" just do :PlugInstall in Vim to install the plugins.
 call plug#begin('~/.vim/plugged')
 if has("gui_running")
   Plug 'altercation/vim-colors-solarized' " Only for gvim
