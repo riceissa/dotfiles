@@ -113,10 +113,11 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; From <https://github.com/nonsequitur/smex/>
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+(when (fboundp 'smex)
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;; This is your old M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 
 (setq c-default-style "linux")
 (add-hook 'c-mode-hook '(lambda ()
