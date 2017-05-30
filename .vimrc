@@ -43,7 +43,7 @@ runtime! plugin/sleuth.vim
 " Override ttimeoutlen later
 runtime! plugin/sensible.vim
 
-" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u NORC`
+" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
 if &history < 10000
   set history=10000
 endif
@@ -51,12 +51,6 @@ set nohlsearch
 if has('langmap') && exists('+langnoremap')
   set langnoremap
 endif
-if has('mouse')
-  set mouse=a
-endif
-set ruler
-set scrolloff=1
-set sidescrolloff=5
 if has('path_extra')
   setglobal tags=./tags;,tags
 endif
@@ -64,14 +58,15 @@ if !has('nvim')
   set ttimeout
   set ttimeoutlen=50
 endif
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-inoremap <C-U> <C-G>u<C-U>
 
 set modeline " Debian disables modeline
 set number ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 set sidescroll=1
+if has('mouse')
+  set mouse=nv
+endif
 
 " From debian.vim
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
