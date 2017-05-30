@@ -23,8 +23,6 @@ To install, run `install.sh` with the program names as arguments, for instance:
   how to sync cache.db.
 - bash aliases, etc. bash config
 - set up python to work (e.g. getting pip to work...), as well as other development environments (e.g. haskell)
-- emacs: emacs config for Japanese input (see [my page on
-  this](http://issarice.com/japanese-input-on-the-command-line-framebuffer))
 - On LMDE `less` searches aren't highlighting for some reason under
   tmux. It's not a big deal, but I should fix it at some point. I tried
   [this](http://stackoverflow.com/questions/10535432/tmux-man-page-search-highlighting/10563271#10563271)
