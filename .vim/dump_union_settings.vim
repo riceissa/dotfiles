@@ -15,6 +15,7 @@ set autoindent?
 set autoread?
 set backspace?
 set backupdir?
+set belloff?
 set complete?
 set directory?
 set display?
@@ -24,6 +25,7 @@ set history?
 set hlsearch?
 set incsearch?
 set langnoremap?
+set langremap?
 set laststatus?
 set listchars?
 set mouse?
@@ -33,6 +35,7 @@ set ruler?
 set scrolloff?
 set sessionoptions?
 set shell?
+set showcmd?
 set sidescrolloff?
 set smarttab?
 set tabpagemax?
