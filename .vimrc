@@ -276,4 +276,5 @@ let g:dualist_color_listchars = 1
 
 if has("gui_running")
   silent! colorscheme solarized
+  set guioptions-=m
 endif
