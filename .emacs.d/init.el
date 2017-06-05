@@ -36,6 +36,8 @@
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-agenda-files (quote ("~/todo.org")))
+ '(org-capture-templates (quote (("t" "TODO item" entry (file+headline "~/todo.org" "Tasks") "* TODO %?
+  %i"))))
  '(org-startup-truncated nil)
  '(org-todo-keywords
    (quote
