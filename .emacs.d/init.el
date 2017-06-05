@@ -35,7 +35,7 @@
  '(make-backup-files nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
- '(org-agenda-files (quote ("~/todo.txt")))
+ '(org-agenda-files (quote ("~/todo.org")))
  '(org-startup-truncated nil)
  '(org-todo-keywords
    (quote
@@ -65,7 +65,7 @@
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
 (add-to-list 'auto-mode-alist '("\\.wikipedia\\.org" . mymediawiki-mode))
 
-(setq org-default-notes-file "~/todo.txt")
+(setq org-default-notes-file "~/todo.org")
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
