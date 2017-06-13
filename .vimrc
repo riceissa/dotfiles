@@ -150,6 +150,7 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
+    autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
