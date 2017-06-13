@@ -144,7 +144,7 @@ endif
 
 let g:tex_flavor='latex'
 if has('autocmd')
-  augroup my_init
+  augroup vimrc
     autocmd!
     autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal filetype=haskell
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
