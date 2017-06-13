@@ -165,6 +165,7 @@ if has('autocmd')
     " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
     " the Markdown is written.
     autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79
+    autocmd FileType mediawiki setlocal omnifunc=mediawiki#mediawikicomplete#Complete
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
     " pythoncomplete#Complete, which doesn't exist since there is no python
