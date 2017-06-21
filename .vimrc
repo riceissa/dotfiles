@@ -1,7 +1,8 @@
 set nocompatible
-" Use vim-plug to manage Vim plugins. See https://github.com/junegunn/vim-plug
-" for full instructions. Once all Vim config files are in the right places,
-" just do :PlugInstall in Vim to install the plugins.
+" Use vim-plug to manage Vim plugins. See
+" <https://github.com/junegunn/vim-plug> for full instructions. Once all Vim
+" config files are in the right places, just do :PlugInstall in Vim to install
+" the plugins.
 call plug#begin('~/.vim/plugged')
 if has("gui_running")
   Plug 'altercation/vim-colors-solarized' " Only for gvim
@@ -38,7 +39,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 call plug#end()
 
-" Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
+" Workaround for <https://github.com/tpope/vim-sleuth/issues/29> to override
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
 
@@ -83,18 +84,16 @@ if has('nvim') && maparg('<Leader>K', 'n') ==# ''
 endif
 
 " Quickly find potentially problematic characters (things like non-printing
-" ASCII, exotic whitespace, and lookalike Unicode letters). This may be
-" combined with something like
-"     :setlocal nospell hlsearch syntax=OFF
-" so that the characters in question stand out.
+" ASCII, exotic whitespace, and lookalike Unicode letters).
 nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 
-" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
+" First seen at <http://vimcasts.org/episodes/the-edit-command/> but this
 " particular version is modified from
-" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
+" <https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80>
 cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 
-" From Tim Pope, but I've unrolled it into multiple lines
+" From Tim Pope, but I've unrolled it into multiple lines and changed some of
+" the formats
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284>
 if exists("*strftime")
   inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
@@ -118,7 +117,7 @@ if exists("*strftime")
   endfunction
 endif
 
-" From Tim Pope:
+" From Tim Pope
 " <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
 nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 
@@ -151,6 +150,7 @@ if has('autocmd')
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
+    autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
@@ -180,7 +180,7 @@ if has('autocmd')
     autocmd FileType tex let b:surround_{char2nr('m')} = "\\(\r\\)"
     autocmd FileType tex let b:surround_{char2nr('M')} = "\\[\n\r\n\\]"
     " More aggressively check spelling in LaTeX; see
-    " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
+    " <http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files>
     autocmd FileType tex syntax spell toplevel
     " From defaults.vim
     " When editing a file, always jump to the last known cursor position.
@@ -220,9 +220,8 @@ if has('digraphs')
 endif
 
 inoremap <C-G><C-W> <C-\><C-O>dB
-inoremap <C-G><C-K> <C-\><C-O>D
-cnoremap <C-X><C-K> <C-\>eCmdlineKillToEnd()<CR>
-function! CmdlineKillToEnd()
+cnoremap <C-X><C-K> <C-\>e<SID>CmdlineKillToEnd()<CR>
+function! s:CmdlineKillToEnd()
   let pos = getcmdpos()
   if pos == 1
     " Vim's string indexing is messed up so I think we need a special case
@@ -235,7 +234,6 @@ function! CmdlineKillToEnd()
     return cmd[0 : pos-2]
   endif
 endfunction
-inoremap <C-G><C-D> <C-\><C-O>"-dE
 inoremap <C-J> <C-G>u<Esc>kJgi
 
 function! s:BrowseNewTab(progname)
@@ -253,9 +251,9 @@ command! BrowseNewTab :call <SID>BrowseNewTab("wget")
 command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 
 " These use an external program available at
-" https://github.com/riceissa/pdftextfmt
-nnoremap <silent> gQ Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
-vnoremap <silent> gQ :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
+" <https://github.com/riceissa/pdftextfmt>
+nnoremap <silent> Q Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
+vnoremap <silent> Q :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 
 vnoremap K <nop>
 cnoremap <C-O> <Up>
