@@ -3,7 +3,7 @@
 (setq inhibit-startup-message t)
 
 (setq initial-frame-alist
-          '((width . 84) (height . 37)))
+          '((width . 84) (height . 36)))
 
 ; For installing packages
 (require 'package)
@@ -23,6 +23,12 @@
 (global-set-key (kbd "C-c s") 'flyspell-auto-correct-previous-word)
 (when (file-exists-p "/usr/bin/hunspell")
   (setq ispell-program-name "/usr/bin/hunspell"))
+
+(set-face-attribute 'region nil :background "#eeeeee")
+(set-face-attribute 'default nil
+                    :font "Source Code Pro"
+                    :background "#ffffff"
+                    :foreground "#333333")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -54,12 +60,6 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#ffffff" :foreground "#000000" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :family "Source Code Pro")))))
 
 ; MediaWiki setup
 (setq sentence-end-without-space (concat sentence-end-without-space "<"))
