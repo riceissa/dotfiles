@@ -63,7 +63,7 @@ if !has('nvim')
 endif
 
 set modeline " Debian disables modeline
-set number ignorecase smartcase showcmd noequalalways nojoinspaces
+set ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 set sidescroll=1
@@ -280,4 +280,17 @@ let g:dualist_color_listchars = 1
 if has("gui_running")
   silent! colorscheme solarized
   set guioptions-=m
+else
+  highlight clear SpellBad
+  highlight clear SpellCap
+  highlight clear SpellLocal
+  highlight clear SpellRare
+  highlight SpellBad cterm=underline ctermfg=Red
+  highlight SpellCap cterm=underline ctermfg=Blue
+  highlight SpellLocal cterm=underline ctermfg=Yellow
+  highlight SpellRare cterm=underline ctermfg=Cyan
+  highlight CursorLine ctermbg=LightGray cterm=NONE
+  highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
+  highlight Visual ctermfg=White ctermbg=Gray
+endif
 endif
