@@ -151,6 +151,7 @@ if has('autocmd')
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
+    autocmd FileType mediawiki setlocal linebreak
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
@@ -168,6 +169,12 @@ if has('autocmd')
     " Allow opening of locally linked pages with gf
     autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
+    " Char 123 is the left curly bracket; we use this notation because
+    " otherwise the syntax highlighting for the rest of the vimrc is messed up
+    autocmd FileType mediawiki inoremap <buffer><expr> <Char-123>
+          \ getline(".")[col(".") - 2] == "{" ? "{\<C-X>\<C-O>\<C-P>" : "{"
+    autocmd FileType mediawiki inoremap <buffer><expr> <bar> col(".") == 1 ?
+          \ "<bar>" : "<bar>\<C-X>\<C-O>\<C-P>"
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
     " pythoncomplete#Complete, which doesn't exist since there is no python
@@ -280,17 +287,17 @@ let g:dualist_color_listchars = 1
 if has("gui_running")
   silent! colorscheme solarized
   set guioptions-=m
+  set guioptions-=T
 else
   highlight clear SpellBad
   highlight clear SpellCap
   highlight clear SpellLocal
   highlight clear SpellRare
-  highlight SpellBad cterm=underline ctermfg=Red
+  highlight SpellBad cterm=underline ctermfg=DarkRed
   highlight SpellCap cterm=underline ctermfg=Blue
   highlight SpellLocal cterm=underline ctermfg=Yellow
   highlight SpellRare cterm=underline ctermfg=Cyan
   highlight CursorLine ctermbg=LightGray cterm=NONE
   highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
   highlight Visual ctermfg=White ctermbg=Gray
-endif
 endif
