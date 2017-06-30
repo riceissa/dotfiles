@@ -1,10 +1,12 @@
-/* URxvt.font: xft:Source Code Pro:style=Medium:size=10,xft:Monaco:style=Regular:size=9,xft:Consolas:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10 */
-URxvt.font: xft:monospace:style=Regular:size=10,xft:Monaco:style=Regular:size=9,xft:Consolas:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
-/* URxvt.boldFont: xft:Source Code Pro:style=Bold:size=10,xft:IPAexGothic:bold:size=9 */
-URxvt.boldFont: xft:monospace:bold:size=10,xft:IPAexGothic:bold:size=9
-URxvt.italicFont: xft:Source Code Pro:style=Italic:size=10
-URxvt.geometry: 88x37
+/* URxvt.font: xft:Consolas:style=Regular:size=10:antialiasing=true:hinting=true:autohint=false:hintstyle=hintnone:dpi=94,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10 */
 
+URxvt.font: xft:monospace:style=Regular:size=10,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
+URxvt.boldFont: xft:monospace:bold:size=10,xft:IPAexGothic:bold:size=9
+URxvt.italicFont: xft:monospace:italic:size=10,xft:IPAexGothic:italic:size=9
+
+URxvt.geometry: 80x40
+
+/* Xft.dpi: 94 */
 URxvt.letterSpace: -1
 Xft.hinting: true
 URxvt*scrollBar: false
@@ -44,7 +46,7 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 
 *background:            S_base3
 ! *foreground:            S_base00
-*foreground: #384144
+*foreground: #333333
 *fadeColor:             S_base3
 *cursorColor:           S_base01
 *pointerColorBackground:S_base1
@@ -76,14 +78,17 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 ! green dark/light
 *color2:                S_green
 *color10:               T_green
+/* *color10:		S_base01 */
 
 ! yellow dark/light
 *color3:                S_yellow
 *color11:               T_yellow
+/* *color11:		S_base00 */
 
 ! blue dark/light
 *color4:                S_blue
 *color12:               T_blue
+/* *color12:		S_base0 */
 
 ! magenta dark/light
 *color5:                S_magenta
@@ -92,6 +97,7 @@ URxvt.keysym.S-Left:  string:\033[1;2D
 ! cyan dark/light
 *color6:                S_cyan
 *color14:               T_cyan
+/* *color14:		S_base1 */
 
 ! white dark/light
 *color7:                S_base2
