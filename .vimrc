@@ -169,12 +169,6 @@ if has('autocmd')
     " Allow opening of locally linked pages with gf
     autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
-    " Char 123 is the left curly bracket; we use this notation because
-    " otherwise the syntax highlighting for the rest of the vimrc is messed up
-    autocmd FileType mediawiki inoremap <buffer><expr> <Char-123>
-          \ getline(".")[col(".") - 2] == "{" ? "{\<C-X>\<C-O>\<C-P>" : "{"
-    autocmd FileType mediawiki inoremap <buffer><expr> <bar> col(".") == 1 ?
-          \ "<bar>" : "<bar>\<C-X>\<C-O>\<C-P>"
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
     " pythoncomplete#Complete, which doesn't exist since there is no python
