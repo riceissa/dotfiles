@@ -4,7 +4,7 @@ URxvt.font: xft:monospace:style=Regular:size=10,xft:IPAexGothic:style=Regular:si
 URxvt.boldFont: xft:monospace:bold:size=10,xft:IPAexGothic:bold:size=9
 URxvt.italicFont: xft:monospace:italic:size=10,xft:IPAexGothic:italic:size=9
 
-URxvt.geometry: 80x40
+URxvt.geometry: 88x43
 
 /* Xft.dpi: 94 */
 URxvt.letterSpace: -1
