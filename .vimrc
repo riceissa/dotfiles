@@ -289,15 +289,9 @@ if has("gui_running")
   set guioptions-=m
   set guioptions-=T
 else
-  highlight clear SpellBad
-  highlight clear SpellCap
-  highlight clear SpellLocal
-  highlight clear SpellRare
-  highlight SpellBad cterm=underline ctermfg=DarkRed
-  highlight SpellCap cterm=underline ctermfg=Blue
-  highlight SpellLocal cterm=underline ctermfg=Yellow
-  highlight SpellRare cterm=underline ctermfg=Cyan
-  highlight CursorLine ctermbg=LightGray cterm=NONE
-  highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
   highlight Visual ctermfg=White ctermbg=Gray
+  " My modified Solarized palette, in ~/.Xresources, makes folds difficult to
+  " see, so even though I don't use folds very much it is useful to make the
+  " highlight more visible.
+  highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
 endif
