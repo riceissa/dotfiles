@@ -221,20 +221,6 @@ if has('digraphs')
 endif
 
 inoremap <C-G><C-W> <C-\><C-O>dB
-cnoremap <C-X><C-K> <C-\>e<SID>CmdlineKillToEnd()<CR>
-function! s:CmdlineKillToEnd()
-  let pos = getcmdpos()
-  if pos == 1
-    " Vim's string indexing is messed up so I think we need a special case
-    " here. cmd[0 : -1] would select the whole string.
-    return ""
-  else
-    let cmd = getcmdline()
-    " subtract two because right index is inclusive and because getcmdpos()
-    " starts at 1
-    return cmd[0 : pos-2]
-  endif
-endfunction
 inoremap <C-J> <C-G>u<Esc>kJgi
 
 function! s:BrowseNewTab(progname)
