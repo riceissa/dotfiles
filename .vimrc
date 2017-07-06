@@ -5,7 +5,7 @@ set nocompatible
 " the plugins.
 call plug#begin('~/.vim/plugged')
 if has("gui_running")
-  Plug 'altercation/vim-colors-solarized' " Only for gvim
+  Plug 'romainl/flattened'
 endif
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'fatih/vim-go'
@@ -75,6 +75,9 @@ endif
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
 nnoremap Y y$
+vnoremap K <nop>
+cnoremap <C-O> <Up>
+inoremap <C-G><C-W> <C-\><C-O>dB
 
 if !has('nvim')
   runtime! ftplugin/man.vim
@@ -141,7 +144,6 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
-let g:tex_flavor='latex'
 if has('autocmd')
   augroup vimrc
     autocmd!
@@ -220,9 +222,6 @@ if has('digraphs')
   exe 'digraph >) 10217'
 endif
 
-inoremap <C-G><C-W> <C-\><C-O>dB
-inoremap <C-J> <C-G>u<Esc>kJgi
-
 function! s:BrowseNewTab(progname)
   tabnew
   set bt=nofile
@@ -242,14 +241,13 @@ command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
 nnoremap <silent> Q Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 vnoremap <silent> Q :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 
-vnoremap K <nop>
-cnoremap <C-O> <Up>
-
 iabbrev ADd Add
 iabbrev REmove Remove
 
+let g:tex_flavor='latex'
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
+let g:dualist_color_listchars = 1
 
 if has("clipboard")
   let g:cuaccp_no_mappings = 1
@@ -262,10 +260,8 @@ if has("clipboard")
   imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 endif
 
-let g:dualist_color_listchars = 1
-
 if has("gui_running")
-  silent! colorscheme solarized
+  silent! colorscheme flattened_light
   set guioptions-=m
   set guioptions-=T
 else
