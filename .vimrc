@@ -13,7 +13,6 @@ Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-cuaccp'
 Plug 'riceissa/vim-dualist'
@@ -23,7 +22,6 @@ Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-mediawiki'
 Plug 'riceissa/vim-more-toggling'
 Plug 'riceissa/vim-rsi'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
@@ -36,7 +34,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 call plug#end()
 
 " Workaround for <https://github.com/tpope/vim-sleuth/issues/29> to override
@@ -62,28 +59,22 @@ if !has('nvim')
   set ttimeoutlen=50
 endif
 
-set modeline " Debian disables modeline
-set ignorecase smartcase showcmd noequalalways nojoinspaces
+set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
 set spellfile=~/.spell.en.utf-8.add
 set wildmode=list:longest,full
 set sidescroll=1
 if has('mouse')
   set mouse=nv
 endif
-
-" From debian.vim
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+if exists('&inccommand')
+  set inccommand=split
+endif
 
 nnoremap Y y$
 vnoremap K <nop>
-cnoremap <C-O> <Up>
-inoremap <C-G><C-W> <C-\><C-O>dB
-
 if !has('nvim')
   runtime! ftplugin/man.vim
-endif
-if has('nvim') && maparg('<Leader>K', 'n') ==# ''
-  noremap <Leader>K :Man<CR>
+  nmap <silent> K <Leader>K
 endif
 
 " Quickly find potentially problematic characters (things like non-printing
@@ -120,14 +111,6 @@ if exists("*strftime")
   endfunction
 endif
 
-" From Tim Pope
-" <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271>
-nmap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
-
-nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>exe 'silent !clear'<Bar>exe 'Git diff ' . shellescape(expand("%:p"))<Bar>else<Bar>exe 'DiffOrig'<Bar>endif<CR>
-
-nnoremap <silent> K :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
-
 if !exists(":DiffOrig")
   command DiffOrig call <SID>DiffOrig()
 endif
@@ -139,10 +122,6 @@ function! s:DiffOrig()
   wincmd p
   nnoremap <buffer><silent> q :diffoff!<Bar>quit<CR>
 endfunction
-
-if exists('&inccommand')
-  set inccommand=split
-endif
 
 if has('autocmd')
   augroup vimrc
@@ -201,10 +180,6 @@ endif
 inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
 
-" Now that I have a unified way to search for common Unicode characters
-" (unicode.vim and my own completefunc), I'm not sure I'll need this digraph
-" anymore. Keeping it in experimental; if I don't use it for a while I'll just
-" remove it in favor of completefunc.
 if has('digraphs')
   " Horizontal ellipsis, …
   digraph el 8230
@@ -221,25 +196,6 @@ if has('digraphs')
   exe 'digraph (< 10216'
   exe 'digraph >) 10217'
 endif
-
-function! s:BrowseNewTab(progname)
-  tabnew
-  set bt=nofile
-  setl nonumber
-  exec "0r !fetch-page " . a:progname
-  let b:url = @+
-  1
-  " If the buffer is the output of lynx -dump, then with the cursor on a
-  " number, the following will jump to the link reference with that number.
-  nnoremap <buffer><expr> <C-]> 'm'':$?^ \+' . expand("<cword>") . '\.?<CR>W'
-endfunction
-command! BrowseNewTab :call <SID>BrowseNewTab("wget")
-command! BrowseNewTabCurl :call <SID>BrowseNewTab("curl")
-
-" These use an external program available at
-" <https://github.com/riceissa/pdftextfmt>
-nnoremap <silent> Q Vip:!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
-vnoremap <silent> Q :!pdftextfmt<CR>:<C-R>=&textwidth>0?'normal! gqq':''<CR><CR>
 
 iabbrev ADd Add
 iabbrev REmove Remove
@@ -266,8 +222,5 @@ if has("gui_running")
   set guioptions-=T
 else
   highlight Visual ctermfg=White ctermbg=Gray
-  " My modified Solarized palette, in ~/.Xresources, makes folds difficult to
-  " see, so even though I don't use folds very much it is useful to make the
-  " highlight more visible.
   highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
 endif
