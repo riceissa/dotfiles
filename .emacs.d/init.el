@@ -115,6 +115,10 @@
    "xsel -ib"))
 
 (ido-mode t)
+(icomplete-mode t)
+(define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
+(define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
+
 (when (fboundp 'global-company-mode)
   (add-hook 'after-init-hook 'global-company-mode))
 (global-set-key (kbd "C-c f") 'company-complete)
@@ -122,13 +126,6 @@
 
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
-
-(when (fboundp 'smex)
-  ;; From <https://github.com/nonsequitur/smex/>
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-  ;; This is your old M-x.
-  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
 
 (setq c-default-style "linux")
 (add-hook 'c-mode-hook '(lambda ()
