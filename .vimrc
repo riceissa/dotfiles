@@ -164,12 +164,8 @@ if has('autocmd')
     " More aggressively check spelling in LaTeX; see
     " <http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files>
     autocmd FileType tex syntax spell toplevel
-    " From defaults.vim
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
     autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !=# "gitcommit" |
       \   exe "normal! g`\"" |
       \ endif
   augroup END
