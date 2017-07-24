@@ -34,7 +34,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale', { 'on': 'ALEEnable' }
+Plug 'w0rp/ale'
 call plug#end()
 
 " Workaround for <https://github.com/tpope/vim-sleuth/issues/29> to override
@@ -201,6 +201,7 @@ let g:tex_flavor='latex'
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 if has("clipboard")
   let g:cuaccp_no_mappings = 1
@@ -215,6 +216,8 @@ endif
 
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> ]W <Plug>(ale_last)
 
 if has("gui_running")
   silent! colorscheme flattened_light
