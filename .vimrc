@@ -34,6 +34,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale', { 'on': 'ALEEnable' }
 call plug#end()
 
 " Workaround for <https://github.com/tpope/vim-sleuth/issues/29> to override
@@ -211,6 +212,9 @@ if has("clipboard")
   vmap <C-V> <Plug>CuaccpVPaste
   imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
 endif
+
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> [w <Plug>(ale_previous)
 
 if has("gui_running")
   silent! colorscheme flattened_light
