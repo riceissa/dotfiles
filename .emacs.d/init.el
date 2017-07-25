@@ -26,7 +26,8 @@
 
 (set-face-attribute 'region nil :background "#eeeeee")
 (set-face-attribute 'default nil
-                    :font "Source Code Pro"
+                    :font "Consolas"
+                    :height 105
                     :background "#ffffff"
                     :foreground "#333333")
 
@@ -52,7 +53,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (markdown-mode smex magit company)))
+ '(package-selected-packages (quote (markdown-mode magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -118,11 +119,7 @@
 (icomplete-mode t)
 (define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
 (define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
-
-(when (fboundp 'global-company-mode)
-  (add-hook 'after-init-hook 'global-company-mode))
-(global-set-key (kbd "C-c f") 'company-complete)
-(setq company-idle-delay nil)
+(define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
 
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
