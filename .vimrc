@@ -204,14 +204,13 @@ let g:dualist_color_listchars = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 if has("clipboard")
-  let g:cuaccp_no_mappings = 1
-  vmap x <Plug>CuaccpVCut
-  vmap <C-C> <Plug>CuaccpVCopy
-  nmap <C-V> <Plug>CuaccpNPaste
-  cmap <C-V> <Plug>CuaccpCPaste
-  imap <C-V> <Plug>CuaccpIPaste
-  vmap <C-V> <Plug>CuaccpVPaste
-  imap <C-G><C-V> <Plug>CuaccpIHardwrapPaste
+  let g:pasteurize_no_mappings = 1
+  xmap x <Plug>PasteurizeXCut
+  xmap <C-C> <Plug>PasteurizeXCopy
+  nmap <C-V> <Plug>PasteurizeNPaste
+  cmap <C-V> <Plug>PasteurizeCPaste
+  imap <C-V> <Plug>PasteurizeIPaste
+  xmap <C-V> <Plug>PasteurizeXPaste
 endif
 
 nmap <silent> ]w <Plug>(ale_next)
