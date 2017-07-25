@@ -1,8 +1,8 @@
 /* URxvt.font: xft:Consolas:style=Regular:size=10:antialiasing=true:hinting=true:autohint=false:hintstyle=hintnone:dpi=94,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10 */
 
-URxvt.font: xft:monospace:style=Regular:size=10,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
-URxvt.boldFont: xft:monospace:bold:size=10,xft:IPAexGothic:bold:size=9
-URxvt.italicFont: xft:monospace:italic:size=10,xft:IPAexGothic:italic:size=9
+URxvt.font: xft:Ubuntu Mono:style=Regular:size=11,xft:IPAexGothic:style=Regular:size=9,xft:Unifont:style=Medium:size=10
+URxvt.boldFont: xft:Ubuntu Mono:bold:size=11,xft:IPAexGothic:bold:size=9
+URxvt.italicFont: xft:Ubuntu Mono:italic:size=11,xft:IPAexGothic:italic:size=9
 
 URxvt.geometry: 88x43
 
