@@ -1,10 +1,12 @@
+scriptencoding utf-8
 set nocompatible
-" Use vim-plug to manage Vim plugins. See
-" <https://github.com/junegunn/vim-plug> for full instructions. Once all Vim
-" config files are in the right places, just do :PlugInstall in Vim to install
-" the plugins.
+" Use vim-plug to manage Vim plugins. Install with
+"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Once all Vim config files are in the right places, just do :PlugInstall in
+" Vim to install the plugins.
 call plug#begin('~/.vim/plugged')
-if has("gui_running")
+if has('gui_running')
   Plug 'romainl/flattened'
 endif
 Plug 'AndrewRadev/splitjoin.vim'
@@ -12,15 +14,15 @@ Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 Plug 'lervag/vimtex', {'for': 'tex'}
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'nelstrom/vim-visual-star-search'
-Plug 'riceissa/vim-cuaccp'
 Plug 'riceissa/vim-dualist'
 Plug 'riceissa/vim-inclusivespace'
 Plug 'riceissa/vim-longmove'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-mediawiki'
 Plug 'riceissa/vim-more-toggling'
+Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-rsi'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
@@ -37,7 +39,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 call plug#end()
 
-" Workaround for <https://github.com/tpope/vim-sleuth/issues/29> to override
+" Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
 
@@ -61,63 +63,47 @@ if !has('nvim')
 endif
 
 set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
-set spellfile=~/.spell.en.utf-8.add
-set wildmode=list:longest,full
-set sidescroll=1
+set spellfile=~/.spell.en.utf-8.add wildmode=list:longest,full sidescroll=1
 if has('mouse')
   set mouse=nv
+endif
+if !has('nvim')
+  runtime! ftplugin/man.vim
+  setglobal keywordprg=:Man
 endif
 if exists('&inccommand')
   set inccommand=split
 endif
 
 nnoremap Y y$
-vnoremap K <nop>
-if !has('nvim')
-  runtime! ftplugin/man.vim
-  nmap <silent> K <Leader>K
-endif
 
 " Quickly find potentially problematic characters (things like non-printing
 " ASCII, exotic whitespace, and lookalike Unicode letters).
 nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 
-" First seen at <http://vimcasts.org/episodes/the-edit-command/> but this
+" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
 " particular version is modified from
-" <https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80>
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 
-" From Tim Pope, but I've unrolled it into multiple lines and changed some of
-" the formats
-" <https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284>
-if exists("*strftime")
-  inoremap <C-G><C-T> <C-R>=<SID>ListDate()<CR>
-  function! s:ListDate() abort
-      let date_fmts = [
-            \ "%F",
-            \ "%B %-d, %Y",
-            \ "%B %Y",
-            \ "%F %a",
-            \ "%F %a %H:%M",
-            \ "%-d %B %Y",
-            \ "%Y-%m-%d %H:%M:%S",
-            \ "%a, %d %b %Y %H:%M:%S %z",
-            \ "%Y %b %d",
-            \ "%d-%b-%y",
-            \ "%a %b %d %T %Z %Y"
-            \ ]
-      let compl_lst = map(date_fmts, 'strftime(v:val)') + [localtime()]
-      call complete(col('.'), compl_lst)
-      return ''
-  endfunction
+" From Tim Pope
+" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271
+nnoremap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>if !has('nvim')<Bar>exe 'silent !clear'<Bar>endif<Bar>exe 'Git diff '.shellescape(expand('%:p'))<Bar>else<Bar>exe 'DiffOrig'<Bar>endif<CR>
+nnoremap <silent> <C-K> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
+
+" From Tim Pope
+" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
+if exists('*strftime')
+  inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(['%F','%B %-d, %Y','%B %Y','%F %a','%F %a %H:%M','%-d %B %Y','%Y-%m-%d %H:%M:%S','%a, %d %b %Y %H:%M:%S %z','%Y %b %d','%d-%b-%y','%a %b %d %T %Z %Y'],'strftime(v:val)')+[localtime()]),0)<CR>
 endif
 
-if !exists(":DiffOrig")
+if !exists(':DiffOrig')
   command DiffOrig call <SID>DiffOrig()
 endif
 function! s:DiffOrig()
   " Original DiffOrig; see :help :DiffOrig
-  vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+  vert new | set buftype=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
   " Add a buffer-local mapping to the scratch buffer so that it is easier to
   " exit the diffing session
   wincmd p
@@ -127,7 +113,7 @@ endfunction
 if has('autocmd')
   augroup vimrc
     autocmd!
-    autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal filetype=haskell
+    autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal syntax=haskell
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
@@ -137,11 +123,8 @@ if has('autocmd')
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
-    if exists("+omnifunc")
-      autocmd FileType *
-              \  if &omnifunc == "" |
-              \    setlocal omnifunc=syntaxcomplete#Complete |
-              \  endif
+    if exists('+omnifunc')
+      autocmd FileType * if &omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
     endif
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
@@ -163,8 +146,9 @@ if has('autocmd')
     autocmd FileType tex let b:surround_{char2nr('m')} = "\\(\r\\)"
     autocmd FileType tex let b:surround_{char2nr('M')} = "\\[\n\r\n\\]"
     " More aggressively check spelling in LaTeX; see
-    " <http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files>
+    " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
     autocmd FileType tex syntax spell toplevel
+    autocmd FileType vim setlocal keywordprg=:help
     autocmd BufReadPost *
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !=# "gitcommit" |
       \   exe "normal! g`\"" |
@@ -178,7 +162,6 @@ inoremap <C-G>h <C-G>u<Esc>BxgEpgi
 inoremap <C-G>l <C-G>u<Esc>gExpgi
 
 if has('digraphs')
-  " Horizontal ellipsis, …
   digraph el 8230
   digraph ./ 8230
   digraph ^\| 8593
@@ -195,7 +178,6 @@ if has('digraphs')
 endif
 
 iabbrev ADd Add
-iabbrev REmove Remove
 
 let g:tex_flavor='latex'
 let g:surround_{char2nr('q')} = "“\r”"
@@ -203,7 +185,7 @@ let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-if has("clipboard")
+if has('clipboard')
   let g:pasteurize_no_mappings = 1
   xmap x <Plug>PasteurizeXCut
   xmap <C-C> <Plug>PasteurizeXCopy
@@ -218,7 +200,7 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> ]W <Plug>(ale_last)
 
-if has("gui_running")
+if has('gui_running')
   silent! colorscheme flattened_light
   set guioptions-=m
   set guioptions-=T
