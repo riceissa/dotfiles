@@ -87,12 +87,6 @@ nnoremap g/ /[^\d32-\d126“”‘’–—§]<CR>
 cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 
 " From Tim Pope
-" https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L271
-nnoremap <silent> s :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
-nnoremap <silent> S :if exists(':Git')<Bar>update<Bar>if !has('nvim')<Bar>exe 'silent !clear'<Bar>endif<Bar>exe 'Git diff '.shellescape(expand('%:p'))<Bar>else<Bar>exe 'DiffOrig'<Bar>endif<CR>
-nnoremap <silent> <C-K> :if exists(':Gwrite')<Bar>exe 'Gwrite'<Bar>exe 'Gcommit'<Bar>else<Bar>write<Bar>endif<CR>
-
-" From Tim Pope
 " https://github.com/tpope/tpope/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
 if exists('*strftime')
   inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(['%F','%B %-d, %Y','%B %Y','%F %a','%F %a %H:%M','%-d %B %Y','%Y-%m-%d %H:%M:%S','%a, %d %b %Y %H:%M:%S %z','%Y %b %d','%d-%b-%y','%a %b %d %T %Z %Y'],'strftime(v:val)')+[localtime()]),0)<CR>
@@ -207,4 +201,8 @@ if has('gui_running')
 else
   highlight Visual ctermfg=White ctermbg=Gray
   highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
+endif
+
+if has('nvim') && $TERM =~# 'screen'
+  set guicursor=
 endif
