@@ -3,7 +3,7 @@
 (setq inhibit-startup-message t)
 
 (setq initial-frame-alist
-          '((width . 84) (height . 36)))
+          '((width . 86) (height . 44)))
 
 ; For installing packages
 (require 'package)
