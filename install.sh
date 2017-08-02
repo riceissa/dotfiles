@@ -22,6 +22,8 @@ while [ -n "$1" ]; do
         ;;
     newsbeuter) install_newsbeuter=yes
         ;;
+    proselint) install_proselint=yes
+        ;;
     tmux) install_tmux=yes
         ;;
     vim) install_vim=yes
@@ -42,7 +44,7 @@ Install script for dotfiles.
 ./install {-h|--help}
 
 Supported programs: arbtt, bashrc, clone (clone the dotfiles repo), emacs, git,
-local_bin, moc, mutt, neovim, newsbeuter, tmux, vim, urxvt
+local_bin, moc, mutt, neovim, newsbeuter, proselint, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -150,4 +152,8 @@ if [ -n "$install_emacs" ]; then
     mv -v ~/.emacs ~/.emacs.$(date -Idate).bak 2> /dev/null
     mv -v ~/.emacs.d/init.el ~/.emacs.d/init.el.$(date -Idate).bak 2> /dev/null
     ln -svf "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
+fi
+
+if [ -n "$install_proselint" ]; then
+    ln -svf "$(pwd)/.proselintrc" ~/.proselintrc
 fi
