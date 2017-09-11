@@ -193,6 +193,8 @@ nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> ]W <Plug>(ale_last)
+nnoremap [s [s<Space><BS>
+nnoremap ]s ]s<BS><Space>
 
 if has('gui_running')
   silent! colorscheme flattened_light
