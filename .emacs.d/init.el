@@ -116,10 +116,6 @@
    "xsel -ib"))
 
 (ido-mode t)
-(icomplete-mode t)
-(define-key icomplete-minibuffer-map (kbd "C-s") 'icomplete-forward-completions)
-(define-key icomplete-minibuffer-map (kbd "C-r") 'icomplete-backward-completions)
-(define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
 
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
