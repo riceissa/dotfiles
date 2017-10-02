@@ -115,7 +115,7 @@ if has('autocmd')
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
     autocmd FileType mediawiki setlocal isfname=@,32,48-57,/,.,-,_,+,,,$,%,:,@-@,!,~,=
-    autocmd FileType mediawiki setlocal includeexpr=substitute(substitute(v:fname,'\ ','_','g'),'$','.mediawiki','')
+    autocmd FileType mediawiki setlocal includeexpr=substitute(substitute(toupper(v:fname[0]).v:fname[1:],'\ ','_','g'),'$','.mediawiki','')
     autocmd FileType mediawiki setlocal linebreak
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
