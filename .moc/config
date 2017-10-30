@@ -7,6 +7,11 @@
 
 # On Debian, the config example file is available at
 # /usr/share/doc/moc/examples/config.example.gz
+#
+# This file is mostly the defaults. To see the options that have actually been
+# changed, do
+#     cat .moc/config | grep -v -E '(^#|^$)'
+# This will print all uncommented nonempty lines.
 
 # Comments begin with '#'.
 # You can use quotes and escape ('\') in parameters.
