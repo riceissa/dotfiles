@@ -111,6 +111,7 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal syntax=haskell
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
+    autocmd FileType matlab setlocal commentstring=%%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
@@ -177,7 +178,8 @@ endif
 
 iabbrev ADd Add
 
-let g:tex_flavor='latex'
+let g:tex_flavor = 'latex'
+let g:sql_type_default = 'mysql'
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
