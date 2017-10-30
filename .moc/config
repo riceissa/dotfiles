@@ -90,7 +90,7 @@
 #MP3IgnoreCRCErrors = yes
 
 # Set playback toggles.
-Repeat = yes
+#Repeat = yes
 #Shuffle = no
 #AutoNext = yes
 
