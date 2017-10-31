@@ -21,8 +21,8 @@ PLAN9=/home/issa/projects/plan9port export PLAN9
 PATH="$PATH:$GOPATH/bin"
 PATH="$PATH:$PLAN9/bin"
 PATH="$PATH:/usr/games"
-PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/.cabal/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
