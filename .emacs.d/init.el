@@ -1,11 +1,14 @@
-; No startup screen
+;; No startup screen
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
+;; I like Emacs to take up about half of the screen, but this depends
+;; on the screen in use so might need to be adjusted depending on the
+;; computer.
 (setq initial-frame-alist
           '((width . 84) (height . 44)))
 
-; For installing packages
+;; For installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -19,11 +22,18 @@
 (when (fboundp 'set-fontset-font)
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic")))
 
-(add-hook 'find-file-hooks 'turn-on-flyspell) ; turn on flyspell in most files
+;; Turn on flyspell in most files
+(add-hook 'find-file-hooks 'turn-on-flyspell)
+
+;; This is already bound to C-; which only works in the GUI version of
+;; Emacs, so provide a binding for terminal Emacs.
 (global-set-key (kbd "C-c s") 'flyspell-auto-correct-previous-word)
+
+;; hunspell provides better spelling suggestions in my opinion.
 (when (file-exists-p "/usr/bin/hunspell")
   (setq ispell-program-name "/usr/bin/hunspell"))
 
+;; Override some colors that the MATE theme sets
 (set-face-attribute 'region nil :background "#eeeeee")
 (set-face-attribute 'default nil
                     :font "Consolas"
@@ -62,7 +72,7 @@
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
 
-; MediaWiki setup
+;; MediaWiki setup
 (setq sentence-end-without-space (concat sentence-end-without-space "<"))
 (setq mymediawiki-highlights
       '(("<ref[^>/]*>?[^<]*\\(</ref>\\|/>\\)" . font-lock-constant-face)))
@@ -102,11 +112,13 @@
                      (magit-stage-file buffer-file-name)
                      (magit-commit))))
 
+;; This works in terminal Emacs as well, and is like C-y
 (defun paste-clipboard ()
   "Use xsel to paste content of clipboard at point"
   (interactive)
   (insert (shell-command-to-string "xsel -ob")))
 
+;; This works in terminal Emacs as well, and is like M-w
 (defun copy-clipboard ()
   "Use xsel to copy region into clipboard"
   (interactive)
@@ -114,6 +126,13 @@
    (region-beginning)
    (region-end)
    "xsel -ib"))
+
+(defun insert-today ()
+  "Insert today's date in YYYY-mm-dd format"
+  (interactive)
+  (insert (substring (shell-command-to-string "date -Idate")
+                     0
+                     -1)))
 
 (ido-mode t)
 
