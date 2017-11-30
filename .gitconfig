@@ -29,6 +29,7 @@
 	# list aliases
 	la = "!git config -l | grep alias | cut -c 7-"
 	ln = log --name-only
+	logn = log --name-only
 	st = status
 	wd = diff --color-words
 	wdiff = diff --color-words
