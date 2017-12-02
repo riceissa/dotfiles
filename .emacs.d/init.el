@@ -23,7 +23,9 @@
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic")))
 
 ;; Turn on flyspell in most files
-(add-hook 'find-file-hooks 'turn-on-flyspell)
+;; (add-hook 'find-file-hooks 'turn-on-flyspell)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; This is already bound to C-; which only works in the GUI version of
 ;; Emacs, so provide a binding for terminal Emacs.
