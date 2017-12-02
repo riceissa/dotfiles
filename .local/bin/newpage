@@ -8,6 +8,7 @@ read -p 'Title: ' -e title
 slug=$(echo "${title}" | slug | tr -d '\n')
 pagename="$slug.md"
 pagepath="${sitedir}/wiki/$slug.md"
+today=$(date -Idate)
 
 if [ -f $pagepath ];
 then
@@ -19,8 +20,11 @@ else
 		---
 		title: $title
 		author: Issa Rice
-		created: `date +'%Y-%m-%d'`
-		date: `date +'%Y-%m-%d'`
+		created: $today
+		date: $today
+		# documentkind:
+		# status:
+		# belief:
 		---
 
 
