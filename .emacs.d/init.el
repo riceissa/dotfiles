@@ -75,7 +75,6 @@
  '(vc-follow-symlinks t))
 
 ;; MediaWiki setup
-(setq sentence-end-without-space (concat sentence-end-without-space "<"))
 (setq mymediawiki-highlights
       '(("<ref[^>/]*>?[^<]*\\(</ref>\\|/>\\)" . font-lock-constant-face)))
 (define-derived-mode mymediawiki-mode text-mode "mymediawiki"
@@ -83,6 +82,10 @@
   (setq font-lock-defaults '(mymediawiki-highlights)))
 (add-to-list 'auto-mode-alist '("\\.mediawiki\\'" . mymediawiki-mode))
 (add-to-list 'auto-mode-alist '("\\.wikipedia\\.org" . mymediawiki-mode))
+(add-hook 'mymediawiki-mode-hook
+          '(lambda ()
+             (setq-local sentence-end-without-space
+                   (concat sentence-end-without-space "<"))))
 
 (setq org-default-notes-file "~/todo.org")
 (global-set-key (kbd "C-c l") 'org-store-link)
