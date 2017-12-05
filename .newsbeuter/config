@@ -23,6 +23,12 @@ bind-key l open
 unbind-key h
 bind-key h quit
 
+# I think MIRI's blog is blocking the default user agent used by
+# newsbeuter, which is "newsbeuter/2.9 (Linux x86_64)". The
+# always-download is just in case the feed is somehow not updating.
+user-agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0"
+always-download "https://intelligence.org/blog/feed/"
+
 # modified from the default given at
 # http://newsbeuter.org/doc/newsbeuter.html#_configuring_colors
 color background          default   default
