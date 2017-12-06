@@ -128,8 +128,13 @@ if has('autocmd')
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
-    " the Markdown is written.
-    autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79
+    " the Markdown is written. As for 'textwidth', I like 79 on most Markdown
+    " files, but on *some* Markdown files (such as ones where I am editing
+    " pipe tables with long lines) I want 'textwidth' to stay 0. So we set a
+    " buffer-local variable to track if we have already run the autocmd so it
+    " only runs once. Otherwise if we leave the buffer and come back, the
+    " autocmd would run again.
+    autocmd FileType markdown if !exists('b:did_vimrc_markdown_textwidth_autocmd') | setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79 | let b:did_vimrc_markdown_textwidth_autocmd = 1 | endif
     " Allow opening of locally linked pages with gf
     autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
