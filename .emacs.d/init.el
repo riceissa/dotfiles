@@ -117,6 +117,9 @@
                      (magit-stage-file buffer-file-name)
                      (magit-commit))))
 
+(add-hook 'magit-diff-mode-hook
+          '(lambda () (setq-local truncate-lines nil)))
+
 ;; This works in terminal Emacs as well, and is like C-y
 (defun paste-clipboard ()
   "Use xsel to paste content of clipboard at point"
