@@ -65,7 +65,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (evil markdown-mode magit)))
+ '(package-selected-packages (quote (magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -151,12 +151,5 @@
 (add-hook 'c-mode-hook '(lambda ()
                          (setq indent-tabs-mode t)
                          (setq tab-width 8)))
-
-;; I don't edit much in Emacs so having Evil isn't too important, but
-;; since I know Vim's key bindings so well, it is useful to have this
-;; around in case I need to make a non-trivial edit and don't know the
-;; Emacs-equivalent of something I know from Vim.
-(require 'evil)
-(evil-mode 1)
 
 (server-start)
