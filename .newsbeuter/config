@@ -17,7 +17,9 @@ unbind-key k
 bind-key j down "all"
 bind-key k up "all"
 
-# quitting is like moving left and viewing items is like moving right
+# quitting is like moving left and viewing items is like moving right.
+# I like this arrangement because I can mostly navigate my newsfeed
+# with just my right hand.
 unbind-key l
 bind-key l open
 unbind-key h
