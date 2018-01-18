@@ -6,7 +6,7 @@
 ;; on the screen in use so might need to be adjusted depending on the
 ;; computer.
 (setq initial-frame-alist
-          '((width . 84) (height . 44)))
+          '((width . 84) (height . 40)))
 
 ;; For installing packages
 (require 'package)
@@ -38,8 +38,8 @@
 ;; Override some colors that the MATE theme sets
 (set-face-attribute 'region nil :background "#eeeeee")
 (set-face-attribute 'default nil
-                    :font "Consolas"
-                    :height 105
+                    :font "Ubuntu Mono"
+                    :height 110
                     :background "#ffffff"
                     :foreground "#333333")
 
@@ -65,7 +65,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (magit)))
+ '(package-selected-packages (quote (intero magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -119,6 +119,8 @@
 
 (add-hook 'magit-diff-mode-hook
           '(lambda () (setq-local truncate-lines nil)))
+
+(add-hook 'haskell-mode-hook 'intero-mode)
 
 ;; This works in terminal Emacs as well, and is like C-y
 (defun paste-clipboard ()
