@@ -111,6 +111,7 @@ if has('autocmd')
     autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal syntax=haskell
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
+    autocmd FileType gitconfig setlocal commentstring=#%s
     autocmd FileType matlab setlocal commentstring=%%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
@@ -118,6 +119,7 @@ if has('autocmd')
     autocmd FileType mediawiki setlocal includeexpr=substitute(toupper(v:fname[0]).v:fname[1:],'\ ','_','g')
     autocmd FileType mediawiki setlocal suffixesadd=.mediawiki
     autocmd FileType mediawiki setlocal linebreak
+    autocmd FileType php setlocal commentstring=//%s
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
