@@ -56,7 +56,10 @@
  '(org-agenda-files (quote ("~/todo.org")))
  '(org-capture-templates
    (quote
-    (("t" "TODO item" entry
+    (("i" "Idea" entry
+      (file "~/org/notes.org")
+      "* %T %?")
+     ("t" "TODO item" entry
       (file+headline "~/todo.org" "Tasks")
       "* TODO %?
   %i"))))
@@ -64,7 +67,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (intero magit)))
+ '(package-selected-packages (quote (jedi intero magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -72,6 +75,13 @@
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 ;; MediaWiki setup
 (setq mymediawiki-highlights
@@ -108,13 +118,6 @@
                      (setq truncate-lines nil)
                      (diff-refine-hunk)
                      (delete-other-windows))))
-
-(when (fboundp 'magit-stage-file)
-  ;; This is like ":Gwrite | Gcommit" in fugitive.vim
-  (global-set-key (kbd "C-x s")
-                  '(lambda () (interactive)
-                     (magit-stage-file buffer-file-name)
-                     (magit-commit))))
 
 (add-hook 'magit-diff-mode-hook
           '(lambda () (setq-local truncate-lines nil)))
@@ -154,5 +157,8 @@
 (add-hook 'c-mode-hook '(lambda ()
                          (setq indent-tabs-mode t)
                          (setq tab-width 8)))
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 (server-start)
