@@ -38,6 +38,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -135,7 +136,8 @@ if has('autocmd')
     " buffer-local variable to track if we have already run the autocmd so it
     " only runs once. Otherwise if we leave the buffer and come back, the
     " autocmd would run again.
-    autocmd FileType markdown if !exists('b:did_vimrc_markdown_textwidth_autocmd') | setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79 | let b:did_vimrc_markdown_textwidth_autocmd = 1 | endif
+    " autocmd FileType markdown if !exists('b:did_vimrc_markdown_textwidth_autocmd') | setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79 | let b:did_vimrc_markdown_textwidth_autocmd = 1 | endif
+    autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4
     " Allow opening of locally linked pages with gf
     autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
@@ -144,7 +146,7 @@ if has('autocmd')
     " pythoncomplete#Complete, which doesn't exist since there is no python
     " support. The solution is to force the python3 complete function.
     if has('python3')
-      autocmd FileType python setlocal omnifunc=python3complete#Complete
+      " autocmd FileType python setlocal omnifunc=python3complete#Complete
     endif
     " Prevent overzealous autoindent in align environment
     autocmd FileType tex setlocal indentexpr=
@@ -190,6 +192,10 @@ let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
 
 if has('clipboard')
   let g:pasteurize_no_mappings = 1
