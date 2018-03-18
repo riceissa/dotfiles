@@ -67,7 +67,7 @@
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (jedi intero magit)))
+ '(package-selected-packages (quote (php-mode lua-mode markdown-mode jedi intero magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -123,8 +123,6 @@
           '(lambda () (setq-local truncate-lines nil)))
 
 (add-hook 'haskell-mode-hook 'intero-mode)
-
-(add-to-list 'auto-mode-alist '("\\.md\\'" . text-mode))
 
 ;; This works in terminal Emacs as well, and is like C-y
 (defun paste-clipboard ()
