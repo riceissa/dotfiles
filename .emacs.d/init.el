@@ -73,6 +73,7 @@
  '(scroll-conservatively 1000)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
+ '(show-trailing-whitespace t)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t))
 
@@ -102,13 +103,15 @@
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
-(defun stage-and-commit-snapshot ()
-  "Use Git to stage and commit the current file"
-  (interactive)
-  (shell-command
-    (concat "git add "
-            buffer-file-name
-            "&& git commit -m 'snapshot'")))
+;; Make C-w work as in Bash.
+;; See https://www.emacswiki.org/emacs/ZapUpToChar for zap-up-to-char.
+(autoload 'zap-up-to-char "misc"
+  "Kill up to, but not including ARGth occurrence of CHAR." 'interactive)
+(global-set-key (kbd "C-w")
+                '(lambda () (interactive)
+                   (if (region-active-p)
+                       (kill-region (region-beginning) (region-end))
+                     (zap-up-to-char -1 ?\s))))
 
 (when (fboundp 'magit-diff-buffer-file)
   ;; This is like ":Git diff %" in fugitive.vim
