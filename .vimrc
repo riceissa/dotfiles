@@ -148,6 +148,8 @@ if has('autocmd')
     if has('python3')
       " autocmd FileType python setlocal omnifunc=python3complete#Complete
     endif
+    " PHP autoindenting is too smart for its own good
+    autocmd FileType php setlocal autoindent indentexpr=
     " Prevent overzealous autoindent in align environment
     autocmd FileType tex setlocal indentexpr=
     autocmd FileType tex let b:surround_{char2nr('m')} = "\\(\r\\)"
@@ -160,6 +162,10 @@ if has('autocmd')
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !=# "gitcommit" |
       \   exe "normal! g`\"" |
       \ endif
+    " Automatically enter insert mode when switching to a terminal buffer
+    if has('nvim')
+      autocmd BufEnter term://* startinsert
+    endif
   augroup END
 endif
 
@@ -225,4 +231,58 @@ endif
 
 if has('nvim') && $TERM =~# 'screen'
   set guicursor=
+endif
+
+" Crude attempt to imitate terminal mode mappings from Vim
+if has('nvim')
+  tnoremap <C-W>h <C-\><C-N><C-W><C-H>
+  tnoremap <C-W>j <C-\><C-N><C-W><C-J>
+  tnoremap <C-W>k <C-\><C-N><C-W><C-K>
+  tnoremap <C-W>l <C-\><C-N><C-W><C-L>
+  tnoremap <C-W>w <C-\><C-N><C-W><C-W>
+  tnoremap <C-W><C-H> <C-\><C-N><C-W><C-H>
+  tnoremap <C-W><C-J> <C-\><C-N><C-W><C-J>
+  tnoremap <C-W><C-K> <C-\><C-N><C-W><C-K>
+  tnoremap <C-W><C-L> <C-\><C-N><C-W><C-L>
+  tnoremap <C-W><C-W> <C-\><C-N><C-W><C-W>
+  tnoremap <C-W>H <C-\><C-N><C-W>Hi
+  tnoremap <C-W>J <C-\><C-N><C-W>Ji
+  tnoremap <C-W>K <C-\><C-N><C-W>Ki
+  tnoremap <C-W>L <C-\><C-N><C-W>Li
+  tnoremap <C-W>. <C-W>
+  tnoremap <C-W>N <C-\><C-N>
+
+  function! s:get_input_then_exec() abort
+    let l:cmd = input(':', '', 'command')
+    " This mapping still differs from behavior in vim because in nvim,
+    " terminal mode is marked with '-- TERMINAL --' so that commands like
+    " :echo don't really work (they get cleared out unless cmdheight is
+    " greater than one).  Even if cmdheight is greater than one, the printing
+    " is weird because the command input is not automatically flushed out. So
+    " we redraw after receiving the input to clear it out, but redrawing might
+    " be too drastic.
+    redraw
+    execute(l:cmd)
+    " We don't want to unconditionally start insert here, because if the
+    " command was :quit then it will start to insert in the next buffer we end
+    " up in.
+    if &buftype ==# 'terminal'
+      startinsert
+    endif
+  endfunction
+
+  function! s:get_char_then_paste() abort
+    let l:c = nr2char(getchar())
+    execute 'normal! "' . l:c . 'p'
+    " I can't think of why the buftype wouldn't still be a terminal after
+    " pasting, but it seems safe to check for it just in case.
+    if &buftype ==# 'terminal'
+      startinsert
+    endif
+  endfunction
+
+  " Doing just <C-\><C-N>: doesn't work because we end up in normal mode
+  " rather than terminal mode.
+  tnoremap <C-W>: <C-\><C-N>:call <SID>get_input_then_exec()<CR>
+  tnoremap <silent> <C-W>" <C-\><C-N>:call <SID>get_char_then_paste()<CR>
 endif
