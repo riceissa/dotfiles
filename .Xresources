@@ -4,7 +4,7 @@ URxvt.font: xft:Ubuntu Mono:style=Regular:size=11,xft:IPAexGothic:style=Regular:
 URxvt.boldFont: xft:Ubuntu Mono:bold:size=11,xft:IPAexGothic:bold:size=9
 URxvt.italicFont: xft:Ubuntu Mono:italic:size=11,xft:IPAexGothic:italic:size=9
 
-URxvt.geometry: 88x43
+URxvt.geometry: 100x40
 
 /* Xft.dpi: 94 */
 URxvt.letterSpace: -1
