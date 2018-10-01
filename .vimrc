@@ -38,7 +38,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -106,6 +106,11 @@ function! s:DiffOrig()
   nnoremap <buffer><silent> q :diffoff!<Bar>quit<CR>
 endfunction
 
+" Birdtrack blockquotes for Markdown
+if !exists(':Blockquote')
+  command -range Blockquote :<line1>,<line2>s/^/> / | <line1>,<line2>s/\s\+$//e | normal! '[
+endif
+
 if has('autocmd')
   augroup vimrc
     autocmd!
@@ -141,6 +146,13 @@ if has('autocmd')
     " Allow opening of locally linked pages with gf
     autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
+    " There are multiple choices here. Compare the following:
+    "     <math>\int_a^b f</math> (big integral, left-justified)
+    "     :<math>\int_a^b f</math> (big integral, indented and left-justified)
+    "     <math display="inline">\int_a^b f</math> (small integral, left-justified)
+    "     <math display="block">\int_a^b f</math> (big integral, centered)
+    autocmd FileType mediawiki let b:surround_{char2nr('m')} = "<math display=\"inline\">\r</math>"
+    autocmd FileType mediawiki let b:surround_{char2nr('M')} = ":<math>\r</math>"
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
     " pythoncomplete#Complete, which doesn't exist since there is no python
@@ -232,6 +244,15 @@ endif
 if has('nvim') && $TERM =~# 'screen'
   set guicursor=
 endif
+
+" For use in my website directory
+function! s:Sync() abort
+  let l:root = expand('%:t:r')
+  exe 'make _site/' . l:root
+  exe 'make sync'
+endfunction
+
+command! Sync call <SID>Sync()
 
 " Crude attempt to imitate terminal mode mappings from Vim
 if has('nvim')
