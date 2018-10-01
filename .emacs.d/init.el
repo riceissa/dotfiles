@@ -56,7 +56,10 @@
  '(org-agenda-files (quote ("~/todo.org")))
  '(org-capture-templates
    (quote
-    (("i" "Idea" entry
+    (("a" "Anki note" entry
+      (file "~/org/anki.org")
+      "* %?")
+     ("i" "Idea" entry
       (file "~/org/notes.org")
       "* %T %?")
      ("t" "TODO item" entry
