@@ -66,11 +66,17 @@
       (file+headline "~/todo.org" "Tasks")
       "* TODO %?
   %i"))))
+ '(org-format-latex-options
+   (quote
+    (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                 ("begin" "$1" "$" "$$" "\\(" "\\["))))
  '(org-startup-truncated nil)
  '(org-todo-keywords
    (quote
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
- '(package-selected-packages (quote (php-mode lua-mode markdown-mode jedi intero magit)))
+ '(package-selected-packages
+   (quote
+    (auctex php-mode lua-mode markdown-mode jedi intero magit)))
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
