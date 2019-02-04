@@ -77,6 +77,7 @@
  '(package-selected-packages
    (quote
     (auctex php-mode lua-mode markdown-mode jedi intero magit)))
+ '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
@@ -111,6 +112,11 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
+
+(define-key 'iso-transl-ctl-x-8-map "el" [?…])
+
+;; Enable syntax highlighting for math
+(setq markdown-enable-math t)
 
 ;; Make C-w work as in Bash.
 ;; See https://www.emacswiki.org/emacs/ZapUpToChar for zap-up-to-char.
