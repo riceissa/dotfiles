@@ -51,6 +51,7 @@
  '(indent-tabs-mode nil)
  '(magit-diff-refine-hunk (quote all))
  '(make-backup-files nil)
+ '(markdown-enable-math t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
  '(org-agenda-files (quote ("~/todo.org")))
@@ -115,9 +116,6 @@
 
 (define-key 'iso-transl-ctl-x-8-map "el" [?…])
 
-;; Enable syntax highlighting for math
-(setq markdown-enable-math t)
-
 ;; Make C-w work as in Bash.
 ;; See https://www.emacswiki.org/emacs/ZapUpToChar for zap-up-to-char.
 ;; This still doesn't work exactly like in bash, in two respects:
@@ -171,6 +169,11 @@
   (insert (substring (shell-command-to-string "date -Idate")
                      0
                      -1)))
+
+;; from https://tex.stackexchange.com/a/392038/18026
+(add-hook 'LaTeX-mode-hook
+          (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
+                          (cons "\\(" "\\)"))))
 
 (ido-mode t)
 
