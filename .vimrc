@@ -10,15 +10,13 @@ if has('gui_running')
   Plug 'romainl/flattened'
 endif
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'fatih/vim-go'
+" Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-dualist'
-Plug 'riceissa/vim-inclusivespace'
-Plug 'riceissa/vim-longmove'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
 Plug 'riceissa/vim-mediawiki'
@@ -94,23 +92,6 @@ if exists('*strftime')
   inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(['%F','%B %-d, %Y','%B %Y','%F %a','%F %a %H:%M','%-d %B %Y','%Y-%m-%d %H:%M:%S','%a, %d %b %Y %H:%M:%S %z','%Y %b %d','%d-%b-%y','%a %b %d %T %Z %Y'],'strftime(v:val)')+[localtime()]),0)<CR>
 endif
 
-if !exists(':DiffOrig')
-  command DiffOrig call <SID>DiffOrig()
-endif
-function! s:DiffOrig()
-  " Original DiffOrig; see :help :DiffOrig
-  vert new | set buftype=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-  " Add a buffer-local mapping to the scratch buffer so that it is easier to
-  " exit the diffing session
-  wincmd p
-  nnoremap <buffer><silent> q :diffoff!<Bar>quit<CR>
-endfunction
-
-" Birdtrack blockquotes for Markdown
-if !exists(':Blockquote')
-  command -range Blockquote :<line1>,<line2>s/^/> / | <line1>,<line2>s/\s\+$//e | normal! '[
-endif
-
 if has('autocmd')
   augroup vimrc
     autocmd!
@@ -134,17 +115,7 @@ if has('autocmd')
     endif
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
-    " sleuth.vim usually detects 'shiftwidth' as 2, though this depends on how
-    " the Markdown is written. As for 'textwidth', I like 79 on most Markdown
-    " files, but on *some* Markdown files (such as ones where I am editing
-    " pipe tables with long lines) I want 'textwidth' to stay 0. So we set a
-    " buffer-local variable to track if we have already run the autocmd so it
-    " only runs once. Otherwise if we leave the buffer and come back, the
-    " autocmd would run again.
-    " autocmd FileType markdown if !exists('b:did_vimrc_markdown_textwidth_autocmd') | setlocal expandtab shiftwidth=4 tabstop=4 textwidth=79 | let b:did_vimrc_markdown_textwidth_autocmd = 1 | endif
     autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4
-    " Allow opening of locally linked pages with gf
-    autocmd BufNewFile,BufRead */issarice.com/wiki/*.md setlocal includeexpr=substitute(v:fname,'$','.md','')
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
     " There are multiple choices here. Compare the following:
     "     <math>\int_a^b f</math> (big integral, left-justified)
@@ -243,67 +214,4 @@ endif
 
 if has('nvim') && $TERM =~# 'screen'
   set guicursor=
-endif
-
-" For use in my website directory
-function! s:Sync() abort
-  let l:root = expand('%:t:r')
-  exe 'make _site/' . l:root
-  exe 'make sync'
-endfunction
-
-command! Sync call <SID>Sync()
-
-" Crude attempt to imitate terminal mode mappings from Vim
-if has('nvim')
-  tnoremap <C-W>h <C-\><C-N><C-W><C-H>
-  tnoremap <C-W>j <C-\><C-N><C-W><C-J>
-  tnoremap <C-W>k <C-\><C-N><C-W><C-K>
-  tnoremap <C-W>l <C-\><C-N><C-W><C-L>
-  tnoremap <C-W>w <C-\><C-N><C-W><C-W>
-  tnoremap <C-W><C-H> <C-\><C-N><C-W><C-H>
-  tnoremap <C-W><C-J> <C-\><C-N><C-W><C-J>
-  tnoremap <C-W><C-K> <C-\><C-N><C-W><C-K>
-  tnoremap <C-W><C-L> <C-\><C-N><C-W><C-L>
-  tnoremap <C-W><C-W> <C-\><C-N><C-W><C-W>
-  tnoremap <C-W>H <C-\><C-N><C-W>Hi
-  tnoremap <C-W>J <C-\><C-N><C-W>Ji
-  tnoremap <C-W>K <C-\><C-N><C-W>Ki
-  tnoremap <C-W>L <C-\><C-N><C-W>Li
-  tnoremap <C-W>. <C-W>
-  tnoremap <C-W>N <C-\><C-N>
-
-  function! s:get_input_then_exec() abort
-    let l:cmd = input(':', '', 'command')
-    " This mapping still differs from behavior in vim because in nvim,
-    " terminal mode is marked with '-- TERMINAL --' so that commands like
-    " :echo don't really work (they get cleared out unless cmdheight is
-    " greater than one).  Even if cmdheight is greater than one, the printing
-    " is weird because the command input is not automatically flushed out. So
-    " we redraw after receiving the input to clear it out, but redrawing might
-    " be too drastic.
-    redraw
-    execute(l:cmd)
-    " We don't want to unconditionally start insert here, because if the
-    " command was :quit then it will start to insert in the next buffer we end
-    " up in.
-    if &buftype ==# 'terminal'
-      startinsert
-    endif
-  endfunction
-
-  function! s:get_char_then_paste() abort
-    let l:c = nr2char(getchar())
-    execute 'normal! "' . l:c . 'p'
-    " I can't think of why the buftype wouldn't still be a terminal after
-    " pasting, but it seems safe to check for it just in case.
-    if &buftype ==# 'terminal'
-      startinsert
-    endif
-  endfunction
-
-  " Doing just <C-\><C-N>: doesn't work because we end up in normal mode
-  " rather than terminal mode.
-  tnoremap <C-W>: <C-\><C-N>:call <SID>get_input_then_exec()<CR>
-  tnoremap <silent> <C-W>" <C-\><C-N>:call <SID>get_char_then_paste()<CR>
 endif
