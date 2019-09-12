@@ -122,7 +122,7 @@ if has('autocmd')
     "     :<math>\int_a^b f</math> (big integral, indented and left-justified)
     "     <math display="inline">\int_a^b f</math> (small integral, left-justified)
     "     <math display="block">\int_a^b f</math> (big integral, centered)
-    autocmd FileType mediawiki let b:surround_{char2nr('m')} = "<math display=\"inline\">\r</math>"
+    autocmd FileType mediawiki let b:surround_{char2nr('m')} = "<math>\r</math>"
     autocmd FileType mediawiki let b:surround_{char2nr('M')} = ":<math>\r</math>"
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
