@@ -106,7 +106,7 @@ PROGRAMS = [
 
     "gdebi",
 
-    # For the Acer laptop; Wi-Fi driver and bluetooth diabler. Make sure
+    # For the Acer laptop; Wi-Fi driver and bluetooth disabler. Make sure
     # to enable 'non-free' and 'contrib' for the driver.
     #"firmware-iwlwifi",
     #"rfkill",
