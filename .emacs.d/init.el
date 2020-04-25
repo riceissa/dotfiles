@@ -2,9 +2,7 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-;; I like Emacs to take up about half of the screen, but this depends
-;; on the screen in use so might need to be adjusted depending on the
-;; computer.
+;; Set default window size
 (setq initial-frame-alist
           '((width . 84) (height . 40)))
 
@@ -23,15 +21,10 @@
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic")))
 
 ;; Turn on flyspell in most files
-;; (add-hook 'find-file-hooks 'turn-on-flyspell)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-;; This is already bound to C-; which only works in the GUI version of
-;; Emacs, so provide a binding for terminal Emacs.
-(global-set-key (kbd "C-c s") 'flyspell-auto-correct-previous-word)
-
-;; hunspell provides better spelling suggestions in my opinion.
+;; hunspell provides better spelling suggestions in my opinion
 (when (file-exists-p "/usr/bin/hunspell")
   (setq ispell-program-name "/usr/bin/hunspell"))
 
@@ -148,28 +141,6 @@
           '(lambda () (setq-local truncate-lines nil)))
 
 (add-hook 'haskell-mode-hook 'intero-mode)
-
-;; This works in terminal Emacs as well, and is like C-y
-(defun paste-clipboard ()
-  "Use xsel to paste content of clipboard at point"
-  (interactive)
-  (insert (shell-command-to-string "xsel -ob")))
-
-;; This works in terminal Emacs as well, and is like M-w
-(defun copy-clipboard ()
-  "Use xsel to copy region into clipboard"
-  (interactive)
-  (shell-command-on-region
-   (region-beginning)
-   (region-end)
-   "xsel -ib"))
-
-(defun insert-today ()
-  "Insert today's date in YYYY-mm-dd format"
-  (interactive)
-  (insert (substring (shell-command-to-string "date -Idate")
-                     0
-                     -1)))
 
 ;; from https://tex.stackexchange.com/a/392038/18026
 (add-hook 'LaTeX-mode-hook
