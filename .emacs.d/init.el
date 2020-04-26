@@ -111,17 +111,9 @@
 (define-key 'iso-transl-ctl-x-8-map "el" [?…])
 
 ;; Make C-w work as in Bash.
-;; See https://www.emacswiki.org/emacs/ZapUpToChar for zap-up-to-char.
-;; This still doesn't work exactly like in bash, in two respects:
-;; (1) if there is a block of spaces between point and the first non-space
-;; character (looking backwards), this will kill the spaces one by one,
-;; whereas in bash, the spaces are killed all at once all the way back
-;; to the first space *before* the block of non-space characters
-;; (e.g. this will make a difference in "hi lol    |" where "|" is point);
-;; (2) I think bash cares about all whitespace characters, whereas
-;; this only cares about the space character.
-(autoload 'zap-up-to-char "misc"
-  "Kill up to, but not including ARGth occurrence of CHAR." 'interactive)
+;; This still doesn't work exactly like in bash, since bash seems to
+;; care about all whitespace characters, whereas this only cares about
+;; the space character.
 (global-set-key (kbd "C-w")
                 '(lambda () (interactive)
                    (if (region-active-p)
