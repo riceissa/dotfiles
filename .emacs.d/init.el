@@ -126,7 +126,7 @@
                 '(lambda () (interactive)
                    (if (region-active-p)
                        (kill-region (region-beginning) (region-end))
-                     (zap-up-to-char -1 ?\s))))
+                     (my-smart-zap-back-to-whitespace))))
 
 (defun my-smart-zap-back-to-whitespace ()
   "Kill back to, but not including the previous whitespace,
@@ -134,19 +134,20 @@ in a smart sort of way like C-w in bash."
   (kill-region (point)
                ;; so this next part needs to find the whitespace location
                (progn
+                 (let ((original-line-beginning (line-beginning-position)))
                  (if (equal (string (preceding-char)) " ")
                      ;; the previous char is space
                      (progn
                        (re-search-backward "[^ ]" nil t 1)
                        (search-backward " ")
                        (forward-char)
-                       (point))
+                       (goto-char (max (point) original-line-beginning)))
                       ;; the previous char is non-space, so just
                       ;; kill back to previous space
                       (progn
                         (search-backward " ")
                         (forward-char)
-                        (point))))))
+                        (goto-char (max (point) original-line-beginning))))))))
 
 
 (when (fboundp 'magit-diff-buffer-file)
