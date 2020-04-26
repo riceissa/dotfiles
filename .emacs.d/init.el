@@ -128,6 +128,27 @@
                        (kill-region (region-beginning) (region-end))
                      (zap-up-to-char -1 ?\s))))
 
+(defun my-smart-zap-back-to-whitespace ()
+  "Kill back to, but not including the previous whitespace,
+in a smart sort of way like C-w in bash."
+  (kill-region (point)
+               ;; so this next part needs to find the whitespace location
+               (progn
+                 (if (equal (string (preceding-char)) " ")
+                     ;; the previous char is space
+                     (progn
+                       (re-search-backward "[^ ]" nil t 1)
+                       (search-backward " ")
+                       (forward-char)
+                       (point))
+                      ;; the previous char is non-space, so just
+                      ;; kill back to previous space
+                      (progn
+                        (search-backward " ")
+                        (forward-char)
+                        (point))))))
+
+
 (when (fboundp 'magit-diff-buffer-file)
   ;; This is like ":Git diff %" in fugitive.vim
   (global-set-key (kbd "C-x C-d")
