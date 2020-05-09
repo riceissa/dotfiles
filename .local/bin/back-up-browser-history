@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp `find ~/.mozilla/ -name "places.sqlite" | grep -v chrome_debugger_profile` ~/places.$(date -Idate).sqlite
+cp ~/.config/google-chrome/Default/History ~/chrome-History-$(date -Idate)
