@@ -11,16 +11,22 @@ else
   echo "syntax: 0"
 endif
 
+" See :help nvim-defaults for a list
 set autoindent?
 set autoread?
+set background?
 set backspace?
 set backupdir?
 set belloff?
+set compatible?
 set complete?
+set cscopeverbose?
 set directory?
 set display?
 set encoding?
+set fillchars?
 set formatoptions?
+set fsync?
 set history?
 set hlsearch?
 set incsearch?
@@ -35,7 +41,9 @@ set ruler?
 set scrolloff?
 set sessionoptions?
 set shell?
+set shortmess?
 set showcmd?
+set sidescroll?
 set sidescrolloff?
 set smarttab?
 set tabpagemax?
@@ -46,6 +54,7 @@ set ttyfast?
 set undodir?
 set viminfo?
 set wildmenu?
+set wildoptions?
 
 nmap <C-L>
 imap <C-U>
