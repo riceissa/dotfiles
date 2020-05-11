@@ -48,6 +48,7 @@ runtime! plugin/sleuth.vim
 runtime! plugin/sensible.vim
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
+set background=light
 if &history < 10000
   set history=10000
 endif
