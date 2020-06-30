@@ -114,6 +114,9 @@
 ;; This still doesn't work exactly like in bash, since bash seems to
 ;; care about all whitespace characters, whereas this only cares about
 ;; the space character.
+;; To get the old behavior of Emacs's C-w, you can use C-x C-x C-w
+;; (i.e., activate the region between point and the last mark, then
+;; kill it).
 (global-set-key (kbd "C-w")
                 '(lambda () (interactive)
                    (if (region-active-p)
