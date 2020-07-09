@@ -61,6 +61,7 @@
       "* TODO %?
   %i
 "))))
+ '(org-duration-format (quote h:mm))
  '(org-format-latex-options
    (quote
     (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
