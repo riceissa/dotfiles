@@ -28,7 +28,6 @@ export PATH
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 
 alias ls='ls --color=auto'
-alias mupdf='tmux-mupdf'
 
 stty -ixon
 
