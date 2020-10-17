@@ -61,6 +61,7 @@
       "* TODO %?
   %i
 "))))
+ '(org-clock-mode-line-total (quote today))
  '(org-duration-format (quote h:mm))
  '(org-format-latex-options
    (quote
