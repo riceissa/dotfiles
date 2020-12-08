@@ -29,7 +29,7 @@
   (setq ispell-program-name "/usr/bin/hunspell"))
 
 ;; Override some colors that the MATE theme sets
-(set-face-attribute 'region nil :background "#eeeeee")
+(set-face-attribute 'region nil :background "#eedc82")
 (set-face-attribute 'default nil
                     :font "Ubuntu Mono"
                     :height 110
