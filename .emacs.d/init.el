@@ -4,7 +4,7 @@
 
 ;; Set default window size
 (setq initial-frame-alist
-          '((width . 84) (height . 40)))
+          '((width . 79) (height . 37)))
 
 ;; For installing packages
 (require 'package)
@@ -179,4 +179,6 @@ in a smart sort of way like C-w in bash."
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
-(server-start)
+(require 'server)
+(unless (server-running-p)
+  (server-start))
