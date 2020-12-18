@@ -65,6 +65,7 @@ if !has('nvim')
 endif
 
 set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
+set autoread hidden scrolloff=0
 set spellfile=~/.spell.en.utf-8.add wildmode=list:longest,full sidescroll=1
 if has('mouse')
   set mouse=nv
