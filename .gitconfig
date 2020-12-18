@@ -26,6 +26,7 @@
 	d21 = diff HEAD~2 HEAD~1
 	dc = diff --cached
 	ds = diff --stat
+	ff = "merge --ff-only @{u}"
 	# list aliases
 	la = "!git config -l | grep alias | cut -c 7-"
 	ln = log --name-only
