@@ -12,6 +12,8 @@ while [ -n "$1" ]; do
         ;;
     git) install_git=yes
         ;;
+    kitty) install_kitty=yes
+        ;;
     local_bin) install_local_bin=yes
         ;;
     moc) install_moc=yes
@@ -121,6 +123,11 @@ fi
 if [ -n "$install_arbtt" ]; then
     mkdir -p ~/.arbtt
     ln -svf "$(pwd)/.arbtt/categorize.cfg" ~/.arbtt/categorize.cfg
+fi
+
+if [ -n "$install_kitty" ]; then
+    mkdir -p ~/.config/kitty
+    ln -svf "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
 fi
 
 if [ -n "$install_moc" ]; then
