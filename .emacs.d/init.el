@@ -4,7 +4,7 @@
 
 ;; Set default window size
 (setq initial-frame-alist
-          '((width . 79) (height . 37)))
+          '((width . 81) (height . 39)))
 
 ;; For installing packages
 (require 'package)
