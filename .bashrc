@@ -1,4 +1,4 @@
-PS1='\h:\W\$ '
+PS1='\h:\w\$ '
 
 # Modified from <https://www.jefftk.com/p/you-should-be-logging-shell-history>
 promptFunc() {
