@@ -1,4 +1,4 @@
-browser firefox
+browser google-chrome
 # auto-reload yes
 suppress-first-reload yes
 #max-items 20

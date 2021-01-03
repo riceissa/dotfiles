@@ -11,6 +11,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+;; Set variables like PATH so that eshell works more like a normal shell
+(exec-path-from-shell-initialize)
+
 ;; For Japanese input. I like to install this from the Ubuntu
 ;; repository rather than melpa. The package is called emacs-mozc.
 (require 'mozc nil 'noerror)
@@ -73,7 +76,7 @@
     ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
  '(package-selected-packages
    (quote
-    (auctex php-mode lua-mode markdown-mode jedi intero magit)))
+    (exec-path-from-shell auctex php-mode lua-mode markdown-mode jedi intero magit)))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)

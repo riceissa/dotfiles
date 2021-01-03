@@ -1,9 +1,9 @@
 #!/bin/bash
 
 tmux new-session -d
-if [[ ! $(pgrep emacs) ]]; then
-    tmux send-keys 'emacs &' C-m C-l
-fi
+# if [[ ! $(pgrep emacs) ]]; then
+#     tmux send-keys 'emacs &' C-m C-l
+# fi
 
 tmux new-window 'mocp'
 
