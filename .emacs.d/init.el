@@ -32,12 +32,13 @@
   (setq ispell-program-name "/usr/bin/hunspell"))
 
 ;; Override some colors that the MATE theme sets
-(set-face-attribute 'region nil :background "#eedc82")
+(set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
 (set-face-attribute 'default nil
                     :font "Ubuntu Mono"
                     :height 110
-                    :background "#ffffff"
-                    :foreground "#333333")
+                    :background "white"  ;; equivalent to #ffffff
+                    :foreground "gray20" ;; equivalent to #333333
+                    )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
