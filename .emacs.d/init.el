@@ -12,7 +12,8 @@
 (package-initialize)
 
 ;; Set variables like PATH so that eshell works more like a normal shell
-(exec-path-from-shell-initialize)
+(when (require 'exec-path-from-shell nil 'noerror)
+  (exec-path-from-shell-initialize))
 
 ;; For Japanese input. I like to install this from the Ubuntu
 ;; repository rather than melpa. The package is called emacs-mozc.
