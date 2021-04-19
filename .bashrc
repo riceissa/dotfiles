@@ -29,6 +29,12 @@ export PATH
 
 alias ls='ls --color=auto'
 
+# CTRL-D is easiest to type, but does not leave a line in the bash history,
+# leading to the full history logging via promptfunc containing unexpected
+# garbage. This alias makes exiting a little less cumbersome. It also never
+# exits when there are jobs.
+alias e='if [[ $(jobs) ]]; then jobs; else exit; fi'
+
 stty -ixon
 
 # Set ag as the default source for fzf if it exists
