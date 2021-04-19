@@ -47,6 +47,9 @@ export VISUAL=nvim
 # Enable CTRL-S in terminal
 stty -ixon
 
+# Filter clipboard: clean linebreaks in copied text
+alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
+
 # Set ag as the default source for fzf if it exists
 command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
