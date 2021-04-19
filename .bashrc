@@ -17,6 +17,7 @@ export HISTFILESIZE=
 
 PATH="$HOME/.cabal/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/projects/dotfiles/.local/bin:$PATH"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
