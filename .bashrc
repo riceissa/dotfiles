@@ -50,6 +50,7 @@ alias svim='vim -Nu ~/sensible.vim'
 export EDITOR=nvim
 export VISUAL=nvim
 
+# Enable CTRL-S in terminal
 stty -ixon
 
 # Set ag as the default source for fzf if it exists
