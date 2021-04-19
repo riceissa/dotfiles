@@ -46,8 +46,8 @@ alias em='emacsclient -t'
 alias vim=nvim
 alias svim='vim -Nu ~/sensible.vim'
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 stty -ixon
 
