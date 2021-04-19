@@ -16,7 +16,8 @@ export HISTSIZE=10000
 export HISTFILESIZE=
 
 PATH="$HOME/.cabal/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
+# For some reason this one is already in my path, so comment out for now
+# PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/projects/dotfiles/.local/bin:$PATH"
 export PATH
 
