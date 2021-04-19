@@ -15,12 +15,6 @@ export HISTSIZE=10000
 # file.
 export HISTFILESIZE=
 
-export GOPATH=/home/issa/go/packages
-PLAN9=/home/issa/projects/plan9port export PLAN9
-
-PATH="$PATH:$GOPATH/bin"
-PATH="$PATH:$PLAN9/bin"
-PATH="$PATH:/usr/games"
 PATH="$HOME/.cabal/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 export PATH
