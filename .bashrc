@@ -35,6 +35,20 @@ alias ls='ls --color=auto'
 # exits when there are jobs.
 alias e='if [[ $(jobs) ]]; then jobs; else exit; fi'
 
+# Emacs shell mode doesn't like the fzf bindings, so don't source
+# fzf settings if inside Emacs. fzf doesn't work anyway, since shell
+# mode cannot work well with shell escape sequences.
+if [ -z "$INSIDE_EMACS" ]; then
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
+alias em='emacsclient -t'
+
+alias vim=nvim
+alias svim='vim -Nu ~/sensible.vim'
+
+export EDITOR=vim
+export VISUAL=vim
+
 stty -ixon
 
 # Set ag as the default source for fzf if it exists
