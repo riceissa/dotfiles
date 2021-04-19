@@ -28,6 +28,7 @@ export PATH
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 
 alias ls='ls --color=auto'
+alias fd='fdfind'
 
 # CTRL-D is easiest to type, but does not leave a line in the bash history,
 # leading to the full history logging via promptfunc containing unexpected
