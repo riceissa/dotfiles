@@ -1,4 +1,6 @@
-PS1='\h:\w\$ '
+if [ $(uname -o) != "Msys" ]; then
+    PS1='\h:\w\$ '
+fi
 
 # Modified from <https://www.jefftk.com/p/you-should-be-logging-shell-history>
 promptFunc() {
@@ -35,24 +37,37 @@ alias e='if [[ $(jobs) ]]; then jobs; else exit; fi'
 # Emacs shell mode doesn't like the fzf bindings, so don't source
 # fzf settings if inside Emacs. fzf doesn't work anyway, since shell
 # mode cannot work well with shell escape sequences.
-if [ -z "$INSIDE_EMACS" ]; then
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ $(uname -o) != "Msys" ]; then
+    if [ -z "$INSIDE_EMACS" ]; then
+        [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    fi
 fi
 alias em='emacsclient -t'
 
-alias vim=nvim
+if [ $(uname -o) != "Msys" ]; then
+    alias vim=nvim
+fi
 alias svim='vim -Nu ~/sensible.vim'
 
-export EDITOR=nvim
-export VISUAL=nvim
+if [ $(uname -o) == "Msys" ]; then
+    export EDITOR=vim
+    export VISUAL=vim
+else
+    export EDITOR=nvim
+    export VISUAL=nvim
+fi
 
 # Enable CTRL-S in terminal
 stty -ixon
 
 # Filter clipboard: clean linebreaks in copied text
-alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
+if [ $(uname -o) != "Msys" ]; then
+    alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
+fi
 
 # Set ag as the default source for fzf if it exists
-command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_R_OPTS='-e'
+if [ $(uname -o) != "Msys" ]; then
+    command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_CTRL_R_OPTS='-e'
+fi
