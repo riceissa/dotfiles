@@ -15,21 +15,42 @@ export HISTSIZE=10000
 # file.
 export HISTFILESIZE=
 
-export GOPATH=/home/issa/go/packages
-PLAN9=/home/issa/projects/plan9port export PLAN9
-
-PATH="$PATH:$GOPATH/bin"
-PATH="$PATH:$PLAN9/bin"
-PATH="$PATH:/usr/games"
 PATH="$HOME/.cabal/bin:$PATH"
-PATH="$HOME/.local/bin:$PATH"
+# For some reason this one is already in my path, so comment out for now
+# PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/projects/dotfiles/.local/bin:$PATH"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
 
 alias ls='ls --color=auto'
+alias fd='fdfind'
 
+# CTRL-D is easiest to type, but does not leave a line in the bash history,
+# leading to the full history logging via promptfunc containing unexpected
+# garbage. This alias makes exiting a little less cumbersome. It also never
+# exits when there are jobs.
+alias e='if [[ $(jobs) ]]; then jobs; else exit; fi'
+
+# Emacs shell mode doesn't like the fzf bindings, so don't source
+# fzf settings if inside Emacs. fzf doesn't work anyway, since shell
+# mode cannot work well with shell escape sequences.
+if [ -z "$INSIDE_EMACS" ]; then
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
+alias em='emacsclient -t'
+
+alias vim=nvim
+alias svim='vim -Nu ~/sensible.vim'
+
+export EDITOR=nvim
+export VISUAL=nvim
+
+# Enable CTRL-S in terminal
 stty -ixon
+
+# Filter clipboard: clean linebreaks in copied text
+alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
 
 # Set ag as the default source for fzf if it exists
 command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
