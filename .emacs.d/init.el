@@ -24,13 +24,23 @@
 (when (fboundp 'set-fontset-font)
   (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic")))
 
+;; hunspell provides better spelling suggestions in my opinion.
+;; To get hunspell on Windows, first install
+;; msys2 (https://www.msys2.org/), then follow the instructions
+;; in this answer https://emacs.stackexchange.com/a/45752/31094
+;; to get hunspell installed via msys2 (the instructions
+;; are for aspell but it's very similar). Once hunspell is
+;; installed, the configuration below should automatically work.
+(if (eq system-type 'windows-nt)
+    (progn
+      (setq ispell-program-name "C:/msys64/mingw64/bin/hunspell.exe")
+      (setenv "DICTIONARY" "en_US"))
+  (when (file-exists-p "/usr/bin/hunspell")
+    (setq ispell-program-name "/usr/bin/hunspell")))
+
 ;; Turn on flyspell in most files
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
-;; hunspell provides better spelling suggestions in my opinion
-(when (file-exists-p "/usr/bin/hunspell")
-  (setq ispell-program-name "/usr/bin/hunspell"))
 
 ;; Override some colors that the MATE theme sets
 (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
