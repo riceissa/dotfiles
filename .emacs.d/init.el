@@ -42,11 +42,20 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+(setq font-name
+      (if (eq system-type 'windows-nt)
+          "Consolas"
+        "Ubuntu Mono"))
+(setq font-height
+      (if (eq system-type 'windows-nt)
+          110
+        140))
+
 ;; Override some colors that the MATE theme sets
 (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
 (set-face-attribute 'default nil
-                    :font "Ubuntu Mono"
-                    :height 110
+                    :font font-name
+                    :height font-height
                     :background "white"  ;; equivalent to #ffffff
                     :foreground "gray20" ;; equivalent to #333333
                     )
