@@ -203,6 +203,12 @@ in a smart sort of way like C-w in bash."
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+
+;; For pushing with git on windows
+(when (eq system-type 'windows-nt)
+    (setenv "SSH_ASKPASS" "git-gui--askpass"))
+
+
 (require 'server)
 (unless (server-running-p)
   (server-start))
