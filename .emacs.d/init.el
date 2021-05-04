@@ -12,7 +12,9 @@
 (package-initialize)
 
 ;; Set variables like PATH so that eshell works more like a normal shell
-(when (require 'exec-path-from-shell nil 'noerror)
+(when (and
+        (require 'exec-path-from-shell nil 'noerror)
+        (not (eq system-type 'windows-nt)))
   (exec-path-from-shell-initialize))
 
 ;; For Japanese input. I like to install this from the Ubuntu
