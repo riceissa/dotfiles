@@ -5,7 +5,7 @@ tmux new-session -d
 #     tmux send-keys 'emacs &' C-m C-l
 # fi
 
-tmux new-window 'mocp'
+# tmux new-window 'mocp'
 
 tmux new-window
 tmux rename-window "ir.c"
@@ -18,9 +18,9 @@ tmux split-window -v
 tmux send-keys 'cd ~/projects/andy-matuschak-notes/' C-m C-l
 tmux select-pane -t 0
 
-tmux new-window
-tmux rename-window "inbox"
-tmux send-keys 'cd ~/projects/spaced-inbox/' C-m C-l
+# tmux new-window
+# tmux rename-window "inbox"
+# tmux send-keys 'cd ~/projects/spaced-inbox/' C-m C-l
 
 tmux select-window -t 0
 tmux attach
