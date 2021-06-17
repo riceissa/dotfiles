@@ -13,7 +13,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
-Plug 'lervag/vimtex', {'for': 'tex'}
+" Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'riceissa/vim-dualist'
