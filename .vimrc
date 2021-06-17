@@ -78,6 +78,13 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
+" In Git Bash, the jump pauses text insertion so some characters get lost if I
+" type too quickly. I turns out in Git Bash the file /etc/vimrc is read, which
+" turns on showmatch even though I never asked for it. Turning off visualbell
+" as well because I find it really annoying.
+set noshowmatch
+set novb
+
 nnoremap Y y$
 
 " Quickly find potentially problematic characters (things like non-printing
