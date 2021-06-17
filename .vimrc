@@ -79,9 +79,9 @@ if exists('&inccommand')
 endif
 
 " In Git Bash, the jump pauses text insertion so some characters get lost if I
-" type too quickly. I turns out in Git Bash the file /etc/vimrc is read, which
-" turns on showmatch even though I never asked for it. Turning off visualbell
-" as well because I find it really annoying.
+" type too quickly. It turns out in Git Bash the file /etc/vimrc is read,
+" which turns on showmatch. I am turning off visualbell as well because I find
+" it really annoying.
 set noshowmatch
 set novb
 
