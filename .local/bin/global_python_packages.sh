@@ -10,3 +10,4 @@ pip3 install --upgrade urlwatch
 pip3 install --upgrade google-api-python-client
 pip3 install --upgrade oauth2client
 pip3 install --upgrade mysql-connector-python
+pip3 install --upgrade python-dateutil
