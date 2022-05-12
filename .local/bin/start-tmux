@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# I should figure out a better way to do this, but on WSL ssh does not
+# automatically start
+eval `ssh-adent -s`
+ssh-add
+
 tmux new-session -d
 # if [[ ! $(pgrep emacs) ]]; then
 #     tmux send-keys 'emacs &' C-m C-l
