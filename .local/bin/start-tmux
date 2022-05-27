@@ -2,7 +2,7 @@
 
 # I should figure out a better way to do this, but on WSL ssh does not
 # automatically start
-eval `ssh-adent -s`
+eval `ssh-agent -s`
 ssh-add
 
 tmux new-session -d
