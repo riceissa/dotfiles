@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # I should figure out a better way to do this, but on WSL ssh does not
-# automatically start
-eval `ssh-agent -s`
-ssh-add
+# automatically start. This didn't end up working (maybe the ssh-agent
+# gets started in the "script's bash instance" instead of the caller's
+# bash instance?), so commenting it out for now.
+# eval `ssh-agent -s`
+# ssh-add
 
 tmux new-session -d
 # if [[ ! $(pgrep emacs) ]]; then
