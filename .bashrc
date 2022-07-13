@@ -1,5 +1,5 @@
 if [ $(uname -o) != "Msys" ]; then
-    PS1='\h:\w\$ '
+    PS1='\w\$ '
 fi
 
 # Modified from <https://www.jefftk.com/p/you-should-be-logging-shell-history>
