@@ -1,3 +1,4 @@
+# The code below comes from https://docs.github.com/en/authentication/connecting-to-github-with-ssh/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows
 env=~/.ssh/agent.env
 
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
@@ -19,6 +20,13 @@ elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
 fi
 
 unset env
+# End of code from GitHub documentation
 
 alias python3='winpty python3'
 alias python='winpty python'
+
+alias git-backup='git add . && git commit -m "snapshot" && git push'
+
+# fzf doesn't seem to work on gitbash?
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /c/Users/Issa/projects/dotfiles/.bashrc ] && source /c/Users/Issa/projects/dotfiles/.bashrc
