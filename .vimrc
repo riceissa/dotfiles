@@ -6,7 +6,7 @@ set nocompatible
 " Once all Vim config files are in the right places, just do :PlugInstall in
 " Vim to install the plugins.
 call plug#begin('~/.vim/plugged')
-if has('gui_running')
+if has('gui_running') || (has('nvim') && has('win64'))
   Plug 'romainl/flattened'
 endif
 Plug 'AndrewRadev/splitjoin.vim'
@@ -216,7 +216,7 @@ nmap <silent> ]W <Plug>(ale_last)
 nnoremap [s [s<Space><BS>
 nnoremap ]s ]s<BS><Space>
 
-if has('gui_running')
+if has('gui_running') || (has('nvim') && has('win64'))
   silent! colorscheme flattened_light
   set guioptions-=m
   set guioptions-=T
