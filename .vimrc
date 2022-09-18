@@ -28,7 +28,9 @@ Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
+if !has('win64')
+  Plug 'tpope/vim-fugitive'
+endif
 Plug 'riceissa/vim-oldfugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
