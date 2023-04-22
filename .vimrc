@@ -123,7 +123,7 @@ if has('autocmd')
     autocmd FileType mediawiki setlocal linebreak
     autocmd FileType php setlocal commentstring=//%s
     autocmd FileType help,man setlocal nolist nospell
-    autocmd FileType help,man nnoremap <buffer> <silent> q :q<CR>
+    autocmd FileType help,man,fugitive nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
     if exists('+omnifunc')
       autocmd FileType * if &omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
