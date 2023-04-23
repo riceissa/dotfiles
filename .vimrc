@@ -181,6 +181,8 @@ if has('digraphs')
   digraph -\ 8726
   digraph \|> 8614
   digraph v\| 8595
+  digraph \|- 8866
+  digraph \|= 8872
   " Run under exe so that syntax highlighting isn't messed up
   exe 'digraph (/ 8713'
   exe 'digraph (\ 8713'
