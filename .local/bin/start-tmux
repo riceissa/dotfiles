@@ -14,20 +14,13 @@ tmux new-session -d
 
 # tmux new-window 'mocp'
 
-tmux new-window
+tmux new-window -c '/home/issa/projects/issarice.com/'
 tmux rename-window "ir.c"
-tmux send-keys 'cd ~/projects/issarice.com/' C-m C-l
 
-tmux new-window
+tmux new-window -c '/home/issa/projects/urlwatch-snapshots/'
 tmux rename-window "news"
-tmux send-keys 'cd ~/projects/urlwatch-snapshots/' C-m C-l
-tmux split-window -v
-tmux send-keys 'cd ~/projects/andy-matuschak-notes/' C-m C-l
+tmux split-window -v -c '/home/issa/projects/andy-matuschak-notes/'
 tmux select-pane -t 0
-
-# tmux new-window
-# tmux rename-window "inbox"
-# tmux send-keys 'cd ~/projects/spaced-inbox/' C-m C-l
 
 tmux select-window -t 0
 tmux attach
