@@ -138,6 +138,19 @@
 
 (define-key 'iso-transl-ctl-x-8-map "el" [?…])
 
+
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
+
+(defun daily-note-separator ()
+  "Insert the daily note separator for spaced inbox."
+  (interactive)
+  (insert "=====\n")
+  (insert (format-time-string "%Y-%m-%d"))
+  (insert "\n\n\n"))
+
+
 ;; Make C-w work as in Bash.
 ;; This still doesn't work exactly like in bash, since bash seems to
 ;; care about all whitespace characters, whereas this only cares about
