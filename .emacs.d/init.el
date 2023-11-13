@@ -11,6 +11,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
+(add-to-list 'load-path "c:/Users/Issa/projects/org-clock-csv")
+(require 'org-clock-csv)
+
 ;; Set variables like PATH so that eshell works more like a normal shell
 (when (and
         (require 'exec-path-from-shell nil 'noerror)
