@@ -71,15 +71,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(indent-tabs-mode nil)
- '(magit-diff-refine-hunk (quote all))
+ '(magit-diff-refine-hunk 'all)
  '(make-backup-files nil)
  '(markdown-enable-math t)
  '(mouse-wheel-progressive-speed nil)
- '(mouse-wheel-scroll-amount (quote (3 ((shift) . 1) ((control)))))
+ '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
  '(org-agenda-files (quote ("~/todo.org")))
  '(org-capture-templates
-   (quote
-    (("a" "Anki note" entry
+   '(("a" "Anki note" entry
       (file "~/org/anki.org")
       "* %?")
      ("i" "Idea" entry
@@ -87,22 +86,16 @@
       "* %T %?")
      ("t" "TODO item" entry
       (file+headline "~/todo.org" "Tasks")
-      "* TODO %?
-  %i
-"))))
- '(org-clock-mode-line-total (quote today))
- '(org-duration-format (quote h:mm))
+      "* TODO %?\12  %i\12")))
+ '(org-clock-mode-line-total 'today)
+ '(org-duration-format 'h:mm)
  '(org-format-latex-options
-   (quote
-    (:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                 ("begin" "$1" "$" "$$" "\\(" "\\["))))
+   '(:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
+                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-startup-truncated nil)
- '(org-todo-keywords
-   (quote
-    ((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)"))))
+ '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   (quote
-    (exec-path-from-shell auctex php-mode lua-mode markdown-mode jedi intero magit)))
+   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode jedi intero magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(save-interprogram-paste-before-kill t)
