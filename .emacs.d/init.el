@@ -144,7 +144,10 @@
   (interactive)
   (insert "=====\n")
   (insert (format-time-string "%Y-%m-%d"))
-  (insert "\n\n\n"))
+  (insert "\n\n\n")
+  (previous-line 4)
+  (recenter-top-bottom 0)
+  (next-line 4))
 
 
 ;; Make C-w work as in Bash.
