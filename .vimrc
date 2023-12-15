@@ -85,6 +85,21 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
+" By default, Vim sets the swap directory to the same directory as the file
+" being edited, which is a security risk when editing files on a server (e.g.
+" if one is editing a MediaWiki LocalSettings.php file on a server, then
+" anyone can navigate to the public URL for the MediaWiki and access
+" LocalSettings.php.swp and download potentially sensitive data like the
+" database password). The same is true for the backupdir as well (though Vim
+" doesn't turn on backups by default so this is only a problem if one enables
+" that setting). I think the same is true for undodir, but I haven't looked
+" into it.
+if !has('win64')
+  set backupdir=~/.vim/backup//
+  set directory=~/.vim/swap//
+  set undodir=~/.vim/undo//
+endif
+
 " In Git Bash, the jump pauses text insertion so some characters get lost if I
 " type too quickly. It turns out in Git Bash the file /etc/vimrc is read,
 " which turns on showmatch. I am turning off visualbell as well because I find
