@@ -114,3 +114,9 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
     unset env
     # End of code from GitHub documentation
 fi
+
+# For whatever reason, the WSL version of Ubuntu doesn't automatically start
+# MySQL at boot so the following makes sure this happens.
+if [ -n "$WSL_DISTRO_NAME" ]; then
+    wsl.exe -u root service mysql status > /dev/null || wsl.exe -u root service mysql start > /dev/null
+fi
