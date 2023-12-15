@@ -41,6 +41,7 @@ PATH="$HOME/.cabal/bin:$PATH"
 # For some reason this one is already in my path, so comment out for now
 # PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/projects/dotfiles/.local/bin:$PATH"
+PATH="$HOME/projects/pandoc-wikilinks-filter:$PATH"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
@@ -78,6 +79,10 @@ stty -ixon
 if [ $(uname -o) != "Msys" ]; then
     alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
 fi
+
+# The following works in Ubuntu when installing fzf using apt (which I prefer,
+# since that way I don't have to remember to manually upgrade fzf).
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 
 # Set ag/ripgrep as the default source for fzf if it exists
 if [ $(uname -o) != "Msys" ]; then
