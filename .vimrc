@@ -50,7 +50,9 @@ runtime! plugin/sensible.vim
 
 " This was the recommended way to install fzf according to the Ubuntu
 " documentation given in 'apt show fzf'.
-source /usr/share/doc/fzf/examples/fzf.vim
+if filereadable("/usr/share/doc/fzf/examples/fzf.vim")
+  source /usr/share/doc/fzf/examples/fzf.vim
+endif
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
 set background=light
