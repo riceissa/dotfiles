@@ -11,7 +11,6 @@ if has('gui_running') || (has('nvim') && has('win64'))
 endif
 Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
 " Plug 'fatih/vim-go'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 " Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'ludovicchabant/vim-gutentags'
@@ -48,6 +47,10 @@ runtime! plugin/sleuth.vim
 
 " Override ttimeoutlen later
 runtime! plugin/sensible.vim
+
+" This was the recommended way to install fzf according to the Ubuntu
+" documentation given in 'apt show fzf'.
+source /usr/share/doc/fzf/examples/fzf.vim
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
 set background=light
