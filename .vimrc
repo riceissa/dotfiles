@@ -7,15 +7,15 @@ set nocompatible
 " Vim to install the plugins.
 call plug#begin('~/.vim/plugged')
 if has('gui_running') || (has('nvim') && has('win64'))
-  Plug 'romainl/flattened'
+  Plug 'romainl/flattened', {'commit': '0f3e0e4d17ebf5cb8c8e70ca1c93f1f90deb7929'}
 endif
-Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
 " Plug 'fatih/vim-go'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/gv.vim'
 " Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
 Plug 'riceissa/vim-dualist'
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
@@ -24,7 +24,7 @@ Plug 'riceissa/vim-more-toggling'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
-Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
