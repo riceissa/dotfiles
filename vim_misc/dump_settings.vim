@@ -27,9 +27,11 @@ set encoding?
 set fillchars?
 set formatoptions?
 set fsync?
+set hidden?
 set history?
 set hlsearch?
 set incsearch?
+set joinspaces?
 set langnoremap?
 set langremap?
 set laststatus?
@@ -46,24 +48,39 @@ set showcmd?
 set sidescroll?
 set sidescrolloff?
 set smarttab?
+set startofline?
+set switchbuf?
 set tabpagemax?
 set tags?
 set ttimeout?
 set ttimeoutlen?
 set ttyfast?
 set undodir?
+set viewoptions?
 set viminfo?
 set wildmenu?
 set wildoptions?
 
+nmap Y
 nmap <C-L>
 imap <C-U>
+imap <C-W>
 
 echo "t_Co=" . &t_Co
+if exists('g:loaded_man')
+  echo "man: " . g:loaded_man
+else
+  echo "man: 0"
+endif
 if exists('g:loaded_matchit')
   echo "matchit: " . g:loaded_matchit
 else
   echo "matchit: 0"
+endif
+if exists('g:vimsyn_embed')
+  echo "vimsyn_embed: " . g:vimsyn_embed
+else
+  echo "vimsyn_embed: does not exist"
 endif
 endfunction
 
