@@ -97,8 +97,17 @@ endif
 " that setting). I think the same is true for undodir, but I haven't looked
 " into it.
 if !has('win64')
+  if !isdirectory(expand('~/.vim/backup'))
+    call mkdir(expand('~/.vim/backup'), 'p')
+  endif
   set backupdir=~/.vim/backup//
+  if !isdirectory(expand('~/.vim/swap'))
+    call mkdir(expand('~/.vim/swap'), 'p')
+  endif
   set directory=~/.vim/swap//
+  if !isdirectory(expand('~/.vim/undo'))
+    call mkdir(expand('~/.vim/undo'), 'p')
+  endif
   set undodir=~/.vim/undo//
 endif
 
