@@ -11,7 +11,7 @@ if has('gui_running') || (has('nvim') && has('win64'))
 endif
 Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
 " Plug 'fatih/vim-go'
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', {'commit': 'b6bb6664e2c95aa584059f195eb3a9f3cb133994'}
 " Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
@@ -24,20 +24,20 @@ Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-commentary', {'commit': 'e87cd90dc09c2a203e13af9704bd0ef79303d755'}
+Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
+Plug 'tpope/vim-eunuch', {'commit': '67f3dd32b4dcd1c427085f42ff5f29c7adc645c6'}
 if !has('win64')
-  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive', {'commit': '59659093581aad2afacedc81f009ed6a4bfad275'}
 endif
 Plug 'riceissa/vim-oldfugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
+Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
+Plug 'tpope/vim-sensible', {'commit': '3e878abfd6ddc6fb5dba48b41f2b72c3a2f8249f'}
+Plug 'tpope/vim-sleuth', {'commit': '1cc4557420f215d02c4d2645a748a816c220e99b'}
+Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
+Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
+Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
 " Plug 'davidhalter/jedi-vim'
 call plug#end()
 
