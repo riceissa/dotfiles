@@ -13,7 +13,7 @@ Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095
 " Plug 'fatih/vim-go'
 Plug 'junegunn/gv.vim'
 " Plug 'lervag/vimtex', {'for': 'tex'}
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
 Plug 'riceissa/vim-dualist'
 Plug 'riceissa/vim-markdown'
