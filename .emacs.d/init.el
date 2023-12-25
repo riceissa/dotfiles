@@ -98,6 +98,7 @@
    '(exec-path-from-shell auctex php-mode lua-mode markdown-mode jedi intero magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
+ '(ring-bell-function 'ignore)
  '(save-interprogram-paste-before-kill t)
  '(scroll-conservatively 1000)
  '(sentence-end-double-space nil)
