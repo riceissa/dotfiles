@@ -95,7 +95,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode jedi intero magit))
+   '(org-clock-csv exec-path-from-shell auctex php-mode lua-mode markdown-mode intero magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -214,10 +214,6 @@ in a smart sort of way like C-w in bash."
 (add-hook 'c-mode-hook '(lambda ()
                          (setq indent-tabs-mode t)
                          (setq tab-width 8)))
-
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
 
 ;; For pushing with git on windows
 (when (eq system-type 'windows-nt)
