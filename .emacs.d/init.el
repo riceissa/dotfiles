@@ -86,16 +86,16 @@
  '(markdown-enable-math t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
- '(org-agenda-files '("~/todo.org"))
+ '(org-agenda-files `(,todo-org-location))
  '(org-capture-templates
-   '(("a" "Anki note" entry
+   `(("a" "Anki note" entry
       (file "~/org/anki.org")
       "* %?")
      ("i" "Idea" entry
-      (file "~/org/notes.org")
+      (file ,notes-org-location)
       "* %T %?")
      ("t" "TODO item" entry
-      (file+headline "~/todo.org" "Tasks")
+      (file+headline ,todo-org-location "Tasks")
       "* TODO %?\12  %i\12")))
  '(org-clock-mode-line-total 'today)
  '(org-duration-format 'h:mm)
