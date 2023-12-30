@@ -68,6 +68,13 @@
                     :foreground "gray20" ;; equivalent to #333333
                     )
 
+(setq todo-org-location "~/todo.org")
+(setq notes-org-location "~/notes.org")
+;; Windows does not have symlinks, so the following file sets the
+;; above two variables on Windows.
+(if (eq system-type 'windows-nt)
+    (load-file "c:/Users/Issa/.emacs.d/windows-settings.el"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -79,7 +86,7 @@
  '(markdown-enable-math t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
- '(org-agenda-files (quote ("~/todo.org")))
+ '(org-agenda-files '("~/todo.org"))
  '(org-capture-templates
    '(("a" "Anki note" entry
       (file "~/org/anki.org")
