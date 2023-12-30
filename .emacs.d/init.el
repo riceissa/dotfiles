@@ -11,8 +11,11 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-(add-to-list 'load-path "c:/Users/Issa/projects/org-clock-csv")
-(require 'org-clock-csv)
+;; Loading org-clock-csv seems to slow down Emacs startup time, and I
+;; only need it once a month to do invoices, so just enable and
+;; restart Emacs whenever I do invoices.
+;; (add-to-list 'load-path "c:/Users/Issa/projects/org-clock-csv")
+;; (require 'org-clock-csv)
 
 ;; Set variables like PATH so that eshell works more like a normal shell
 (when (and
