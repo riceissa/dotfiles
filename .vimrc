@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 if has('gui_running') || (has('nvim') && has('win64'))
   Plug 'romainl/flattened', {'commit': '0f3e0e4d17ebf5cb8c8e70ca1c93f1f90deb7929'}
 endif
+Plug 'riceissa/vim-colorschemes'
 Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
 " Plug 'fatih/vim-go'
 Plug 'junegunn/gv.vim', {'commit': 'b6bb6664e2c95aa584059f195eb3a9f3cb133994'}
@@ -256,8 +257,7 @@ if has('gui_running') || (has('nvim') && has('win64'))
   set guioptions-=m
   set guioptions-=T
 else
-  highlight Visual ctermfg=White ctermbg=Gray
-  highlight Folded ctermfg=DarkGray ctermbg=LightGray cterm=bold,underline
+  silent! colorscheme issa_light
 endif
 
 if has('nvim') && $TERM =~# 'screen'
