@@ -41,6 +41,7 @@ Plug 'tpope/vim-sleuth', {'commit': '1cc4557420f215d02c4d2645a748a816c220e99b'}
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
+Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 " Plug 'davidhalter/jedi-vim'
 call plug#end()
 
