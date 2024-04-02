@@ -14,6 +14,8 @@ tmux new-session -d
 
 # tmux new-window 'mocp'
 
+tmux rename-window "calc"
+
 tmux new-window -c '/home/issa/projects/issarice.com/'
 tmux rename-window "ir.c"
 
