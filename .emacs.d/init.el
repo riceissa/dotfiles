@@ -60,13 +60,24 @@
         140))
 
 ;; Override some colors that the MATE theme sets
-(set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
-(set-face-attribute 'default nil
-                    :font font-name
-                    :height font-height
-                    :background "white"  ;; equivalent to #ffffff
-                    :foreground "gray20" ;; equivalent to #333333
-                    )
+;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
+;; (set-face-attribute 'default nil
+;;                     :font font-name
+;;                     :height font-height
+;;                     :background "white"  ;; equivalent to #ffffff
+;;                     :foreground "gray20" ;; equivalent to #333333
+;;                     )
+
+(set-face-attribute 'default nil :font font-name :height font-height)
+
+(require 'auto-dark)
+(auto-dark-mode t)
+
+;; For some reason the menu-bar color doesn't change when auto-dark
+;; sets the theme to dark... Since I don't really use the menu bar
+;; anyway, it's not worth the jarring visual.
+(menu-bar-mode 0)
+
 
 (setq todo-org-location "~/todo.org")
 (setq notes-org-location "~/notes.org")
@@ -80,6 +91,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-dark-dark-theme 'tango-dark)
+ '(auto-dark-light-theme 'issa-test)
+ '(custom-safe-themes
+   '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
  '(indent-tabs-mode nil)
  '(magit-diff-refine-hunk 'all)
  '(make-backup-files nil)
@@ -105,7 +120,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode intero magit))
+   '(auto-dark exec-path-from-shell auctex php-mode lua-mode markdown-mode intero magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -122,7 +137,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(markdown-code-face ((t nil)))
+ '(markdown-inline-code-face ((t nil))))
 
 ;; MediaWiki setup
 (setq mymediawiki-highlights
@@ -242,3 +258,8 @@ in a smart sort of way like C-w in bash."
 ;; I may eventually need to roll my own elisp code to get the behavior I want (basically Vim's insert-mode C-x C-s), but I did notice while playing around the flyspell mode has this other command to look backwards to fix a spelling mistake, so I'll be trying it for now.
 (eval-after-load "flyspell"
   '(define-key flyspell-mode-map (kbd "C-;") 'flyspell-check-previous-highlighted-word))
+
+
+;; this is a hack because for some reason auto-dark mode loads leuven
+;; even though i have explicitly set a different light theme.
+(disable-theme 'leuven)
