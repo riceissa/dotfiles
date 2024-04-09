@@ -1,5 +1,0 @@
-#!/bin/bash
-
-command -v pandoc >/dev/null 2>&1 || { echo >&2 "Pandoc is not installed; aborting."; exit 1; }
-command -v xclip >/dev/null 2>&1 || { echo >&2 "xclip is not installed; aborting."; exit 1; }
-xclip -sel clip -t text/html -o | pandoc -f html -t markdown-raw_html-native_divs-native_spans-link_attributes --wrap=none
