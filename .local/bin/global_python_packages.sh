@@ -12,3 +12,8 @@ pip3 install --upgrade oauth2client
 pip3 install --upgrade mysql-connector-python
 pip3 install --upgrade python-dateutil
 pip3 install --upgrade awscli
+pip3 install --upgrade mypy
+pip3 install --upgrade "typer[all]"
+pip3 install --upgrade yt-dlp
+pip3 install --upgrade google-analytics-data
+pip3 install --upgrade anki
