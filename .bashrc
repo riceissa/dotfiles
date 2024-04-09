@@ -10,16 +10,16 @@ esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-export HISTCONTROL=ignoreboth:erasedups
+HISTCONTROL=ignoreboth:erasedups
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=10000
+HISTSIZE=100000
 # Unset so that the history is not truncated when initialized from the history
 # file.
-export HISTFILESIZE=
+HISTFILESIZE=
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -243,3 +243,5 @@ fi
 if [ -n "$WSL_DISTRO_NAME" ]; then
     wsl.exe -u root service mysql status > /dev/null || wsl.exe -u root service mysql start > /dev/null
 fi
+
+[ -f "/home/issa/.ghcup/env" ] && source "/home/issa/.ghcup/env" # ghcup-env
