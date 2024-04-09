@@ -3,6 +3,10 @@
 # License available online at
 # <https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt>.
 
+# This script is useful for adding a license text to a new Git repo. Once it's
+# in your PATH, Just use it like this in the shell:
+#     $ cc0 > LICENSE
+
 cat <<EOF
 Creative Commons Legal Code
 
