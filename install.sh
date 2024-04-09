@@ -67,10 +67,8 @@ fi
 # python debian_packages.py
 
 if [ -n "$install_bashrc" ]; then
-    bashline="[ -f $(pwd)/.bashrc ] && source $(pwd)/.bashrc"
-    if ! (grep -q -F "$bashline" ~/.bashrc); then
-        echo "$bashline" >> ~/.bashrc
-    fi
+    mv -v ~/.bashrc ~/.bashrc.$(date -Idate).bak 2> /dev/null
+    ln -svf "$(pwd)/.bashrc" ~/.bashrc
 fi
 
 if [ -n "$install_local_bin" ]; then
