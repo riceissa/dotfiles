@@ -138,6 +138,8 @@ if exists('*strftime')
   inoremap <silent> <C-G><C-T> <C-R>=repeat(complete(col('.'),map(['%F','%B %-d, %Y','%B %Y','%F %a','%F %a %H:%M','%-d %B %Y','%Y-%m-%d %H:%M:%S','%a, %d %b %Y %H:%M:%S %z','%Y %b %d','%d-%b-%y','%a %b %d %T %Z %Y'],'strftime(v:val)')+[localtime()]),0)<CR>
 endif
 
+inoremap <CR> <C-G>u<CR>
+
 set grepprg=rg\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 
