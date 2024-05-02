@@ -53,6 +53,17 @@ runtime! plugin/sleuth.vim
 " Override ttimeoutlen later
 runtime! plugin/sensible.vim
 
+" The :SpeedDatingFormat command is not available until the speeddating.vim
+" file gets loaded. I *could* add my custom formats in an after/plugin/* file
+" as recommended in the documentation for speeddating.vim, but I would rather
+" not have to deal with yet another config file that I have to make sure to
+" copy over correctly on new machines. The following line forces
+" speeddating.vim to be loaded right now, rather than after vimrc, so that we
+" can use the :SpeedDatingFormat here in the vimrc.
+runtime! plugin/speeddating.vim
+" Cycle through weekday names with Ctrl-a and Ctrl-x
+SpeedDatingFormat %A
+
 " This was the recommended way to install fzf according to the Ubuntu
 " documentation given in 'apt show fzf'.
 if filereadable("/usr/share/doc/fzf/examples/fzf.vim")
