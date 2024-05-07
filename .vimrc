@@ -172,6 +172,7 @@ if has('autocmd')
     autocmd FileType mediawiki setlocal suffixesadd=.mediawiki
     autocmd FileType mediawiki setlocal linebreak
     autocmd FileType php setlocal commentstring=//%s
+    autocmd FileType haskell syntax match hsLineComment '^#!/usr/bin/env.*$'
     autocmd FileType help,man setlocal nolist nospell
     autocmd FileType help,man,fugitive nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
