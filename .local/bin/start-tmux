@@ -7,7 +7,7 @@
 # eval `ssh-agent -s`
 # ssh-add
 
-tmux new-session -d
+tmux new-session -d 'ghci'
 # if [[ ! $(pgrep emacs) ]]; then
 #     tmux send-keys 'emacs &' C-m C-l
 # fi
