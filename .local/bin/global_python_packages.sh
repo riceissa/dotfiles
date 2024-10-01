@@ -3,17 +3,8 @@
 # Ubuntu deletes pip packages after a release upgrade, so keep all global
 # python packages here so that it's easy to get back what will be missing.
 
-pip3 install --upgrade bs4
-pip3 install --upgrade html2text
-pip3 install --upgrade pyyaml minidb requests keyring appdirs lxml cssselect
-pip3 install --upgrade urlwatch
-pip3 install --upgrade google-api-python-client
-pip3 install --upgrade oauth2client
-pip3 install --upgrade mysql-connector-python
-pip3 install --upgrade python-dateutil
+sudo apt install python3-typer yt-dlp python3-mysql.connector urlwatch python3-html2text python3-bs4 python3-mypy python3-dateutil python3-oauth2client python3-googleapi python3-minidb python3-requests python3-keyring python3-appdirs python3-lxml python3-cssselect
+pip3 install --upgrade pyyaml
 pip3 install --upgrade awscli
-pip3 install --upgrade mypy
-pip3 install --upgrade "typer[all]"
-pip3 install --upgrade yt-dlp
 pip3 install --upgrade google-analytics-data
 pip3 install --upgrade anki
