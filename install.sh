@@ -160,5 +160,7 @@ if [ -n "$install_emacs" ]; then
 fi
 
 if [ -n "$install_proselint" ]; then
-    ln -svf "$(pwd)/.proselintrc.json" ~/.proselintrc.json
+    config_home=${XDG_CONFIG_HOME:=$HOME/.config}
+    mkdir -p "$config_home/proselint"
+    ln -svf "$(pwd)/.config/proselint/config.json" "$config_home/proselint/config.json"
 fi
