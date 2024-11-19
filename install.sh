@@ -160,5 +160,5 @@ if [ -n "$install_emacs" ]; then
 fi
 
 if [ -n "$install_proselint" ]; then
-    ln -svf "$(pwd)/.proselintrc" ~/.proselintrc
+    ln -svf "$(pwd)/.proselintrc.json" ~/.proselintrc.json
 fi
