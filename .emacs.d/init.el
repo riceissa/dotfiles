@@ -119,7 +119,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(auto-dark exec-path-from-shell auctex php-mode lua-mode markdown-mode intero magit))
+   '(auto-dark exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
