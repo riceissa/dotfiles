@@ -1,7 +1,3 @@
-;; No startup screen
-(setq inhibit-splash-screen t)
-(setq inhibit-startup-message t)
-
 ;; Set default window size
 (setq initial-frame-alist
           '((width . 81) (height . 35)))
@@ -96,7 +92,9 @@
  '(column-number-mode t)
  '(custom-safe-themes
    '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
+ '(ido-mode 'both nil (ido))
  '(indent-tabs-mode nil)
+ '(inhibit-startup-screen t)
  '(magit-diff-refine-hunk 'all)
  '(make-backup-files nil)
  '(markdown-enable-math t)
@@ -163,6 +161,8 @@
 (define-key 'iso-transl-ctl-x-8-map "el" [?…])
 
 
+;; I forgot why I needed to put these lines. Probably because Windows
+;; is stupid.
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
@@ -225,14 +225,10 @@ in a smart sort of way like C-w in bash."
 (add-hook 'magit-diff-mode-hook
           '(lambda () (setq-local truncate-lines nil)))
 
-(add-hook 'haskell-mode-hook 'intero-mode)
-
 ;; from https://tex.stackexchange.com/a/392038/18026
 (add-hook 'LaTeX-mode-hook
           (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
                           (cons "\\(" "\\)"))))
-
-(ido-mode t)
 
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
