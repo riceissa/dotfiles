@@ -4,7 +4,7 @@
 
 ;; Set default window size
 (setq initial-frame-alist
-          '((width . 81) (height . 39)))
+          '((width . 81) (height . 35)))
 
 ;; For installing packages
 (require 'package)
@@ -93,6 +93,7 @@
  ;; If there is more than one, they won't work right.
  '(auto-dark-dark-theme 'tango-dark)
  '(auto-dark-light-theme 'issa-test)
+ '(column-number-mode t)
  '(custom-safe-themes
    '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
  '(indent-tabs-mode nil)
