@@ -15,7 +15,7 @@ Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095
 Plug 'junegunn/gv.vim', {'commit': 'b6bb6664e2c95aa584059f195eb3a9f3cb133994'}
 " Plug 'lervag/vimtex', {'for': 'tex'}
 if executable('ctags')
-  Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
+  " Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
 Plug 'riceissa/vim-dualist'
@@ -36,7 +36,7 @@ endif
 Plug 'riceissa/vim-oldfugitive'
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
-Plug 'tpope/vim-sensible', {'commit': '3e878abfd6ddc6fb5dba48b41f2b72c3a2f8249f'}
+Plug 'tpope/vim-sensible', {'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9'}
 Plug 'tpope/vim-sleuth', {'commit': '1cc4557420f215d02c4d2645a748a816c220e99b'}
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
