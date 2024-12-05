@@ -100,6 +100,9 @@ endif
 if exists('&inccommand')
   set inccommand=split
 endif
+if exists('+smoothscroll')
+  set smoothscroll
+endif
 
 " By default, Vim sets the swap directory to the same directory as the file
 " being edited, which is a security risk when editing files on a server (e.g.
