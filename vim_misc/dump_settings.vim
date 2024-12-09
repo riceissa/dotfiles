@@ -18,9 +18,14 @@ set background?
 set backspace?
 set backupdir?
 set belloff?
+set commentstring?
 set compatible?
 set complete?
-set cscopeverbose?
+if has('nvim')
+  echo "cscopeverbose has been removed from Neovim"
+else
+  set cscopeverbose?
+endif
 set directory?
 set display?
 set encoding?
@@ -37,6 +42,7 @@ set langremap?
 set laststatus?
 set listchars?
 set mouse?
+set mousemodel?
 set nocompatible?
 set nrformats?
 set ruler?
@@ -65,6 +71,9 @@ nmap Y
 nmap <C-L>
 imap <C-U>
 imap <C-W>
+xmap *
+xmap #
+nmap &
 
 echo "t_Co=" . &t_Co
 if exists('g:loaded_man')
