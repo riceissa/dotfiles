@@ -91,6 +91,14 @@ if exists('g:vimsyn_embed')
 else
   echo "vimsyn_embed: does not exist"
 endif
+if exists('g:is_posix')
+  echo "is_posix: " . g:is_posix
+else
+  echo "is_posix: does not exist"
+endif
+
+command DiffOrig
+
 endfunction
 
 redir @a
