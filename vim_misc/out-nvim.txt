@@ -6,15 +6,16 @@ syntax: 1
   backspace=indent,eol,start
   backupdir=~/.vim/backup//
   belloff=all
+  commentstring=
 nocompatible
   complete=.,w,b,u,t
-  cscopeverbose
+cscopeverbose has been removed from Neovim
   directory=~/.vim/swap//
-  display=lastline,msgsep,truncate
+  display=lastline,truncate
   encoding=utf-8
   fillchars=
   formatoptions=tcqj
-nofsync
+  fsync
   hidden
   history=10000
 nohlsearch
@@ -25,11 +26,12 @@ nolangremap
   laststatus=2
   listchars=tab:▸ ,trail:·,nbsp:␣
   mouse=nv
+  mousemodel=popup_setpos
 nocompatible
   nrformats=bin,hex
   ruler
   scrolloff=0
-  sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
+  sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
   shell=/bin/bash
   shortmess=filnxtToOF
   showcmd
@@ -49,10 +51,16 @@ nostartofline
   wildmenu
   wildoptions=pum,tagfile
 n  Y           * y$
-n  <C-L>       * <Cmd>nohlsearch|diffupdate<CR><C-L>
+n  <C-L>       * <Cmd>nohlsearch|diffupdate|normal! <C-L><CR>
 i  <C-U>       * <C-G>u<C-U>
 i  <C-W>       * <C-G>u<C-W>
+x  *           * :<C-U>call <SNR>24_VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+x  #           * :<C-U>call <SNR>24_VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+n  &           * :&&<CR>
 t_Co=256
-man: 1
+man: v:true
 matchit: 1
 vimsyn_embed: does not exist
+is_posix: 1
+    Name              Args Address Complete    Definition
+    DiffOrig          0                        vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis

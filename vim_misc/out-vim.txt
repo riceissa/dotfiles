@@ -6,13 +6,14 @@ noautoindent
   backspace=indent,eol,start
   backupdir=~/.vim/backup//
   belloff=
+  commentstring=/*%s*/
 nocompatible
   complete=.,w,b,u,t
 nocscopeverbose
   directory=~/.vim/swap//
   display=lastline,truncate
   encoding=utf-8
-  fillchars=vert:|,fold:-,eob:~
+  fillchars=vert:|,fold:-,eob:~,lastline:@
   formatoptions=tcqj
   fsync
   hidden
@@ -25,6 +26,7 @@ nolangremap
   laststatus=2
   listchars=tab:▸ ,trail:·,nbsp:␣
   mouse=nv
+  mousemodel=extend
 nocompatible
   nrformats=bin,hex
   ruler
@@ -52,7 +54,13 @@ n  Y           * y$
 n  <C-L>       * :nohlsearch<C-R>=has('diff')?'|diffupdate':''<CR><CR><C-L>
 i  <C-U>       * <C-G>u<C-U>
 i  <C-W>       * <C-G>u<C-W>
+x  *           * :<C-U>call <SNR>29_VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+x  #           * :<C-U>call <SNR>29_VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+No mapping found
 t_Co=256
 man: 0
 matchit: 1
 vimsyn_embed: does not exist
+is_posix: 1
+    Name              Args Address Complete    Definition
+    DiffOrig          0                        vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
