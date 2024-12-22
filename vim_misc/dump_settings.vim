@@ -32,6 +32,7 @@ set encoding?
 set fillchars?
 set formatoptions?
 set fsync?
+set guicursor?
 set hidden?
 set history?
 set hlsearch?

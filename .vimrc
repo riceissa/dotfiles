@@ -87,6 +87,11 @@ if !has('nvim')
   set ttimeoutlen=50
 endif
 
+" Neovim has an annoying blinking cursor by default; this turns that off
+if has('nvim')
+  set guicursor=n:blinkon0
+endif
+
 set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
 set autoread hidden scrolloff=0
 set spellfile=~/.spell.en.utf-8.add wildmode=list:longest,full sidescroll=1
