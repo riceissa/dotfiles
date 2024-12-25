@@ -33,7 +33,7 @@ Plug 'riceissa/vim-oldfugitive'
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
 Plug 'tpope/vim-sensible', {'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9'}
-Plug 'tpope/vim-sleuth', {'commit': '1cc4557420f215d02c4d2645a748a816c220e99b'}
+Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
