@@ -6,9 +6,6 @@ set nocompatible
 " Once all Vim config files are in the right places, just do :PlugInstall in
 " Vim to install the plugins.
 call plug#begin('~/.vim/plugged')
-if has('gui_running') || (has('nvim') && has('win64'))
-  Plug 'romainl/flattened', {'commit': '0f3e0e4d17ebf5cb8c8e70ca1c93f1f90deb7929'}
-endif
 Plug 'riceissa/vim-colorschemes'
 Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
 " Plug 'fatih/vim-go'
@@ -42,7 +39,6 @@ Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
-" Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -84,11 +80,6 @@ endif
 if !has('nvim')
   set ttimeout
   set ttimeoutlen=50
-endif
-
-" Neovim has an annoying blinking cursor by default; this turns that off
-if has('nvim')
-  set guicursor=n:blinkon0
 endif
 
 set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
@@ -255,11 +246,6 @@ let g:sql_type_default = 'mysql'
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-" let g:jedi#auto_initialization = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
 
 if has('clipboard')
   let g:pasteurize_no_mappings = 1
@@ -271,21 +257,19 @@ if has('clipboard')
   xmap <C-V> <Plug>PasteurizeXPaste
 endif
 
-nmap <silent> ]w <Plug>(ale_next)
-nmap <silent> [w <Plug>(ale_previous)
-nmap <silent> [W <Plug>(ale_first)
-nmap <silent> ]W <Plug>(ale_last)
 nnoremap [s [s<Space><BS>
 nnoremap ]s ]s<BS><Space>
 
-if has('gui_running') || (has('nvim') && has('win64'))
-  silent! colorscheme flattened_light
+if has('gui_running')
   set guioptions-=m
   set guioptions-=T
-else
-  silent! colorscheme issa_light
 endif
 
-if has('nvim') && $TERM =~# 'screen'
-  set guicursor=
+silent! colorscheme issa_light
+
+" Neovim has an annoying blinking cursor by default; this turns that off.
+" Possibly better to use the following as the check:
+" if has('nvim') && $TERM =~# 'screen'
+if has('nvim')
+  set guicursor=n:blinkon0
 endif
