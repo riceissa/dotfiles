@@ -2,8 +2,6 @@
 
 while [ -n "$1" ]; do
     case "$1" in
-    arbtt) install_arbtt=yes
-        ;;
     bashrc) install_bashrc=yes
         ;;
     clone) clone_repo=yes
@@ -17,8 +15,6 @@ while [ -n "$1" ]; do
     local_bin) install_local_bin=yes
         ;;
     moc) install_moc=yes
-        ;;
-    mutt) install_mutt=yes
         ;;
     neovim) install_neovim=yes
         ;;
@@ -45,8 +41,8 @@ Install script for dotfiles.
 ./install [program...]
 ./install {-h|--help}
 
-Supported programs: arbtt, bashrc, clone (clone the dotfiles repo), emacs, git,
-local_bin, moc, mutt, neovim, newsboat, proselint, tmux, vim, urxvt
+Supported programs: bashrc, clone (clone the dotfiles repo), emacs, git,
+local_bin, moc, neovim, newsboat, proselint, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -118,11 +114,6 @@ if [ -n "$install_urxvt" ]; then
     ln -svf "$(pwd)/.urxvt/ext/clipboard" ~/.urxvt/ext/clipboard
 fi
 
-if [ -n "$install_arbtt" ]; then
-    mkdir -p ~/.arbtt
-    ln -svf "$(pwd)/.arbtt/categorize.cfg" ~/.arbtt/categorize.cfg
-fi
-
 if [ -n "$install_kitty" ]; then
     mkdir -p ~/.config/kitty
     ln -svf "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
@@ -133,13 +124,6 @@ if [ -n "$install_moc" ]; then
     ln -svf "$(pwd)/.moc/config" ~/.moc/config
     ln -svf "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
     ln -svf "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
-fi
-
-if [ -n "$install_mutt" ]; then
-    mv -v ~/.muttrc ~/.muttrc.$(date -Idate).bak 2> /dev/null
-    # Mutt config requires changing the password field, so copy rather than
-    # linking
-    cp "$(pwd)/.muttrc" ~/.muttrc
 fi
 
 if [ -n "$install_git" ]; then
