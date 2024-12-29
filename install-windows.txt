@@ -1,0 +1,24 @@
+Installation instructions for Windows 10
+Written on 2024-12-29
+
+Unlike what I believed for over 3 years on Windows 10, Windows 10 actually does
+have symlinks. The twist is that apparently only administrators can create
+symlinks. So we have to open the command prompt as an admin and run the
+symlink-creating commands.
+
+On Windows 10, open cmd as administrator by pressing the Windows key on the
+keyboard, typing "cmd", right clicking "Command prompt" and picking from the
+menu "Run as administrator". Then just copy each of the commands below as
+needed to create the symlinks:
+
+mklink "C:\Users\Issa\.emacs.d\init.el" "C:\Users\Issa\projects\dotfiles\.emacs.d\init.el"
+
+mklink "C:\Users\Issa\.vimrc" "C:\Users\Issa\projects\dotfiles\.vimrc"
+
+mklink "C:\Users\Issa\.bashrc" "C:\Users\Issa\projects\dotfiles\.bashrc-gitbash"
+
+mklink "C:\Users\Issa\AppData\Local\nvim\init.vim" "C:\Users\Issa\projects\dotfiles\.vimrc"
+
+mklink "C:\Users\Issa\.cvsignore" "C:\Users\Issa\projects\dotfiles\.cvsignore"
+
+mklink "C:\Users\Issa\.gitconfig" "C:\Users\Issa\projects\dotfiles\.gitconfig-gitbash"
