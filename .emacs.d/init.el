@@ -82,6 +82,15 @@
 (if (eq system-type 'windows-nt)
     (load-file "c:/Users/Issa/.emacs.d/windows-settings.el"))
 
+;; How to create the "default"/issa-test theme:
+;; 1. Disable all theme-related emacs configs (including auto-dark)
+;; 2. reopen emacs
+;; 3. M-x customize-create-theme
+;; 4. Save the theme and give it some name
+;; 5. M-x customize-themes
+;; 6. Pick the theme you just created. This will trigger a dialogue box that asks you whether to mark it as safe, so say "yes" to it.
+;; 7. Now you have the default emacs theme as a named theme that you can use with auto-dark!
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
