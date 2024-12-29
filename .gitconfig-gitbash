@@ -1,0 +1,43 @@
+[user]
+	email = riceissa@gmail.com
+	name = Issa Rice
+[core]
+	pager = less -+S
+	# For CJK characters; see <http://stackoverflow.com/a/4416780>.
+	quotepath = false
+	excludesfile = ~/.cvsignore
+# [pager]
+# 	log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
+# 	show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
+# 	diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
+[alias]
+	# From https://git.wiki.kernel.org/index.php/Aliases#What.27s_new.3F
+	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+	# See https://gist.github.com/mwhite/6887990 for where a lot of
+	# these came from
+	a = add
+	# list branches sorted by last modified
+	b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+	cm = commit -m
+	diff = diff --color
+	d = diff
+	d1 = diff HEAD~1 HEAD
+	d2 = diff HEAD~2 HEAD
+	d21 = diff HEAD~2 HEAD~1
+	dc = diff --cached
+	ds = diff --stat
+	ff = "merge --ff-only @{u}"
+	# list aliases
+	la = "!git config -l | grep alias | cut -c 7-"
+	ln = log --name-only
+	logn = log --name-only
+	st = status
+	wd = diff --color-words
+	wdiff = diff --color-words
+	wd1 = diff --color-words HEAD~1 HEAD
+	wd2 = diff --color-words HEAD~2 HEAD
+	wd21 = diff --color-words HEAD~2 HEAD~1
+	# From http://stackoverflow.com/a/15316602
+	up = "!git remote update -p; git merge --ff-only @{u}"
+[push]
+	default = simple
