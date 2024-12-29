@@ -55,6 +55,9 @@
           110
         140))
 
+;; Color stuff has been commented out due to auto-dark; now the colors are
+;; managed via themes.  Instead follow the instructions below on how to export
+;; the default Emacs theme as a selectable theme.
 ;; Override some colors that the MATE theme sets
 ;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
 ;; (set-face-attribute 'default nil
@@ -86,10 +89,13 @@
 ;; 1. Disable all theme-related emacs configs (including auto-dark)
 ;; 2. reopen emacs
 ;; 3. M-x customize-create-theme
-;; 4. Save the theme and give it some name
+;; 4. Save the theme and give it some name; I've called it issa-test
 ;; 5. M-x customize-themes
-;; 6. Pick the theme you just created. This will trigger a dialogue box that asks you whether to mark it as safe, so say "yes" to it.
-;; 7. Now you have the default emacs theme as a named theme that you can use with auto-dark!
+;; 6. Pick the theme you just created. This will trigger a dialogue box that
+;;    asks you whether to mark it as safe, so say "yes" to it. This gets saved as
+;;    a hash in custom-safe-themes.
+;; 7. Now you have the default emacs theme as a named theme that you can use
+;;    with auto-dark!
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
