@@ -16,6 +16,7 @@ nocscopeverbose
   fillchars=vert:|,fold:-,eob:~,lastline:@
   formatoptions=tcqj
   fsync
+  guicursor=n-v-c:block,o:hor50,i-ci:hor15,r-cr:hor30,sm:block
   hidden
   history=10000
 nohlsearch
@@ -38,6 +39,7 @@ nocompatible
   sidescroll=1
   sidescrolloff=2
   smarttab
+  smoothscroll
   startofline
   switchbuf=
   tabpagemax=50
@@ -54,8 +56,8 @@ n  Y           * y$
 n  <C-L>       * :nohlsearch<C-R>=has('diff')?'|diffupdate':''<CR><CR><C-L>
 i  <C-U>       * <C-G>u<C-U>
 i  <C-W>       * <C-G>u<C-W>
-x  *           * :<C-U>call <SNR>29_VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
-x  #           * :<C-U>call <SNR>29_VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+x  *           * :<C-U>call <SNR>30_VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+x  #           * :<C-U>call <SNR>30_VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 No mapping found
 t_Co=256
 man: 0

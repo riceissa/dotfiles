@@ -21,10 +21,10 @@ set belloff?
 set commentstring?
 set compatible?
 set complete?
-if has('nvim')
-  echo "cscopeverbose has been removed from Neovim"
-else
+if exists('+cscopeverbose')
   set cscopeverbose?
+else
+  echo "Does not have cscopeverbose support"
 endif
 set directory?
 set display?
@@ -55,6 +55,11 @@ set showcmd?
 set sidescroll?
 set sidescrolloff?
 set smarttab?
+if exists('+smoothscroll')
+  set smoothscroll?
+else
+  echo 'Does not have smoothscroll support'
+endif
 set startofline?
 set switchbuf?
 set tabpagemax?
