@@ -109,10 +109,7 @@
  '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
  '(org-agenda-files '("~/todo.org"))
  '(org-capture-templates
-   '(("a" "Anki note" entry
-      (file "~/org/anki.org")
-      "* %?")
-     ("i" "Idea" entry
+   '(("i" "Idea" entry
       (file "~/notes.org")
       "* %T %?")
      ("t" "TODO item" entry
