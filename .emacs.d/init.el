@@ -69,8 +69,6 @@
 
 (set-face-attribute 'default nil :font font-name :height font-height)
 
-(require 'auto-dark)
-(auto-dark-mode t)
 
 ;; For some reason the menu-bar color doesn't change when auto-dark
 ;; sets the theme to dark... Since I don't really use the menu bar
@@ -94,8 +92,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-dark-dark-theme 'tango-dark)
- '(auto-dark-light-theme 'issa-test)
+ '(auto-dark-themes '((tango-dark) (issa-test)))
  '(column-number-mode t)
  '(custom-safe-themes
    '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
@@ -261,6 +258,9 @@ in a smart sort of way like C-w in bash."
   '(define-key flyspell-mode-map (kbd "C-;") 'flyspell-check-previous-highlighted-word))
 
 
-;; this is a hack because for some reason auto-dark mode loads leuven
-;; even though i have explicitly set a different light theme.
-(disable-theme 'leuven)
+;; auto-dark must be enabled after setting the auto-dark-themes
+;; variable, otherwise it starts to load random themes like leuven and
+;; wombat that I don't want. See
+;; https://github.com/LionyxML/auto-dark-emacs/issues/51
+(require 'auto-dark)
+(auto-dark-mode t)
