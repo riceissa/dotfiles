@@ -77,10 +77,6 @@
 ;; anyway, it's not worth the jarring visual.
 (menu-bar-mode 0)
 
-
-(setq todo-org-location "~/todo.org")
-(setq notes-org-location "~/notes.org")
-
 ;; How to create the "default"/issa-test theme:
 ;; 1. Disable all theme-related emacs configs (including auto-dark)
 ;; 2. reopen emacs
@@ -111,16 +107,16 @@
  '(markdown-enable-math t)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
- '(org-agenda-files `(,todo-org-location))
+ '(org-agenda-files '("~/todo.org"))
  '(org-capture-templates
-   `(("a" "Anki note" entry
+   '(("a" "Anki note" entry
       (file "~/org/anki.org")
       "* %?")
      ("i" "Idea" entry
-      (file ,notes-org-location)
+      (file "~/notes.org")
       "* %T %?")
      ("t" "TODO item" entry
-      (file+headline ,todo-org-location "Tasks")
+      (file+headline "~/todo.org" "Tasks")
       "* TODO %?\12  %i\12")))
  '(org-clock-mode-line-total 'today)
  '(org-duration-format 'h:mm)
