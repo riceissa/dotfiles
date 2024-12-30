@@ -22,3 +22,5 @@ mklink "C:\Users\Issa\AppData\Local\nvim\init.vim" "C:\Users\Issa\projects\dotfi
 mklink "C:\Users\Issa\.cvsignore" "C:\Users\Issa\projects\dotfiles\.cvsignore"
 
 mklink "C:\Users\Issa\.gitconfig" "C:\Users\Issa\projects\dotfiles\.gitconfig-gitbash"
+
+mklink "C:\Users\Issa\.minttyrc" "C:\Users\Issa\projects\dotfiles\.minttyrc"
