@@ -80,10 +80,6 @@
 
 (setq todo-org-location "~/todo.org")
 (setq notes-org-location "~/notes.org")
-;; Windows does not have symlinks, so the following file sets the
-;; above two variables on Windows.
-(if (eq system-type 'windows-nt)
-    (load-file "c:/Users/Issa/.emacs.d/windows-settings.el"))
 
 ;; How to create the "default"/issa-test theme:
 ;; 1. Disable all theme-related emacs configs (including auto-dark)
