@@ -7,12 +7,6 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Loading org-clock-csv seems to slow down Emacs startup time, and I
-;; only need it once a month to do invoices, so just enable and
-;; restart Emacs whenever I do invoices.
-;; (add-to-list 'load-path "c:/Users/Issa/projects/org-clock-csv")
-;; (require 'org-clock-csv)
-
 ;; Set variables like PATH so that eshell works more like a normal shell
 (when (and
         (require 'exec-path-from-shell nil 'noerror)
@@ -55,18 +49,6 @@
           110
         140))
 
-;; Color stuff has been commented out due to auto-dark; now the colors are
-;; managed via themes.  Instead follow the instructions below on how to export
-;; the default Emacs theme as a selectable theme.
-;; Override some colors that the MATE theme sets
-;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
-;; (set-face-attribute 'default nil
-;;                     :font font-name
-;;                     :height font-height
-;;                     :background "white"  ;; equivalent to #ffffff
-;;                     :foreground "gray20" ;; equivalent to #333333
-;;                     )
-
 (set-face-attribute 'default nil :font font-name :height font-height)
 
 
@@ -76,7 +58,15 @@
 (menu-bar-mode 0)
 
 ;; How to create the "default"/issa-test theme:
-;; 1. Disable all theme-related emacs configs (including auto-dark)
+;; 1. Disable all theme-related emacs configs (including auto-dark), except the following:
+;; Override some colors that the MATE theme sets
+;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
+;; (set-face-attribute 'default nil
+;;                     :font font-name
+;;                     :height font-height
+;;                     :background "white"  ;; equivalent to #ffffff
+;;                     :foreground "gray20" ;; equivalent to #333333
+;;                     )
 ;; 2. reopen emacs
 ;; 3. M-x customize-create-theme
 ;; 4. Save the theme and give it some name; I've called it issa-test
@@ -154,10 +144,8 @@
                    (concat sentence-end-without-space "<"))))
 
 (setq org-default-notes-file "~/todo.org")
-(global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 (define-key 'iso-transl-ctl-x-8-map "el" [?…])
 
