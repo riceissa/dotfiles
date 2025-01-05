@@ -160,6 +160,10 @@ set grepprg=rg\ --vimgrep
 set grepformat^=%f:%l:%c:%m
 
 if has('autocmd')
+  " Group the autocommands and clear with 'autocmd!' so that if the vimrc is
+  " sourced multiple times, we don't end up with duplicate autocommands. See
+  " https://learnvimscriptthehardway.stevelosh.com/chapters/14.html for an
+  " explanation.
   augroup vimrc
     autocmd!
     autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal syntax=haskell
