@@ -166,7 +166,7 @@ if has('autocmd')
   " explanation.
   augroup vimrc
     autocmd!
-    autocmd BufNewFile,BufRead *.arbtt/categorize.cfg setlocal syntax=haskell
+    " For Gitit
     autocmd BufNewFile,BufRead *.page setlocal filetype=markdown
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitconfig setlocal commentstring=#%s
