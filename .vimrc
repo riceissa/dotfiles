@@ -56,7 +56,9 @@ runtime! plugin/sensible.vim
 " speeddating.vim to be loaded right now, rather than after vimrc, so that we
 " can use the :SpeedDatingFormat here in the vimrc.
 runtime! plugin/speeddating.vim
-" Cycle through weekday names with Ctrl-a and Ctrl-x
+" Cycle through weekday names with Ctrl-a and Ctrl-x. The conditional is in
+" case the plugin has not yet been installed (without the plugin, the
+" SpeedDatingFormat command does not exist so the line would cause an error).
 if exists("g:loaded_speeddating")
   SpeedDatingFormat %A
 endif
