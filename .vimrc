@@ -57,7 +57,9 @@ runtime! plugin/sensible.vim
 " can use the :SpeedDatingFormat here in the vimrc.
 runtime! plugin/speeddating.vim
 " Cycle through weekday names with Ctrl-a and Ctrl-x
-SpeedDatingFormat %A
+if exists("g:loaded_speeddating")
+  SpeedDatingFormat %A
+endif
 
 " This was the recommended way to install fzf according to the Ubuntu
 " documentation given in 'apt show fzf'.
