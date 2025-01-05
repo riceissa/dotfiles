@@ -76,7 +76,7 @@ if &history < 10000
 endif
 set nohlsearch
 if has('langmap') && exists('+langnoremap')
-  set langnoremap
+  set nolangremap
 endif
 if has('path_extra')
   setglobal tags=./tags;,tags
