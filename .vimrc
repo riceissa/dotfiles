@@ -23,11 +23,11 @@ Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
-Plug 'tpope/vim-commentary', {'commit': 'e87cd90dc09c2a203e13af9704bd0ef79303d755'}
+Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
 Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
 Plug 'tpope/vim-eunuch', {'commit': '67f3dd32b4dcd1c427085f42ff5f29c7adc645c6'}
 if !has('win64')
-  Plug 'tpope/vim-fugitive', {'commit': '59659093581aad2afacedc81f009ed6a4bfad275'}
+  Plug 'tpope/vim-fugitive', {'commit': '174230d6a7f2df94705a7ffd8d5413e27ec10a80'}
 endif
 Plug 'riceissa/vim-oldfugitive'
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
