@@ -70,7 +70,9 @@ if filereadable("/usr/share/doc/fzf/examples/fzf.vim")
 endif
 
 " Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
+set autoindent
 set background=light
+set belloff=all
 if &history < 10000
   set history=10000
 endif
