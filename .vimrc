@@ -257,16 +257,6 @@ let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
 
-if has('clipboard')
-  let g:pasteurize_no_mappings = 1
-  xmap x <Plug>PasteurizeXCut
-  xmap <C-C> <Plug>PasteurizeXCopy
-  nmap <C-V> <Plug>PasteurizeNPaste
-  cmap <C-V> <Plug>PasteurizeCPaste
-  imap <C-V> <Plug>PasteurizeIPaste
-  xmap <C-V> <Plug>PasteurizeXPaste
-endif
-
 nnoremap [s [s<Space><BS>
 nnoremap ]s ]s<BS><Space>
 
