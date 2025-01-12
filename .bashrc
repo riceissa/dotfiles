@@ -198,23 +198,21 @@ if [ $(uname -o) != "Msys" ]; then
 fi
 alias em='emacsclient -t'
 
+if [ $(uname -o) != "Msys" ]; then
+    alias vim=nvim
+fi
 alias svim='vim -Nu ~/sensible.vim'
 
 if [ $(uname -o) == "Msys" ]; then
     export EDITOR=vim
     export VISUAL=vim
 else
-    export EDITOR=vim
-    export VISUAL=vim
+    export EDITOR=nvim
+    export VISUAL=nvim
 fi
 
 # Enable CTRL-S in terminal
 stty -ixon
-
-# Filter clipboard: clean linebreaks in copied text
-if [ $(uname -o) != "Msys" ]; then
-    alias fclip='xclip -selection c -o | pdftextfmt | xclip -selection c'
-fi
 
 # The following works in Ubuntu when installing fzf using apt (which I prefer,
 # since that way I don't have to remember to manually upgrade fzf).

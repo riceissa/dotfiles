@@ -173,6 +173,7 @@ if has('autocmd')
     autocmd FileType crontab setlocal commentstring=#%s
     autocmd FileType gitconfig setlocal commentstring=#%s
     autocmd FileType matlab setlocal commentstring=%%s
+    autocmd FileType c setlocal commentstring=//%s
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
