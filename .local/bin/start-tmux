@@ -25,4 +25,7 @@ tmux split-window -v -c '/home/issa/projects/andy-matuschak-notes/'
 tmux select-pane -t 0
 
 tmux select-window -t 0
+
+tmux new-window
+
 tmux attach
