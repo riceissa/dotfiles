@@ -22,8 +22,8 @@ fi
 unset env
 # End of code from GitHub documentation
 
-alias python3='winpty python3'
-alias python='winpty python'
+alias python3='winpty py'
+alias python='winpty py'
 
 alias git-backup='git add . && git commit -m "snapshot" && git push'
 
