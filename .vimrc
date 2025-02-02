@@ -29,7 +29,6 @@ Plug 'tpope/vim-eunuch', {'commit': '67f3dd32b4dcd1c427085f42ff5f29c7adc645c6'}
 if !has('win64')
   Plug 'tpope/vim-fugitive', {'commit': '174230d6a7f2df94705a7ffd8d5413e27ec10a80'}
 endif
-Plug 'riceissa/vim-oldfugitive'
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
 Plug 'tpope/vim-sensible', {'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9'}
