@@ -190,6 +190,11 @@ if has('autocmd')
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
     autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4
+    " Underscore in Markdown documents are almost always part of emphasis,
+    " which should not be considered part of the word. For example, pressing *
+    " on an emphasized phrase like '_hello there_' (where the cursor is on the
+    " h) should search for 'hello', not '_hello'.
+    autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType mediawiki setlocal omnifunc=mediawikicomplete#Complete
     " There are multiple choices here. Compare the following:
     "     <math>\int_a^b f</math> (big integral, left-justified)
