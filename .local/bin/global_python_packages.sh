@@ -7,6 +7,7 @@ sudo apt install python3-typer \
     yt-dlp \
     urlwatch \
     flake8 \
+    pylint \
     python3-html2text \
     python3-bs4 \
     python3-mypy \
