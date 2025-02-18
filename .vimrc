@@ -38,6 +38,7 @@ Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -87,7 +88,7 @@ if !has('nvim')
   set ttimeoutlen=50
 endif
 
-set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces
+set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces list
 set autoread hidden scrolloff=0
 set spellfile=~/.spell.en.utf-8.add wildmode=list:longest,full sidescroll=1
 if has('mouse')
@@ -212,6 +213,9 @@ if has('autocmd')
     endif
     " PHP autoindenting is too smart for its own good
     autocmd FileType php setlocal autoindent indentexpr=
+    " The following is for jedi; see :h g:jedi#show_call_signatures. If the
+    " cmdheight is 1, the call signatures are not shown.
+    autocmd FileType python setlocal cmdheight=2
     " Prevent overzealous autoindent in align environment
     autocmd FileType tex setlocal indentexpr=
     autocmd FileType tex let b:surround_{char2nr('m')} = "\\(\r\\)"
@@ -261,6 +265,17 @@ let g:sql_type_default = 'mysql'
 let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 let g:dualist_color_listchars = 1
+
+" Show argument hints when calling functions in the status line rather than in
+" the buffer, and wait a while before showing it. This reduces visual clutter.
+let g:jedi#show_call_signatures = "2"
+let g:jedi#show_call_signatures_delay = 1000
+" Don't mess with the popup menu; I like Vim's default completion bindings.
+let g:jedi#popup_select_first = 0
+let g:jedi#auto_vim_configuration = 0
+" Use Vim's usual bindings for completion.
+let g:jedi#goto_command = "<C-]>"
+let g:jedi#completions_command = "<C-X><C-O>"
 
 nnoremap [s [s<Space><BS>
 nnoremap ]s ]s<BS><Space>
