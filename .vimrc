@@ -39,6 +39,10 @@ Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
 Plug 'davidhalter/jedi-vim'
+if has('nvim')
+  Plug 'alaviss/nim.nvim', { 'for': ['nim'] }
+  Plug 'prabirshrestha/asyncomplete.vim', { 'for': ['nim'] }
+endif
 call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
@@ -232,6 +236,11 @@ if has('autocmd')
     if has('nvim')
       autocmd BufEnter term://* startinsert
     endif
+    au User asyncomplete_setup call asyncomplete#register_source({
+        \ 'name': 'nim',
+        \ 'whitelist': ['nim'],
+        \ 'completor': {opt, ctx -> nim#suggest#sug#GetAllCandidates({start, candidates -> asyncomplete#complete(opt['name'], ctx, start, candidates)})}
+        \ })
   augroup END
 endif
 

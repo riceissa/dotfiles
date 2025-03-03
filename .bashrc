@@ -181,6 +181,7 @@ path_prepend "$HOME/.cabal/bin"
 path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/projects/dotfiles/.local/bin"
 path_prepend "$HOME/projects/pandoc-wikilinks-filter"
+path_prepend "$HOME/.nimble/bin"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
