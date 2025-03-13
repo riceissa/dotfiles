@@ -81,12 +81,10 @@ xmap *
 xmap #
 nmap &
 
+map
+
 echo "t_Co=" . &t_Co
-if exists('g:loaded_man')
-  echo "man: " . g:loaded_man
-else
-  echo "man: 0"
-endif
+echo "man: " . exists(':Man')
 if exists('g:loaded_matchit')
   echo "matchit: " . g:loaded_matchit
 else
