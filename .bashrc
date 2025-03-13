@@ -182,6 +182,7 @@ path_prepend "$HOME/.local/bin"
 path_prepend "$HOME/projects/dotfiles/.local/bin"
 path_prepend "$HOME/projects/pandoc-wikilinks-filter"
 path_prepend "$HOME/.nimble/bin"
+path_prepend "/opt/nvim-linux-x86_64/bin"
 export PATH
 
 [[ $TMUX = "" ]] && export TERM='xterm-256color'
