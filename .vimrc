@@ -16,6 +16,7 @@ if executable('ctags')
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
 Plug 'riceissa/vim-dualist'
+Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
 Plug 'riceissa/vim-mediawiki'
@@ -285,6 +286,10 @@ let g:jedi#auto_vim_configuration = 0
 " Use Vim's usual bindings for completion.
 let g:jedi#goto_command = "<C-]>"
 let g:jedi#completions_command = "<C-X><C-O>"
+
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+let g:strip_max_file_size = 2000
 
 nnoremap [s [s<Space><BS>
 nnoremap ]s ]s<BS><Space>
