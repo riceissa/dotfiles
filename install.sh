@@ -6,6 +6,8 @@ while [ -n "$1" ]; do
         ;;
     clone) clone_repo=yes
         ;;
+    editorconfig) install_editorconfig=yes
+        ;;
     emacs) install_emacs=yes
         ;;
     git) install_git=yes
@@ -41,8 +43,8 @@ Install script for dotfiles.
 ./install [program...]
 ./install {-h|--help}
 
-Supported programs: bashrc, clone (clone the dotfiles repo), emacs, git,
-local_bin, moc, neovim, newsboat, proselint, tmux, vim, urxvt
+Supported programs: bashrc, clone (clone the dotfiles repo), editorconfig,
+emacs, git, local_bin, moc, neovim, newsboat, proselint, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -104,6 +106,10 @@ if [ -n "$install_tmux" ]; then
     # tmux doesn't read from .bashrc so copy contents to .bash_profile
     # Actually I don't think this is necessary?
     # echo 'source ~/.bashrc' >> ~/.bash_profile
+fi
+
+if [ -n "$install_editorconfig" ]; then
+    ln -svf "$(pwd)/.editorconfig" ~/.editorconfig
 fi
 
 if [ -n "$install_urxvt" ]; then
