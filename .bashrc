@@ -200,11 +200,6 @@ if [ $(uname -o) != "Msys" ]; then
 fi
 alias em='emacsclient -t'
 
-if [ $(uname -o) != "Msys" ]; then
-    alias vim=nvim
-fi
-alias svim='vim -Nu ~/sensible.vim'
-
 if [ $(uname -o) == "Msys" ]; then
     export EDITOR=vim
     export VISUAL=vim
