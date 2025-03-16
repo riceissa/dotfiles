@@ -8,20 +8,12 @@ if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
-
-Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
-let g:strip_max_file_size = 2000
-
 Plug 'riceissa/vim-dualist'
-
 Plug 'riceissa/vim-colorschemes'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
 Plug 'riceissa/vim-uniform'
-
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
@@ -98,7 +90,7 @@ endif
 
 set ignorecase smartcase noequalalways list
 set spellfile=~/.spell.en.utf-8.add
-if exists('&inccommand')
+if exists('+inccommand')
   set inccommand=split
 endif
 if exists('+smoothscroll')
