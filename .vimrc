@@ -36,7 +36,9 @@ Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
 Plug 'riceissa/vim-mediawiki'
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
-Plug 'davidhalter/jedi-vim'
+if !(exists('$INSIDE_GIT_BASH') && $INSIDE_GIT_BASH == '1')
+  Plug 'davidhalter/jedi-vim'
+endif
 if has('nvim')
   Plug 'alaviss/nim.nvim', { 'for': ['nim'] }
   Plug 'prabirshrestha/asyncomplete.vim', { 'for': ['nim'] }

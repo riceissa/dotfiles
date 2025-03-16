@@ -277,3 +277,10 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
   fi
   export DARKMODE
 fi
+
+if [ $(uname -o) == "Msys" ]; then
+  INSIDE_GIT_BASH=1
+else
+  INSIDE_GIT_BASH=0
+fi
+export INSIDE_GIT_BASH
