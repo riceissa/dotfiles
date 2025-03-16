@@ -1,4 +1,3 @@
-scriptencoding utf-8
 set nocompatible
 " Use vim-plug to manage Vim plugins. Install with
 "     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -15,7 +14,7 @@ if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
-Plug 'riceissa/vim-dualist'
+" Plug 'riceissa/vim-dualist'
 Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
 Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
@@ -23,6 +22,7 @@ Plug 'riceissa/vim-mediawiki'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
+Plug 'riceissa/vim-uniform'
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
 Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
@@ -32,7 +32,6 @@ if !has('win64')
 endif
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
-Plug 'tpope/vim-sensible', {'commit': '0ce2d843d6f588bb0c8c7eec6449171615dc56d9'}
 Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
@@ -49,9 +48,6 @@ call plug#end()
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
 " sleuth.vim for some filetypes.
 runtime! plugin/sleuth.vim
-
-" Override ttimeoutlen later
-runtime! plugin/sensible.vim
 
 " The :SpeedDatingFormat command is not available until the speeddating.vim
 " file gets loaded. I *could* add my custom formats in an after/plugin/* file
@@ -74,74 +70,14 @@ if filereadable("/usr/share/doc/fzf/examples/fzf.vim")
   source /usr/share/doc/fzf/examples/fzf.vim
 endif
 
-" Resolve disputes between `vim -Nu sensible.vim` and `nvim -u sensible.vim`
-set autoindent
-set background=light
-set belloff=all
-if &history < 10000
-  set history=10000
-endif
-set nohlsearch
-if has('langmap') && exists('+langnoremap')
-  set nolangremap
-endif
-if has('path_extra')
-  setglobal tags=./tags;,tags
-endif
-if !has('nvim')
-  set ttimeout
-  set ttimeoutlen=50
-endif
-
-set nomodeline ignorecase smartcase showcmd noequalalways nojoinspaces list
-set autoread hidden scrolloff=0
-set spellfile=~/.spell.en.utf-8.add wildmode=list:longest,full sidescroll=1
-if has('mouse')
-  set mouse=nv
-endif
-if !has('nvim')
-  runtime! ftplugin/man.vim
-  setglobal keywordprg=:Man
-endif
+set ignorecase smartcase noequalalways list
+set spellfile=~/.spell.en.utf-8.add
 if exists('&inccommand')
   set inccommand=split
 endif
 if exists('+smoothscroll')
   set smoothscroll
 endif
-
-" By default, Vim sets the swap directory to the same directory as the file
-" being edited, which is a security risk when editing files on a server (e.g.
-" if one is editing a MediaWiki LocalSettings.php file on a server, then
-" anyone can navigate to the public URL for the MediaWiki and access
-" LocalSettings.php.swp and download potentially sensitive data like the
-" database password). The same is true for the backupdir as well (though Vim
-" doesn't turn on backups by default so this is only a problem if one enables
-" that setting). I think the same is true for undodir, but I haven't looked
-" into it.
-if !has('win64')
-  if !isdirectory(expand('~/.vim/backup'))
-    call mkdir(expand('~/.vim/backup'), 'p')
-  endif
-  set backupdir=~/.vim/backup//
-  if !isdirectory(expand('~/.vim/swap'))
-    call mkdir(expand('~/.vim/swap'), 'p')
-  endif
-  set directory=~/.vim/swap//
-  if !isdirectory(expand('~/.vim/undo'))
-    call mkdir(expand('~/.vim/undo'), 'p')
-  endif
-  set undodir=~/.vim/undo//
-endif
-
-" In Git Bash, the jump pauses text insertion so some characters get lost if I
-" type too quickly. It turns out in Git Bash the file /etc/vimrc is read,
-" which turns on showmatch. I am turning off visualbell as well because I find
-" it really annoying.
-set noshowmatch
-set novb
-
-nnoremap Y y$
 
 " Quickly find potentially problematic characters (things like non-printing
 " ASCII, exotic whitespace, and lookalike Unicode letters).
@@ -163,8 +99,7 @@ endif
 " #! lines at the start of scripts) gets confused.
 inoremap <expr> <CR> "<C-G>u<CR>"
 
-set grepprg=rg\ --vimgrep
-set grepformat^=%f:%l:%c:%m
+" set grepformat^=%f:%l:%c:%m
 
 if has('autocmd')
   " Group the autocommands and clear with 'autocmd!' so that if the vimrc is
@@ -229,14 +164,10 @@ if has('autocmd')
     " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
     autocmd FileType tex syntax spell toplevel
     autocmd FileType vim setlocal keywordprg=:help
-    autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !=# "gitcommit" |
-      \   exe "normal! g`\"" |
-      \ endif
     " Automatically enter insert mode when switching to a terminal buffer
-    if has('nvim')
-      autocmd BufEnter term://* startinsert
-    endif
+    " if has('nvim')
+    "   autocmd BufEnter term://* startinsert
+    " endif
     au User asyncomplete_setup call asyncomplete#register_source({
         \ 'name': 'nim',
         \ 'whitelist': ['nim'],
@@ -299,11 +230,17 @@ if has('gui_running')
   set guioptions-=T
 endif
 
-silent! colorscheme issa_light
-
 " Neovim has an annoying blinking cursor by default; this turns that off.
 " Possibly better to use the following as the check:
 " if has('nvim') && $TERM =~# 'screen'
 if has('nvim')
   set guicursor=n:blinkon0
+  set termguicolors
+endif
+
+if exists('$DARKMODE') && $DARKMODE == '1'
+  set background=dark
+else
+  set background=light
+  silent! colorscheme issa_light
 endif
