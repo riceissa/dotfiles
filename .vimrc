@@ -248,7 +248,17 @@ if has('nvim')
   " TODO: might want to set this for vim as well.
   set termguicolors
 endif
-if exists('$DARKMODE') && $DARKMODE == '1'
+
+let s:darkmode = 0
+if has('nvim') && has('win64')
+  if matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme'), '0x[0-9]') ==# '0x0'
+    let s:darkmode = 1
+  endif
+elseif exists('$DARKMODE') && $DARKMODE == '1'
+  let s:darkmode = 1
+endif
+
+if s:darkmode
   set background=dark
 else
   set background=light
