@@ -69,19 +69,19 @@ readlink_or_filepath() {
 }
 
 if [ -n "$install_bashrc" ]; then
-    mv -v $(readlink_or_filepath ~/.bashrc) ~/.bashrc.$(date -Idate).bak 2> /dev/null
+    # mv -v $(readlink_or_filepath ~/.bashrc) ~/.bashrc.$(date -Idate).bak 2> /dev/null
     if grep -q -e "^HISTSIZE" ~/.bashrc; then
-        sed -i 's/^HISTSIZE=.*/HISTSIZE=100000/'
+        sed -i 's/^HISTSIZE=.*/HISTSIZE=100000/' ~/.bashrc
     else
         echo "HISTSIZE=100000" >> ~/.bashrc
     fi
     if grep -q -e "^HISTFILESIZE" ~/.bashrc; then
-        sed -i 's/^HISTFILESIZE=.*/HISTFILESIZE=/'
+        sed -i 's/^HISTFILESIZE=.*/HISTFILESIZE=/' ~/.bashrc
     else
         echo "HISTFILESIZE=" >> ~/.bashrc
     fi
     if grep -q -e "^HISTCONTROL" ~/.bashrc; then
-        sed -i 's/^HISTCONTROL=.*/HISTCONTROL=ignoreboth:erasedups/'
+        sed -i 's/^HISTCONTROL=.*/HISTCONTROL=ignoreboth:erasedups/' ~/.bashrc
     else
         echo "HISTCONTROL=ignoreboth:erasedups" >> ~/.bashrc
     fi
