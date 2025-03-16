@@ -258,29 +258,3 @@ if [ -n "$WSL_DISTRO_NAME" ]; then
 fi
 
 [ -f "/home/issa/.ghcup/env" ] && source "/home/issa/.ghcup/env" # ghcup-env
-
-if [ -n "$WSL_DISTRO_NAME" ]; then
-  function win-theme() {
-    local theme=$(reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme | grep -o "0x[0-9]")
-    if [ "$theme" == "0x0" ]; then
-      echo "Dark Mode"
-    elif [ "$theme" == "0x1" ]; then
-      echo "Light Mode"
-    else
-      echo "Unknown theme setting"
-    fi
-  }
-  if [ "$(win-theme)" == "Dark Mode" ]; then
-    DARKMODE=1
-  else
-    DARKMODE=0
-  fi
-  export DARKMODE
-fi
-
-if [ $(uname -o) == "Msys" ]; then
-  INSIDE_GIT_BASH=1
-else
-  INSIDE_GIT_BASH=0
-fi
-export INSIDE_GIT_BASH

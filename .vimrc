@@ -1,3 +1,4 @@
+let s:gitbash = executable('uname') && matchstr(system('uname -a'), 'MINGW') == "MINGW"
 " Use vim-plug to manage Vim plugins. Follow the instruction at
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -40,7 +41,7 @@ Plug 'riceissa/vim-markdown'
 Plug 'riceissa/vim-markdownlint'
 Plug 'riceissa/vim-mediawiki'
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
-if !(exists('$INSIDE_GIT_BASH') && $INSIDE_GIT_BASH == '1')
+if !s:gitbash
   Plug 'davidhalter/jedi-vim'
 endif
 if has('nvim')
@@ -254,10 +255,11 @@ if has('nvim')
 endif
 
 let s:darkmode = 0
-let s:gitbash = executable('uname') && matchstr(system('uname -a'), 'MINGW') == "MINGW"
 if has('nvim') && has('win64') && executable('reg.exe') && matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme'), '0x[0-9]') ==# '0x0'
   let s:darkmode = 1
 elseif s:gitbash && matchstr(matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"'), 'AppsUseLightTheme.*$'), '0x[0-9]') ==# '0x0'
+  " Can't do the /v stuff inside of Git Bash, so we do nested matchstr() calls
+  " instead.
   let s:darkmode = 1
 elseif exists('$DARKMODE') && $DARKMODE == '1'
   let s:darkmode = 1
