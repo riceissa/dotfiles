@@ -1,24 +1,15 @@
-set nocompatible
-" Use vim-plug to manage Vim plugins. Install with
-"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" Once all Vim config files are in the right places, just do :PlugInstall in
-" Vim to install the plugins.
+" Use vim-plug to manage Vim plugins. Follow the instruction at
+" https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'riceissa/vim-colorschemes'
 Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
-" Plug 'fatih/vim-go'
 Plug 'junegunn/gv.vim', {'commit': 'b6bb6664e2c95aa584059f195eb3a9f3cb133994'}
-" Plug 'lervag/vimtex', {'for': 'tex'}
 if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
-" Plug 'riceissa/vim-dualist'
 Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
-Plug 'riceissa/vim-markdown'
-Plug 'riceissa/vim-markdownlint'
-Plug 'riceissa/vim-mediawiki'
+" Plug 'riceissa/vim-dualist'
+Plug 'riceissa/vim-colorschemes'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
@@ -32,11 +23,18 @@ if !has('win64')
 endif
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
-Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
+" Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
+
+" Filetype-specific plugins
+" Plug 'fatih/vim-go'
+" Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'riceissa/vim-markdown'
+Plug 'riceissa/vim-markdownlint'
+Plug 'riceissa/vim-mediawiki'
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
 Plug 'davidhalter/jedi-vim'
 if has('nvim')
@@ -47,7 +45,7 @@ call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
 " sleuth.vim for some filetypes.
-runtime! plugin/sleuth.vim
+" runtime! plugin/sleuth.vim
 
 " The :SpeedDatingFormat command is not available until the speeddating.vim
 " file gets loaded. I *could* add my custom formats in an after/plugin/* file
@@ -99,6 +97,8 @@ endif
 " #! lines at the start of scripts) gets confused.
 inoremap <expr> <CR> "<C-G>u<CR>"
 
+" I don't think this is needed anymore, but I'm keeping it for now just in
+" case I run into problems later and want to re-enable it.
 " set grepformat^=%f:%l:%c:%m
 
 if has('autocmd')
@@ -130,7 +130,7 @@ if has('autocmd')
     endif
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
     autocmd FileType make setlocal noexpandtab
-    autocmd FileType markdown setlocal expandtab shiftwidth=4 tabstop=4
+    autocmd FileType markdown setlocal expandtab
     " Underscore in Markdown documents are almost always part of emphasis,
     " which should not be considered part of the word. For example, pressing *
     " on an emphasized phrase like '_hello there_' (where the cursor is on the
@@ -222,22 +222,28 @@ let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 let g:strip_max_file_size = 2000
 
-nnoremap [s [s<Space><BS>
-nnoremap ]s ]s<BS><Space>
+" I forgot why I needed this...
+" nnoremap [s [s<Space><BS>
+" nnoremap ]s ]s<BS><Space>
 
 if has('gui_running')
   set guioptions-=m
   set guioptions-=T
 endif
 
-" Neovim has an annoying blinking cursor by default; this turns that off.
+" Neovim has an annoying blinking cursor by default (well, it *did* at one
+" point, but as of v0.10.4 it doesn't seem to anymore); this turns that off.
 " Possibly better to use the following as the check:
 " if has('nvim') && $TERM =~# 'screen'
+" if has('nvim')
+"   set guicursor=n:blinkon0
+" endif
+
+" Colorscheme stuff. $DARKMODE is an environment variable that is set in my
+" ~/.bashrc that gets set to '1' at night and '0' during the day.
 if has('nvim')
-  set guicursor=n:blinkon0
   set termguicolors
 endif
-
 if exists('$DARKMODE') && $DARKMODE == '1'
   set background=dark
 else
