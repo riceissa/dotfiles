@@ -22,6 +22,8 @@ Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
 Plug 'riceissa/vim-rsi'
 Plug 'riceissa/vim-uniform'
+
+Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
 Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
@@ -43,7 +45,6 @@ let g:surround_{char2nr('q')} = "“\r”"
 let g:surround_{char2nr('Q')} = "‘\r’"
 
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
-Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 
 " Filetype-specific plugins
 " Plug 'fatih/vim-go'
