@@ -1,6 +1,4 @@
-if [ $(uname -o) == "Msys" ]; then
-    PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ '
-else
+if [ $(uname -o) != "Msys" ]; then
     PS1='\w\$ '
 fi
 
@@ -76,13 +74,11 @@ if [ $(uname -o) != "Msys" ]; then
 fi
 alias em='emacsclient -t'
 
-if [ $(uname -o) != "Msys" ]; then
-    alias vim=nvim
-fi
 if [ $(uname -o) == "Msys" ]; then
     export EDITOR=vim
     export VISUAL=vim
 else
+    alias vim=nvim
     export EDITOR=nvim
     export VISUAL=nvim
 fi
@@ -135,5 +131,3 @@ fi
 if [ -n "$WSL_DISTRO_NAME" ]; then
     wsl.exe -u root service mysql status > /dev/null || wsl.exe -u root service mysql start > /dev/null
 fi
-
-[ -f "/home/issa/.ghcup/env" ] && source "/home/issa/.ghcup/env" # ghcup-env
