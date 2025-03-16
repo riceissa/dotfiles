@@ -64,9 +64,28 @@ fi
 # Install software
 # python debian_packages.py
 
+readlink_or_filepath() {
+    readlink "$1" || echo "$1"
+}
+
 if [ -n "$install_bashrc" ]; then
-    mv -v ~/.bashrc ~/.bashrc.$(date -Idate).bak 2> /dev/null
-    ln -svf "$(pwd)/.bashrc" ~/.bashrc
+    mv -v $(readlink_or_filepath ~/.bashrc) ~/.bashrc.$(date -Idate).bak 2> /dev/null
+    if grep -q -e "^HISTSIZE" ~/.bashrc; then
+        sed -i 's/^HISTSIZE=.*/HISTSIZE=100000/'
+    else
+        echo "HISTSIZE=100000" >> ~/.bashrc
+    fi
+    if grep -q -e "^HISTFILESIZE" ~/.bashrc; then
+        sed -i 's/^HISTFILESIZE=.*/HISTFILESIZE=/'
+    else
+        echo "HISTFILESIZE=" >> ~/.bashrc
+    fi
+    if grep -q -e "^HISTCONTROL" ~/.bashrc; then
+        sed -i 's/^HISTCONTROL=.*/HISTCONTROL=ignoreboth:erasedups/'
+    else
+        echo "HISTCONTROL=ignoreboth:erasedups" >> ~/.bashrc
+    fi
+    echo "[ -f" '"'"$(pwd)/.bashrc"'"' '] && source' '"'"$(pwd)/.bashrc"'"' >> ~/.bashrc
 fi
 
 if [ -n "$install_local_bin" ]; then
