@@ -15,7 +15,6 @@ let g:strip_whitespace_confirm=0
 let g:strip_max_file_size = 2000
 
 Plug 'riceissa/vim-dualist'
-let g:dualist_color_listchars = 1
 
 Plug 'riceissa/vim-colorschemes'
 Plug 'riceissa/vim-pasteurize'
@@ -266,11 +265,9 @@ if s:windows_darkmode
   let s:darkmode = 1
 endif
 
-if s:darkmode && s:gitbash
+if s:darkmode
   set background=dark
-  silent! colorscheme torte
-elseif s:darkmode
-  set background=dark
+  silent! colorscheme issa_dark
 else
   set background=light
   silent! colorscheme issa_light
