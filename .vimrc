@@ -8,8 +8,15 @@ if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
+
 Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
+let g:strip_max_file_size = 2000
+
 Plug 'riceissa/vim-dualist'
+let g:dualist_color_listchars = 1
+
 Plug 'riceissa/vim-colorschemes'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
@@ -30,7 +37,11 @@ Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
 Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
 
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
+
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
+let g:surround_{char2nr('q')} = "“\r”"
+let g:surround_{char2nr('Q')} = "‘\r’"
+
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 
@@ -43,6 +54,16 @@ Plug 'riceissa/vim-mediawiki'
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
 if !s:gitbash
   Plug 'davidhalter/jedi-vim'
+  " Show argument hints when calling functions in the status line rather than in
+  " the buffer, and wait a while before showing it. This reduces visual clutter.
+  let g:jedi#show_call_signatures = "2"
+  let g:jedi#show_call_signatures_delay = 1000
+  " Don't mess with the popup menu; I like Vim's default completion bindings.
+  let g:jedi#popup_select_first = 0
+  let g:jedi#auto_vim_configuration = 0
+  " Use Vim's usual bindings for completion.
+  let g:jedi#goto_command = "<C-]>"
+  let g:jedi#completions_command = "<C-X><C-O>"
 endif
 if has('nvim')
   Plug 'alaviss/nim.nvim', { 'for': ['nim'] }
@@ -211,24 +232,6 @@ iabbrev ADd Add
 
 let g:tex_flavor = 'latex'
 let g:sql_type_default = 'mysql'
-let g:surround_{char2nr('q')} = "“\r”"
-let g:surround_{char2nr('Q')} = "‘\r’"
-let g:dualist_color_listchars = 1
-
-" Show argument hints when calling functions in the status line rather than in
-" the buffer, and wait a while before showing it. This reduces visual clutter.
-let g:jedi#show_call_signatures = "2"
-let g:jedi#show_call_signatures_delay = 1000
-" Don't mess with the popup menu; I like Vim's default completion bindings.
-let g:jedi#popup_select_first = 0
-let g:jedi#auto_vim_configuration = 0
-" Use Vim's usual bindings for completion.
-let g:jedi#goto_command = "<C-]>"
-let g:jedi#completions_command = "<C-X><C-O>"
-
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
-let g:strip_max_file_size = 2000
 
 " I forgot why I needed this...
 " nnoremap [s [s<Space><BS>
