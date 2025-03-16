@@ -117,10 +117,6 @@ endif
 " #! lines at the start of scripts) gets confused.
 inoremap <expr> <CR> "<C-G>u<CR>"
 
-" I don't think this is needed anymore, but I'm keeping it for now just in
-" case I run into problems later and want to re-enable it.
-" set grepformat^=%f:%l:%c:%m
-
 if has('autocmd')
   " Group the autocommands and clear with 'autocmd!' so that if the vimrc is
   " sourced multiple times, we don't end up with duplicate autocommands. See
