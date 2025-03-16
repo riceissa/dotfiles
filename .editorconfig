@@ -11,5 +11,5 @@ indent_size = 4
 [Makefile]
 indent_style = tab
 
-[{*.nim,*.js,*.html}]
+[{*.nim,*.js,*.html,*.vim,.vimrc}]
 indent_size = 2
