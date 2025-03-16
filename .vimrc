@@ -247,8 +247,6 @@ endif
 "   set guicursor=n:blinkon0
 " endif
 
-" Colorscheme stuff. $DARKMODE is an environment variable that is set in my
-" ~/.bashrc that gets set to '1' at night and '0' during the day.
 if has('nvim')
   " TODO: might want to set this for vim as well.
   set termguicolors
