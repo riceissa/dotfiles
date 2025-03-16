@@ -8,7 +8,7 @@ if executable('ctags')
 endif
 Plug 'nelstrom/vim-visual-star-search', {'commit': '37259722f45996733fd309add61385a4ad88bdb9'}
 Plug 'ntpeters/vim-better-whitespace', {'commit': '86a0579b330b133b8181b8e088943e81c26a809e'}
-" Plug 'riceissa/vim-dualist'
+Plug 'riceissa/vim-dualist'
 Plug 'riceissa/vim-colorschemes'
 Plug 'riceissa/vim-pasteurize'
 Plug 'riceissa/vim-proselint'
@@ -129,8 +129,6 @@ if has('autocmd')
       autocmd FileType * if &omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
     endif
     autocmd FileType mail,text,help setlocal comments=fb:*,fb:-,fb:+,n:>
-    autocmd FileType make setlocal noexpandtab
-    autocmd FileType markdown setlocal expandtab
     " Underscore in Markdown documents are almost always part of emphasis,
     " which should not be considered part of the word. For example, pressing *
     " on an emphasized phrase like '_hello there_' (where the cursor is on the
@@ -144,13 +142,15 @@ if has('autocmd')
     "     <math display="block">\int_a^b f</math> (big integral, centered)
     autocmd FileType mediawiki let b:surround_{char2nr('m')} = "<math>\r</math>"
     autocmd FileType mediawiki let b:surround_{char2nr('M')} = ":<math>\r</math>"
+
     " In some versions, when Vim is compiled with python3 support but not
     " python support, the omnifunc check above tries to use
     " pythoncomplete#Complete, which doesn't exist since there is no python
     " support. The solution is to force the python3 complete function.
-    if has('python3')
-      " autocmd FileType python setlocal omnifunc=python3complete#Complete
-    endif
+    " if has('python3')
+    "   autocmd FileType python setlocal omnifunc=python3complete#Complete
+    " endif
+
     " PHP autoindenting is too smart for its own good
     autocmd FileType php setlocal autoindent indentexpr=
     " The following is for jedi; see :h g:jedi#show_call_signatures. If the
@@ -164,10 +164,11 @@ if has('autocmd')
     " http://stackoverflow.com/questions/5860154/vim-spell-checking-comments-only-in-latex-files
     autocmd FileType tex syntax spell toplevel
     autocmd FileType vim setlocal keywordprg=:help
-    " Automatically enter insert mode when switching to a terminal buffer
-    " if has('nvim')
-    "   autocmd BufEnter term://* startinsert
-    " endif
+    " Automatically enter insert/terminal mode when switching to a terminal
+    " buffer
+    if has('nvim')
+      autocmd TermOpen * startinsert
+    endif
     au User asyncomplete_setup call asyncomplete#register_source({
         \ 'name': 'nim',
         \ 'whitelist': ['nim'],
@@ -242,6 +243,7 @@ endif
 " Colorscheme stuff. $DARKMODE is an environment variable that is set in my
 " ~/.bashrc that gets set to '1' at night and '0' during the day.
 if has('nvim')
+  " TODO: might want to set this for vim as well.
   set termguicolors
 endif
 if exists('$DARKMODE') && $DARKMODE == '1'
