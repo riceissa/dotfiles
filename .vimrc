@@ -23,7 +23,11 @@ if !has('win64')
 endif
 Plug 'tpope/vim-repeat', {'commit': '24afe922e6a05891756ecf331f39a1f6743d3d5a'}
 Plug 'tpope/vim-rhubarb', {'commit': 'ee69335de176d9325267b0fd2597a22901d927b1'}
-" Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
+
+" Not super needed because of EditorConfig now, but still useful on Git Bash
+" where my Vim version is too old to have have EditorConfig.
+Plug 'tpope/vim-sleuth', {'commit': 'be69bff86754b1aa5adcbb527d7fcd1635a84080'}
+
 Plug 'tpope/vim-speeddating', {'commit': '5a36fd29df63ea3f65562bd2bb837be48a5ec90b'}
 Plug 'tpope/vim-surround', {'commit': '3d188ed2113431cf8dac77be61b842acb64433d9'}
 Plug 'tpope/vim-unimpaired', {'commit': '6d44a6dc2ec34607c41ec78acf81657248580bf1'}
@@ -47,7 +51,7 @@ call plug#end()
 
 " Workaround for https://github.com/tpope/vim-sleuth/issues/29 to override
 " sleuth.vim for some filetypes.
-" runtime! plugin/sleuth.vim
+runtime! plugin/sleuth.vim
 
 " The :SpeedDatingFormat command is not available until the speeddating.vim
 " file gets loaded. I *could* add my custom formats in an after/plugin/* file
@@ -250,15 +254,19 @@ if has('nvim')
 endif
 
 let s:darkmode = 0
-if has('nvim') && has('win64')
-  if matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme'), '0x[0-9]') ==# '0x0'
-    let s:darkmode = 1
-  endif
+let s:gitbash = executable('uname') && matchstr(system('uname -a'), 'MINGW') == "MINGW"
+if has('nvim') && has('win64') && executable('reg.exe') && matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme'), '0x[0-9]') ==# '0x0'
+  let s:darkmode = 1
+elseif s:gitbash && matchstr(matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"'), 'AppsUseLightTheme.*$'), '0x[0-9]') ==# '0x0'
+  let s:darkmode = 1
 elseif exists('$DARKMODE') && $DARKMODE == '1'
   let s:darkmode = 1
 endif
 
-if s:darkmode
+if s:darkmode && s:gitbash
+  set background=dark
+  silent! colorscheme torte
+elseif s:darkmode
   set background=dark
 else
   set background=light
