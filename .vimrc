@@ -256,14 +256,13 @@ if has('nvim')
   set termguicolors
 endif
 
+" Normally you would query for the presence of darkmode on Windows by doing
+" reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme
+" But we can't do the /v stuff inside of Git Bash, so we do nested matchstr()
+" calls instead.
+let s:windows_darkmode = executable('reg.exe') && matchstr(matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"'), 'AppsUseLightTheme.*$'), '0x[0-9]') ==# '0x0'
 let s:darkmode = 0
-if has('nvim') && has('win64') && executable('reg.exe') && matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme'), '0x[0-9]') ==# '0x0'
-  let s:darkmode = 1
-elseif s:gitbash && matchstr(matchstr(system('reg.exe query "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"'), 'AppsUseLightTheme.*$'), '0x[0-9]') ==# '0x0'
-  " Can't do the /v stuff inside of Git Bash, so we do nested matchstr() calls
-  " instead.
-  let s:darkmode = 1
-elseif exists('$DARKMODE') && $DARKMODE == '1'
+if s:windows_darkmode
   let s:darkmode = 1
 endif
 
