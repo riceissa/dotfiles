@@ -130,6 +130,12 @@ if has('autocmd')
     autocmd FileType gitconfig setlocal commentstring=#%s
     autocmd FileType matlab setlocal commentstring=%%s
     autocmd FileType c setlocal commentstring=//%s
+    if exists('+smoothscroll') && &smoothscroll
+      autocmd FileType markdown,mediawiki,tex nnoremap <expr> <buffer> j winline() == winheight(0) ? "<C-E>gj" : "gj"
+      autocmd FileType markdown,mediawiki,tex nnoremap <expr> <buffer> k winline() == 1 ? "<C-Y>gk" : "gk"
+      autocmd FileType markdown,mediawiki,tex nnoremap <buffer> gj j
+      autocmd FileType markdown,mediawiki,tex nnoremap <buffer> gk k
+    endif
     autocmd FileType gitcommit,mail,markdown,mediawiki,tex setlocal spell
     autocmd FileType mediawiki let b:surround_{char2nr('w')} = "[[wikipedia:\r|]]"
     autocmd FileType mediawiki let b:surround_{char2nr('r')} = "<ref name=\"\r\" />"
