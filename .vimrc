@@ -131,6 +131,10 @@ if has('autocmd')
     autocmd FileType matlab setlocal commentstring=%%s
     autocmd FileType c setlocal commentstring=//%s
     if exists('+smoothscroll') && &smoothscroll
+      " At the top or bottom of the window, doing gk or gj will by default try
+      " to show the whole contents of the line that you just moved onto, but
+      " if that line is long then it's very jerky. So we first smoothly scroll
+      " the next visual line into view, and only then move to it.
       autocmd FileType markdown,mediawiki,tex nnoremap <expr> <buffer> j winline() == winheight(0) ? "<C-E>gj" : "gj"
       autocmd FileType markdown,mediawiki,tex nnoremap <expr> <buffer> k winline() == 1 ? "<C-Y>gk" : "gk"
       autocmd FileType markdown,mediawiki,tex nnoremap <buffer> gj j
