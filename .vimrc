@@ -45,7 +45,7 @@ Plug 'riceissa/vim-markdownlint'
 Plug 'riceissa/vim-mediawiki'
 Plug 'nathangrigg/vim-beancount', {'commit': '25bcbc773554b5798d253a1a5fa5de158792f95e'}
 if !s:gitbash
-  Plug 'davidhalter/jedi-vim'
+  Plug 'davidhalter/jedi-vim', {'commit': '344814c214391368674813e3a11143448e73e749'}
   " Show argument hints when calling functions in the status line rather than in
   " the buffer, and wait a while before showing it. This reduces visual clutter.
   let g:jedi#show_call_signatures = "2"
@@ -58,8 +58,8 @@ if !s:gitbash
   let g:jedi#completions_command = "<C-X><C-O>"
 endif
 if has('nvim')
-  Plug 'alaviss/nim.nvim', { 'for': ['nim'] }
-  Plug 'prabirshrestha/asyncomplete.vim', { 'for': ['nim'] }
+  Plug 'alaviss/nim.nvim', {'for': ['nim'], 'commit': '076239e8869e3e9b061b17cbca2cea2df73d5f92'}
+  Plug 'prabirshrestha/asyncomplete.vim', {'for': ['nim'], 'commit': '016590d2ca73cefe45712430e319a0ef004e2215'}
 endif
 call plug#end()
 
