@@ -2,7 +2,7 @@ let s:gitbash = executable('uname') && matchstr(system('uname -a'), 'MINGW') == 
 " Use vim-plug to manage Vim plugins. Follow the instruction at
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
-Plug 'AndrewRadev/splitjoin.vim', {'commit': '9531bfb26257f0d06f7ea2b7ecb4f13095d430ab'}
+Plug 'AndrewRadev/splitjoin.vim', {'commit': '9bb338c32bea49fb7f9de47404d65791f6046f31'}
 Plug 'junegunn/gv.vim', {'commit': 'b6bb6664e2c95aa584059f195eb3a9f3cb133994'}
 if executable('ctags')
   Plug 'ludovicchabant/vim-gutentags', {'commit': 'aa47c5e29c37c52176c44e61c780032dfacef3dd'}
@@ -17,8 +17,8 @@ Plug 'riceissa/vim-uniform'
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
-Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
-Plug 'tpope/vim-eunuch', {'commit': '67f3dd32b4dcd1c427085f42ff5f29c7adc645c6'}
+Plug 'tpope/vim-dispatch', {'commit': 'a2ff28abdb2d89725192db5b8562977d392a4d3f'}
+Plug 'tpope/vim-eunuch', {'commit': 'e86bb794a1c10a2edac130feb0ea590a00d03f1e'}
 if !has('win64')
   Plug 'tpope/vim-fugitive', {'commit': '174230d6a7f2df94705a7ffd8d5413e27ec10a80'}
 endif
