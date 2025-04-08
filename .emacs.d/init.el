@@ -202,6 +202,33 @@ in a smart sort of way like C-w in bash."
                        (goto-char (max (point) original-line-beginning))))))))
 
 
+(defun spaced-inbox--navigate-from-string (input-string)
+  (if (string-match "^\\(.*\\):\\([0-9]+\\):[0-9]+\\(?::.*\\)?$" input-string)
+      (let ((filename (string-trim (match-string 1 input-string)))
+            (line-number (string-to-number (match-string 2 input-string))))
+        (message "Navigating to %s:%d..." filename line-number)
+        (with-current-buffer (window-buffer (selected-window))
+          (find-file filename)
+          (goto-line line-number)
+          (recenter-top-bottom 0))
+        t)
+    (progn
+      (message "Was not able to navigate to %s line %d" filename line-number)
+      nil)))
+
+(defun roll ()
+  (interactive)
+  (let* ((spaced-inbox-executable "py.exe C:\\Users\\Issa\\projects\\spaced-inbox\\spaced_inbox.py")
+         (flags "-r")
+         (spaced-inbox-command (concat spaced-inbox-executable " " flags)))
+    (progn
+      (let* ((output (string-trim (shell-command-to-string spaced-inbox-command))))
+        (if (string-empty-p output)
+            (message "Spaced inbox script produced no output.")
+          (spaced-inbox--navigate-from-string output))))))
+
+
+
 (when (fboundp 'magit-diff-buffer-file)
   ;; This is like ":Git diff %" in fugitive.vim
   (global-set-key (kbd "C-x C-d")
