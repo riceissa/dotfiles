@@ -17,6 +17,7 @@ Plug 'riceissa/vim-uniform'
 Plug 'tpope/vim-abolish', {'commit': 'dcbfe065297d31823561ba787f51056c147aa682'}
 Plug 'tpope/vim-characterize', {'commit': '7fc5b75e7a9e46676cf736b56d99dd32004ff3d6'}
 Plug 'tpope/vim-commentary', {'commit': '64a654ef4a20db1727938338310209b6a63f60c9'}
+" Plug 'tpope/vim-dispatch', {'commit': '6cc2691576f97d43f8751664d1a1a908b99927e5'}
 Plug 'tpope/vim-dispatch', {'commit': 'a2ff28abdb2d89725192db5b8562977d392a4d3f'}
 Plug 'tpope/vim-eunuch', {'commit': 'e86bb794a1c10a2edac130feb0ea590a00d03f1e'}
 if !has('win64')
@@ -148,8 +149,8 @@ if has('autocmd')
     autocmd FileType mediawiki setlocal linebreak
     autocmd FileType php setlocal commentstring=//%s
     autocmd FileType haskell syntax match hsLineComment '^#!/usr/bin/env.*$'
-    autocmd FileType help,man setlocal nolist nospell
-    autocmd FileType help,man,fugitive nnoremap <buffer> <silent> q :q<CR>
+    autocmd FileType help,man,qf setlocal nolist nospell
+    autocmd FileType help,man,qf,fugitive nnoremap <buffer> <silent> q :q<CR>
     " Modified from :help ft-syntax-omni
     if exists('+omnifunc')
       autocmd FileType * if &omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
@@ -270,3 +271,15 @@ else
   set background=light
   silent! colorscheme issa_light
 endif
+
+" Stuff for spaced inbox; see https://github.com/riceissa/spaced-inbox
+command! Roll call s:ExecuteRoll()
+function! s:ExecuteRoll()
+  let l:mp = &makeprg
+  set makeprg=/home/issa/projects/spaced-inbox/spaced_inbox.py\ -r
+  silent! make
+  let &makeprg = l:mp
+  silent! cfirst
+  normal! zt
+endfunction
+inoremap <silent> <C-G><C-R> <C-R>=strftime('%Y-%m-%d')<CR>:<Space><C-R>=repeat(complete(col('.'),['yeah','lol','interesting','exciting','cringe','taxing','meh']),0)<CR><C-P>
