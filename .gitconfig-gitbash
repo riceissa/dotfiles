@@ -45,3 +45,5 @@
 	defaultBranch = master
 [color "diff"]
 	meta = normal
+[safe]
+	directory = C:/SuperMemo/systems
