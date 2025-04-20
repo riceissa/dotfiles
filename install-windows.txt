@@ -24,3 +24,5 @@ mklink "C:\Users\Issa\.cvsignore" "C:\Users\Issa\projects\dotfiles\.cvsignore"
 mklink "C:\Users\Issa\.gitconfig" "C:\Users\Issa\projects\dotfiles\.gitconfig-gitbash"
 
 mklink "C:\Users\Issa\.minttyrc" "C:\Users\Issa\projects\dotfiles\.minttyrc"
+
+mklink "C:\Users\Issa\.editorconfig" "C:\Users\Issa\projects\dotfiles\.editorconfig"
