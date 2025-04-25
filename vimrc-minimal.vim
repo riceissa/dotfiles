@@ -25,3 +25,12 @@ inoremap <C-B> <Left>
 cnoremap <C-B> <Left>
 inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
+
+if has('autocmd')
+  augroup vimrc
+    autocmd!
+    autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
+    autocmd FileType haskell syntax match hsLineComment '^#!.*'
+    autocmd FileType markdown setlocal iskeyword-=_
+  augroup END
+endif
