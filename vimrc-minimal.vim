@@ -1,6 +1,8 @@
 if !has('nvim')
   unlet! skip_defaults_vim
   source $VIMRUNTIME/defaults.vim
+  silent! packadd! editorconfig
+  silent! packadd! comment
 endif
 
 set ttimeout ttimeoutlen=50
