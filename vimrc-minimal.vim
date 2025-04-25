@@ -1,0 +1,27 @@
+if !has('nvim')
+  unlet! skip_defaults_vim
+  source $VIMRUNTIME/defaults.vim
+endif
+
+set ttimeout ttimeoutlen=50
+set nohlsearch ignorecase smartcase
+set hidden
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set belloff=all
+set autoindent
+if has('mouse')
+  set mouse=nv
+endif
+nnoremap Y y$
+
+inoremap <C-A> <C-O>^
+inoremap <C-X><C-A> <C-A>
+cnoremap <C-A> <Home>
+cnoremap <C-X><C-A> <C-A>
+inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
+inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
+cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
+inoremap <C-B> <Left>
+cnoremap <C-B> <Left>
+inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
+cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
