@@ -85,7 +85,7 @@ if [ -n "$install_bashrc" ]; then
     else
         echo "HISTCONTROL=ignoreboth:erasedups" >> ~/.bashrc
     fi
-    echo "[ -f" '"'"$(pwd)/.bashrc"'"' '] && source' '"'"$(pwd)/.bashrc"'"' >> ~/.bashrc
+    # echo "[ -f" '"'"$(pwd)/.bashrc"'"' '] && source' '"'"$(pwd)/.bashrc"'"' >> ~/.bashrc
 fi
 
 if [ -n "$install_local_bin" ]; then
