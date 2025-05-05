@@ -7,6 +7,8 @@ endif
 
 set ttimeout ttimeoutlen=50
 set nohlsearch ignorecase smartcase
+set scrolloff=0
+set laststatus=2
 set hidden
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
