@@ -36,5 +36,19 @@ if has('autocmd')
     autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
     autocmd FileType markdown setlocal iskeyword-=_
+    autocmd FileType gitcommit setlocal spell
   augroup END
+
+  " From :help restore-cursor on Neovim. Vim already has this in defaults.vim.
+  if has('nvim')
+    augroup RestoreCursor
+      autocmd!
+      autocmd BufReadPre * autocmd FileType <buffer> ++once
+        \ let s:line = line("'\"")
+        \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+        \      && index(['xxd', 'gitrebase'], &filetype) == -1
+        \ |   execute "normal! g`\""
+        \ | endif
+    augroup END
+  endif
 endif
