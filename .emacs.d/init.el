@@ -29,6 +29,11 @@
 ;; to get hunspell installed via msys2 (the instructions
 ;; are for aspell but it's very similar). Once hunspell is
 ;; installed, the configuration below should automatically work.
+;; Also it is kind of bizarre that Emacs (which in all other areas
+;; eschews the Unix philosophy) is that one that needs
+;; an external program to do spell checking, whereas Vim comes
+;; with its own (very excellent -- way better than hunspell)
+;; spell checker.
 (if (eq system-type 'windows-nt)
     (progn
       (setq ispell-program-name "C:/msys64/mingw64/bin/hunspell.exe")
@@ -156,7 +161,6 @@
 (set-default-coding-systems 'utf-8)
 
 
-
 ;; Make C-w work as in Bash.
 ;; This still doesn't work exactly like in bash, since bash seems to
 ;; care about all whitespace characters, whereas this only cares about
@@ -269,9 +273,13 @@ in a smart sort of way like C-w in bash."
     (setenv "SSH_ASKPASS" "git-gui--askpass"))
 
 
-(require 'server)
-(unless (server-running-p)
-  (server-start))
+;; Having a server was mostly useful when I was communicating
+;; to Emacs via the server in spaced inbox. But now Emacs
+;; initiates the communication so I don't really need to have
+;; a server running.
+;; (require 'server)
+;; (unless (server-running-p)
+;;   (server-start))
 
 
 ;; Emacs already binds C-; to flyspell-auto-correct-previous-word. However, in my experience this command has a couple of bugs:
