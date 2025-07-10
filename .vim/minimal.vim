@@ -3,6 +3,11 @@ if !has('nvim')
   source $VIMRUNTIME/defaults.vim
   silent! packadd! editorconfig
   silent! packadd! comment
+
+  " Modified from sensible.vim
+  if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man'
+    runtime ftplugin/man.vim
+  endif
 endif
 
 set ttimeout ttimeoutlen=50
@@ -13,6 +18,7 @@ set hidden
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
+set cinoptions=l1,:0
 if has('mouse')
   set mouse=nv
 endif
