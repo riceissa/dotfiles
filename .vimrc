@@ -12,7 +12,7 @@ endif
 
 set ttimeout ttimeoutlen=50
 set nohlsearch ignorecase smartcase
-set scrolloff=0
+set scrolloff=2
 set laststatus=2
 set hidden
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -21,6 +21,9 @@ set autoindent
 set cinoptions=l1,:0
 if has('mouse')
   set mouse=nv
+endif
+if exists('+smoothscroll')
+  set smoothscroll
 endif
 nnoremap Y y$
 
