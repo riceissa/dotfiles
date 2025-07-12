@@ -43,6 +43,7 @@ if has('autocmd')
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
     autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType gitcommit setlocal spell
+    autocmd FileType c setlocal commentstring=//\ %s
   augroup END
 
   " From :help restore-cursor on Neovim. Vim already has this in defaults.vim.
