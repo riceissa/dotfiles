@@ -7,9 +7,9 @@
 	quotepath = false
 	excludesfile = ~/.cvsignore
 [pager]
-	log = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
-	show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
-	diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less -+S
+	log = perl /usr/share/git-core/contrib/diff-highlight | less -+S
+	show = perl /usr/share/git-core/contrib/diff-highlight | less -+S
+	diff = perl /usr/share/git-core/contrib/diff-highlight | less -+S
 [alias]
 	# From https://git.wiki.kernel.org/index.php/Aliases#What.27s_new.3F
 	new = !sh -c 'git log $1@{1}..$1@{0} "$@"'
