@@ -39,6 +39,11 @@ cnoremap <C-B> <Left>
 inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 
+if has('nvim')
+  color vim
+  set notermguicolors
+endif
+
 if has('autocmd')
   augroup vimrc
     autocmd!
