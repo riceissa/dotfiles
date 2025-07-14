@@ -48,11 +48,11 @@
 (setq font-name
       (if (eq system-type 'windows-nt)
           "Consolas"
-        "Ubuntu Mono"))
+        "Consolas"))
 (setq font-height
       (if (eq system-type 'windows-nt)
           110
-        140))
+        120))
 
 (set-face-attribute 'default nil :font font-name :height font-height)
 
@@ -87,7 +87,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-dark-themes '((tango-dark) (issa-test)))
+ ;;'(auto-dark-themes '((tango-dark) (issa-test)))
  '(column-number-mode t)
  '(custom-safe-themes
    '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
@@ -115,7 +115,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(auto-dark exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
+   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -295,5 +295,5 @@ in a smart sort of way like C-w in bash."
 ;; variable, otherwise it starts to load random themes like leuven and
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
-(require 'auto-dark)
-(auto-dark-mode t)
+;;(require 'auto-dark)
+;;(auto-dark-mode t)
