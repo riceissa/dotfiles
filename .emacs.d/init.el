@@ -264,9 +264,11 @@ in a smart sort of way like C-w in bash."
   (global-set-key (kbd "C-x g") 'magit-status))
 
 (setq c-default-style "linux")
-(add-hook 'c-mode-hook '(lambda ()
-                         (setq indent-tabs-mode t)
-                         (setq tab-width 8)))
+(add-hook 'c-mode-hook #'(lambda ()
+                           (setq-local indent-tabs-mode t
+                                       tab-width 8
+                                       comment-start "// "
+                                       comment-end "")))
 
 ;; For pushing with git on windows
 (when (eq system-type 'windows-nt)
