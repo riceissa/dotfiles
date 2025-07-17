@@ -3,11 +3,7 @@ if !has('nvim')
   source $VIMRUNTIME/defaults.vim
   silent! packadd! editorconfig
   silent! packadd! comment
-
-  " Modified from sensible.vim
-  if exists(':Man') != 2 && !exists('g:loaded_man') && &filetype !=? 'man'
-    runtime ftplugin/man.vim
-  endif
+  runtime ftplugin/man.vim
 endif
 
 set ttimeout ttimeoutlen=50
@@ -54,7 +50,8 @@ if has('autocmd')
     autocmd FileType c,php setlocal commentstring=//\ %s
   augroup END
 
-  " From :help restore-cursor on Neovim. Vim already has this in defaults.vim.
+  " From :help restore-cursor on Neovim. Vim already has this in defaults.vim
+  " which was sourced above.
   if has('nvim')
     augroup RestoreCursor
       autocmd!
