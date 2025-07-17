@@ -48,11 +48,11 @@
 (setq font-name
       (if (eq system-type 'windows-nt)
           "Consolas"
-        "Consolas"))
+        "Iosevka"))
 (setq font-height
       (if (eq system-type 'windows-nt)
           110
-        120))
+        130))
 
 (set-face-attribute 'default nil :font font-name :height font-height)
 
@@ -299,3 +299,6 @@ in a smart sort of way like C-w in bash."
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
 ;;(require 'auto-dark)
 ;;(auto-dark-mode t)
+
+;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
+(editorconfig-mode)
