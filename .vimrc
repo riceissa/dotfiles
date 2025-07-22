@@ -36,7 +36,7 @@ inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 
 if has('nvim')
-  color vim
+  colorscheme vim
   set notermguicolors
 endif
 
@@ -47,8 +47,12 @@ if has('autocmd')
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
     autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType c,php setlocal commentstring=//\ %s
+    autocmd FileType c,php,glsl setlocal commentstring=//\ %s
   augroup END
+
+  if exists('#vimHints')
+    autocmd! vimHints
+  endif
 
   " From :help restore-cursor on Neovim. Vim already has this in defaults.vim
   " which was sourced above.
