@@ -23,14 +23,9 @@ if [ $(uname -o) != "Msys" ]; then
 fi
 alias em='emacsclient -t'
 
-if [ $(uname -o) == "Msys" ]; then
-    export EDITOR=vim
-    export VISUAL=vim
-else
-    alias vim=nvim
-    export EDITOR=nvim
-    export VISUAL=nvim
-fi
+alias vim=nvim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Set ag/ripgrep as the default source for fzf if it exists
 # if [ $(uname -o) != "Msys" ]; then
