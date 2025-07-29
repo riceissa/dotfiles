@@ -297,3 +297,8 @@ in a smart sort of way like C-w in bash."
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
 (require 'auto-dark)
 (auto-dark-mode t)
+
+;; Stuff to do on startup -- only on windows, because for some reason emacs on windows is much slower
+;; (find-file "C:\\Users\\Issa\\projects\\notes\\inbox.txt")
+;; (end-of-buffer)
+;; (org-agenda-list)
