@@ -48,11 +48,11 @@
 (setq font-name
       (if (eq system-type 'windows-nt)
           "Consolas"
-        "Ubuntu Mono"))
+        "Adwaita Mono"))
 (setq font-height
       (if (eq system-type 'windows-nt)
           110
-        140))
+        110))
 
 (set-face-attribute 'default nil :font font-name :height font-height)
 
@@ -87,7 +87,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-dark-themes '((tango-dark) (issa-test)))
+ ;;'(auto-dark-themes '((tango-dark) (issa-test)))
  '(column-number-mode t)
  '(custom-safe-themes
    '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
@@ -115,7 +115,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(auto-dark exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
+   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -201,7 +201,7 @@ in a smart sort of way like C-w in bash."
 (defun daily-note-separator ()
   "Insert the daily note separator for spaced inbox."
   (interactive)
-  (shell-command-to-string "py.exe C:\\Users\\Issa\\projects\\spaced-inbox\\spaced_inbox.py")  ;; I don't need the output but I also don't want to have a buffer pop up showing me the output (which is what would happen if I used shell-command instead), so I store it to a string and just ignore it.
+  (shell-command-to-string "python3 /home/issa/projects/spaced-inbox/spaced_inbox.py")  ;; I don't need the output but I also don't want to have a buffer pop up showing me the output (which is what would happen if I used shell-command instead), so I store it to a string and just ignore it.
   (insert "=====\n")
   (insert (format-time-string "%Y-%m-%d"))
   (insert "\n\n\n")
@@ -225,7 +225,7 @@ in a smart sort of way like C-w in bash."
 
 (defun roll ()
   (interactive)
-  (let* ((spaced-inbox-executable "py.exe C:\\Users\\Issa\\projects\\spaced-inbox\\spaced_inbox.py")
+  (let* ((spaced-inbox-executable "python3 /home/issa/projects/spaced-inbox/spaced_inbox.py")
          (flags "-r")
          (spaced-inbox-command (concat spaced-inbox-executable " " flags)))
     (progn
@@ -264,9 +264,11 @@ in a smart sort of way like C-w in bash."
   (global-set-key (kbd "C-x g") 'magit-status))
 
 (setq c-default-style "linux")
-(add-hook 'c-mode-hook '(lambda ()
-                         (setq indent-tabs-mode t)
-                         (setq tab-width 8)))
+(add-hook 'c-mode-hook #'(lambda ()
+                           (setq-local indent-tabs-mode t
+                                       tab-width 8
+                                       comment-start "// "
+                                       comment-end "")))
 
 ;; For pushing with git on windows
 (when (eq system-type 'windows-nt)
@@ -295,10 +297,13 @@ in a smart sort of way like C-w in bash."
 ;; variable, otherwise it starts to load random themes like leuven and
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
-(require 'auto-dark)
-(auto-dark-mode t)
+;;(require 'auto-dark)
+;;(auto-dark-mode t)
 
 ;; Stuff to do on startup -- only on windows, because for some reason emacs on windows is much slower
 ;; (find-file "C:\\Users\\Issa\\projects\\notes\\inbox.txt")
 ;; (end-of-buffer)
 ;; (org-agenda-list)
+
+;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
+(editorconfig-mode)
