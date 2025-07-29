@@ -15,7 +15,7 @@ mklink "C:\Users\Issa\.emacs.d\init.el" "C:\Users\Issa\projects\dotfiles\.emacs.
 
 mklink "C:\Users\Issa\.vimrc" "C:\Users\Issa\projects\dotfiles\.vimrc"
 
-mklink "C:\Users\Issa\.bashrc" "C:\Users\Issa\projects\dotfiles\.bashrc-gitbash"
+mklink "C:\Users\Issa\.bashrc" "C:\Users\Issa\projects\dotfiles\bash\git-bash.bash"
 
 mklink "C:\Users\Issa\AppData\Local\nvim\init.vim" "C:\Users\Issa\projects\dotfiles\.config\nvim\init.vim"
 
