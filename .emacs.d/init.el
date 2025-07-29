@@ -48,11 +48,11 @@
 (setq font-name
       (if (eq system-type 'windows-nt)
           "Consolas"
-        "Iosevka"))
+        "Adwaita Mono"))
 (setq font-height
       (if (eq system-type 'windows-nt)
           110
-        130))
+        110))
 
 (set-face-attribute 'default nil :font font-name :height font-height)
 
