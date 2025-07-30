@@ -2,9 +2,7 @@
 
 while [ -n "$1" ]; do
     case "$1" in
-    bashrc) install_bashrc=yes
-        ;;
-    clone) clone_repo=yes
+    bash) install_bash=yes
         ;;
     editorconfig) install_editorconfig=yes
         ;;
@@ -15,8 +13,6 @@ while [ -n "$1" ]; do
     kitty) install_kitty=yes
         ;;
     local_bin) install_local_bin=yes
-        ;;
-    moc) install_moc=yes
         ;;
     neovim) install_neovim=yes
         ;;
@@ -43,7 +39,7 @@ Install script for dotfiles.
 ./install [program...]
 ./install {-h|--help}
 
-Supported programs: bashrc, clone (clone the dotfiles repo), editorconfig,
+Supported programs: bash, editorconfig,
 emacs, git, local_bin, moc, neovim, newsboat, proselint, tmux, vim, urxvt
 
 For instance to install dotfiles for Vim and tmux, run:
@@ -53,43 +49,43 @@ EOF
     exit
 fi
 
-if [ -n "$clone_repo" ]; then
-    git clone https://github.com/riceissa/dotfiles.git
-    # To switch to SSH later do:
-    #     git remote remove origin
-    #     git remote add origin git@github.com:riceissa/dotfiles.git
-    cd dotfiles
-fi
-
-# Install software
-# python debian_packages.py
-
 readlink_or_filepath() {
     readlink "$1" || echo "$1"
 }
 
-if [ -n "$install_bashrc" ]; then
-    # mv -v $(readlink_or_filepath ~/.bashrc) ~/.bashrc.$(date -Idate).bak 2> /dev/null
+if [ -n "$install_bash" ]; then
     if grep -q -e "^HISTSIZE" ~/.bashrc; then
-        sed -i 's/^HISTSIZE=.*/HISTSIZE=100000/' ~/.bashrc
+        echo "HISTSIZE found; editing value to 1000000"
+        sed -i 's/^HISTSIZE=.*/HISTSIZE=1000000/' ~/.bashrc
     else
-        echo "HISTSIZE=100000" >> ~/.bashrc
+        echo "HISTSIZE not found; adding HISTSIZE=1000000"
+        echo "HISTSIZE=1000000" >> ~/.bashrc
     fi
     if grep -q -e "^HISTFILESIZE" ~/.bashrc; then
-        sed -i 's/^HISTFILESIZE=.*/HISTFILESIZE=/' ~/.bashrc
+        echo "HISTFILESIZE found; editing value to 1000000"
+        sed -i 's/^HISTFILESIZE=.*/HISTFILESIZE=1000000/' ~/.bashrc
     else
-        echo "HISTFILESIZE=" >> ~/.bashrc
+        echo "HISTFILESIZE not found; adding HISTFILESIZE=1000000"
+        echo "HISTFILESIZE=1000000" >> ~/.bashrc
     fi
     if grep -q -e "^HISTCONTROL" ~/.bashrc; then
+        echo "HISTCONTROL found; editing value to ignoreboth:erasedups"
         sed -i 's/^HISTCONTROL=.*/HISTCONTROL=ignoreboth:erasedups/' ~/.bashrc
     else
+        echo "HISTCONTROL not found; adding HISTCONTROL=ignoreboth:erasedups"
         echo "HISTCONTROL=ignoreboth:erasedups" >> ~/.bashrc
     fi
-    # echo "[ -f" '"'"$(pwd)/.bashrc"'"' '] && source' '"'"$(pwd)/.bashrc"'"' >> ~/.bashrc
+    if grep -q -F "dotfiles/bash/common.bash" ~/.bashrc; then
+        echo "common.bash found in bashrc; not doing anything"
+    else
+        echo "common.bash not found in bashrc; adding line to source it"
+        common_bash_location="$(pwd)/bash/common.bash"
+        echo "[ -f $common_bash_location ] && source $common_bash_location" >> ~/.bashrc
+    fi
 fi
 
 if [ -n "$install_local_bin" ]; then
-    binline="export PATH=$(pwd)/.local/bin:\$PATH"
+    binline="path_prepend $(pwd)/.local/bin"
     if ! (grep -q -F "$binline" ~/.bashrc); then
         echo "$binline" >> ~/.bashrc
     fi
@@ -113,11 +109,9 @@ if [ -n "$install_vim" ]; then
 fi
 
 if [ -n "$install_neovim" ]; then
-    pip install --user neovim
     config_home=${XDG_CONFIG_HOME:=$HOME/.config}
     mkdir -p $config_home/nvim
-    mv -v $config_home/nvim/init.vim $config_home/nvim/init.vim.$(date -Idate).bak 2> /dev/null
-    ln -svf "$(pwd)/.config/nvim/init.vim" $config_home/nvim/init.vim
+    ln -sv "$(pwd)/.config/nvim/init.vim" $config_home/nvim/init.vim
 fi
 
 if [ -n "$install_tmux" ]; then
@@ -128,7 +122,7 @@ if [ -n "$install_tmux" ]; then
 fi
 
 if [ -n "$install_editorconfig" ]; then
-    ln -svf "$(pwd)/.editorconfig" ~/.editorconfig
+    ln -sv "$(pwd)/.editorconfig" ~/.editorconfig
 fi
 
 if [ -n "$install_urxvt" ]; then
@@ -141,31 +135,22 @@ fi
 
 if [ -n "$install_kitty" ]; then
     mkdir -p ~/.config/kitty
-    ln -svf "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
-fi
-
-if [ -n "$install_moc" ]; then
-    mkdir -p ~/.moc/themes
-    ln -svf "$(pwd)/.moc/config" ~/.moc/config
-    ln -svf "$(pwd)/.moc/my_keymap" ~/.moc/my_keymap
-    ln -svf "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
+    ln -sv "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
 fi
 
 if [ -n "$install_git" ]; then
-    ln -svf "$(pwd)/.gitconfig" ~/.gitconfig
-    ln -svf "$(pwd)/.cvsignore" ~/.cvsignore
+    ln -sv "$(pwd)/.gitconfig" ~/.gitconfig
+    ln -sv "$(pwd)/.cvsignore" ~/.cvsignore
 fi
 
 if [ -n "$install_newsboat" ]; then
     mkdir -p ~/.newsboat
-    ln -svf "$(pwd)/.newsboat/config" ~/.newsboat/config
+    ln -sv "$(pwd)/.newsboat/config" ~/.newsboat/config
 fi
 
 if [ -n "$install_emacs" ]; then
     mkdir -p ~/.emacs.d
-    mv -v ~/.emacs ~/.emacs.$(date -Idate).bak 2> /dev/null
-    mv -v ~/.emacs.d/init.el ~/.emacs.d/init.el.$(date -Idate).bak 2> /dev/null
-    ln -svf "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
+    ln -sv "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
 fi
 
 if [ -n "$install_proselint" ]; then
