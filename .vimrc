@@ -35,7 +35,7 @@ cnoremap <C-B> <Left>
 inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 
-if has('nvim')
+if has('nvim-0.10')
   colorscheme vim
   set notermguicolors
 endif
