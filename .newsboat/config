@@ -1,0 +1,18 @@
+browser "firefox --new-tab %u"
+
+suppress-first-reload yes
+
+unbind-key j
+unbind-key k
+bind-key j down "all"
+bind-key k up "all"
+
+# modified from the default given at
+# http://newsbeuter.org/doc/newsbeuter.html#_configuring_colors
+color background          default   default
+color listnormal          default   default
+color listfocus           default   white
+color listnormal_unread   default   default
+color listfocus_unread    default   white
+color info                default   white
+color article             default   default
