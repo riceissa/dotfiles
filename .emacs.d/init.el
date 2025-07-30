@@ -1,6 +1,6 @@
 ;; Set default window size
 (setq initial-frame-alist
-          '((width . 81) (height . 35)))
+          '((width . 81) (height . 32)))
 
 ;; For installing packages
 (require 'package)
@@ -87,10 +87,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;;'(auto-dark-themes '((tango-dark) (issa-test)))
+ '(auto-dark-themes '((tango-dark) (issa-test)))
  '(column-number-mode t)
  '(custom-safe-themes
-   '("754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645" default))
+      '("b4b884ae77b70a295ec0f439d111eaac92f1267db1b8ac251bd61a5c30d93f79"
+           "754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645"
+           default))
  '(ido-mode 'both nil (ido))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -115,7 +117,8 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-   '(exec-path-from-shell auctex php-mode lua-mode markdown-mode magit))
+      '(auctex auto-dark exec-path-from-shell lua-mode magit markdown-mode
+           php-mode))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -297,8 +300,8 @@ in a smart sort of way like C-w in bash."
 ;; variable, otherwise it starts to load random themes like leuven and
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
-;;(require 'auto-dark)
-;;(auto-dark-mode t)
+(require 'auto-dark)
+(auto-dark-mode t)
 
 ;; Stuff to do on startup -- only on windows, because for some reason emacs on windows is much slower
 ;; (find-file "C:\\Users\\Issa\\projects\\notes\\inbox.txt")
