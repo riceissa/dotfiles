@@ -21,6 +21,7 @@ endif
 if exists('+smoothscroll')
   set smoothscroll
 endif
+set shortmess-=S
 nnoremap Y y$
 
 inoremap <C-A> <C-O>^
