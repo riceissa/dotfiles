@@ -23,6 +23,7 @@ if exists('+smoothscroll')
 endif
 set shortmess-=S
 nnoremap Y y$
+unlet! c_comment_strings
 
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
