@@ -9,7 +9,7 @@
 [pager]
         # To make diff-highlight available as a command in the shell, first
         # find it using:
-        #     find / -name "diff-highlight" -type f -executable 2>/dev/null
+        #     find / -name "diff-highlight" 2>/dev/null
         # Then symlink it so it is available in PATH:
         #     ln -sv the_location_you_found_above /usr/bin/diff-highlight
         # One some distros like Ubuntu, you will also need to make diff-highlight
