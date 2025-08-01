@@ -30,12 +30,21 @@ while [ -n "$1" ]; do
     shift
 done
 
+if [ -z "$1" ]; then
+cat <<'EOF'
+Usage:
+    ./install-linux.sh [program...]
+For more help:
+    ./install-linux.sh --help
+EOF
+fi
+
 if [ -n "$show_help" ]; then
 cat <<'EOF'
 Install script for dotfiles.
 
-./install [program...]
-./install {-h|--help}
+./install-linux.sh [program...]
+./install-linux.sh {-h|--help}
 
 Supported programs: bash, editorconfig, emacs, git, kitty, local_bin, neovim,
                     newsboat, proselint, tmux, vim
