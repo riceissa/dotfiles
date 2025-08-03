@@ -17,6 +17,9 @@ set autoindent
 set cinoptions=l1,:0
 if has('mouse')
   set mouse=nv
+  if !has('nvim') && exists('$TMUX')
+    set ttymouse=xterm2
+  endif
 endif
 if exists('+smoothscroll')
   set smoothscroll
