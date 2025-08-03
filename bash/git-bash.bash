@@ -29,7 +29,7 @@ alias git-backup='git add . && git commit -m "snapshot" && git push'
 
 # fzf doesn't seem to work on gitbash?
 # [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /c/Users/Issa/projects/dotfiles/basic.bash ] && source /c/Users/Issa/projects/dotfiles/basic.bash
+[ -f /c/Users/Issa/projects/dotfiles/bash/common.bash ] && source /c/Users/Issa/projects/dotfiles/bash/common.bash
 
 path_prepend "/c/Users/Issa/AppData/Local/Programs/Python/Python313/Scripts/"
 
