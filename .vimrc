@@ -15,6 +15,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
 set cinoptions=l1,:0
+set viminfo=!,'100,<50,s10,h
 if has('mouse')
   set mouse=nv
   if !has('nvim') && exists('$TMUX')
