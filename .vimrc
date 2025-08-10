@@ -59,6 +59,9 @@ if has('autocmd')
   if exists('#vimHints')
     autocmd! vimHints
   endif
+  if exists('#fedora')
+    autocmd! fedora
+  endif
 
   " From :help restore-cursor on Neovim. Vim already has this in defaults.vim
   " which was sourced above.
