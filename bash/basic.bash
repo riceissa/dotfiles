@@ -11,9 +11,3 @@ export PATH
 
 # Enable CTRL-S in terminal
 stty -ixon
-
-# The following works in Ubuntu when installing fzf using apt (which I prefer,
-# since that way I don't have to remember to manually upgrade fzf).
-# See `apt show fzf` (which just points to /usr/share/doc/fzf/README.Debian)
-# for more information.
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
