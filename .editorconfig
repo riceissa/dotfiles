@@ -11,9 +11,13 @@ tab_width = 8
 [{*.py,*.c,*.cpp,*.ts,*.scala,*.hs,*.vim,.vimrc,*.nim}]
 trim_trailing_whitespace = true
 
-[{Makefile,*.go}]
+[Makefile]
 indent_style = tab
 indent_size = 8
+
+[*.go]
+indent_style = tab
+tab_width = 4
 
 [{*.nim,*.ts,*.js,*.html,*.vim,.vimrc,*.scala}]
 indent_size = 2
