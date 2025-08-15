@@ -40,6 +40,14 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
 
+" Tab-completing in command mode in Vim by default shows matches horizontally,
+" meaning only a few matches can be shown on the screen. Having 'pum' in the
+" following option makes matches be displayed vertically instead (just like in
+" insert mode), allowing more matches to be shown. Including 'tagfile' shows
+" the kind and location of tag when doing :tag <CTRL-D> which seems helpful,
+" but I mostly only included it because it's included by default in Neovim.
+set wildoptions=pum,tagfile
+
 " Vim's default C indenting options for switch cases are kind of insane in my
 " opinion. The following two options make it so that switch cases go from
 " Vim's default of:
