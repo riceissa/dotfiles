@@ -167,3 +167,8 @@ if has('autocmd')
     augroup END
   endif
 endif
+
+" See :help ft-python-indent for what these mean
+let g:python_indent = {}
+let g:python_indent.open_paren = 'shiftwidth()'
+let g:python_indent.closed_paren_align_last_line = v:false
