@@ -8,7 +8,7 @@ indent_style = space
 indent_size = 4
 tab_width = 8
 
-[{*.py,*.c,*.cpp,*.ts,*.scala,*.hs,*.vim,.vimrc,*.nim}]
+[{*.py,*.c,*.cpp,*.hs,*.go,*.nim,*.ts,*.js,*.html,*.vim,.vimrc,*.scala}]
 trim_trailing_whitespace = true
 
 [Makefile]
