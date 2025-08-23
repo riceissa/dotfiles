@@ -13,9 +13,9 @@ color listnormal          default   default
 color listfocus           default   default   reverse
 color listnormal_unread   default   default   bold
 color listfocus_unread    default   default   bold reverse
-color title               yellow    blue      bold
+color title               white     blue      bold
 color info                white     blue
-color hint-key            yellow    blue      bold
+color hint-key            white     blue      bold
 color hint-keys-delimiter white     blue
 color hint-separator      white     blue      bold
 color hint-description    white     blue
