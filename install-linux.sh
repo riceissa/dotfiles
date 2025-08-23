@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+cat <<'EOF'
+Usage:
+    ./install-linux.sh [program...]
+For more help:
+    ./install-linux.sh --help
+EOF
+fi
+
 while [ -n "$1" ]; do
     case "$1" in
     bash) install_bash=yes
@@ -29,15 +38,6 @@ while [ -n "$1" ]; do
     esac
     shift
 done
-
-if [ -z "$1" ]; then
-cat <<'EOF'
-Usage:
-    ./install-linux.sh [program...]
-For more help:
-    ./install-linux.sh --help
-EOF
-fi
 
 if [ -n "$show_help" ]; then
 cat <<'EOF'
