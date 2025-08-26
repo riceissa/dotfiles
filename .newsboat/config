@@ -1,5 +1,6 @@
 browser "firefox --new-tab %u"
 suppress-first-reload yes
+cleanup-on-quit no
 
 #unbind-key j
 #unbind-key k
