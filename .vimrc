@@ -126,6 +126,14 @@ if has('autocmd')
     " jarring.
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
 
+    " By default, Go files have formatprg=gofmt. This may seem ideal, but
+    " actually, I prefer to run gofmt in bulk via gofmt -w, and also gofmt
+    " doesn't format long comments, and comments are pretty much the only
+    " thing I use commands like gq for. So basically gq becomes useless in Go
+    " files, which is not what I want. By setting this to be empty, the
+    " default Vim formatter takes over, and comment formatting works as usual.
+    autocmd FileType go set formatprg=
+
     " Underscores in Markdown files usually mean emphasis, so should not be
     " counted as part of the word. This makes searching for emphasized phrases
     " work with motions like *. For example, if a string like _hello world_
