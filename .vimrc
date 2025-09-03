@@ -134,6 +134,14 @@ if has('autocmd')
     " default Vim formatter takes over, and comment formatting works as usual.
     autocmd FileType go set formatprg=
 
+    " Vim tries to be smart by setting the makeprg for Rust files to use Cargo
+    " if Cargo is detected and otherwise use rustc. However, when it uses
+    " rustc, it tries to run rustc on the current file, which is annoying
+    " (since the file I happen to be editing may not be the main/entrypoint of
+    " the project). For now, I am setting it back to just 'make', as I will
+    " probably usually have a makefile.
+    autocmd FileType rust if &makeprg =~# '^rustc ' | set makeprg=make | endif
+
     " Underscores in Markdown files usually mean emphasis, so should not be
     " counted as part of the word. This makes searching for emphasized phrases
     " work with motions like *. For example, if a string like _hello world_
