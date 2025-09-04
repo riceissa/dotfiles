@@ -44,7 +44,7 @@ set autoindent
 " meaning only a few matches can be shown on the screen. Having 'pum' in the
 " following option makes matches be displayed vertically instead (just like in
 " insert mode), allowing more matches to be shown. Including 'tagfile' shows
-" the kind and location of tag when doing :tag <CTRL-D> which seems helpful,
+" the kind and location of tag when doing :tag <Ctrl-D> which seems helpful,
 " but I mostly only included it because it's included by default in Neovim.
 set wildoptions=pum,tagfile
 
@@ -80,6 +80,11 @@ endif
 
 " Show the number of matches when searching
 set shortmess-=S
+
+" I kind of prefer that when I toggle buffers with Ctrl-^ the cursor doesn't
+" move when I toggle back to the buffer I was on. However, this also changes
+" the behavior of a bunch of other movements, which I might not like.
+set nostartofline
 
 " For consistency with C and D
 nnoremap Y y$
