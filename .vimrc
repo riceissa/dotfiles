@@ -50,18 +50,24 @@ set autoindent
 set wildoptions=pum,tagfile
 
 " Vim's default C indenting options for switch cases are kind of insane in my
-" opinion. The following two options make it so that switch cases go from
-" Vim's default of:
+" opinion. The following option makes it so that switch cases go from Vim's
+" default of:
 "     switch (a) {
 "         case 1: {
 "                     a++;
 "                 } break;
+"         case 2:
+"             a++;
+"             break;
 "     }
 " to:
 "     switch (a) {
 "         case 1: {
 "             a++;
 "         } break;
+"         case 2:
+"             a++;
+"             break;
 "     }
 set cinoptions=l1
 
