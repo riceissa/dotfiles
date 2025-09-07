@@ -6,6 +6,7 @@ if !has('nvim')
   silent! packadd! editorconfig
   silent! packadd! comment
   runtime ftplugin/man.vim
+  setglobal keywordprg=:Man
 endif
 
 " Make the escape key more responsive
@@ -85,6 +86,24 @@ set shortmess-=S
 " move when I toggle back to the buffer I was on. However, this also changes
 " the behavior of a bunch of other movements, which I might not like.
 set nostartofline
+
+" This is the Neovim default. Basically what it means is that first, Vim will
+" search for the tags file in the directory that the current file is in, i.e.
+" whatever :echo expand('%:h') outputs (that's what the "./" means) and then
+" if it can't find a tags file there, it will keep recursing upwards from that
+" directory until it finds a tags file (that's what the ";" means). If it
+" still can't find a tags file, it will now just look in the current working
+" directory, i.e. whatever :pwd outputs (that's what the plain "tags" without
+" the "./" means), but it won't keep recursing upward from the current working
+" directory (note the absence of ";"). For more information, see:
+"     :help file-searching for what the semicolon means
+"     :help tags-option for what the ./ means
+" I like this because sometimes I want to navigate via tags when I am editing
+" a file that isn't part of my current project/working directory. If so, I
+" wouldn't want Vim to use the tags file associated with my current project;
+" instead, I want Vim to prioritize the tags file that is near where the file
+" is.
+setglobal tags=./tags;,tags
 
 " For consistency with C and D
 nnoremap Y y$
