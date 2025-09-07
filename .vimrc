@@ -131,13 +131,15 @@ if has('autocmd')
     " jarring.
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
 
-    " By default, Go files have formatprg=gofmt. This may seem ideal, but
-    " actually, I prefer to run gofmt in bulk via gofmt -w, and also gofmt
-    " doesn't format long comments, and comments are pretty much the only
-    " thing I use commands like gq for. So basically gq becomes useless in Go
-    " files, which is not what I want. By setting this to be empty, the
-    " default Vim formatter takes over, and comment formatting works as usual.
-    autocmd FileType go set formatprg=
+    " By default, Go and Rust files have formatprg=gofmt and
+    " formatprg=rustfmt, respectively. This may seem ideal, but actually, I
+    " prefer to run gofmt/rustfmt in bulk via gofmt -w or rustfmt src, and
+    " also gofmt and rustfmt don't format long comments, and comments are
+    " pretty much the only thing I use commands like gq for. So basically gq
+    " becomes useless in Go and Rust files, which is not what I want. By
+    " setting this to be empty, the default Vim formatter takes over, and
+    " comment formatting works as usual.
+    autocmd FileType go,rust setlocal formatprg=
 
     " Vim tries to be smart by setting the makeprg for Rust files to use Cargo
     " if Cargo is detected and otherwise use rustc. However, when it uses
@@ -145,7 +147,13 @@ if has('autocmd')
     " (since the file I happen to be editing may not be the main/entrypoint of
     " the project). For now, I am setting it back to just 'make', as I will
     " probably usually have a makefile.
-    autocmd FileType rust if &makeprg =~# '^rustc ' | set makeprg=make | endif
+    autocmd FileType rust if &makeprg =~# '^rustc ' | setlocal makeprg=make | endif
+
+    " Vim sets the textwidth to 99 for Rust files by default, which I find
+    " annoying (I prefer either 80 if I'm formatting comments or no hard limit
+    " so that my lines don't unpredictably wrap, so a limit of 99 is both too
+    " large and too small!).
+    autocmd FileType rust setlocal textwidth=0
 
     " Underscores in Markdown files usually mean emphasis, so should not be
     " counted as part of the word. This makes searching for emphasized phrases
