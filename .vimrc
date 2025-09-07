@@ -59,11 +59,11 @@ set wildoptions=pum,tagfile
 "     }
 " to:
 "     switch (a) {
-"     case 1: {
-"         a++;
-"     } break;
+"         case 1: {
+"             a++;
+"         } break;
 "     }
-set cinoptions=l1,:0
+set cinoptions=l1
 
 " Fedora's /etc/vimrc sets this to a weird value, so reset it to Vim's default
 set viminfo&
