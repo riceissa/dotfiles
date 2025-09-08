@@ -6,7 +6,7 @@ if !has('nvim')
   silent! packadd! editorconfig
   silent! packadd! comment
   runtime ftplugin/man.vim
-  setglobal keywordprg=:Man
+  set keywordprg=:Man
 endif
 
 " Make the escape key more responsive
@@ -108,7 +108,7 @@ set nostartofline
 " a file that isn't part of my current project/working directory. If so, I
 " wouldn't want Vim to use the tags file associated with my current project;
 " instead, I want Vim to use the tags file that is near the file I am editing.
-setglobal tags=./tags;
+set tags=./tags;
 
 " For consistency with C and D
 nnoremap Y y$
