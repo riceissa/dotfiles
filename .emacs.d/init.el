@@ -103,22 +103,20 @@
  '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
  '(org-agenda-files '("~/todo.org"))
  '(org-capture-templates
-   '(("i" "Idea" entry
-      (file "~/notes.org")
-      "* %T %?")
-     ("t" "TODO item" entry
-      (file+headline "~/todo.org" "Tasks")
-      "* TODO %?\12  %i\12")))
+      '(("i" "Idea" entry (file "~/notes.org") "* %T %?")
+           ("t" "TODO item" entry (file+headline "~/todo.org" "Tasks")
+               "* TODO %?\12  %i\12")))
  '(org-clock-mode-line-total 'today)
  '(org-duration-format 'h:mm)
  '(org-format-latex-options
-   '(:foreground default :background default :scale 1.3 :html-foreground "Black" :html-background "Transparent" :html-scale 1.0 :matchers
-                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
+      '(:foreground default :background default :scale 1.3 :html-foreground
+           "Black" :html-background "Transparent" :html-scale 1.0
+           :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
       '(auctex auto-dark exec-path-from-shell lua-mode magit markdown-mode
-           php-mode))
+           php-mode s))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
