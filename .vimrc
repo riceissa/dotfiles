@@ -30,6 +30,10 @@ set ignorecase smartcase
 set scrolloff=2
 set laststatus=2
 set nojoinspaces
+set formatoptions=tcrqj
+if &history < 1000
+  set history=1000
+endif
 
 " I kind of like the discipline of always saving buffers before making them no
 " longer visible on the screen. But leaving 'hidden' off turns out to have a
@@ -93,23 +97,18 @@ set shortmess-=S
 " the behavior of a bunch of other movements, which I might not like.
 set nostartofline
 
-" This is the Neovim default. Basically what it means is that first, Vim will
-" search for the tags file in the directory that the current file is in, i.e.
-" whatever :echo expand('%:h') outputs (that's what the "./" means) and then
-" if it can't find a tags file there, it will keep recursing upwards from that
-" directory until it finds a tags file (that's what the ";" means). If it
-" still can't find a tags file, it will now just look in the current working
-" directory, i.e. whatever :pwd outputs (that's what the plain "tags" without
-" the "./" means), but it won't keep recursing upward from the current working
-" directory (note the absence of ";"). For more information, see:
-"     :help file-searching for what the semicolon means
+" Search for the tags file in the directory that the current file is in, i.e.
+" whatever :echo expand('%:h') outputs, rather than looking in the current
+" working directory, i.e. whatever :pwd outputs. And then if a tags file is
+" not found there, keep recursing upwards from that directory until a tags
+" file is found. For more information, see:
 "     :help tags-option for what the ./ means
+"     :help file-searching for what the semicolon means
 " I like this because sometimes I want to navigate via tags when I am editing
 " a file that isn't part of my current project/working directory. If so, I
 " wouldn't want Vim to use the tags file associated with my current project;
-" instead, I want Vim to prioritize the tags file that is near where the file
-" is.
-setglobal tags=./tags;,tags
+" instead, I want Vim to use the tags file that is near the file I am editing.
+setglobal tags=./tags;
 
 " For consistency with C and D
 nnoremap Y y$
@@ -149,6 +148,14 @@ if has('autocmd')
   augroup vimrc
     autocmd!
     autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
+
+    " Many filetype plugins add the 'o' and this is really annoying; I like it
+    " when the comment character automatically gets inserted if I hit enter,
+    " but not when I use o to start a new line. It's not possible to set this
+    " as a normal option along with the other formatoptions above, because the
+    " filetype plugins get sourced after the vimrc file, so the 'o' will just
+    " get added later. So we need to run this as an autocommand.
+    autocmd FileType * set formatoptions-=o
 
     " Make shebang lines be highlighted as comments in Haskell files, so that
     " Haskell files can be used as scripts, with '#!/usr/bin/env runhaskell'.
