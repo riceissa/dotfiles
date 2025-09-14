@@ -122,9 +122,20 @@ nnoremap Y y$
 " color than the rest of the comment.
 unlet! c_comment_strings
 
+" I came across this one while working through the book Crafting Interpreters.
+" In default Vim, with a macro like:
+"     #define BOOL_VAL(value)   ((Value){VAL_BOOL, {.boolean = value}})
+" the curly braces get colored with a red background, indicating some sort of
+" error. Apparently this is because in ancient versions of C, this sort of
+" thing was not allowed. But this is totally legal in most versions of C. The
+" following makes it so that this kind of macro is not highlighted in red. For
+" more, see :help ft-c-syntax
+let c_no_curly_error = 1
+
 " These are basically taken from Tim Pope's rsi.vim, but I didn't want to use
 " any plugins (which would increase the complexity of my Vim setup), so I just
-" reimplemented the subset of mappings that I find particularly useful.
+" reimplemented the subset of mappings that I find particularly useful. See
+" also :help emacs-keys
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
 cnoremap <C-A> <Home>
