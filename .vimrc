@@ -44,6 +44,9 @@ set hidden
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
+if has('clipboard')
+  set clipboard=unnamedplus
+endif
 
 " Tab-completing in command mode in Vim by default shows matches horizontally,
 " meaning only a few matches can be shown on the screen. Having 'pum' in the
