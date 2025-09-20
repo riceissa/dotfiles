@@ -45,7 +45,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
 if has('clipboard')
-  set clipboard=unnamedplus
+  set clipboard^=unnamedplus
 endif
 
 " Tab-completing in command mode in Vim by default shows matches horizontally,
