@@ -210,12 +210,6 @@ if has('autocmd')
     " *-style emphasis like *hello world*.
     autocmd FileType markdown setlocal iskeyword-=_
 
-    " Vim highlights italics in Markdown obnoxiously by inverting the text.
-    " The following turns this off.
-    if !has('nvim')
-      autocmd FileType markdown highlight markdownItalic term=NONE
-    endif
-
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
   augroup END
