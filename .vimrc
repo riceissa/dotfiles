@@ -101,17 +101,29 @@ set shortmess-=S
 set nostartofline
 
 " Search for the tags file in the directory that the current file is in, i.e.
-" whatever :echo expand('%:h') outputs, rather than looking in the current
-" working directory, i.e. whatever :pwd outputs. And then if a tags file is
-" not found there, keep recursing upwards from that directory until a tags
-" file is found. For more information, see:
+" whatever :echo expand('%:h') outputs. And then if a tags file is not found
+" there, keep recursing upwards from that directory until a tags file is
+" found. For more information, see:
 "     :help tags-option for what the ./ means
-"     :help file-searching for what the semicolon means
+"     :help file-searching for what the ; means
 " I like this because sometimes I want to navigate via tags when I am editing
 " a file that isn't part of my current project/working directory. If so, I
 " wouldn't want Vim to use the tags file associated with my current project;
 " instead, I want Vim to use the tags file that is near the file I am editing.
-set tags=./tags;
+" So we prioritize searching the tags file closest to the current file being
+" edited.
+" However, there is another scenario that I've encountered, where I am editing
+" files in my project directory most of the time, but I've downloaded a
+" library I am using in some different spot on my computer for reference, or
+" maybe it's in /usr/include. In such a case, I don't actually have a tags
+" file in the library directory (because I want to keep the library directory
+" clean, or because it's /usr/include so I don't have write permissions);
+" instead, I use ctags -a --kinds-C=+p -R /path/to/library to append to my
+" current ctags file, so that I have one big tags file with both tags for my
+" own code and the library. In this case, I want Vim to also look for the tags
+" file in my current working directory, i.e. whatever :pwd outputs. That's
+" what the final "tags" means: search in the pwd.
+set tags=./tags;,tags
 
 " For consistency with C and D
 nnoremap Y y$
