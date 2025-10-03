@@ -116,6 +116,19 @@ set tags=./tags;
 " For consistency with C and D
 nnoremap Y y$
 
+" Going to try this out as an experiment. When programming I don't really mind
+" the default behavior of Vim and I even like it better, but when editing
+" markup files like Markdown, it's nice to not have to constantly think about
+" what is a visual vs logical line.
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+nnoremap gj j
+nnoremap gk k
+xnoremap gj j
+xnoremap gk k
+
 " Don't highlight strings in comments. This one turned out to have false
 " positives which was very annoying. For example, in a C file if you have a
 " comment that looks like:
