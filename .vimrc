@@ -125,18 +125,6 @@ set nostartofline
 " what the final "tags" means: search in the pwd.
 set tags=./tags;,tags
 
-" For consistency with C and D
-nnoremap Y y$
-
-" Going to try this out as an experiment. When programming I don't really mind
-" the default behavior of Vim and I even like it better, but when editing
-" markup files like Markdown, it's nice to not have to constantly think about
-" what is a visual vs logical line.
-nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
-nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
-xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
-xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
-
 " Don't highlight strings in comments. This one turned out to have false
 " positives which was very annoying. For example, in a C file if you have a
 " comment that looks like:
@@ -155,6 +143,18 @@ unlet! c_comment_strings
 " following makes it so that this kind of macro is not highlighted in red. For
 " more, see :help ft-c-syntax
 let c_no_curly_error = 1
+
+" For consistency with C and D
+nnoremap Y y$
+
+" Going to try this out as an experiment. When programming I don't really mind
+" the default behavior of Vim and I even like it better, but when editing
+" markup files like Markdown, it's nice to not have to constantly think about
+" what is a visual vs logical line.
+nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
+xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
 
 " These are basically taken from Tim Pope's rsi.vim, but I didn't want to use
 " any plugins (which would increase the complexity of my Vim setup), so I just
