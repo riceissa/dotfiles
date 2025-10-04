@@ -132,14 +132,10 @@ nnoremap Y y$
 " the default behavior of Vim and I even like it better, but when editing
 " markup files like Markdown, it's nice to not have to constantly think about
 " what is a visual vs logical line.
-nnoremap j gj
-nnoremap k gk
-xnoremap j gj
-xnoremap k gk
-nnoremap gj j
-nnoremap gk k
-xnoremap gj j
-xnoremap gk k
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> j mode() ==# 'V' ? 'j' : 'gj'
+xnoremap <expr> k mode() ==# 'V' ? 'k' : 'gk'
 
 " Don't highlight strings in comments. This one turned out to have false
 " positives which was very annoying. For example, in a C file if you have a
