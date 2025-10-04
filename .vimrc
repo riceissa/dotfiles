@@ -147,6 +147,56 @@ let c_no_curly_error = 1
 " For consistency with C and D
 nnoremap Y y$
 
+" This implementation most closely resembles
+" https://github.com/nelstrom/vim-visual-star-search which is what I used for
+" years, back when I was using lots of plugins. But now I've decided to not
+" use any plugins, so as to simplify my Vim configuration. I thought I could
+" just live without visual star search, but I've reached for it on a number of
+" occasions, so I decided to try to reimplement it from scratch, referencing
+" other implementations but really trying to understand what is going on. In
+" doing so, I discovered that Drew Neil's implementation has a flaw in that if
+" you put your cursor on a question mark, press v, then press # to search
+" backwards, then press / to start a forward search, then press up-arrow to go
+" back in history, the search pattern displayed is \V\? which is actually an
+" invalid search string! The problem is that because the search history was
+" created using # we passed '?' to the list of characters to escape in the
+" call to escape(), which means that the search history now contains \? even
+" when later performing a forward search (somewhat confusingly, \? is a valid
+" search pattern when doing a backward search but not when doing a forward
+" search). I think that Drew Neil did this so that when he does the actual
+" search in the mapping, as he does with ?<C-R>=@/<CR><CR> the search actually
+" works; if he hadn't escaped the ? then doing ?<C-R>=@/<CR><CR> would search
+" for just \V which is not what we want (the problem is that @/ gets set to
+" \V? but when doing a backward search, a trailing ? gets ignored as it is the
+" bookend to the search command). And I think he decided to do the actual
+" search with the complicated ?<C-R>=@/<CR><CR> instead of just ?<CR> because
+" he wanted to make sure to add the visual star search to the search history
+" (Vim doesn't add to the search history if you just do /<CR> or ?<CR> even if
+" it's the first time you've done that search). He probably just didn't know
+" about histadd(), which programmatically adds the search term to the history,
+" so then we can get away with doing just /<CR> for the actual search. And
+" that means we no longer need to escape / or ? because Vim automatically does
+" the proper escaping when switching the search direction (try it: search
+" forward for ? and then search backward but up-arrow to grab the previous
+" search; you'll find that the ? got escaped to become \? ; for some odd
+" reason this doesn't seem to work in reverse, so maybe Drew Neil's
+" implementation shouldn't be considered wrong...), which means that we don't
+" run into weird issues when repeating the search in a different direction. As
+" a bonus, doing visual star on a long visual selection won't prompt us to
+" press enter.
+if !has('nvim')
+  function! s:VisualStarSearch()
+    let temp = @s
+    normal! gv"sy
+    let search = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
+    call setreg('/', search)
+    call histadd('/', search)
+    let @s = temp
+  endfunction
+  xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
+  xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+endif
+
 " Going to try this out as an experiment. When programming I don't really mind
 " the default behavior of Vim and I even like it better, but when editing
 " markup files like Markdown, it's nice to not have to constantly think about
