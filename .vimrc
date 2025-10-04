@@ -54,7 +54,11 @@ endif
 " insert mode), allowing more matches to be shown. Including 'tagfile' shows
 " the kind and location of tag when doing :tag <Ctrl-D> which seems helpful,
 " but I mostly only included it because it's included by default in Neovim.
-set wildoptions=pum,tagfile
+if has('nvim') || has('patch-8.2.4325')
+  set wildoptions=pum,tagfile
+else
+  set wildoptions=tagfile
+endif
 
 " Vim's default C indenting options for switch cases are kind of insane in my
 " opinion. The following option makes it so that switch cases go from Vim's
