@@ -104,6 +104,9 @@ fi
 if [ -n "$install_kitty" ]; then
     mkdir -p ~/.config/kitty
     ln -sv "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
+    ln -sv "$(pwd)/.config/kitty/light-theme.auto.conf" ~/.config/kitty/light-theme.auto.conf
+    ln -sv "$(pwd)/.config/kitty/dark-theme.auto.conf" ~/.config/kitty/dark-theme.auto.conf
+    ln -sv "$(pwd)/.config/kitty/no-preference-theme.auto.conf" ~/.config/kitty/no-preference-theme.auto.conf
 fi
 
 if [ -n "$install_local_bin" ]; then
