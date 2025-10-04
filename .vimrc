@@ -147,6 +147,8 @@ let c_no_curly_error = 1
 " For consistency with C and D
 nnoremap Y y$
 
+inoremap <C-W> <C-G>u<C-W>
+
 " This implementation most closely resembles
 " https://github.com/nelstrom/vim-visual-star-search which is what I used for
 " years, back when I was using lots of plugins. But now I've decided to not
