@@ -248,16 +248,25 @@ cnoremap <C-B> <Left>
 inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 
-if has('nvim-0.10')
-  " I find the new default Neovim theme to be too low-contrast and also find
-  " all the colors blending together, so go back to the default Vim theme.
-  colorscheme vim
-  set notermguicolors
-endif
-
 if has('autocmd')
   augroup vimrc
     autocmd!
+
+    " I find the new default Neovim light theme to be too low-contrast and
+    " feel like all the colors blend together making it hard to distinguish
+    " different parts of the syntax, but I like the new default dark theme. So
+    " toggle some options whenever the background color changes.
+    if has('nvim-0.10')
+      autocmd OptionSet background
+        \   if &background ==# 'light'
+        \ |   colorscheme vim
+        \ |   set notermguicolors
+        \ | else
+        \ |   colorscheme default
+        \ |   set termguicolors
+        \ | endif
+    endif
+
     autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
 
     " Many filetype plugins add the 'o' and this is really annoying; I like it
