@@ -102,11 +102,9 @@ if [ -n "$install_git" ]; then
 fi
 
 if [ -n "$install_kitty" ]; then
-    mkdir -p ~/.config/kitty
+    mkdir -p ~/.config/kitty/themes
     ln -sv "$(pwd)/.config/kitty/kitty.conf" ~/.config/kitty/kitty.conf
-    ln -sv "$(pwd)/.config/kitty/light-theme.auto.conf" ~/.config/kitty/light-theme.auto.conf
-    ln -sv "$(pwd)/.config/kitty/dark-theme.auto.conf" ~/.config/kitty/dark-theme.auto.conf
-    ln -sv "$(pwd)/.config/kitty/light-theme.auto.conf" ~/.config/kitty/no-preference-theme.auto.conf
+    ln -sv "$(pwd)/.config/kitty/themes/issa-solarized-light.conf" ~/.config/kitty/themes/issa-solarized-light.conf
     kitty_bash_line="[ -f $(pwd)/bash/kitty.bash ] && source $(pwd)/bash/kitty.bash"
     if grep -q -F "$kitty_bash_line" ~/.bashrc; then
         echo "kitty.bash found in bashrc; not doing anything"
