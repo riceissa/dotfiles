@@ -38,12 +38,32 @@ endif
 " I kind of like the discipline of always saving buffers before making them no
 " longer visible on the screen. But leaving 'hidden' off turns out to have a
 " nasty side effect which is that all of the undo history for a buffer gets
-" forgotten when it goes out of view!
+" forgotten when it goes out of view! I could probably fix that by setting an
+" undofile, but I don't know if I like the idea of persistent undos across
+" different editing sessions. So for now, I will just turn on 'hidden'.
 set hidden
 
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set belloff=all
 set autoindent
+
+" I resisted turning this on for a long time, even coming up with complicated
+" plugins to ease access to the system clipboard. But at some point I had the
+" thought that when I use Emacs, unnamedplus is the default behavior, and I've
+" never had a problem with it when using Emacs, so why should I have a problem
+" with it when using Vim? Emacs does have a setting called
+" save-interprogram-paste-before-kill, and turning that on saves the system
+" clipboard to the kill ring before doing a copy operation within Emacs, which
+" means you can't accidentally overwrite what you were about to paste into
+" Emacs by e.g. deleting something else before pasting. As far as I know, Vim
+" doesn't have a setting like this. But the whole reason why
+" save-interprogram-paste-before-kill is useful in Emacs is that in Emacs, if
+" you select some text and then press C-y to paste, it won't paste to replace
+" the selected text; instead, it just inserts the contents of the paste at the
+" cursor, completely ignoring the selection, which motivates killing the
+" region first before pasting. Vim doesn't have this problem, so Vim doesn't
+" really need save-interprogram-paste-before-kill. All of this to say that
+" I've been trying unnamedplus out for a bit now and I like it.
 if has('clipboard')
   set clipboard^=unnamedplus
 endif
