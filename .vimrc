@@ -289,6 +289,10 @@ if has('autocmd')
 
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
+
+    " Fix gc motions in Neovim; for some reason by default Neovim doesn't add
+    " a space after the quote.
+    autocmd FileType vim setlocal commentstring=\"\ %s
   augroup END
 
   " This disables the annoying explanation that pops up every time you press
