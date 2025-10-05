@@ -107,6 +107,13 @@ if [ -n "$install_kitty" ]; then
     ln -sv "$(pwd)/.config/kitty/light-theme.auto.conf" ~/.config/kitty/light-theme.auto.conf
     ln -sv "$(pwd)/.config/kitty/dark-theme.auto.conf" ~/.config/kitty/dark-theme.auto.conf
     ln -sv "$(pwd)/.config/kitty/light-theme.auto.conf" ~/.config/kitty/no-preference-theme.auto.conf
+    kitty_bash_line="[ -f $(pwd)/bash/kitty.bash ] && source $(pwd)/bash/kitty.bash"
+    if grep -q -F "$kitty_bash_line" ~/.bashrc; then
+        echo "kitty.bash found in bashrc; not doing anything"
+    else
+        echo "kitty.bash not found in bashrc; adding line to source it"
+        echo "$kitty_bash_line" >> ~/.bashrc
+    fi
 fi
 
 if [ -n "$install_local_bin" ]; then
