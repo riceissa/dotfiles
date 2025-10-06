@@ -265,6 +265,7 @@ if has('autocmd')
         \ |   colorscheme default
         \ |   set termguicolors
         \ | endif
+        \ | let &ft = &ft
     endif
 
     autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
