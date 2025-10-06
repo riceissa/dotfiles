@@ -10,19 +10,18 @@ if !has('nvim')
 endif
 
 set ttimeout ttimeoutlen=50
-set scrolloff=2
 set laststatus=2
-set nojoinspaces
-set formatoptions=tcrqj
 if &history < 1000
   set history=1000
 endif
+set viminfo&
+set belloff=all
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set hidden
 set nostartofline
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set belloff=all
+set nojoinspaces
 set autoindent
-set viminfo&
+set formatoptions=tcrqj
 
 set nohlsearch
 set ignorecase smartcase
@@ -31,15 +30,19 @@ set shortmess-=S
 if has('clipboard')
   set clipboard^=unnamedplus
 endif
+
 if has('mouse')
   set mouse=nv
   if !has('nvim') && exists('$TMUX')
     set ttymouse=xterm2
   endif
 endif
+
 if exists('+smoothscroll')
   set smoothscroll
 endif
+set scrolloff=2
+
 if has('nvim') || has('patch-8.2.4325')
   set wildoptions=pum,tagfile
 else
@@ -64,6 +67,7 @@ cnoremap <C-B> <Left>
 inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
 cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 inoremap <C-W> <C-G>u<C-W>
+
 if !has('nvim')
   function! s:VisualStarSearch()
     let temp = @s
@@ -101,6 +105,7 @@ if has('autocmd')
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     autocmd FileType vim setlocal commentstring=\"\ %s
     autocmd FileType kitty setlocal commentstring=#\ %s
+
     if has('nvim-0.10')
       autocmd OptionSet background
         \   if &background ==# 'light'
