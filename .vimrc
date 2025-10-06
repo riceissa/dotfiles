@@ -1,3 +1,4 @@
+set nocompatible
 if !has('nvim')
   unlet! skip_defaults_vim
   source $VIMRUNTIME/defaults.vim
@@ -77,12 +78,14 @@ if !has('nvim')
 endif
 
 set cinoptions=l1
-unlet! c_comment_strings
-let c_no_curly_error = 1
+if 1
+  unlet! c_comment_strings
+  let c_no_curly_error = 1
 
-let g:python_indent = {}
-let g:python_indent.open_paren = 'shiftwidth()'
-let g:python_indent.closed_paren_align_last_line = v:false
+  let g:python_indent = {}
+  let g:python_indent.open_paren = 'shiftwidth()'
+  let g:python_indent.closed_paren_align_last_line = v:false
+endif
 
 if has('autocmd')
   augroup vimrc
