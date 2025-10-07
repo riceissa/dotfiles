@@ -107,6 +107,26 @@ if !has('nvim')
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
 endif
 
+if 1
+  function! s:CompleteDateTime()
+    let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S']
+    call complete(col('.'), map(date_formats, 'strftime(v:val)') + [localtime()])
+    return ''
+  endfunction
+  inoremap <C-G><C-T> <C-R>=<SID>CompleteDateTime()<CR>
+endif
+
+silent! while 0
+  cnoremap %% %:h/
+silent! endwhile
+if 1
+  cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
+endif
+
+cabbrev W w
+cabbrev Q q
+cabbrev Qa qa
+
 set cinoptions=l1
 if 1
   unlet! c_comment_strings
