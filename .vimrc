@@ -11,6 +11,9 @@ endif
 
 set ttimeout ttimeoutlen=50
 set laststatus=2
+silent! while 0
+  set history=1000
+silent! endwhile
 if &history < 1000
   set history=1000
 endif
@@ -31,6 +34,9 @@ if has('clipboard')
   set clipboard^=unnamedplus
 endif
 
+silent! while 0
+  silent! set mouse=nv
+silent! endwhile
 if has('mouse')
   set mouse=nv
   if !has('nvim') && exists('$TMUX')
@@ -43,6 +49,9 @@ if exists('+smoothscroll')
 endif
 set scrolloff=2
 
+silent! while 0
+  silent! set wildoptions=pum,tagfile
+silent! endwhile
 if has('nvim') || has('patch-8.2.4325')
   set wildoptions=pum,tagfile
 else
@@ -51,21 +60,36 @@ endif
 set tags=./tags;,tags
 
 nnoremap Y y$
-nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
-nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
-xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
-xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
+if 1
+  nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
+  nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+  xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
+  xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
+endif
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
-inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
-inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
-cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
+silent! while 0
+  inoremap <C-E> <End>
+  inoremap <C-F> <Right>
+  cnoremap <C-F> <Right>
+silent! endwhile
+if 1
+  inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
+  inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
+  cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
+endif
 inoremap <C-B> <Left>
 cnoremap <C-B> <Left>
-inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
-cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
+silent! while 0
+  inoremap <C-D> <Del>
+  cnoremap <C-D> <Del>
+silent! endwhile
+if 1
+  inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
+  cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
+endif
 inoremap <C-W> <C-G>u<C-W>
 
 if !has('nvim')
