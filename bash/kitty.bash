@@ -1,4 +1,4 @@
-if [ $TERM == "xterm-kitty" ]; then
+if [ $TERM == "xterm-kitty" ] && [ -z "$VIM_TERMINAL" ]; then
     # Make ctrl+l in kitty work the way it does in other terminals
     # See https://sw.kovidgoyal.net/kitty/conf/#shortcut-kitty.Reset-the-terminal
     # for more information.

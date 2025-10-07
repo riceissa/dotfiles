@@ -133,6 +133,14 @@ cnoreabbrev Wq wq
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 
+if exists(':terminal') == 2
+  if has('nvim')
+    command! Term execute 'split term://%:p:h//' . &shell | startinsert
+  else
+    command! Term split | lcd %:p:h | terminal ++curwin
+  endif
+endif
+
 set cinoptions=l1
 if 1
   unlet! c_comment_strings
