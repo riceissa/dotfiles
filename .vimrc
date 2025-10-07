@@ -1,7 +1,9 @@
 set nocompatible
 if !has('nvim')
-  unlet! skip_defaults_vim
-  source $VIMRUNTIME/defaults.vim
+  if v:version > 704 || v:version == 704 && has('patch2111')
+    unlet! skip_defaults_vim
+    source $VIMRUNTIME/defaults.vim
+  endif
 
   silent! packadd! editorconfig
   silent! packadd! comment
@@ -18,7 +20,7 @@ if &history < 1000
   set history=1000
 endif
 set viminfo&
-set belloff=all
+silent! set belloff=all
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set hidden
 set nostartofline
@@ -84,7 +86,6 @@ inoremap <C-B> <Left>
 cnoremap <C-B> <Left>
 silent! while 0
   inoremap <C-D> <Del>
-  cnoremap <C-D> <Del>
 silent! endwhile
 if 1
   inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
@@ -113,7 +114,9 @@ if 1
 
   let g:python_indent = {}
   let g:python_indent.open_paren = 'shiftwidth()'
-  let g:python_indent.closed_paren_align_last_line = v:false
+  if v:version > 704 || v:version == 704 && has('patch1154')
+    let g:python_indent.closed_paren_align_last_line = v:false
+  endif
 endif
 
 if has('autocmd')
