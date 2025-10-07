@@ -107,7 +107,7 @@ if !has('nvim')
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
 endif
 
-if 1
+if exists('*strftime')
   function! s:CompleteDateTime()
     let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S']
     call complete(col('.'), map(date_formats, 'strftime(v:val)') + [localtime()])
