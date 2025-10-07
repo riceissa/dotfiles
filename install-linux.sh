@@ -51,7 +51,7 @@ Supported programs: bash, editorconfig, emacs, git, kitty, local_bin, neovim,
 
 For instance to install dotfiles for Vim and tmux, run:
 
-    ./install vim tmux
+    ./install-linux.sh vim tmux
 EOF
     exit
 fi
