@@ -91,6 +91,7 @@ if 1
   cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
 endif
 inoremap <C-W> <C-G>u<C-W>
+inoremap <C-U> <C-G>u<C-U>
 
 if !has('nvim')
   function! s:VisualStarSearch()
