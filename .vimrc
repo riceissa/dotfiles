@@ -1,6 +1,6 @@
 set nocompatible
 if !has('nvim')
-  if v:version > 704 || v:version == 704 && has('patch2111')
+  if v:version > 704 || (v:version == 704 && has('patch2111'))
     unlet! skip_defaults_vim
     source $VIMRUNTIME/defaults.vim
   endif
@@ -114,7 +114,7 @@ if 1
 
   let g:python_indent = {}
   let g:python_indent.open_paren = 'shiftwidth()'
-  if v:version > 704 || v:version == 704 && has('patch1154')
+  if v:version > 704 || (v:version == 704 && has('patch1154'))
     let g:python_indent.closed_paren_align_last_line = v:false
   endif
 endif
