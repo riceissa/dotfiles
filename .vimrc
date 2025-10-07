@@ -127,11 +127,11 @@ endif
 
 nnoremap g/ /[^\d32-\d126]<CR>
 
-iabbrev ADd Add
-cabbrev W w
-cabbrev Wq wq
-cabbrev Q q
-cabbrev Qa qa
+inoreabbrev ADd Add
+cnoreabbrev W w
+cnoreabbrev Wq wq
+cnoreabbrev Q q
+cnoreabbrev Qa qa
 
 set cinoptions=l1
 if 1
