@@ -129,6 +129,7 @@ nnoremap g/ /[^\d32-\d126]<CR>
 
 iabbrev ADd Add
 cabbrev W w
+cabbrev Wq wq
 cabbrev Q q
 cabbrev Qa qa
 
