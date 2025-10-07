@@ -59,7 +59,9 @@ if has('nvim') || has('patch-8.2.4325')
 else
   set wildoptions=tagfile
 endif
-set tags=./tags;,tags
+if has('path_extra')
+  set tags=./tags;,tags
+endif
 
 nnoremap Y y$
 if 1
@@ -123,6 +125,9 @@ if 1
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
 
+nnoremap g/ /[^\d32-\d126]<CR>
+
+iabbrev ADd Add
 cabbrev W w
 cabbrev Q q
 cabbrev Qa qa
