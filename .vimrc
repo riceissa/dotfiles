@@ -119,7 +119,7 @@ if exists('*strftime')
 endif
 
 silent! while 0
-  cnoremap %% %:h/
+  cnoremap %% %:h/<C-L>
 silent! endwhile
 if 1
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
