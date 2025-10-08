@@ -133,10 +133,6 @@ endif
 nnoremap g/ /[^\d32-\d126]<CR>
 
 inoreabbrev ADd Add
-cnoreabbrev W w
-cnoreabbrev Wq wq
-cnoreabbrev Q q
-cnoreabbrev Qa qa
 
 if exists(':terminal') == 2
   if has('nvim')
