@@ -107,6 +107,11 @@ if !has('nvim')
   endfunction
   xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+
+  nnoremap ]<Space> :<C-U>call append(line('.'), repeat([''], v:count1))<CR>
+  nnoremap [<Space> :<C-U>call append(line('.')-1, repeat([''], v:count1))<CR>
+  nnoremap <silent> ]q :cnext<CR>
+  nnoremap <silent> [q :cprevious<CR>
 endif
 
 if exists('*strftime')
