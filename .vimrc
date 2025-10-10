@@ -8,7 +8,9 @@ if !has('nvim')
   silent! packadd! editorconfig
   silent! packadd! comment
   runtime ftplugin/man.vim
-  set keywordprg=:Man
+  if exists(':Man') == 2
+    set keywordprg=:Man
+  endif
 endif
 
 set ttimeout ttimeoutlen=50
