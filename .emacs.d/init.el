@@ -307,4 +307,4 @@ in a smart sort of way like C-w in bash."
 ;; (org-agenda-list)
 
 ;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
-(editorconfig-mode)
+(editorconfig-mode t)
