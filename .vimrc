@@ -136,14 +136,6 @@ nnoremap g/ /[^\d32-\d126]<CR>
 
 inoreabbrev ADd Add
 
-if exists(':terminal') == 2
-  if has('nvim')
-    command! Term execute 'split term://%:p:h//' . &shell | startinsert
-  else
-    command! Term split | lcd %:p:h | terminal ++curwin
-  endif
-endif
-
 set cinoptions=l1
 if 1
   unlet! c_comment_strings
@@ -159,7 +151,9 @@ endif
 if has('autocmd')
   augroup vimrc
     autocmd!
-    autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
+    if !has('nvim') && !has('patch-8.2.3464')
+      autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
+    endif
     autocmd FileType * set formatoptions-=o
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
     autocmd FileType go,rust setlocal formatprg=
