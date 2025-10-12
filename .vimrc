@@ -67,8 +67,8 @@ endif
 
 nnoremap Y y$
 if 1
-  nnoremap <expr> j v:count > 0 ? 'j' : 'gj'
-  nnoremap <expr> k v:count > 0 ? 'k' : 'gk'
+  nnoremap <expr> j v:count > 0 \|\| &filetype ==# 'qf' ? 'j' : 'gj'
+  nnoremap <expr> k v:count > 0 \|\| &filetype ==# 'qf' ? 'k' : 'gk'
   xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
   xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
 endif
