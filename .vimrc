@@ -98,7 +98,7 @@ endif
 inoremap <C-W> <C-G>u<C-W>
 inoremap <C-U> <C-G>u<C-U>
 
-if !has('nvim')
+if !has('nvim-0.8.0')
   function! s:VisualStarSearch()
     let temp = @s
     normal! gv"sy
@@ -109,7 +109,9 @@ if !has('nvim')
   endfunction
   xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+endif
 
+if !has('nvim-0.11')
   nnoremap <silent> ]<Space> :<C-U>call append(line('.'), repeat([''], v:count1))<CR>
   nnoremap <silent> [<Space> :<C-U>call append(line('.')-1, repeat([''], v:count1))<CR>
   nnoremap <silent> ]q :cnext<CR>
