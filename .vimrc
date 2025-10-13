@@ -1,12 +1,13 @@
 set nocompatible
 if !has('nvim')
-  if has('patch-7.4.2111')
-    unlet! skip_defaults_vim
-    source $VIMRUNTIME/defaults.vim
+  filetype plugin indent on
+  if has('syntax') && (&t_Co > 2 || has("gui_running"))
+    syntax on
   endif
 
   silent! packadd! editorconfig
   silent! packadd! comment
+  silent! packadd! matchit
   runtime ftplugin/man.vim
   if exists(':Man') == 2
     set keywordprg=:Man
@@ -14,6 +15,11 @@ if !has('nvim')
 endif
 
 set ttimeout ttimeoutlen=50
+set display=lastline
+if has('langmap') && exists('+langremap')
+  set nolangremap
+endif
+set nrformats-=octal
 set laststatus=2
 silent! while 0
   set history=1000
@@ -30,6 +36,9 @@ set nojoinspaces
 set autoindent
 set formatoptions=tcrqj
 
+if has('reltime')
+  set incsearch
+endif
 set nohlsearch
 set ignorecase smartcase
 set shortmess-=S
@@ -111,6 +120,10 @@ if !has('nvim-0.8.0')
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
 endif
 
+if !has('nvim')
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
 if !has('nvim-0.11')
   nnoremap <silent> ]<Space> :<C-U>call append(line('.'), repeat([''], v:count1))<CR>
   nnoremap <silent> [<Space> :<C-U>call append(line('.')-1, repeat([''], v:count1))<CR>
@@ -140,7 +153,6 @@ inoreabbrev ADd Add
 
 set cinoptions=l1
 if 1
-  unlet! c_comment_strings
   let c_no_curly_error = 1
 
   let g:python_indent = {}
@@ -148,6 +160,11 @@ if 1
   if has('patch-7.4.1154')
     let g:python_indent.closed_paren_align_last_line = v:false
   endif
+endif
+
+if exists(":DiffOrig") != 2
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+        \ | diffthis | wincmd p | diffthis
 endif
 
 if has('autocmd')
@@ -180,23 +197,18 @@ if has('autocmd')
     endif
   augroup END
 
-  if exists('#vimHints')
-    autocmd! vimHints
-  endif
-
   if exists('#fedora')
     autocmd! fedora
   endif
 
-  if has('nvim')
-    augroup RestoreCursor
-      autocmd!
-      autocmd BufReadPre * autocmd FileType <buffer> ++once
-        \ let s:line = line("'\"")
-        \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-        \      && index(['xxd', 'gitrebase'], &filetype) == -1
-        \ |   execute "normal! g`\""
-        \ | endif
-    augroup END
-  endif
+  augroup RestoreCursor
+    autocmd!
+    autocmd BufReadPost *
+          \ let line = line("'\"")
+          \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+          \      && index(['xxd', 'gitrebase'], &filetype) == -1
+          \      && !&diff
+          \ |   execute "normal! g`\""
+          \ | endif
+  augroup END
 endif
