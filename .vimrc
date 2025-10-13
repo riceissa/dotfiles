@@ -153,6 +153,7 @@ inoreabbrev ADd Add
 
 set cinoptions=l1
 if 1
+  unlet! c_comment_strings
   let c_no_curly_error = 1
 
   let g:python_indent = {}
