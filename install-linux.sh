@@ -155,5 +155,6 @@ if [ -n "$install_tmux" ]; then
 fi
 
 if [ -n "$install_vim" ]; then
+    mkdir -p ~/.vim
     ln -sv "$(pwd)/.vimrc" ~/.vimrc
 fi
