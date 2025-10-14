@@ -1,8 +1,8 @@
 set nocompatible
 if !has('nvim')
   filetype plugin indent on
-  if has('syntax') && (&t_Co > 2 || has("gui_running"))
-    syntax on
+  if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
+    syntax enable
   endif
 
   silent! packadd! editorconfig
@@ -35,6 +35,7 @@ set nostartofline
 set nojoinspaces
 set autoindent
 set formatoptions=tcrqj
+set complete-=i
 
 if has('reltime')
   set incsearch
