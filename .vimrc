@@ -36,17 +36,19 @@ set nojoinspaces
 set autoindent
 set formatoptions=tcrqj
 set complete-=i
-
 if has('reltime')
   set incsearch
 endif
 set nohlsearch
 set ignorecase smartcase
 set shortmess-=S
-
 if has('clipboard')
   set clipboard^=unnamedplus
 endif
+if exists('+smoothscroll')
+  set smoothscroll
+endif
+set scrolloff=2
 
 silent! while 0
   silent! set mouse=nv
@@ -57,11 +59,6 @@ if has('mouse')
     set ttymouse=xterm2
   endif
 endif
-
-if exists('+smoothscroll')
-  set smoothscroll
-endif
-set scrolloff=2
 
 silent! while 0
   silent! set wildoptions=pum,tagfile
@@ -82,33 +79,31 @@ if 1
   xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
   xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
 endif
+
+" See :help emacs-keys. These particular mappings are mostly from rsi.vim.
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
-silent! while 0
-  inoremap <C-E> <End>
-  inoremap <C-F> <Right>
-  cnoremap <C-F> <Right>
-silent! endwhile
-if 1
-  inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
-  inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
-  cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
-endif
 inoremap <C-B> <Left>
 cnoremap <C-B> <Left>
 silent! while 0
   inoremap <C-D> <Del>
+  inoremap <C-E> <End>
+  inoremap <C-F> <Right>
 silent! endwhile
 if 1
   inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
   cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
+  inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
+  inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
+  cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
 endif
-inoremap <C-W> <C-G>u<C-W>
 inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
 
 if !has('nvim-0.8.0')
+  " Modified from https://github.com/nelstrom/vim-visual-star-search
   function! s:VisualStarSearch()
     let temp = @s
     normal! gv"sy
@@ -122,6 +117,7 @@ if !has('nvim-0.8.0')
 endif
 
 if !has('nvim')
+  " From sensible.vim
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
@@ -133,6 +129,7 @@ if !has('nvim-0.11')
 endif
 
 if exists('*strftime')
+  " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
   function! s:CompleteDateTime()
     let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S']
     call complete(col('.'), map(date_formats, 'strftime(v:val)') + [localtime()])
@@ -141,6 +138,9 @@ if exists('*strftime')
   inoremap <C-G><C-T> <C-R>=<SID>CompleteDateTime()<CR>
 endif
 
+" First seen at http://vimcasts.org/episodes/the-edit-command/ but this
+" particular version is modified from
+" https://github.com/nelstrom/dotfiles/blob/448f710b855970a8565388c6665a96ddf4976f9f/vimrc#L80
 silent! while 0
   cnoremap %% %:h/<C-L>
 silent! endwhile
@@ -164,6 +164,7 @@ if 1
   endif
 endif
 
+" See :help :DiffOrig
 if exists(":DiffOrig") != 2
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
         \ | diffthis | wincmd p | diffthis
@@ -203,6 +204,7 @@ if has('autocmd')
     autocmd! fedora
   endif
 
+  " See :help restore-cursor
   augroup RestoreCursor
     autocmd!
     autocmd BufReadPost *
