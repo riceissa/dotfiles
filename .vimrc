@@ -124,8 +124,8 @@ endif
 if !has('nvim-0.11')
   nnoremap <silent> ]<Space> :<C-U>call append(line('.'), repeat([''], v:count1))<CR>
   nnoremap <silent> [<Space> :<C-U>call append(line('.')-1, repeat([''], v:count1))<CR>
-  nnoremap <silent> ]q :cnext<CR>
-  nnoremap <silent> [q :cprevious<CR>
+  nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
+  nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
 endif
 
 if exists('*strftime')
