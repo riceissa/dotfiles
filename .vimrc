@@ -15,32 +15,21 @@ if !has('nvim')
 endif
 
 set ttimeout ttimeoutlen=50
+set hidden nostartofline nojoinspaces autoindent viminfo&
 set display=lastline
 if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 set nrformats-=octal
 set laststatus=2
-silent! while 0
-  set history=1000
-silent! endwhile
-if &history < 1000
-  set history=1000
-endif
-set viminfo&
 silent! set belloff=all
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set hidden
-set nostartofline
-set nojoinspaces
-set autoindent
 set formatoptions=tcrqj
 set complete-=i
 if has('reltime')
   set incsearch
 endif
-set nohlsearch
-set ignorecase smartcase
+set nohlsearch ignorecase smartcase
 set shortmess-=S
 if has('clipboard')
   set clipboard^=unnamedplus
@@ -49,6 +38,16 @@ if exists('+smoothscroll')
   set smoothscroll
 endif
 set scrolloff=2
+if has('path_extra')
+  set tags=./tags;,tags
+endif
+
+silent! while 0
+  set history=1000
+silent! endwhile
+if &history < 1000
+  set history=1000
+endif
 
 silent! while 0
   silent! set mouse=nv
@@ -67,9 +66,6 @@ if has('nvim') || has('patch-8.2.4325')
   set wildoptions=pum,tagfile
 else
   set wildoptions=tagfile
-endif
-if has('path_extra')
-  set tags=./tags;,tags
 endif
 
 nnoremap Y y$
