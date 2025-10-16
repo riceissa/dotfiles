@@ -14,30 +14,21 @@ if !has('nvim')
   endif
 endif
 
-set ttimeout ttimeoutlen=50
-set hidden nostartofline nojoinspaces autoindent viminfo&
-set display=lastline
-if has('langmap') && exists('+langremap')
-  set nolangremap
-endif
-set nrformats-=octal
-set laststatus=2
-silent! set belloff=all
+set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
+set viminfo& display=lastline nrformats-=octal laststatus=2 shortmess-=S
+set formatoptions=tcrqj complete-=i scrolloff=2
+set nohlsearch ignorecase smartcase
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set formatoptions=tcrqj
-set complete-=i
+silent! set belloff=all
 if has('reltime')
   set incsearch
 endif
-set nohlsearch ignorecase smartcase
-set shortmess-=S
 if has('clipboard')
   set clipboard^=unnamedplus
 endif
 if exists('+smoothscroll')
   set smoothscroll
 endif
-set scrolloff=2
 if has('path_extra')
   set tags=./tags;,tags
 endif
@@ -69,6 +60,9 @@ else
 endif
 
 nnoremap Y y$
+nnoremap g/ /[^\d32-\d126]<CR>
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
 if 1
   nnoremap <expr> j v:count > 0 \|\| &filetype ==# 'qf' ? 'j' : 'gj'
   nnoremap <expr> k v:count > 0 \|\| &filetype ==# 'qf' ? 'k' : 'gk'
@@ -95,8 +89,6 @@ if 1
   inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
 endif
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
 
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
@@ -143,10 +135,6 @@ silent! endwhile
 if 1
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
-
-nnoremap g/ /[^\d32-\d126]<CR>
-
-inoreabbrev ADd Add
 
 set cinoptions=l1
 if 1
