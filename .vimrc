@@ -16,7 +16,7 @@ endif
 
 set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
 set viminfo& display=lastline nrformats-=octal laststatus=2 shortmess-=S
-set formatoptions=tcrqj complete-=i scrolloff=2
+set formatoptions=tcrqj complete-=i scrolloff=2 completeopt=menu
 set nohlsearch ignorecase smartcase
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 silent! set belloff=all
