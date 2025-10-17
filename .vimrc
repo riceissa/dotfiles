@@ -95,20 +95,23 @@ if 1
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
 endif
 
-function! s:PreparePaste(current_reg)
-  if a:current_reg ==# '+'
-    let l:reg = getreg('+', 1, 1)
-    while !empty(l:reg) && l:reg[-1] ==# ''
-      call remove(l:reg, -1)
-    endwhile
-    while !empty(l:reg) && l:reg[0] ==# ''
-      call remove(l:reg, 0)
-    endwhile
-    call setreg('+', l:reg, 'l')
-  endif
-endfunction
-nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
-nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
+" See https://github.com/riceissa/vim-pasteurize/blob/3a80557a45c684c7cf5f0ff85effaef925b59381/plugin/pasteurize.vim#L10-L65
+if has('patch-7.4.513')
+  function! s:PreparePaste(current_reg)
+    if a:current_reg ==# '+'
+      let l:reg = getreg('+', 1, 1)
+      while !empty(l:reg) && l:reg[-1] ==# ''
+        call remove(l:reg, -1)
+      endwhile
+      while !empty(l:reg) && l:reg[0] ==# ''
+        call remove(l:reg, 0)
+      endwhile
+      call setreg('+', l:reg, 'l')
+    endif
+  endfunction
+  nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
+  nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
+endif
 
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
