@@ -105,30 +105,44 @@ endif
 " I decided to make it visually select the pasted text, so I can just gv to
 " re-select the text, and then I can > or < or = from there if I want to.
 if has('patch-7.4.513')
-  function! s:PreparePaste(motion, current_reg, current_mode)
-    let l:reg = getreg(a:current_reg, 1, 1)
-    if a:current_reg ==# '+'
-      while !empty(l:reg) && l:reg[-1] ==# ''
-        call remove(l:reg, -1)
+  function! s:PreparePaste(motion)
+    let l:reg = v:register
+    let l:reg_contents = getreg(l:reg, 1, 1)
+    let l:reg_prefix = ''
+    if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.'
+      let l:reg = '"'
+      let l:reg_prefix = '""'
+    endif
+
+    " When copy-pasting from outside Vim, blank lines at the start and
+    " end of the selection are almost never desired.
+    if l:reg ==# '+'
+      while !empty(l:reg_contents) && l:reg_contents[-1] ==# ''
+        call remove(l:reg_contents, -1)
       endwhile
-      while !empty(l:reg) && l:reg[0] ==# ''
-        call remove(l:reg, 0)
+      while !empty(l:reg_contents) && l:reg_contents[0] ==# ''
+        call remove(l:reg_contents, 0)
       endwhile
     endif
-    call setreg(a:current_reg, l:reg, 'l')
+    call setreg(l:reg, l:reg_contents, 'l')
 
     " The register and count get applied automatically, so we just need to
-    " return the actual paste motion
-    if a:current_mode =~# "^ni"
-      return a:motion
+    " return the actual paste motion. But if the register was a read-only
+    " one (:, %, #, or .) then we prefix the motion with the default register
+    " (") that we set above. This means that if the user specified a register
+    " like "a then the actual command will look like "a""]p but Vim seems to
+    " know that the register that was specified last is the one that should
+    " be used.
+    if mode(1) =~# "^ni"
+      return l:reg_prefix . a:motion
     else
-      return a:motion . "V']o\<Esc>"
+      return l:reg_prefix . a:motion . "V']o\<Esc>"
     endif
   endfunction
-  nnoremap <expr> ]p <SID>PreparePaste("]p", v:register, mode(1))
-  nnoremap <expr> ]P <SID>PreparePaste("]P", v:register, mode(1))
-  nnoremap <expr> [p <SID>PreparePaste("[p", v:register, mode(1))
-  nnoremap <expr> [P <SID>PreparePaste("[P", v:register, mode(1))
+  nnoremap <expr> ]p <SID>PreparePaste("]p")
+  nnoremap <expr> ]P <SID>PreparePaste("]P")
+  nnoremap <expr> [p <SID>PreparePaste("[p")
+  nnoremap <expr> [P <SID>PreparePaste("[P")
 endif
 
 if !has('nvim-0.8.0')
