@@ -16,14 +16,18 @@ endif
 
 set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
 set viminfo& display=lastline nrformats-=octal laststatus=2
-set formatoptions=tcrqj complete-=i scrolloff=3 completeopt=menu
+set complete-=i scrolloff=3 completeopt=menu
+set formatoptions=tcrq
+if v:version > 703 || (v:version == 703 && has('patch541'))
+  set formatoptions+=j
+endif
 set nohlsearch ignorecase smartcase shortmess-=S
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 silent! set belloff=all
 if has('reltime')
   set incsearch
 endif
-if has('clipboard')
+if has('clipboard') && (v:version > 703 || (v:version == 703 && has('patch074')))
   set clipboard^=unnamedplus
 endif
 if exists('+smoothscroll')
