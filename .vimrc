@@ -95,6 +95,21 @@ if 1
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
 endif
 
+function! s:PreparePaste(current_reg)
+  if a:current_reg ==# '+'
+    let l:reg = getreg('+', 1, 1)
+    while !empty(l:reg) && l:reg[-1] ==# ''
+      call remove(l:reg, -1)
+    endwhile
+    while !empty(l:reg) && l:reg[0] ==# ''
+      call remove(l:reg, 0)
+    endwhile
+    call setreg('+', l:reg, 'l')
+  endif
+endfunction
+nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . '"' . v:register . "]pV']o<Esc>"
+nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . '"' . v:register . "]PV']o<Esc>"
+
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
   function! s:VisualStarSearch()
