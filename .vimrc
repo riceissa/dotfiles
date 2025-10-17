@@ -119,7 +119,7 @@ if has('patch-7.4.513')
 
     " The register and count get applied automatically, so we just need to
     " return the actual paste motion
-    if a:current_mode =~# "ni"
+    if a:current_mode =~# "^ni"
       return a:motion
     else
       return a:motion . "V']o\<Esc>"
