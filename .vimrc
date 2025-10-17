@@ -111,6 +111,8 @@ if has('patch-7.4.513')
   endfunction
   nnoremap <expr> ]p ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
   nnoremap <expr> ]P ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
+  nmap [p ]P
+  nmap [P ]P
 endif
 
 if !has('nvim-0.8.0')
