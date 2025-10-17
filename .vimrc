@@ -107,8 +107,8 @@ function! s:PreparePaste(current_reg)
     call setreg('+', l:reg, 'l')
   endif
 endfunction
-nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . '"' . v:register . "]pV']o<Esc>"
-nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . '"' . v:register . "]PV']o<Esc>"
+nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
+nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
 
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
