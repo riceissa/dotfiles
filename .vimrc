@@ -98,19 +98,19 @@ endif
 " See https://github.com/riceissa/vim-pasteurize/blob/3a80557a45c684c7cf5f0ff85effaef925b59381/plugin/pasteurize.vim#L10-L65
 if has('patch-7.4.513')
   function! s:PreparePaste(current_reg)
+    let l:reg = getreg(a:current_reg, 1, 1)
     if a:current_reg ==# '+'
-      let l:reg = getreg('+', 1, 1)
       while !empty(l:reg) && l:reg[-1] ==# ''
         call remove(l:reg, -1)
       endwhile
       while !empty(l:reg) && l:reg[0] ==# ''
         call remove(l:reg, 0)
       endwhile
-      call setreg('+', l:reg, 'l')
     endif
+    call setreg(a:current_reg, l:reg, 'l')
   endfunction
-  nnoremap <expr> gp ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
-  nnoremap <expr> gP ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
+  nnoremap <expr> ]p ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
+  nnoremap <expr> ]P ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
 endif
 
 if !has('nvim-0.8.0')
@@ -191,7 +191,7 @@ if has('autocmd')
     autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
-    autocmd FileType vim setlocal commentstring=\"\ %s
+    autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType kitty setlocal commentstring=#\ %s
 
     if has('nvim-0.10')
