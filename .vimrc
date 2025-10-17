@@ -96,6 +96,14 @@ if 1
 endif
 
 " See https://github.com/riceissa/vim-pasteurize/blob/3a80557a45c684c7cf5f0ff85effaef925b59381/plugin/pasteurize.vim#L10-L65
+" See also
+" https://github.com/tpope/vim-unimpaired/blob/db65482581a28e4ccf355be297f1864a4e66985c/doc/unimpaired.txt#L100-L112
+" I decided not to add all those mappings from unimpaired because they break
+" the dot command unless I also install repeat.vim, and I don't want to install
+" any plugins. With ]p , the last native Vim command *is* the paste, so the dot
+" command still works as expected. Instead of adding a bunch of other mappings,
+" I decided to make it visually select the pasted text, so I can just gv to
+" re-select the text, and then I can > or < or = from there if I want to.
 if has('patch-7.4.513')
   function! s:PreparePaste(current_reg)
     let l:reg = getreg(a:current_reg, 1, 1)
