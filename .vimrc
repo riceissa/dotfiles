@@ -7,7 +7,7 @@ if !has('nvim')
 
   silent! packadd! editorconfig
   silent! packadd! comment
-  silent! packadd! matchit
+  runtime! macros/matchit.vim
   runtime ftplugin/man.vim
   if exists(':Man') == 2
     set keywordprg=:Man
@@ -15,9 +15,9 @@ if !has('nvim')
 endif
 
 set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
-set viminfo& display=lastline nrformats-=octal laststatus=2 shortmess-=S
+set viminfo& display=lastline nrformats-=octal laststatus=2
 set formatoptions=tcrqj complete-=i scrolloff=2 completeopt=menu
-set nohlsearch ignorecase smartcase
+set nohlsearch ignorecase smartcase shortmess-=S
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 silent! set belloff=all
 if has('reltime')
@@ -51,6 +51,7 @@ if has('mouse')
 endif
 
 silent! while 0
+  set wildoptions=tagfile
   silent! set wildoptions=pum,tagfile
 silent! endwhile
 if has('nvim') || has('patch-8.2.4325')
@@ -184,8 +185,8 @@ if has('autocmd')
     endif
   augroup END
 
-  if exists('#fedora')
-    autocmd! fedora
+  if exists('#fedora#BufReadPost *')
+    autocmd! fedora BufReadPost *
   endif
 
   " See :help restore-cursor
