@@ -105,7 +105,7 @@ endif
 " I decided to make it visually select the pasted text, so I can just gv to
 " re-select the text, and then I can > or < or = from there if I want to.
 if has('patch-7.4.513')
-  function! s:PreparePaste(current_reg)
+  function! s:PreparePaste(motion, current_reg, current_mode)
     let l:reg = getreg(a:current_reg, 1, 1)
     if a:current_reg ==# '+'
       while !empty(l:reg) && l:reg[-1] ==# ''
@@ -116,11 +116,19 @@ if has('patch-7.4.513')
       endwhile
     endif
     call setreg(a:current_reg, l:reg, 'l')
+
+    " The register and count get applied automatically, so we just need to
+    " return the actual paste motion
+    if a:current_mode =~# "ni"
+      return a:motion
+    else
+      return a:motion . "V']o\<Esc>"
+    endif
   endfunction
-  nnoremap <expr> ]p ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]pV']o<Esc>"
-  nnoremap <expr> ]P ":<C-U>call <SID>PreparePaste(v:register)<CR>" . v:count1 . '"' . v:register . "]PV']o<Esc>"
-  nmap [p ]P
-  nmap [P ]P
+  nnoremap <expr> ]p <SID>PreparePaste("]p", v:register, mode(1))
+  nnoremap <expr> ]P <SID>PreparePaste("]P", v:register, mode(1))
+  nnoremap <expr> [p <SID>PreparePaste("[p", v:register, mode(1))
+  nnoremap <expr> [P <SID>PreparePaste("[P", v:register, mode(1))
 endif
 
 if !has('nvim-0.8.0')
