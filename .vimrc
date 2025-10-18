@@ -45,10 +45,10 @@ if &history < 1000
 endif
 
 silent! while 0
-  silent! set mouse=nv
+  silent! set mouse=nvi
 silent! endwhile
 if has('mouse')
-  set mouse=nv
+  set mouse=nvi
   if !has('nvim') && exists('$TMUX')
     set ttymouse=xterm2
   endif
