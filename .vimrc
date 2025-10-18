@@ -8,7 +8,7 @@ if !has('nvim')
   endif
   silent! packadd! editorconfig
   silent! packadd! comment
-  runtime! macros/matchit.vim
+  runtime macros/matchit.vim
   runtime ftplugin/man.vim
   if exists(':Man') == 2
     set keywordprg=:Man
