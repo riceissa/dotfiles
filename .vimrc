@@ -121,13 +121,6 @@ if !has('nvim-0.11')
   nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
 endif
 
-nnoremap =p ]p=']
-nnoremap >p ]p>']
-nnoremap <p ]p<']
-nnoremap =P ]P=']
-nnoremap >P ]P>']
-nnoremap <P ]P<']
-
 if exists('*strftime')
   " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
   function! s:CompleteDateTime()
