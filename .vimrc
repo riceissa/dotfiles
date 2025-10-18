@@ -1,10 +1,11 @@
 set nocompatible
 if !has('nvim')
-  filetype plugin indent on
+  if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
+    filetype plugin indent on
+  endif
   if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
     syntax enable
   endif
-
   silent! packadd! editorconfig
   silent! packadd! comment
   runtime! macros/matchit.vim
@@ -17,6 +18,7 @@ endif
 set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
 set viminfo& display=lastline nrformats-=octal laststatus=2
 set complete-=i scrolloff=3 completeopt=menu
+set ruler showcmd backspace=indent,eol,start wildmenu
 set formatoptions=tcrq
 if v:version > 703 || (v:version == 703 && has('patch541'))
   set formatoptions+=j
