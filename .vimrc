@@ -95,56 +95,6 @@ if 1
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
 endif
 
-" See https://github.com/riceissa/vim-pasteurize/blob/3a80557a45c684c7cf5f0ff85effaef925b59381/plugin/pasteurize.vim#L10-L65
-" See also
-" https://github.com/tpope/vim-unimpaired/blob/db65482581a28e4ccf355be297f1864a4e66985c/doc/unimpaired.txt#L100-L112
-" I decided not to add all those mappings from unimpaired because they break
-" the dot command unless I also install repeat.vim, and I don't want to install
-" any plugins. With ]p , the last native Vim command *is* the paste, so the dot
-" command still works as expected. Instead of adding a bunch of other mappings,
-" I decided to make it visually select the pasted text, so I can just gv to
-" re-select the text, and then I can > or < or = from there if I want to.
-if has('patch-7.4.513')
-  function! s:PreparePaste(motion)
-    let l:reg = v:register
-    let l:reg_contents = getreg(l:reg, 1, 1)
-    let l:reg_prefix = ''
-    if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.'
-      let l:reg = '"'
-      let l:reg_prefix = '""'
-    endif
-
-    " When copy-pasting from outside Vim, blank lines at the start and
-    " end of the selection are almost never desired.
-    if l:reg ==# '+'
-      while !empty(l:reg_contents) && l:reg_contents[-1] ==# ''
-        call remove(l:reg_contents, -1)
-      endwhile
-      while !empty(l:reg_contents) && l:reg_contents[0] ==# ''
-        call remove(l:reg_contents, 0)
-      endwhile
-    endif
-    call setreg(l:reg, l:reg_contents, 'l')
-
-    " The register and count get applied automatically, so we just need to
-    " return the actual paste motion. But if the register was a read-only
-    " one (:, %, #, or .) then we prefix the motion with the default register
-    " (") that we set above. This means that if the user specified a register
-    " like "a then the actual command will look like "a""]p but Vim seems to
-    " know that the register that was specified last is the one that should
-    " be used.
-    if mode(1) =~# "^ni"
-      return l:reg_prefix . a:motion
-    else
-      return l:reg_prefix . a:motion . "V']o\<Esc>"
-    endif
-  endfunction
-  nnoremap <expr> ]p <SID>PreparePaste("]p")
-  nnoremap <expr> ]P <SID>PreparePaste("]P")
-  nnoremap <expr> [p <SID>PreparePaste("[p")
-  nnoremap <expr> [P <SID>PreparePaste("[P")
-endif
-
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
   function! s:VisualStarSearch()
