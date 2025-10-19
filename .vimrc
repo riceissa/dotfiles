@@ -111,7 +111,7 @@ endif
 
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
-  function! s:VisualStarSearch()
+  function! s:VisualStarSearch() abort
     let temp = @s
     normal! gv"sy
     let search = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
@@ -177,7 +177,7 @@ endif
 
 if exists('*strftime')
   " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
-  function! s:CompleteDateTime()
+  function! s:CompleteDateTime() abort
     let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S']
     call complete(col('.'), map(date_formats, 'strftime(v:val)') + [localtime()])
     return ''
