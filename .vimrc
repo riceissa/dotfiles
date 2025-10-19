@@ -6,8 +6,12 @@ if !has('nvim')
   if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
     syntax enable
   endif
-  silent! packadd! editorconfig
-  silent! packadd! comment
+  if !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
+    packadd! editorconfig
+  endif
+  if !empty(globpath(&packpath, 'pack/*/opt/comment'))
+    packadd! comment
+  endif
   runtime macros/matchit.vim
   runtime ftplugin/man.vim
   if exists(':Man') == 2
@@ -24,7 +28,7 @@ if v:version > 703 || (v:version == 703 && has('patch541'))
   set formatoptions+=j
 endif
 set nohlsearch ignorecase smartcase shortmess-=S
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
 silent! set belloff=all
 if has('reltime')
   set incsearch
