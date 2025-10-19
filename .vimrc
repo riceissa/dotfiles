@@ -116,8 +116,8 @@ if !has('nvim')
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if has('patch-7.4.513')
-  function! LinewisePasteOp(type) abort
+if has('patch-8.2.1347')  " For expand('<SID>')
+  function! s:LinewisePasteOp(type) abort
     let l:reg = v:register
     let l:reg_contents = getreg(l:reg, 1, 1)
     if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.'
@@ -131,7 +131,8 @@ if has('patch-7.4.513')
   function! s:Paste(paste_command, post_paste) abort
     let s:paste_command = a:paste_command
     let s:post_paste = a:post_paste
-    set operatorfunc=LinewisePasteOp
+    " set operatorfunc=LinewisePasteOp
+    let &operatorfunc = expand('<SID>') . 'LinewisePasteOp'
     return 'g@l'
   endfunction
   " These mappings are from unimpaired.vim
@@ -147,13 +148,14 @@ if has('patch-7.4.513')
   nnoremap <expr> [P <SID>Paste("P", "")
 endif
 
-if !has('nvim-0.11')
-  function! BlankLinesOp(type) abort
+if !has('nvim-0.11') && has('patch-8.2.1347')
+  function! s:BlankLinesOp(type) abort
     call append(line('.') + s:line_offset, repeat([''], v:count1))
   endfunction
   function! s:InsertBlankLines(line_offset) abort
     let s:line_offset = a:line_offset
-    set operatorfunc=BlankLinesOp
+    " set operatorfunc=BlankLinesOp
+    let &operatorfunc = expand('<SID>') . 'BlankLinesOp'
     return 'g@l'
   endfunction
   nnoremap <expr> ]<Space> <SID>InsertBlankLines(0)
