@@ -223,6 +223,7 @@ if has('autocmd')
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
+    autocmd FileType vim if &keywordprg ==# '' | setlocal keywordprg=:help | endif
     autocmd FileType kitty setlocal commentstring=#\ %s
 
     if has('nvim-0.10')
