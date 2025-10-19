@@ -116,9 +116,48 @@ if !has('nvim')
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+function! LinewisePasteOp(type) abort
+  let l:reg = v:register
+  let l:reg_contents = getreg(l:reg, 1, 1)
+  if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.'
+    let l:reg = '"'
+  endif
+  call setreg(l:reg, l:reg_contents, 'l')
+  let l:do_after_paste = (s:post_paste ==# '' ? '' : s:post_paste . "']")
+  exe 'normal! ' . v:count1 . '"' . l:reg . "]" . s:paste_command . l:do_after_paste
+endfunction
+
+function! s:Paste(paste_command, post_paste) abort
+  let s:paste_command = a:paste_command
+  let s:post_paste = a:post_paste
+  set operatorfunc=LinewisePasteOp
+  return 'g@l'
+endfunction
+" These mappings are from unimpaired.vim
+nnoremap <expr> >p <SID>Paste("p", ">")
+nnoremap <expr> >P <SID>Paste("P", ">")
+nnoremap <expr> <p <SID>Paste("p", "<")
+nnoremap <expr> <P <SID>Paste("P", "<")
+nnoremap <expr> =p <SID>Paste("p", "=")
+nnoremap <expr> =P <SID>Paste("P", "=")
+nnoremap <expr> ]p <SID>Paste("p", "")
+nnoremap <expr> ]P <SID>Paste("P", "")
+nnoremap <expr> [p <SID>Paste("P", "")
+nnoremap <expr> [P <SID>Paste("P", "")
+
+
 if !has('nvim-0.11')
-  nnoremap <silent> ]<Space> :<C-U>call append(line('.'), repeat([''], v:count1))<CR>
-  nnoremap <silent> [<Space> :<C-U>call append(line('.')-1, repeat([''], v:count1))<CR>
+  function! BlankLinesOp(type) abort
+    call append(line('.') + s:line_offset, repeat([''], v:count1))
+  endfunction
+  function! s:InsertBlankLines(line_offset) abort
+    let s:line_offset = a:line_offset
+    set operatorfunc=BlankLinesOp
+    return 'g@l'
+  endfunction
+  nnoremap <expr> ]<Space> <SID>InsertBlankLines(0)
+  nnoremap <expr> [<Space> <SID>InsertBlankLines(-1)
+
   nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
   nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
 endif
