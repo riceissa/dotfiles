@@ -19,37 +19,31 @@ if !has('nvim')
   endif
 endif
 
-set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
-set viminfo& display=lastline nrformats-=octal laststatus=2
-set complete-=i scrolloff=3 completeopt=menu
+" Options that even Vim now sets in C code, but are required in older Vim
+" versions
 set ruler showcmd backspace=indent,eol,start wildmenu
-set formatoptions=tcrq
-if v:version > 703 || (v:version == 703 && has('patch541'))
-  set formatoptions+=j
+
+" Copying some of the Neovim defaults that I like
+set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
+set laststatus=2 display=lastline nrformats-=octal complete-=i
+silent! while 0
+  set history=10000
+silent! endwhile
+if &history < 10000
+  set history=10000
 endif
-set nohlsearch ignorecase smartcase shortmess-=S
-set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
-silent! set belloff=all
+silent! while 0
+  silent! set belloff=all
+silent! endwhile
+if has('patch-7.4.793')
+  set belloff=all
+endif
 if has('reltime')
   set incsearch
-endif
-if has('clipboard') && (v:version > 703 || (v:version == 703 && has('patch074')))
-  set clipboard^=unnamedplus
-endif
-if exists('+smoothscroll')
-  set smoothscroll
 endif
 if has('path_extra')
   set tags=./tags;,tags
 endif
-
-silent! while 0
-  set history=1000
-silent! endwhile
-if &history < 1000
-  set history=1000
-endif
-
 silent! while 0
   silent! set mouse=nvi
 silent! endwhile
@@ -59,7 +53,6 @@ if has('mouse')
     set ttymouse=xterm2
   endif
 endif
-
 silent! while 0
   set wildoptions=tagfile
   silent! set wildoptions=pum,tagfile
@@ -68,6 +61,20 @@ if has('nvim') || has('patch-8.2.4325')
   set wildoptions=pum,tagfile
 else
   set wildoptions=tagfile
+endif
+
+set viminfo& scrolloff=3 completeopt=menu
+set nohlsearch ignorecase smartcase shortmess-=S
+set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
+set formatoptions=tcrq
+if v:version > 703 || (v:version == 703 && has('patch541'))
+  set formatoptions+=j
+endif
+if has('clipboard') && (v:version > 703 || (v:version == 703 && has('patch074')))
+  set clipboard^=unnamedplus
+endif
+if exists('+smoothscroll')
+  set smoothscroll
 endif
 
 nnoremap Y y$
