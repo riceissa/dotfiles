@@ -1,4 +1,7 @@
+" See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-nocompatible
+" for explanation.
 set nocompatible
+
 if !has('nvim')
   if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
     filetype plugin indent on
@@ -42,6 +45,7 @@ if has('reltime')
   set incsearch
 endif
 if has('path_extra')
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#working-with-tags
   set tags=./tags;,tags
 endif
 silent! while 0
@@ -49,6 +53,7 @@ silent! while 0
 silent! endwhile
 if has('mouse')
   set mouse=nvi
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
   if !has('nvim') && exists('$TMUX')
     set ttymouse=xterm2
   endif
@@ -83,6 +88,8 @@ nnoremap g/ /[^\d32-\d126]<CR>
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 if 1
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#better-j-and-k
+  " for explanation.
   nnoremap <expr> j v:count > 0 \|\| &filetype ==# 'qf' ? 'j' : 'gj'
   nnoremap <expr> k v:count > 0 \|\| &filetype ==# 'qf' ? 'k' : 'gk'
   xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
@@ -90,6 +97,8 @@ if 1
 endif
 
 " See :help emacs-keys. These particular mappings are mostly from rsi.vim.
+" See https://github.com/riceissa/computing-notes/blob/main/vim.md#rsivim
+" for more explanation.
 inoremap <C-A> <C-O>^
 inoremap <C-X><C-A> <C-A>
 cnoremap <C-A> <Home>
@@ -111,6 +120,8 @@ endif
 
 if !has('nvim-0.8.0')
   " Modified from https://github.com/nelstrom/vim-visual-star-search
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#visual-star-search-for-vim
+  " for more explanation of this implementation.
   function! s:VisualStarSearch() abort
     let temp = @s
     normal! gv"sy
@@ -251,7 +262,7 @@ if has('autocmd')
     autocmd! fedora BufReadPost *
   endif
 
-  " See :help restore-cursor
+  " From :help restore-cursor
   augroup RestoreCursor
     autocmd!
     autocmd BufReadPost *
