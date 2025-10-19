@@ -120,7 +120,7 @@ if has('patch-7.4.513')
   function! s:LinewisePasteOp(type) abort
     let l:reg = v:register
     let l:reg_contents = getreg(l:reg, 1, 1)
-    if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.'
+    if l:reg ==# ':' || l:reg ==# '%' || l:reg ==# '#' || l:reg ==# '.' || l:reg ==# '/'
       let l:reg = '"'
     endif
     call setreg(l:reg, l:reg_contents, 'l')
