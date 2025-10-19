@@ -6,10 +6,10 @@ if !has('nvim')
   if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
     syntax enable
   endif
-  if !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
+  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
     packadd! editorconfig
   endif
-  if !empty(globpath(&packpath, 'pack/*/opt/comment'))
+  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/comment'))
     packadd! comment
   endif
   runtime macros/matchit.vim
@@ -225,7 +225,7 @@ if has('autocmd')
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' | setlocal keywordprg=:help | endif
-    if empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
+    if !(exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig')))
       autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
     endif
     autocmd FileType kitty setlocal commentstring=#\ %s
