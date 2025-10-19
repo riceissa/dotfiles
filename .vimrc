@@ -63,6 +63,7 @@ else
   set wildoptions=tagfile
 endif
 
+setglobal expandtab shiftwidth=4 softtabstop=4
 set viminfo& scrolloff=3 completeopt=menu
 set nohlsearch ignorecase smartcase shortmess-=S
 set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
@@ -224,6 +225,9 @@ if has('autocmd')
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' | setlocal keywordprg=:help | endif
+    if !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
+      autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
+    endif
     autocmd FileType kitty setlocal commentstring=#\ %s
 
     if has('nvim-0.10')
