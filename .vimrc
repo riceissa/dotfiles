@@ -229,7 +229,7 @@ if has('autocmd')
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' || &keywordprg ==# ':Man' | setlocal keywordprg=:help | endif
-    if !(exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig')))
+    if !has('nvim') && !(exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig')))
       autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
     endif
     autocmd FileType kitty setlocal commentstring=#\ %s
