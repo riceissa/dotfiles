@@ -163,13 +163,13 @@ if !has('nvim-0.11')
   function! s:BlankLinesOp(type) abort
     call append(line('.') + s:line_offset, repeat([''], v:count1))
   endfunction
-  function! s:InsertBlankLines(line_offset) abort
+  function! s:InsertBlankLinesWithOffset(line_offset) abort
     let s:line_offset = a:line_offset
     let &operatorfunc = matchstr(expand('<sfile>'), '<SNR>\d\+_') . 'BlankLinesOp'
     return 'g@l'
   endfunction
-  nnoremap <expr> ]<Space> <SID>InsertBlankLines(0)
-  nnoremap <expr> [<Space> <SID>InsertBlankLines(-1)
+  nnoremap <expr> ]<Space> <SID>InsertBlankLinesWithOffset(0)
+  nnoremap <expr> [<Space> <SID>InsertBlankLinesWithOffset(-1)
 
   nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
   nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
