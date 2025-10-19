@@ -128,10 +128,14 @@ if !has('nvim')
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if has('patch-7.4.513')
+if 1
   function! s:LinewisePasteOp(type) abort
     let temp = @s
-    call setreg('s', getreg(v:register, 1, 1), 'l')
+    if has('patch-7.4.513')
+      call setreg('s', getreg(v:register, 1, 1), 'l')
+    else
+      call setreg('s', getreg(v:register), 'l')
+    endif
     let l:do_after_paste = (s:post_paste ==# '' ? '' : s:post_paste . "']")
     exe 'normal! ' . v:count1 . '"s]' . s:paste_command . l:do_after_paste
     let @s = temp
