@@ -63,7 +63,7 @@ else
   set wildoptions=tagfile
 endif
 
-setglobal expandtab shiftwidth=4 softtabstop=4
+set expandtab shiftwidth=4 softtabstop=4
 set viminfo& scrolloff=3 completeopt=menu
 set nohlsearch ignorecase smartcase shortmess-=S
 set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
