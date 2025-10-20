@@ -261,6 +261,12 @@ if has('autocmd')
         \   if &background ==# 'light'
         \ |   colorscheme vim
         \ |   set notermguicolors
+        \ |   if exists('$TERM') && $TERM ==# 'xterm-kitty'
+        \ |     highlight SpellBad ctermbg=NONE cterm=undercurl
+        \ |     highlight SpellCap ctermbg=NONE cterm=undercurl
+        \ |     highlight SpellLocal ctermbg=NONE cterm=undercurl
+        \ |     highlight SpellRare ctermbg=NONE cterm=undercurl
+        \ |   endif
         \ | else
         \ |   colorscheme default
         \ |   set termguicolors
