@@ -1,5 +1,7 @@
-" See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-nocompatible
-" for explanation.
+" Allow this vimrc file to be interpreted without errors in vim-tiny and other
+" minimal Vim versions; see
+" https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-nocompatible
+" for a full explanation.
 set nocompatible
 
 if !has('nvim')
