@@ -217,6 +217,7 @@ if 1
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-c_no_curly_error
   let c_no_curly_error = 1
 
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#python-indent
   let g:python_indent = {}
   let g:python_indent.open_paren = 'shiftwidth()'
   if has('patch-7.4.1154')
@@ -247,6 +248,7 @@ if has('autocmd')
     autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
+    " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' || &keywordprg ==# ':Man' | setlocal keywordprg=:help | endif
     if !has('nvim') && !(exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig')))
