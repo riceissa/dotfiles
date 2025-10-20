@@ -245,7 +245,7 @@ if has('autocmd')
     autocmd FileType rust if &makeprg =~# '^rustc ' | setlocal makeprg=make | endif
     autocmd FileType rust setlocal textwidth=0
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#markdown-underscores
-    autocmd FileType markdown setlocal iskeyword-=_
+    autocmd FileType markdown setlocal spell iskeyword-=_
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
