@@ -59,6 +59,7 @@ if has('mouse')
     set ttymouse=xterm2
   endif
 endif
+" See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 silent! while 0
   set wildoptions=tagfile
   silent! set wildoptions=pum,tagfile
