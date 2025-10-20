@@ -70,8 +70,9 @@ else
   set wildoptions=tagfile
 endif
 
-set expandtab shiftwidth=4 softtabstop=4
-set viminfo& scrolloff=3 completeopt=menu
+set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
+set viminfo&  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora
+set scrolloff=3 completeopt=menu
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
 set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
@@ -235,11 +236,14 @@ if has('autocmd')
     if !has('nvim') && !has('patch-8.2.3464')
       autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
     endif
+    " See https://github.com/riceissa/computing-notes/blob/main/vim.md#formatoptions
     autocmd FileType * set formatoptions-=o
+    " See https://github.com/riceissa/computing-notes/blob/main/vim.md#haskell-shebang
     autocmd FileType haskell syntax match hsLineComment '^#!.*'
     autocmd FileType go,rust setlocal formatprg=
     autocmd FileType rust if &makeprg =~# '^rustc ' | setlocal makeprg=make | endif
     autocmd FileType rust setlocal textwidth=0
+    " See https://github.com/riceissa/computing-notes/blob/main/vim.md#markdown-underscores
     autocmd FileType markdown setlocal iskeyword-=_
     autocmd FileType gitcommit setlocal spell
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
