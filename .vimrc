@@ -273,7 +273,7 @@ if has('autocmd')
         \ |   colorscheme default
         \ |   set termguicolors
         \ | endif
-        \ | let &ft = &ft
+        \ | let &filetype = &filetype
     endif
   augroup END
 
