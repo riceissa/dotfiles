@@ -27,7 +27,8 @@ endif
 set ruler showcmd backspace=indent,eol,start wildmenu
 
 " Copying some of the Neovim defaults that I like
-set ttimeout ttimeoutlen=50 hidden nostartofline nojoinspaces autoindent
+set ttimeout ttimeoutlen=50 hidden nojoinspaces autoindent
+set nostartofline  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-nostartofline
 set laststatus=2 display=lastline nrformats-=octal complete-=i
 silent! while 0
   set history=10000
@@ -70,7 +71,8 @@ endif
 
 set expandtab shiftwidth=4 softtabstop=4
 set viminfo& scrolloff=3 completeopt=menu
-set nohlsearch ignorecase smartcase shortmess-=S
+set nohlsearch ignorecase smartcase
+set shortmess-=S  " Show number of matches when searching
 set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
 set formatoptions=tcrq
 if v:version > 703 || (v:version == 703 && has('patch541'))
@@ -208,7 +210,9 @@ endif
 
 set cinoptions=l1
 if 1
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-no-c_comment_strings
   unlet! c_comment_strings
+  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-c_no_curly_error
   let c_no_curly_error = 1
 
   let g:python_indent = {}
