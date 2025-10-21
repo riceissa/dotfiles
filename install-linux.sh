@@ -17,6 +17,8 @@ while [ -n "$1" ]; do
         ;;
     emacs) install_emacs=yes
         ;;
+    gf) install_gf=yes
+        ;;
     git) install_git=yes
         ;;
     kitty) install_kitty=yes
@@ -46,7 +48,7 @@ Install script for dotfiles.
 ./install-linux.sh [program...]
 ./install-linux.sh {-h|--help}
 
-Supported programs: bash, editorconfig, emacs, git, kitty, local_bin, neovim,
+Supported programs: bash, editorconfig, emacs, gf, git, kitty, local_bin, neovim,
                     newsboat, proselint, tmux, vim
 
 For instance to install dotfiles for Vim and tmux, run:
@@ -94,6 +96,11 @@ fi
 if [ -n "$install_emacs" ]; then
     mkdir -p ~/.emacs.d
     ln -sv "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
+fi
+
+if [ -n "$install_gf" ]; then
+    mkdir -p ~/.config
+    ln -sv "$(pwd)/.config/gf2_config.ini" ~/.config/gf2_config.ini
 fi
 
 if [ -n "$install_git" ]; then
