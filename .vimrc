@@ -29,7 +29,8 @@ endif
 set ruler showcmd backspace=indent,eol,start wildmenu
 
 " Copying some of the Neovim defaults that I like
-set ttimeout ttimeoutlen=50 hidden nojoinspaces autoindent
+set ttimeout ttimeoutlen=50 nojoinspaces autoindent
+set hidden  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-hidden
 set nostartofline  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-nostartofline
 set laststatus=2 display=lastline nrformats-=octal complete-=i
 silent! while 0
