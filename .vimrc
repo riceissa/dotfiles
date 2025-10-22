@@ -79,10 +79,6 @@ set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
 set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
 set formatoptions=tcrq
-" Make files without extensions get lower priority when tab-completing. A file
-" without an extension is usually an executable, e.g. prog when prog.c exists,
-" so this effectively means prioritizing the source files.
-set suffixes+=,
 if v:version > 703 || (v:version == 703 && has('patch541'))
   set formatoptions+=j
 endif
@@ -92,6 +88,12 @@ endif
 if exists('+smoothscroll')
   set smoothscroll
 endif
+" Make files without extensions get lower priority when tab-completing. A file
+" without an extension is usually an executable, e.g. prog when prog.c exists,
+" so this effectively means prioritizing the source files.
+set suffixes+=,
+" And a few more extensions I am unlikely to want to open in Vim:
+set suffixes+=.pdf,.epub,.ttf
 
 nnoremap Y y$
 nnoremap g/ /[^\d32-\d126]<CR>
