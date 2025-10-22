@@ -151,9 +151,15 @@ endif
 
 if 1
   function! s:LinewisePasteOp(type) abort
-    let s_contents = getreg('s', 1, 1)
     let s_type = getregtype('s')
-    call setreg('s', getreg(v:register, 1, 1), 'l')
+    if has('patch-7.4.513')
+      let s_contents = getreg('s', 1, 1)
+      let reg = getreg(v:register, 1, 1)
+    else
+      let s_contents = getreg('s')
+      let reg = getreg(v:register)
+    endif
+    call setreg('s', reg, 'l')
     let l:do_after_paste = (s:post_paste ==# '' ? '' : s:post_paste . "']")
     exe 'normal! ' . v:count1 . '"s]' . s:paste_command . l:do_after_paste
     call setreg('s', s_contents, s_type)
