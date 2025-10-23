@@ -115,8 +115,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-      '(auctex auto-dark exec-path-from-shell lua-mode magit markdown-mode
-           php-mode s))
+      '(auctex auto-dark exec-path-from-shell magit markdown-mode s))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -289,7 +288,7 @@ in a smart sort of way like C-w in bash."
 ;; 1. Sometimes it shifts the screen as if I had typed C-l or something
 ;; 2. It often misses misspelled words (that actually have a red squiggly underline) that are closer to point and tries to fix words farther away from point
 ;; 3. Possibly related to the bug in (1), if I have multiple copies of the same buffer (at different locations) open in different panes, then the pane that I am not in will also be shifted
-;; I may eventually need to roll my own elisp code to get the behavior I want (basically Vim's insert-mode C-x C-s), but I did notice while playing around the flyspell mode has this other command to look backwards to fix a spelling mistake, so I'll be trying it for now.
+;; I may eventually need to roll my own elisp code to get the behavior I want (basically Vim's insert-mode C-x C-s), but I did notice while playing around that flyspell mode has this other command to look backwards to fix a spelling mistake, so I'll be trying it for now.
 (eval-after-load "flyspell"
   '(define-key flyspell-mode-map (kbd "C-;") 'flyspell-check-previous-highlighted-word))
 
