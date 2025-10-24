@@ -157,7 +157,7 @@ if 1
       return "zz"
     endif
   endfunction
-  inoremap <expr> <C-L> &insertmode<Bar><Bar>pumvisible() ? "<C-L>" : "<C-O>" . <SID>EmacsCtrlL()
+  inoremap <expr> <C-L> &insertmode<Bar><Bar>pumvisible() ? "<C-L>" : '<C-\><C-O>' . <SID>EmacsCtrlL()
 endif
 
 if !has('nvim')
