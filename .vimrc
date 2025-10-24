@@ -147,6 +147,19 @@ if !has('nvim-0.8.0')
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
 endif
 
+if 1
+  function! s:EmacsCtrlL() abort
+    if abs(winline()) <= 1+&scrolloff
+      return "zb"
+    elseif abs(winline() - (1+winheight(0))/2) <= 1
+      return "zt"
+    else
+      return "zz"
+    endif
+  endfunction
+  inoremap <expr> <C-L> &insertmode<Bar><Bar>pumvisible() ? "<C-L>" : "<C-O>" . <SID>EmacsCtrlL()
+endif
+
 if !has('nvim')
   " From sensible.vim
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
