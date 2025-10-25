@@ -103,10 +103,10 @@ inoremap <C-W> <C-G>u<C-W>
 if 1
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#better-j-and-k
   " for explanation.
-  nnoremap <expr> j v:count > 0 \|\| &filetype ==# 'qf' ? 'j' : 'gj'
-  nnoremap <expr> k v:count > 0 \|\| &filetype ==# 'qf' ? 'k' : 'gk'
-  xnoremap <expr> j mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
-  xnoremap <expr> k mode() ==# 'V' \|\| mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
+  nnoremap <expr> j v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'j' : 'gj'
+  nnoremap <expr> k v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'k' : 'gk'
+  xnoremap <expr> j mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
+  xnoremap <expr> k mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
 endif
 
 " See :help emacs-keys. These particular mappings are mostly from rsi.vim.
@@ -157,7 +157,7 @@ if 1
       return "zz"
     endif
   endfunction
-  inoremap <expr> <C-L> &insertmode<Bar><Bar>pumvisible() ? "<C-L>" : '<C-\><C-O>' . <SID>EmacsCtrlL()
+  inoremap <expr> <C-L> &insertmode <Bar><Bar> pumvisible() ? "<C-L>" : '<C-\><C-O>' . <SID>EmacsCtrlL()
 endif
 
 if !has('nvim')
