@@ -136,12 +136,17 @@ if !has('nvim-0.8.0')
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#visual-star-search-for-vim
   " for more explanation of this implementation.
   function! s:VisualStarSearch() abort
-    let temp = @s
+    let s_type = getregtype('s')
+    if has('patch-7.4.513')
+      let s_contents = getreg('s', 1, 1)
+    else
+      let s_contents = getreg('s')
+    endif
     normal! gv"sy
     let search = '\V' . substitute(escape(@s, '\'), '\n', '\\n', 'g')
     call setreg('/', search)
     call histadd('/', search)
-    let @s = temp
+    call setreg('s', s_contents, s_type)
   endfunction
   xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
