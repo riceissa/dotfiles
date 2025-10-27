@@ -86,6 +86,8 @@ if [ -n "$install_bash" ]; then
     else
         echo "common.bash not found in bashrc; adding line to source it"
         echo "$common_bash_line" >> ~/.bashrc
+        touch ~/.full_history
+        chmod 600 ~/.full_history
     fi
 fi
 
