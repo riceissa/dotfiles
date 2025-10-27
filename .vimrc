@@ -105,8 +105,8 @@ if 1
   " for explanation.
   nnoremap <expr> j v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'j' : 'gj'
   nnoremap <expr> k v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'k' : 'gk'
-  xnoremap <expr> j mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" \|\| v:count > 0 ? 'j' : 'gj'
-  xnoremap <expr> k mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" \|\| v:count > 0 ? 'k' : 'gk'
+  xnoremap <expr> j mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" <Bar><Bar> v:count > 0 ? 'j' : 'gj'
+  xnoremap <expr> k mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" <Bar><Bar> v:count > 0 ? 'k' : 'gk'
 endif
 
 " See :help emacs-keys. These particular mappings are mostly from rsi.vim.
