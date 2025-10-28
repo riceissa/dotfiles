@@ -12,9 +12,11 @@
 	#     find / -name "diff-highlight" 2>/dev/null
 	# Then symlink it so it is available in PATH:
 	#     ln -sv the_location_you_found_above /usr/bin/diff-highlight
-	# One some distros like Ubuntu, you will also need to make diff-highlight
+	# On some distros like Ubuntu, you will also need to make diff-highlight
 	# executable:
 	#     chmod +x the_location_you_found_above
+	# Note that if you install this .gitconfig file using install-linux.sh,
+	# then all of these steps will be automated.
 	log  = diff-highlight | less -+S
 	show = diff-highlight | less -+S
 	diff = diff-highlight | less -+S

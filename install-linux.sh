@@ -117,7 +117,7 @@ if [ -n "$install_git" ]; then
     elif [ "$result_count" -eq 0 ]; then
         echo "diff-highlight not found; not going to create a symlink."
     else
-        echo "Multiple files named diff-highlight were found; since we can't figure out which one is the real one, we are not going to create a symlink:"
+        echo "Multiple files named diff-highlight were found; since we can't figure out which one is the real one, we are not going to create a symlink, but here are the files we found so you can figure out which one is the real diff-highlight:"
         echo "$search_result"
     fi
 fi

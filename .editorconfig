@@ -11,7 +11,7 @@ tab_width = 8
 [{*.py,*.c,*.h,*.cpp,*.hs,*.go,*.nim,*.ts,*.js,*.html,*.vim,.vimrc,*.scala}]
 trim_trailing_whitespace = true
 
-[Makefile]
+[{Makefile,.gitconfig*}]
 indent_style = tab
 indent_size = 8
 
