@@ -11,7 +11,6 @@ path_prepend "/opt/nvim-linux-x86_64/bin"
 export PATH
 
 alias ls='ls --color=auto'
-alias fd='fdfind'
 
 # Emacs shell mode doesn't like the fzf bindings, so don't source
 # fzf settings if inside Emacs. fzf doesn't work anyway, since shell
@@ -26,14 +25,6 @@ alias em='emacsclient -t'
 alias vim=nvim
 export EDITOR=nvim
 export VISUAL=nvim
-
-# Set ag/ripgrep as the default source for fzf if it exists
-# if [ $(uname -o) != "Msys" ]; then
-#     command -v ag >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-#     command -v rg >/dev/null 2>&1 && export FZF_DEFAULT_COMMAND='rg --hidden --files'
-#     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#     export FZF_CTRL_R_OPTS='-e'
-# fi
 
 # For whatever reason, the WSL version of Ubuntu doesn't automatically start
 # ssh-agent so the following will do that at startup.
