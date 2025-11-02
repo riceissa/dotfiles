@@ -307,9 +307,11 @@ in a smart sort of way like C-w in bash."
 ;; (org-agenda-list)
 
 ;; Stuff to do on startup, on Linux
-(find-file "/home/issa/projects/notes/inbox.txt")
-(end-of-buffer)
-(recenter-top-bottom)
+(let ((inbox-file "/home/issa/projects/notes/inbox.txt"))
+    (when (file-exists-p inbox-file)
+        (find-file inbox-file)
+        (end-of-buffer)
+        (recenter-top-bottom)))
 
 ;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
 (editorconfig-mode t)
