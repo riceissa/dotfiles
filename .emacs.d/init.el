@@ -94,6 +94,7 @@
            "754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645"
            default))
  '(ido-mode 'both nil (ido))
+ '(global-word-wrap-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(magit-diff-refine-hunk 'all)
@@ -304,6 +305,11 @@ in a smart sort of way like C-w in bash."
 ;; (find-file "C:\\Users\\Issa\\projects\\notes\\inbox.txt")
 ;; (end-of-buffer)
 ;; (org-agenda-list)
+
+;; Stuff to do on startup, on Linux
+(find-file "/home/issa/projects/notes/inbox.txt")
+(end-of-buffer)
+(recenter-top-bottom)
 
 ;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
 (editorconfig-mode t)
