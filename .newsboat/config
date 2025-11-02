@@ -2,10 +2,10 @@ browser "firefox --new-tab %u"
 suppress-first-reload yes
 cleanup-on-quit no
 
-#unbind-key j
-#unbind-key k
-#bind-key j down "all"
-#bind-key k up "all"
+unbind-key j
+unbind-key k
+bind-key j down "all"
+bind-key k up "all"
 
 # modified from the default given at
 # https://newsboat.org/releases/2.40/docs/newsboat.html#_colors
