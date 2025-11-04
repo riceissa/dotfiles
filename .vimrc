@@ -106,8 +106,8 @@ nnoremap g/ /[^\d32-\d126]<CR>
 " also be a Vim vs Neovim thing going on. Having both mappings here makes it
 " work in all the terminal + Vim/Neovim + tmux configurations I've tried.
 if 1
-  nnoremap <expr> <C-/> &hlsearch == 0 ? ":<C-U>set hlsearch<CR>" : ":<C-U>set nohlsearch<CR>"
-  nnoremap <expr> <C-_> &hlsearch == 0 ? ":<C-U>set hlsearch<CR>" : ":<C-U>set nohlsearch<CR>"
+  nnoremap <expr> <C-/> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
+  nnoremap <expr> <C-_> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
 endif
 
 inoremap <C-U> <C-G>u<C-U>
