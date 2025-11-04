@@ -93,7 +93,6 @@
       '("b4b884ae77b70a295ec0f439d111eaac92f1267db1b8ac251bd61a5c30d93f79"
            "754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645"
            default))
- '(ido-mode 'both nil (ido))
  '(global-word-wrap-whitespace-mode t)
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
@@ -116,7 +115,7 @@
  '(org-startup-truncated nil)
  '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
  '(package-selected-packages
-      '(auctex auto-dark exec-path-from-shell magit markdown-mode s))
+      '(auctex auto-dark exec-path-from-shell magit markdown-mode s vertico))
  '(preview-scale-function 1.2)
  '(require-final-newline t)
  '(ring-bell-function 'ignore)
@@ -315,3 +314,23 @@ in a smart sort of way like C-w in bash."
 
 ;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
 (editorconfig-mode t)
+
+
+(use-package vertico
+    :init
+    (vertico-mode))
+
+(defun my/vertico-smart-return ()
+    "Insert match if there are multiple candidates (and the input field does not exactly match one of the candidates) or if it's a directory; otherwise open the entry using vertico-exit."
+    (interactive)
+    (let ((candidate (vertico--candidate)))
+        (if (or (and (> vertico--total 1)
+                    (not (equal (minibuffer-contents) candidate)))
+                (and candidate
+                    (string-suffix-p "/" candidate)))
+            (vertico-insert)
+            (vertico-exit))))
+
+(define-key vertico-map (kbd "TAB") 'vertico-next)
+(define-key vertico-map (kbd "<backtab>") 'vertico-previous)
+(define-key vertico-map (kbd "RET") 'my/vertico-smart-return)
