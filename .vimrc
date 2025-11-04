@@ -105,8 +105,10 @@ nnoremap g/ /[^\d32-\d126]<CR>
 " as if I typed /, and pressing C-_ makes the font size smaller). There might
 " also be a Vim vs Neovim thing going on. Having both mappings here makes it
 " work in all the terminal + Vim/Neovim + tmux configurations I've tried.
-nnoremap <silent> <C-/> :<C-U>set hlsearch!<CR>
-nnoremap <silent> <C-_> :<C-U>set hlsearch!<CR>
+if 1
+  nnoremap <expr> <C-/> &hlsearch == 0 ? ":<C-U>set hlsearch<CR>" : ":<C-U>set nohlsearch<CR>"
+  nnoremap <expr> <C-_> &hlsearch == 0 ? ":<C-U>set hlsearch<CR>" : ":<C-U>set nohlsearch<CR>"
+endif
 
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
