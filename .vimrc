@@ -321,13 +321,14 @@ if has('autocmd')
     autocmd! fedora BufReadPost *
   endif
 
-  " From :help restore-cursor
+  " See :help restore-cursor. This implementation is taken from Vim's
+  " defaults.vim.
   augroup RestoreCursor
     autocmd!
     autocmd BufReadPost *
           \ let line = line("'\"")
           \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
-          \      && index(['xxd', 'gitrebase'], &filetype) == -1
+          \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
           \      && !&diff
           \ |   execute "normal! g`\""
           \ | endif
