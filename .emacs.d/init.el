@@ -321,16 +321,13 @@ in a smart sort of way like C-w in bash."
     (vertico-mode))
 
 (defun my/vertico-smart-return ()
-    "Insert match if there are multiple candidates (and the input field does not exactly match one of the candidates) or if it's a directory; otherwise open the entry using vertico-exit."
+    "If the currently selected match is a directory, just insert it instead of opening it with dired mode. Otherwise, just open the thing as usual."
     (interactive)
-    (let ((candidate (vertico--candidate)))
-        (if (or (and (> vertico--total 1)
-                    (not (equal (minibuffer-contents) candidate)))
-                (and candidate
-                    (string-suffix-p "/" candidate)))
-            (vertico-insert)
-            (vertico-exit))))
+    (if (string-suffix-p "/" (vertico--candidate))
+        (vertico-insert)
+        (vertico-exit)))
 
 (define-key vertico-map (kbd "TAB") 'vertico-next)
 (define-key vertico-map (kbd "<backtab>") 'vertico-previous)
 (define-key vertico-map (kbd "RET") 'my/vertico-smart-return)
+(define-key vertico-map (kbd "C-<return>") 'vertico-exit-input)
