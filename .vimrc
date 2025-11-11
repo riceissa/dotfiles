@@ -265,9 +265,10 @@ if 1
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#python-indent
   let g:python_indent = {}
   let g:python_indent.open_paren = 'shiftwidth()'
-  if has('patch-7.4.1154')
-    let g:python_indent.closed_paren_align_last_line = v:false
-  endif
+  let g:python_indent.closed_paren_align_last_line = 0
+  " Old style, for older versions of Vim; there is no equivalent of
+  " closed_paren_align_last_line in the old style configuration.
+  let g:pyindent_open_paren = '&sw'
 endif
 
 " See :help :DiffOrig
