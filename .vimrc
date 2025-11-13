@@ -74,7 +74,7 @@ else
 endif
 
 set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
-set viminfo&  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora
+set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
 set scrolloff=3 completeopt=menu
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
@@ -303,15 +303,19 @@ if has('autocmd')
     autocmd FileType kitty setlocal commentstring=#\ %s
 
     if has('nvim-0.10')
+      " Pick separate colorschemes for light and dark terminals, and
+      " auto-switch when the OS/terminal theme changes (only works on kitty
+      " terminal).
+      " See https://github.com/riceissa/computing-notes/blob/main/vim.md#picking-separate-light-and-dark-themes-with-automatic-switching-based-on-os-theme for more information.
       autocmd OptionSet background
             \   if &background ==# 'light'
             \ |   colorscheme vim
             \ |   set notermguicolors
             \ |   if exists('$TERM') && $TERM ==# 'xterm-kitty'
-            \ |     highlight SpellBad ctermbg=NONE cterm=undercurl
-            \ |     highlight SpellCap ctermbg=NONE cterm=undercurl
+            \ |     highlight SpellBad   ctermbg=NONE cterm=undercurl
+            \ |     highlight SpellCap   ctermbg=NONE cterm=undercurl
             \ |     highlight SpellLocal ctermbg=NONE cterm=undercurl
-            \ |     highlight SpellRare ctermbg=NONE cterm=undercurl
+            \ |     highlight SpellRare  ctermbg=NONE cterm=undercurl
             \ |   endif
             \ | else
             \ |   colorscheme default
@@ -321,6 +325,10 @@ if has('autocmd')
     endif
   augroup END
 
+  " Remove the restore-cursor implementation on Fedora's /etc/vimrc, which used
+  " to be broken. See https://bugzilla.redhat.com/show_bug.cgi?id=2404651 and
+  " https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora
+  " for more information.
   if exists('#fedora#BufReadPost *')
     autocmd! fedora BufReadPost *
   endif
