@@ -310,7 +310,8 @@ in a smart sort of way like C-w in bash."
     (when (file-exists-p inbox-file)
         (find-file inbox-file)
         (end-of-buffer)
-        (recenter-top-bottom)))
+        (recenter-top-bottom)
+        (roll)))
 
 ;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
 (editorconfig-mode t)
