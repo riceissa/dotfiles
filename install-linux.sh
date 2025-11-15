@@ -23,6 +23,8 @@ while [ -n "$1" ]; do
         ;;
     kitty) install_kitty=yes
         ;;
+    lazygit) install_lazygit=yes
+        ;;
     local_bin) install_local_bin=yes
         ;;
     neovim) install_neovim=yes
@@ -48,8 +50,8 @@ Install script for dotfiles.
 ./install-linux.sh [program...]
 ./install-linux.sh {-h|--help}
 
-Supported programs: bash, editorconfig, emacs, gf, git, kitty, local_bin, neovim,
-                    newsboat, proselint, tmux, vim
+Supported programs: bash, editorconfig, emacs, gf, git, kitty, lazygit,
+                    local_bin, neovim, newsboat, proselint, tmux, vim
 
 For instance to install dotfiles for Vim and tmux, run:
 
@@ -133,6 +135,11 @@ if [ -n "$install_kitty" ]; then
         echo "kitty.bash not found in bashrc; adding line to source it"
         echo "$kitty_bash_line" >> ~/.bashrc
     fi
+fi
+
+if [ -n "$install_lazygit" ]; then
+    mkdir -p ~/.config/lazygit
+    ln -sv "$(pwd)/.config/lazygit/config.yml" ~/.config/lazygit/config.yml
 fi
 
 if [ -n "$install_local_bin" ]; then
