@@ -293,6 +293,7 @@ if has('autocmd')
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#markdown-underscores
     autocmd FileType markdown setlocal spell iskeyword-=_
     autocmd FileType gitcommit setlocal spell
+    autocmd FileType gitconfig setlocal commentstring=#\ %s
     autocmd FileType c,php,glsl setlocal commentstring=//\ %s
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
