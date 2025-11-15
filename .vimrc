@@ -78,7 +78,7 @@ set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it t
 set scrolloff=3 completeopt=menu
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
-set listchars=tab:>-,trail:@,extends:>,precedes:<,nbsp:+
+set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
 set formatoptions=tcrq
 if v:version > 703 || (v:version == 703 && has('patch541'))
   set formatoptions+=j
@@ -280,6 +280,9 @@ endif
 if has('autocmd')
   augroup vimrc
     autocmd!
+    autocmd InsertEnter * set listchars-=trail:@
+    autocmd InsertLeave * set listchars+=trail:@
+
     if !has('nvim') && !has('patch-8.2.3464')
       autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
     endif
