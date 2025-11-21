@@ -277,6 +277,11 @@ if exists(":DiffOrig") != 2
         \ | diffthis | wincmd p | diffthis
 endif
 
+if has('nvim-0.10')
+  colorscheme vim
+  set notermguicolors
+endif
+
 if has('autocmd')
   augroup vimrc
     autocmd!
@@ -305,22 +310,6 @@ if has('autocmd')
       autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
     endif
     autocmd FileType kitty setlocal commentstring=#\ %s
-
-    if has('nvim-0.10')
-      colorscheme vim
-      set notermguicolors
-      " The following must be run as an autocommand because every time
-      " 'background' changes, Neovim resets the highlight for the spelling back
-      " to the default.
-      autocmd OptionSet background
-            \   if exists('$TERM') && ($TERM ==# 'xterm-kitty' || $TERM ==# 'xterm-256color')
-            \ |   highlight SpellBad   ctermbg=NONE cterm=undercurl
-            \ |   highlight SpellCap   ctermbg=NONE cterm=undercurl
-            \ |   highlight SpellLocal ctermbg=NONE cterm=undercurl
-            \ |   highlight SpellRare  ctermbg=NONE cterm=undercurl
-            \ | endif
-            " \ | let &filetype = &filetype
-    endif
   augroup END
 
   " Remove the restore-cursor implementation on Fedora's /etc/vimrc, which used
