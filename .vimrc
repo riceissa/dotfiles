@@ -307,25 +307,19 @@ if has('autocmd')
     autocmd FileType kitty setlocal commentstring=#\ %s
 
     if has('nvim-0.10')
-      " Pick separate colorschemes for light and dark terminals, and
-      " auto-switch when the OS/terminal theme changes (only works on kitty
-      " terminal).
-      " See https://github.com/riceissa/computing-notes/blob/main/vim.md#picking-separate-light-and-dark-themes-with-automatic-switching-based-on-os-theme for more information.
+      colorscheme vim
+      set notermguicolors
+      " The following must be run as an autocommand because every time
+      " 'background' changes, Neovim resets the highlight for the spelling back
+      " to the default.
       autocmd OptionSet background
-            \   if &background ==# 'light'
-            \ |   colorscheme vim
-            \ |   set notermguicolors
-            \ |   if exists('$TERM') && $TERM ==# 'xterm-kitty'
-            \ |     highlight SpellBad   ctermbg=NONE cterm=undercurl
-            \ |     highlight SpellCap   ctermbg=NONE cterm=undercurl
-            \ |     highlight SpellLocal ctermbg=NONE cterm=undercurl
-            \ |     highlight SpellRare  ctermbg=NONE cterm=undercurl
-            \ |   endif
-            \ | else
-            \ |   colorscheme default
-            \ |   set termguicolors
+            \   if exists('$TERM') && $TERM ==# 'xterm-kitty'
+            \ |   highlight SpellBad   ctermbg=NONE cterm=undercurl
+            \ |   highlight SpellCap   ctermbg=NONE cterm=undercurl
+            \ |   highlight SpellLocal ctermbg=NONE cterm=undercurl
+            \ |   highlight SpellRare  ctermbg=NONE cterm=undercurl
             \ | endif
-            \ | let &filetype = &filetype
+            " \ | let &filetype = &filetype
     endif
   augroup END
 
