@@ -313,7 +313,7 @@ if has('autocmd')
       " 'background' changes, Neovim resets the highlight for the spelling back
       " to the default.
       autocmd OptionSet background
-            \   if exists('$TERM') && $TERM ==# 'xterm-kitty'
+            \   if exists('$TERM') && ($TERM ==# 'xterm-kitty' || $TERM ==# 'xterm-256color')
             \ |   highlight SpellBad   ctermbg=NONE cterm=undercurl
             \ |   highlight SpellCap   ctermbg=NONE cterm=undercurl
             \ |   highlight SpellLocal ctermbg=NONE cterm=undercurl
