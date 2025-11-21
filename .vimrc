@@ -17,6 +17,10 @@ if !has('nvim')
   if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/comment'))
     packadd! comment
   endif
+  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/helptoc'))
+    packadd! helptoc
+    nnoremap gO <Cmd>HelpToc<CR>
+  endif
   runtime macros/matchit.vim
   runtime ftplugin/man.vim
   if exists(':Man') == 2
