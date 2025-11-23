@@ -352,7 +352,7 @@ if has('autocmd')
             \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
             \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
             \      && !&diff
-            \      && expand('%:t') !=? 'COMMIT_EDITMSG'
+            \      && expand('%:t') !=# 'COMMIT_EDITMSG'
             \ |   execute "normal! g`\""
             \ | endif
     endif
