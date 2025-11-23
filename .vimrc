@@ -4,10 +4,15 @@
 " for a full explanation.
 set nocompatible
 
+if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
+  " This is required even for Neovim, in order to make the RestoreCursor
+  " autocommand below work properly. See
+  " https://github.com/neovim/neovim/issues/15536#issuecomment-909336062 for
+  " details.
+  filetype plugin indent on
+endif
+
 if !has('nvim')
-  if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('g:did_indent_on'))
-    filetype plugin indent on
-  endif
   if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
     syntax enable
   endif
@@ -338,23 +343,12 @@ if has('autocmd')
   " messages.
   augroup RestoreCursor
     autocmd!
-    if has('patch-8.1.1113')
-      autocmd BufReadPre * autocmd FileType <buffer> ++once
-            \ let s:line = line("'\"")
-            \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
-            \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
-            \      && !&diff
-            \ |   execute "normal! g`\""
-            \ | endif
-    else
-      autocmd BufReadPost *
-            \ let line = line("'\"")
-            \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
-            \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
-            \      && !&diff
-            \      && expand('%:t') !=# 'COMMIT_EDITMSG'
-            \ |   execute "normal! g`\""
-            \ | endif
-    endif
+    autocmd BufReadPost *
+          \ let line = line("'\"")
+          \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+          \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
+          \      && !&diff
+          \ |   execute "normal! g`\""
+          \ | endif
   augroup END
 endif
