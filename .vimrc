@@ -324,16 +324,37 @@ if has('autocmd')
     autocmd! fedora BufReadPost *
   endif
 
-  " See :help restore-cursor. This implementation is taken from Vim's
-  " defaults.vim.
+  " See :help restore-cursor. The top implementation is taken from Neovim's
+  " help files, and the bottom implementation is taken from Vim's defaults.vim.
+  " The reason there are two implementations is that in Neovim, the order in
+  " which different events happen when first starting up and loading a file
+  " seems to be different, so that &filetype might not be set yet when the
+  " BufReadPost happens, which means that I was running into an issue where on
+  " git commit messages, the cursor position was being erroneously remembered.
+  " The top version uses a more complicated trick so that it works on both Vim
+  " and Neovim; however ++once is relatively new so I've added the older method
+  " as well, and specifically excluded COMMIT_EDITMSG so that even if &filetype
+  " is not set, the cursor position will not be remembered on git commit
+  " messages.
   augroup RestoreCursor
     autocmd!
-    autocmd BufReadPost *
-          \ let line = line("'\"")
-          \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
-          \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
-          \      && !&diff
-          \ |   execute "normal! g`\""
-          \ | endif
+    if has('patch-8.1.1113')
+      autocmd BufReadPre * autocmd FileType <buffer> ++once
+            \ let s:line = line("'\"")
+            \ | if s:line >= 1 && s:line <= line("$") && &filetype !~# 'commit'
+            \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
+            \      && !&diff
+            \ |   execute "normal! g`\""
+            \ | endif
+    else
+      autocmd BufReadPost *
+            \ let line = line("'\"")
+            \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+            \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
+            \      && !&diff
+            \      && expand('%:t') !=? 'COMMIT_EDITMSG'
+            \ |   execute "normal! g`\""
+            \ | endif
+    endif
   augroup END
 endif
