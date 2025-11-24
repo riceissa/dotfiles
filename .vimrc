@@ -12,20 +12,21 @@ if !(exists('g:did_load_filetypes') && exists('g:did_load_ftplugin') && exists('
   filetype plugin indent on
 endif
 
+if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
+  syntax enable
+endif
+if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
+  packadd! editorconfig
+endif
+if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/comment'))
+  packadd! comment
+endif
+if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/helptoc'))
+  packadd! helptoc
+  nnoremap gO <Cmd>HelpToc<CR>
+endif
+
 if !has('nvim')
-  if has('syntax') && !exists('g:syntax_on') && (&t_Co > 2 || has("gui_running"))
-    syntax enable
-  endif
-  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))
-    packadd! editorconfig
-  endif
-  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/comment'))
-    packadd! comment
-  endif
-  if exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/helptoc'))
-    packadd! helptoc
-    nnoremap gO <Cmd>HelpToc<CR>
-  endif
   runtime macros/matchit.vim
   runtime ftplugin/man.vim
   if exists(':Man') == 2
@@ -67,20 +68,13 @@ silent! endwhile
 if has('mouse')
   set mouse=nvi
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
-  if !has('nvim') && exists('$TMUX')
+  if exists('&ttymouse') && exists('$TMUX')
     set ttymouse=xterm2
   endif
 endif
 " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
-silent! while 0
-  set wildoptions=tagfile
-  silent! set wildoptions=pum,tagfile
-silent! endwhile
-if has('nvim') || has('patch-8.2.4325')
-  set wildoptions=pum,tagfile
-else
-  set wildoptions=tagfile
-endif
+set wildoptions=tagfile
+silent! set wildoptions=pum,tagfile
 
 set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
@@ -155,7 +149,7 @@ if 1
   cnoremap <expr> <C-X><C-E> &cedit
 endif
 
-if !has('nvim-0.8.0')
+if maparg('*', 'x') ==# ''
   " Modified from https://github.com/nelstrom/vim-visual-star-search
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#visual-star-search-for-vim
   " for more explanation of this implementation.
@@ -189,7 +183,7 @@ if 1
   inoremap <expr> <C-L> &insertmode <Bar><Bar> pumvisible() ? "<C-L>" : '<C-\><C-O>' . <SID>EmacsCtrlL()
 endif
 
-if !has('nvim')
+if maparg('<C-L>', 'n') ==# ''
   " From sensible.vim
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
@@ -228,7 +222,7 @@ if 1
   nnoremap <expr> [P <SID>Paste("P", "")
 endif
 
-if !has('nvim-0.11')
+if maparg(']<Space>', 'n') ==# ''
   function! s:BlankLinesOp(type) abort
     call append(line('.') + s:line_offset, repeat([''], v:count1))
   endfunction
@@ -239,7 +233,9 @@ if !has('nvim-0.11')
   endfunction
   nnoremap <expr> ]<Space> <SID>InsertBlankLinesWithOffset(0)
   nnoremap <expr> [<Space> <SID>InsertBlankLinesWithOffset(-1)
+endif
 
+if maparg(']q', 'n') ==# ''
   nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
   nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
 endif
@@ -286,7 +282,7 @@ if exists(":DiffOrig") != 2
         \ | diffthis | wincmd p | diffthis
 endif
 
-if has('nvim-0.10')
+if !empty(globpath(&rtp, 'colors/vim.*'))
   colorscheme vim
   set notermguicolors
 endif
@@ -315,7 +311,7 @@ if has('autocmd')
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' || &keywordprg ==# ':Man' | setlocal keywordprg=:help | endif
-    if !has('nvim') && !(exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig')))
+    if !(!empty(findfile('plugin/editorconfig.lua', &rtp)) || (exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))))
       autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
     endif
     autocmd FileType kitty setlocal commentstring=#\ %s
