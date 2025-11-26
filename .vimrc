@@ -128,7 +128,7 @@ endif
 " See https://github.com/riceissa/computing-notes/blob/main/vim.md#rsivim
 " for more explanation.
 inoremap <C-A> <C-O>^
-inoremap <C-X><C-A> <C-A>
+inoremap <C-X><C-A> <C-G>u<C-A>
 cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
 inoremap <C-B> <Left>
@@ -311,7 +311,7 @@ if has('autocmd')
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' || &keywordprg ==# ':Man' | setlocal keywordprg=:help | endif
-    if !(!empty(findfile('plugin/editorconfig.lua', &rtp)) || (exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))))
+    if !(!empty(globpath(&rtp, 'plugin/editorconfig.*')) || (exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))))
       autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
     endif
     autocmd FileType kitty setlocal commentstring=#\ %s
