@@ -292,7 +292,6 @@ if has('autocmd')
     autocmd!
     autocmd InsertEnter * set listchars-=trail:@
     autocmd InsertLeave * set listchars+=trail:@
-
     if !has('nvim') && !has('patch-8.2.3464')
       autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
     endif
