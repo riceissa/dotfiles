@@ -42,35 +42,13 @@ set ruler showcmd backspace=indent,eol,start wildmenu
 set ttimeout ttimeoutlen=50 nojoinspaces autoindent
 set hidden  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-hidden
 set nostartofline  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-nostartofline
-set laststatus=2 display=lastline nrformats-=octal complete-=i
-silent! while 0
-  set history=10000
-silent! endwhile
-if &history < 10000
-  set history=10000
-endif
-silent! while 0
-  silent! set belloff=all
-silent! endwhile
-if has('patch-7.4.793')
-  set belloff=all
-endif
-if has('reltime')
-  set incsearch
-endif
-if has('path_extra')
-  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#working-with-tags
-  set tags=./tags;,tags
-endif
-silent! while 0
-  silent! set mouse=nvi
-silent! endwhile
-if has('mouse')
-  set mouse=nvi
-  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
-  if exists('&ttymouse') && exists('$TMUX')
-    set ttymouse=xterm2
-  endif
+set history=10000 laststatus=2 display=lastline nrformats-=octal complete-=i
+silent! set belloff=all
+silent! set incsearch
+silent! set tags=./tags;,tags  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#working-with-tags
+silent! set mouse=nvi
+if has('mouse') && exists('&ttymouse') && exists('$TMUX')
+  set ttymouse=xterm2  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
 endif
 " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 set wildoptions=tagfile
@@ -83,15 +61,9 @@ set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
 set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
 set formatoptions=tcrq
-if v:version > 703 || (v:version == 703 && has('patch541'))
-  set formatoptions+=j
-endif
-if has('clipboard') && (v:version > 703 || (v:version == 703 && has('patch074')))
-  set clipboard^=unnamedplus
-endif
-if exists('+smoothscroll')
-  set smoothscroll
-endif
+silent! set formatoptions+=j
+silent! set clipboard^=unnamedplus
+silent! set smoothscroll
 " Make files without extensions get lower priority when tab-completing. A file
 " without an extension is usually an executable, e.g. prog when prog.c exists,
 " so this effectively means prioritizing the source files.
