@@ -50,9 +50,8 @@ silent! set mouse=nvi
 if has('mouse') && exists('&ttymouse') && exists('$TMUX')
   set ttymouse=xterm2  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
 endif
-" See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 set wildoptions=tagfile
-silent! set wildoptions=pum,tagfile
+silent! set wildoptions=pum,tagfile  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 
 set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
