@@ -10,9 +10,14 @@ font-family = Consolas
 font-size = 12
 
 # Turn off the bell emoji in the title bar
-bell-features = no-system,no-audio,attention,no-title,no-border
+bell-features = no-title
 
-mouse-hide-while-typing
+mouse-hide-while-typing = true
+
+unfocused-split-opacity = 1
+
+# Don't blink the cursor in the shell
+shell-integration-features = no-cursor
 
 # By default Ghostty scrolls a huge amount inside of Neovim. This makes it
 # scroll a more reasonable amount (3 lines).
@@ -24,6 +29,9 @@ adjust-cursor-thickness = 2
 # I habitually type ctrl+enter when I mean enter if I was already holding down
 # the ctrl key, so unbind this (by default Ghostty toggles window maximize).
 keybind = ctrl+enter=unbind
+# Just unbinding the key seems to send weird escape sequences in bash, so
+# actually send a carriage return:
+keybind = ctrl+enter=text:\x0d
 
 # Keybindings to mimic tmux. Commented out lines are ones that as far as I know
 # Ghostty cannot do yet.
