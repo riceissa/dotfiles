@@ -1,0 +1,58 @@
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+theme = light:Builtin Tango Light,dark:Adwaita Dark
+
+font-family = Consolas
+font-size = 12
+
+# Turn off the bell emoji in the title bar
+bell-features = no-system,no-audio,attention,no-title,no-border
+
+mouse-hide-while-typing
+
+# By default Ghostty scrolls a huge amount inside of Neovim. This makes it
+# scroll a more reasonable amount (3 lines).
+mouse-scroll-multiplier = 0.5
+
+# Cursor is way too thin by default.
+adjust-cursor-thickness = 2
+
+# I habitually type ctrl+enter when I mean enter if I was already holding down
+# the ctrl key, so unbind this (by default Ghostty toggles window maximize).
+keybind = ctrl+enter=unbind
+
+# Keybindings to mimic tmux. Commented out lines are ones that as far as I know
+# Ghostty cannot do yet.
+keybind = ctrl+space>shift+quote=new_split:down
+keybind = ctrl+space>shift+5=new_split:right
+# keybind = ctrl+space>!=
+keybind = ctrl+space>x=close_surface
+# keybind = ctrl+space>l=
+keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>p=previous_tab
+keybind = ctrl+space>comma=prompt_surface_title
+# keybind = ctrl+space>}=
+# keybind = ctrl+space>{=
+# keybind = ctrl+space>q=
+keybind = ctrl+space>left=goto_split:left
+keybind = ctrl+space>right=goto_split:right
+keybind = ctrl+space>up=goto_split:up
+keybind = ctrl+space>down=goto_split:down
+# keybind = ctrl+space>space=
+keybind = ctrl+space>shift+semicolon=toggle_command_palette
+keybind = ctrl+space>1=goto_tab:1
+keybind = ctrl+space>2=goto_tab:2
+keybind = ctrl+space>3=goto_tab:3
+keybind = ctrl+space>4=goto_tab:4
+keybind = ctrl+space>5=goto_tab:5
+keybind = ctrl+space>6=goto_tab:6
+keybind = ctrl+space>7=goto_tab:7
+keybind = ctrl+space>8=goto_tab:8
+keybind = ctrl+space>9=goto_tab:9
+keybind = ctrl+space>ctrl+space=text:\x00
+# keybind = ctrl+space>;=
