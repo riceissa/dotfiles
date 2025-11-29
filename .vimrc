@@ -214,7 +214,7 @@ endif
 if exists('*strftime')
   " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
   function! s:CompleteDateTime() abort
-    let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S']
+    let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d-at-%H-%M-%S']
     call complete(col('.'), map(date_formats, 'strftime(v:val)') + [localtime()])
     return ''
   endfunction
