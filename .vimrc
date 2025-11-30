@@ -55,7 +55,7 @@ silent! set wildoptions=pum,tagfile  " See https://github.com/riceissa/computing
 
 set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
-set scrolloff=3 completeopt=menu
+set scrolloff=3 completeopt=menu guicursor=
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
 set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
