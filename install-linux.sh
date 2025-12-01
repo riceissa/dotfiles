@@ -34,6 +34,8 @@ while [ -n "$1" ]; do
         ;;
     vim) install_vim=yes
         ;;
+    vim_commentary) install_vim_commentary=yes
+        ;;
     -h|--help) show_help=yes
         ;;
     *)
@@ -178,4 +180,11 @@ fi
 if [ -n "$install_vim" ]; then
     mkdir -p ~/.vim
     ln -sv "$(pwd)/.vimrc" ~/.vimrc
+fi
+
+if [ -n "$install_vim_commentary" ]; then
+    mkdir -p ~/.vim/pack/tpope/start/commentary/doc
+    mkdir -p ~/.vim/pack/tpope/start/commentary/plugin
+    ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/doc/commentary.txt" ~/.vim/pack/tpope/start/commentary/doc/commentary.txt
+    ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/plugin/commentary.vim" ~/.vim/pack/tpope/start/commentary/plugin/commentary.vim
 fi
