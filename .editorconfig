@@ -8,7 +8,7 @@ indent_style = space
 indent_size = 4
 tab_width = 8
 
-[{*.py,*.c,*.h,*.cpp,*.hs,*.go,*.nim,*.ts,*.js,*.html,*.vim,.vimrc,*.scala}]
+[{*vimrc,*.{c,cpp,css,go,h,hs,html,js,nim,py,scala,ts,vim}}]
 trim_trailing_whitespace = true
 
 [{Makefile,.gitconfig*}]
@@ -19,5 +19,5 @@ indent_size = 8
 indent_style = tab
 tab_width = 4
 
-[{*.nim,*.ts,*.js,*.html,*.vim,.vimrc,*.scala}]
+[{*vimrc,*.{html,vim}}]
 indent_size = 2
