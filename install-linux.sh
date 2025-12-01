@@ -187,4 +187,5 @@ if [ -n "$install_vim_commentary" ]; then
     mkdir -p ~/.vim/pack/tpope/start/commentary/plugin
     ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/doc/commentary.txt" ~/.vim/pack/tpope/start/commentary/doc/commentary.txt
     ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/plugin/commentary.vim" ~/.vim/pack/tpope/start/commentary/plugin/commentary.vim
+    vim -u NONE -c "helptags ~/.vim/pack/tpope/start/commentary/doc" -c q
 fi
