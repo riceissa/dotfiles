@@ -1,26 +1,46 @@
-;; Set default window size
-(setq initial-frame-alist
-          '((width . 81) (height . 32)))
-
-;; For installing packages
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Set variables like PATH so that eshell works more like a normal shell
-(when (and
-        (require 'exec-path-from-shell nil 'noerror)
-        (not (eq system-type 'windows-nt)))
-  (exec-path-from-shell-initialize))
+;; Set default window size
+(setopt initial-frame-alist '((width . 81) (height . 32)))
 
-;; For Japanese input. I like to install this from the Ubuntu
-;; repository rather than melpa. The package is called emacs-mozc.
-(require 'mozc nil 'noerror)
+(setq font-name
+      (if (eq system-type 'windows-nt)
+          "Consolas"
+        "Adwaita Mono"))
+(setq font-height 110)
+(set-face-attribute 'default nil :font font-name :height font-height)
 
-;; Use IPAexGothic for Japanese text. From
-;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Fontsets.html
-(when (fboundp 'set-fontset-font)
-  (set-fontset-font t 'japanese-jisx0208 (font-spec :family "IPAexGothic")))
+(setopt inhibit-startup-screen t)
+(setopt menu-bar-mode nil)
+(setopt tool-bar-mode nil)
+
+(setopt mouse-wheel-progressive-speed nil)
+(setopt mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
+(setopt scroll-conservatively 1000)
+
+(setopt column-number-mode t)
+(setopt global-word-wrap-whitespace-mode t)
+(setopt indent-tabs-mode nil)
+(setopt make-backup-files nil)
+(setopt markdown-enable-math t)
+(setopt require-final-newline t)
+(setopt ring-bell-function 'ignore)
+(setopt save-interprogram-paste-before-kill t)
+(setopt sentence-end-double-space nil)
+(setopt show-paren-mode t)
+(setopt show-trailing-whitespace t)
+(setopt vc-follow-symlinks t)
+
+;; I forgot why I needed to put these lines. Probably because Windows
+;; is stupid and doesn't use UTF-8 by default.
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
+;; This does not seem to actually obey what's in ~/.editorconfig a lot
+;; of the time. I'm not sure why.
+(editorconfig-mode 1)
 
 ;; hunspell provides better spelling suggestions in my opinion.
 ;; To get hunspell on Windows, first install
@@ -36,96 +56,59 @@
 ;; spell checker.
 (if (eq system-type 'windows-nt)
     (progn
-      (setq ispell-program-name "C:/msys64/mingw64/bin/hunspell.exe")
+      (setopt ispell-program-name "C:/msys64/mingw64/bin/hunspell.exe")
       (setenv "DICTIONARY" "en_US"))
   (when (file-exists-p "/usr/bin/hunspell")
-    (setq ispell-program-name "/usr/bin/hunspell")))
+    (setopt ispell-program-name "/usr/bin/hunspell")))
 
 ;; Turn on flyspell in most files
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-(setq font-name
-      (if (eq system-type 'windows-nt)
-          "Consolas"
-        "Adwaita Mono"))
-(setq font-height
-      (if (eq system-type 'windows-nt)
-          110
-        110))
+;; Emacs already binds C-; to flyspell-auto-correct-previous-word.
+;; However, in my experience this command has a couple of bugs:
+;; 1. Sometimes it shifts the screen as if I had typed C-l or something.
+;; 2. It often misses misspelled words (that actually have a red squiggly
+;;    underline) that are closer to point and tries to fix words farther
+;;    away from point.
+;; 3. Possibly related to the bug in (1), if I have multiple copies of
+;;    the same buffer (at different locations) open in different panes,
+;;    then the pane that I am not in will also be shifted.
+;; I may eventually need to roll my own elisp code to get the behavior I
+;; want (basically Vim's insert-mode C-x C-s), but I did notice while
+;; playing around that flyspell mode has this other command to look
+;; backwards to fix a spelling mistake, so I'll be trying it for now.
+(eval-after-load "flyspell"
+    '(define-key flyspell-mode-map (kbd "C-;")
+         'flyspell-check-previous-highlighted-word))
 
-(set-face-attribute 'default nil :font font-name :height font-height)
-
-
-;; For some reason the menu-bar color doesn't change when auto-dark
-;; sets the theme to dark... Since I don't really use the menu bar
-;; anyway, it's not worth the jarring visual.
-(menu-bar-mode 0)
-
-;; How to create the "default"/issa-test theme:
-;; 1. Disable all theme-related emacs configs (including auto-dark), except the following:
-;; Override some colors that the MATE theme sets
-;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
-;; (set-face-attribute 'default nil
-;;                     :font font-name
-;;                     :height font-height
-;;                     :background "white"  ;; equivalent to #ffffff
-;;                     :foreground "gray20" ;; equivalent to #333333
-;;                     )
-;; 2. reopen emacs
-;; 3. M-x customize-create-theme
-;; 4. Save the theme and give it some name; I've called it issa-test
-;; 5. M-x customize-themes
-;; 6. Pick the theme you just created. This will trigger a dialogue box that
-;;    asks you whether to mark it as safe, so say "yes" to it. This gets saved as
-;;    a hash in custom-safe-themes.
-;; 7. Now you have the default emacs theme as a named theme that you can use
-;;    with auto-dark!
+(setopt org-agenda-files '("~/todo.org"))
+(setopt org-capture-templates
+      '(("i" "Idea" entry (file "~/notes.org") "* %T %?")
+           ("t" "TODO item" entry (file+headline "~/todo.org" "Tasks")
+               "* TODO %?\12  %i\12")))
+(setopt org-clock-mode-line-total 'today)
+(setopt org-duration-format 'h:mm)
+(setopt org-format-latex-options
+      '(:foreground default :background default :scale 1.3 :html-foreground
+           "Black" :html-background "Transparent" :html-scale 1.0
+           :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
+(setopt org-startup-truncated nil)
+(setopt org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
+(setopt preview-scale-function 1.2)
+(setq org-default-notes-file "~/todo.org")
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-dark-themes '((tango-dark) (issa-test)))
- '(column-number-mode t)
  '(custom-safe-themes
-      '("b4b884ae77b70a295ec0f439d111eaac92f1267db1b8ac251bd61a5c30d93f79"
-           "754a5b30420d827cb709da8ed9ebea1d549fb9b112a9e4e9c952085481982645"
+      '("ff0d5f6adf3182829eee9ace64d2e32bc0f0e00890eb54879cac364be9dc243f"
            default))
- '(global-word-wrap-whitespace-mode t)
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(magit-diff-refine-hunk 'all)
- '(make-backup-files nil)
- '(markdown-enable-math t)
- '(mouse-wheel-progressive-speed nil)
- '(mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
- '(org-agenda-files '("~/todo.org"))
- '(org-capture-templates
-      '(("i" "Idea" entry (file "~/notes.org") "* %T %?")
-           ("t" "TODO item" entry (file+headline "~/todo.org" "Tasks")
-               "* TODO %?\12  %i\12")))
- '(org-clock-mode-line-total 'today)
- '(org-duration-format 'h:mm)
- '(org-format-latex-options
-      '(:foreground default :background default :scale 1.3 :html-foreground
-           "Black" :html-background "Transparent" :html-scale 1.0
-           :matchers ("begin" "$1" "$" "$$" "\\(" "\\[")))
- '(org-startup-truncated nil)
- '(org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "SOMEDAY(s)" "DONE(d)")))
- '(package-selected-packages
-      '(auctex auto-dark exec-path-from-shell magit markdown-mode s vertico))
- '(preview-scale-function 1.2)
- '(require-final-newline t)
- '(ring-bell-function 'ignore)
- '(save-interprogram-paste-before-kill t)
- '(scroll-conservatively 1000)
- '(sentence-end-double-space nil)
- '(show-paren-mode t)
- '(show-trailing-whitespace t)
- '(tool-bar-mode nil)
- '(vc-follow-symlinks t))
+ '(package-selected-packages '(auctex auto-dark magit markdown-mode s)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -135,7 +118,6 @@
  '(markdown-code-face ((t nil)))
  '(markdown-inline-code-face ((t nil))))
 
-;; MediaWiki setup
 (setq mymediawiki-highlights
       '(("<ref[^>/]*>?[^<]*\\(</ref>\\|/>\\)" . font-lock-constant-face)))
 (define-derived-mode mymediawiki-mode text-mode "mymediawiki"
@@ -147,19 +129,6 @@
           '(lambda ()
              (setq-local sentence-end-without-space
                    (concat sentence-end-without-space "<"))))
-
-(setq org-default-notes-file "~/todo.org")
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-
-(define-key 'iso-transl-ctl-x-8-map "el" [?…])
-
-
-;; I forgot why I needed to put these lines. Probably because Windows
-;; is stupid.
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-
 
 ;; Make C-w work as in Bash.
 ;; This still doesn't work exactly like in bash, since bash seems to
@@ -196,7 +165,7 @@ in a smart sort of way like C-w in bash."
                        (goto-char (max (point) original-line-beginning))))))))
 
 
-;;; spaced inbox stuff
+;; spaced inbox stuff
 
 (defun daily-note-separator ()
   "Insert the daily note separator for spaced inbox."
@@ -243,6 +212,7 @@ in a smart sort of way like C-w in bash."
 ;;(global-set-key (kbd "C-c d") 'daily-note-separator)
 
 
+(setopt magit-diff-refine-hunk 'all)
 (when (fboundp 'magit-diff-buffer-file)
   ;; This is like ":Git diff %" in fugitive.vim
   (global-set-key (kbd "C-x C-d")
@@ -251,84 +221,53 @@ in a smart sort of way like C-w in bash."
                      (setq truncate-lines nil)
                      (diff-refine-hunk)
                      (delete-other-windows))))
-
 (add-hook 'magit-diff-mode-hook
           '(lambda () (setq-local truncate-lines nil)))
+(when (fboundp 'magit-status)
+  (global-set-key (kbd "C-x g") 'magit-status))
+;; For pushing with git on windows
+(when (eq system-type 'windows-nt)
+    (setenv "SSH_ASKPASS" "git-gui--askpass"))
 
 ;; from https://tex.stackexchange.com/a/392038/18026
 (add-hook 'LaTeX-mode-hook
           (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
                           (cons "\\(" "\\)"))))
 
-(when (fboundp 'magit-status)
-  (global-set-key (kbd "C-x g") 'magit-status))
-
-(setq c-default-style "linux")
-(add-hook 'c-mode-hook #'(lambda ()
-                           (setq-local indent-tabs-mode t
-                                       tab-width 8
-                                       comment-start "// "
-                                       comment-end "")))
-
-;; For pushing with git on windows
-(when (eq system-type 'windows-nt)
-    (setenv "SSH_ASKPASS" "git-gui--askpass"))
-
-
-;; Having a server was mostly useful when I was communicating
-;; to Emacs via the server in spaced inbox. But now Emacs
-;; initiates the communication so I don't really need to have
-;; a server running.
-;; (require 'server)
-;; (unless (server-running-p)
-;;   (server-start))
-
-
-;; Emacs already binds C-; to flyspell-auto-correct-previous-word. However, in my experience this command has a couple of bugs:
-;; 1. Sometimes it shifts the screen as if I had typed C-l or something
-;; 2. It often misses misspelled words (that actually have a red squiggly underline) that are closer to point and tries to fix words farther away from point
-;; 3. Possibly related to the bug in (1), if I have multiple copies of the same buffer (at different locations) open in different panes, then the pane that I am not in will also be shifted
-;; I may eventually need to roll my own elisp code to get the behavior I want (basically Vim's insert-mode C-x C-s), but I did notice while playing around that flyspell mode has this other command to look backwards to fix a spelling mistake, so I'll be trying it for now.
-(eval-after-load "flyspell"
-  '(define-key flyspell-mode-map (kbd "C-;") 'flyspell-check-previous-highlighted-word))
-
+;; How to create the "default"/issa-test theme:
+;; 1. Disable all theme-related emacs configs (including auto-dark), except the following:
+;; Override some colors that the MATE theme sets
+;; (set-face-attribute 'region nil :background "LightGoldenrod2") ;; equivalent to #eedc82
+;; (set-face-attribute 'default nil
+;;                     :font font-name
+;;                     :height font-height
+;;                     :background "white"  ;; equivalent to #ffffff
+;;                     :foreground "gray20" ;; equivalent to #333333
+;;                     )
+;; 2. reopen emacs
+;; 3. M-x customize-create-theme
+;; 4. Save the theme and give it some name; I've called it issa-test
+;; 5. M-x customize-themes
+;; 6. Pick the theme you just created. This will trigger a dialogue box that
+;;    asks you whether to mark it as safe, so say "yes" to it. This gets saved as
+;;    a hash in custom-safe-themes.
+;; 7. Now you have the default emacs theme as a named theme that you can use
+;;    with auto-dark!
 
 ;; auto-dark must be enabled after setting the auto-dark-themes
-;; variable, otherwise it starts to load random themes like leuven and
+;; option; otherwise it starts to load random themes like leuven and
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
+(setopt auto-dark-themes '((tango-dark) (issa-test)))
+;; (setopt auto-dark-dark-theme 'tango-dark)
+;; (setopt auto-dark-light-theme 'issa-test)
 (require 'auto-dark)
 (auto-dark-mode t)
 
-;; Stuff to do on startup -- only on windows, because for some reason emacs on windows is much slower
-;; (find-file "C:\\Users\\Issa\\projects\\notes\\inbox.txt")
-;; (end-of-buffer)
-;; (org-agenda-list)
-
-;; Stuff to do on startup, on Linux
+;; Stuff to do on startup
 (let ((inbox-file "/home/issa/projects/notes/inbox.txt"))
     (when (file-exists-p inbox-file)
         (find-file inbox-file)
         (end-of-buffer)
         (recenter-top-bottom)
         (roll)))
-
-;; this does not seem to actually obey what's in ~/.editorconfig WHY emacs
-(editorconfig-mode t)
-
-
-(use-package vertico
-    :init
-    (vertico-mode))
-
-(defun my/vertico-smart-return ()
-    "If the currently selected match is a directory, just insert it instead of opening it with dired mode. Otherwise, just open the thing as usual."
-    (interactive)
-    (if (string-suffix-p "/" (vertico--candidate))
-        (vertico-insert)
-        (vertico-exit)))
-
-(define-key vertico-map (kbd "TAB") 'vertico-next)
-(define-key vertico-map (kbd "<backtab>") 'vertico-previous)
-(define-key vertico-map (kbd "RET") 'my/vertico-smart-return)
-(define-key vertico-map (kbd "C-<return>") 'vertico-exit-input)
