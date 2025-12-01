@@ -1,12 +1,7 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-cat <<'EOF'
-Usage:
-    ./install-linux.sh [program...]
-For more help:
-    ./install-linux.sh --help
-EOF
+    show_help=yes
 fi
 
 while [ -n "$1" ]; do
@@ -20,6 +15,8 @@ while [ -n "$1" ]; do
     gf) install_gf=yes
         ;;
     git) install_git=yes
+        ;;
+    git_diff_highlight) install_git_diff_highlight=yes
         ;;
     kitty) install_kitty=yes
         ;;
@@ -39,22 +36,27 @@ while [ -n "$1" ]; do
         ;;
     -h|--help) show_help=yes
         ;;
+    *)
+        echo "Unknown program '$1'"
     esac
     shift
 done
 
 if [ -n "$show_help" ]; then
 cat <<'EOF'
-Install script for dotfiles.
+Usage:
+  ./install-linux.sh [options] [programs...]
 
-./install-linux.sh [program...]
-./install-linux.sh {-h|--help}
+Options:
+  -h, --help        Show this help
 
-Supported programs: bash, editorconfig, emacs, gf, git, kitty, lazygit,
-                    local_bin, neovim, newsboat, proselint, tmux, vim
+Arguments:
+  programs          Can be one or more of the following, separated by spaces:
+                    bash, editorconfig, emacs, gf, git, git_diff_highlight,
+                    kitty, lazygit, local_bin, neovim, newsboat, proselint,
+                    tmux, vim
 
 For instance to install dotfiles for Vim and tmux, run:
-
     ./install-linux.sh vim tmux
 EOF
     exit
@@ -110,6 +112,9 @@ fi
 if [ -n "$install_git" ]; then
     ln -sv "$(pwd)/.gitconfig" ~/.gitconfig
     ln -sv "$(pwd)/.cvsignore" ~/.cvsignore
+fi
+
+if [ -n "$install_git_diff_highlight" ]; then
     search_result="$(find /usr -type f -name "diff-highlight" 2>/dev/null)"
     result_count=$(echo "$search_result" | wc -l)
     if [ "$result_count" -eq 1 ]; then
