@@ -36,6 +36,8 @@ while [ -n "$1" ]; do
         ;;
     vim_commentary) install_vim_commentary=yes
         ;;
+    vim_sleuth) install_vim_sleuth=yes
+        ;;
     -h|--help) show_help=yes
         ;;
     *)
@@ -56,7 +58,7 @@ Arguments:
   programs          Can be one or more of the following, separated by spaces:
                     bash, editorconfig, emacs, gf, git, git_diff_highlight,
                     kitty, lazygit, local_bin, neovim, newsboat, proselint,
-                    tmux, vim, vim_commentary
+                    tmux, vim, vim_commentary, vim_sleuth
 
 For instance to install dotfiles for Vim and tmux, run:
     ./install-linux.sh vim tmux
@@ -188,4 +190,12 @@ if [ -n "$install_vim_commentary" ]; then
     ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/doc/commentary.txt" ~/.vim/pack/tpope/start/commentary/doc/commentary.txt
     ln -sv "$(pwd)/.vim/pack/tpope/start/commentary/plugin/commentary.vim" ~/.vim/pack/tpope/start/commentary/plugin/commentary.vim
     vim -u NONE -c "helptags ~/.vim/pack/tpope/start/commentary/doc" -c q
+fi
+
+if [ -n "$install_vim_sleuth" ]; then
+    mkdir -p ~/.vim/pack/tpope/start/sleuth/doc
+    mkdir -p ~/.vim/pack/tpope/start/sleuth/plugin
+    ln -sv "$(pwd)/.vim/pack/tpope/start/sleuth/doc/sleuth.txt" ~/.vim/pack/tpope/start/sleuth/doc/sleuth.txt
+    ln -sv "$(pwd)/.vim/pack/tpope/start/sleuth/plugin/sleuth.vim" ~/.vim/pack/tpope/start/sleuth/plugin/sleuth.vim
+    vim -u NONE -c "helptags ~/.vim/pack/tpope/start/sleuth/doc" -c q
 fi
