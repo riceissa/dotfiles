@@ -56,7 +56,7 @@ Arguments:
   programs          Can be one or more of the following, separated by spaces:
                     bash, editorconfig, emacs, gf, git, git_diff_highlight,
                     kitty, lazygit, local_bin, neovim, newsboat, proselint,
-                    tmux, vim
+                    tmux, vim, vim_commentary
 
 For instance to install dotfiles for Vim and tmux, run:
     ./install-linux.sh vim tmux
