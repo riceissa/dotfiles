@@ -39,7 +39,7 @@ endif
 set ruler showcmd backspace=indent,eol,start wildmenu
 
 " Copying some of the Neovim defaults that I like
-set ttimeout ttimeoutlen=50 nojoinspaces autoindent
+set ttimeout ttimeoutlen=50 nojoinspaces autoindent autoread
 set hidden  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-hidden
 set nostartofline  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-nostartofline
 set history=10000 laststatus=2 display=lastline nrformats-=octal complete-=i
@@ -261,8 +261,12 @@ endif
 if has('autocmd')
   augroup vimrc
     autocmd!
-    autocmd InsertEnter * set listchars-=trail:@
-    autocmd InsertLeave * set listchars+=trail:@
+    if has('nvim')
+      " The cursor flickers every time I go into insert mode in Vim, so only do
+      " this for Neovim.
+      autocmd InsertEnter * set listchars-=trail:@
+      autocmd InsertLeave * set listchars+=trail:@
+    endif
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#formatoptions
     autocmd FileType * set formatoptions-=o
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#haskell-shebang
@@ -304,4 +308,46 @@ if has('autocmd')
           \ |   execute "normal! g`\""
           \ | endif
   augroup END
+endif
+
+if !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
+  " Modified from https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
+  " Mouse support
+  set ttymouse=sgr
+  set balloonevalterm
+  " Styled and colored underline support
+  let &t_AU = "\e[58:5:%dm"
+  let &t_8u = "\e[58:2:%lu:%lu:%lum"
+  let &t_Us = "\e[4:2m"
+  let &t_Cs = "\e[4:3m"
+  let &t_ds = "\e[4:4m"
+  let &t_Ds = "\e[4:5m"
+  let &t_Ce = "\e[4:0m"
+  " Strikethrough
+  let &t_Ts = "\e[9m"
+  let &t_Te = "\e[29m"
+  " Truecolor support
+  let &t_8f = "\e[38:2:%lu:%lu:%lum"
+  let &t_8b = "\e[48:2:%lu:%lu:%lum"
+  let &t_RF = "\e]10;?\e\\"
+  let &t_RB = "\e]11;?\e\\"
+  " Bracketed paste
+  let &t_BE = "\e[?2004h"
+  let &t_BD = "\e[?2004l"
+  let &t_PS = "\e[200~"
+  let &t_PE = "\e[201~"
+  " Focus tracking
+  let &t_fe = "\e[?1004h"
+  let &t_fd = "\e[?1004l"
+  execute "set <FocusGained>=\<Esc>[I"
+  execute "set <FocusLost>=\<Esc>[O"
+  " Window title
+  let &t_ST = "\e[22;2t"
+  let &t_RT = "\e[23;2t"
+
+  " vim hardcodes background color erase even if the terminfo file does
+  " not contain bce. This causes incorrect background rendering when
+  " using a color theme with a background color in terminals such as
+  " kitty that do not support background color erase.
+  let &t_ut=''
 endif
