@@ -263,9 +263,7 @@ if has('autocmd')
     autocmd!
     autocmd InsertEnter * set listchars-=trail:@
     autocmd InsertLeave * set listchars+=trail:@
-    if !has('nvim') && !has('patch-8.2.3464')
-      autocmd BufNewFile,BufRead /etc/nginx/* setfiletype nginx
-    endif
+    autocmd BufNewFile,BufRead /etc/nginx/* setlocal filetype=nginx  " Some of my nginx config files end in .com because they are named after domain names, but this makes Vim detect them as dcl files.
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#formatoptions
     autocmd FileType * set formatoptions-=o
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#haskell-shebang
