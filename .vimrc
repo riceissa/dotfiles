@@ -51,7 +51,10 @@ if has('mouse') && exists('&ttymouse') && exists('$TMUX')
   set ttymouse=xterm2  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
 endif
 set wildoptions=tagfile
-silent! set wildoptions=pum,tagfile  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
+silent! set wildoptions^=pum  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
+nnoremap Y y$
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
 
 set expandtab shiftwidth=4 softtabstop=4
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
@@ -70,7 +73,6 @@ set suffixes+=,
 " And a few more extensions I am unlikely to want to open in Vim:
 set suffixes+=.pdf,.epub,.ttf
 
-nnoremap Y y$
 nnoremap g/ /[^\d32-\d126]<CR>
 
 " Mapping using C-/ works on kitty but not Gnome Terminal. Mapping using C-_
@@ -84,8 +86,6 @@ if 1
   nnoremap <expr> <C-_> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
 endif
 
-inoremap <C-U> <C-G>u<C-U>
-inoremap <C-W> <C-G>u<C-W>
 if 1
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#better-j-and-k
   " for explanation.
@@ -141,8 +141,8 @@ if maparg('*', 'x') ==# ''
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
 endif
 
+" From sensible.vim
 if maparg('<C-L>', 'n') ==# ''
-  " From sensible.vim
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
