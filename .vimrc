@@ -53,7 +53,7 @@ endif
 set wildoptions=tagfile
 silent! set wildoptions=pum,tagfile  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 
-set expandtab shiftwidth=4 softtabstop=4  " In case EditorConfig is not available
+set expandtab shiftwidth=4 softtabstop=4
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
 set scrolloff=3 completeopt=menu guicursor=
 set nohlsearch ignorecase smartcase
@@ -139,19 +139,6 @@ if maparg('*', 'x') ==# ''
   endfunction
   xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
   xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
-endif
-
-if 1
-  function! s:EmacsCtrlL() abort
-    if abs(winline()) <= 1+&scrolloff
-      return "zb"
-    elseif abs(winline() - (1+winheight(0))/2) <= 1
-      return "zt"
-    else
-      return "zz"
-    endif
-  endfunction
-  inoremap <expr> <C-L> &insertmode <Bar><Bar> pumvisible() ? "<C-L>" : '<C-\><C-O>' . <SID>EmacsCtrlL()
 endif
 
 if maparg('<C-L>', 'n') ==# ''
@@ -253,20 +240,9 @@ if exists(":DiffOrig") != 2
         \ | diffthis | wincmd p | diffthis
 endif
 
-if !empty(globpath(&rtp, 'colors/vim.*'))
-  colorscheme vim
-  set notermguicolors
-endif
-
 if has('autocmd')
   augroup vimrc
     autocmd!
-    if has('nvim')
-      " The cursor flickers every time I go into insert mode in Vim, so only do
-      " this for Neovim.
-      autocmd InsertEnter * set listchars-=trail:@
-      autocmd InsertLeave * set listchars+=trail:@
-    endif
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#formatoptions
     autocmd FileType * set formatoptions-=o
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#haskell-shebang
@@ -282,9 +258,6 @@ if has('autocmd')
     " See https://github.com/riceissa/computing-notes/blob/main/vim.md#fix-gc-in-vim-files-in-neovim
     autocmd FileType vim setlocal textwidth=0 commentstring=\"\ %s
     autocmd FileType vim if &keywordprg ==# '' || &keywordprg ==# ':Man' | setlocal keywordprg=:help | endif
-    if !(!empty(globpath(&rtp, 'plugin/editorconfig.*')) || (exists('+packpath') && !empty(globpath(&packpath, 'pack/*/opt/editorconfig'))))
-      autocmd FileType vim setlocal expandtab shiftwidth=2 softtabstop=2
-    endif
     autocmd FileType kitty setlocal commentstring=#\ %s
   augroup END
 
@@ -311,43 +284,27 @@ if has('autocmd')
 endif
 
 if !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
-  " Modified from https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
-  " Mouse support
-  set ttymouse=sgr
-  set balloonevalterm
-  " Styled and colored underline support
-  let &t_AU = "\e[58:5:%dm"
-  let &t_8u = "\e[58:2:%lu:%lu:%lum"
-  let &t_Us = "\e[4:2m"
-  let &t_Cs = "\e[4:3m"
-  let &t_ds = "\e[4:4m"
-  let &t_Ds = "\e[4:5m"
-  let &t_Ce = "\e[4:0m"
-  " Strikethrough
-  let &t_Ts = "\e[9m"
-  let &t_Te = "\e[29m"
+  " Modified from
+  " https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
   " Truecolor support
   let &t_8f = "\e[38:2:%lu:%lu:%lum"
   let &t_8b = "\e[48:2:%lu:%lu:%lum"
   let &t_RF = "\e]10;?\e\\"
   let &t_RB = "\e]11;?\e\\"
-  " Bracketed paste
-  let &t_BE = "\e[?2004h"
-  let &t_BD = "\e[?2004l"
-  let &t_PS = "\e[200~"
-  let &t_PE = "\e[201~"
   " Focus tracking
   let &t_fe = "\e[?1004h"
   let &t_fd = "\e[?1004l"
   execute "set <FocusGained>=\<Esc>[I"
   execute "set <FocusLost>=\<Esc>[O"
-  " Window title
-  let &t_ST = "\e[22;2t"
-  let &t_RT = "\e[23;2t"
 
   " vim hardcodes background color erase even if the terminfo file does
   " not contain bce. This causes incorrect background rendering when
   " using a color theme with a background color in terminals such as
   " kitty that do not support background color erase.
   let &t_ut=''
+endif
+
+if !empty(globpath(&rtp, 'colors/vim.*'))
+  colorscheme vim
+  set notermguicolors
 endif
