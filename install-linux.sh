@@ -122,13 +122,17 @@ if [ -n "$install_git_diff_highlight" ]; then
     search_result="$(find /usr -type f -name "diff-highlight" 2>/dev/null)"
     result_count=$(echo "$search_result" | wc -l)
     if [ "$result_count" -eq 1 ]; then
-        echo "diff-highlight found; we are going to create a symlink and make it executable. Need to become root in order to do this:"
+        echo "diff-highlight found; we are going to create a symlink and make it executable."
+        echo "Need to become root in order to do this:"
         sudo ln -sv $search_result /usr/bin/diff-highlight
         sudo chmod +x $search_result
     elif [ "$result_count" -eq 0 ]; then
         echo "diff-highlight not found; not going to create a symlink."
     else
-        echo "Multiple files named diff-highlight were found; since we can't figure out which one is the real one, we are not going to create a symlink, but here are the files we found so you can figure out which one is the real diff-highlight:"
+        echo "Multiple files named diff-highlight were found; since we can't figure out"
+        echo "which one is the real one, we are not going to create a symlink,"
+        echo "but here are the files we found so you can figure out which one"
+        echo "is the real diff-highlight:"
         echo "$search_result"
     fi
 fi
