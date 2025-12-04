@@ -221,8 +221,8 @@ in a smart sort of way like C-w in bash."
                      (setq truncate-lines nil)
                      (diff-refine-hunk)
                      (delete-other-windows))))
-(add-hook 'magit-diff-mode-hook
-          '(lambda () (setq-local truncate-lines nil)))
+(add-hook 'magit-mode-hook
+    #'(lambda () (setq-local truncate-lines nil)))
 (when (fboundp 'magit-status)
   (global-set-key (kbd "C-x g") 'magit-status))
 ;; For pushing with git on windows
