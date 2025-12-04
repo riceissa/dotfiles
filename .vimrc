@@ -133,7 +133,7 @@ else
   cnoremap <C-X><C-E> <C-F>
 endif
 
-if v:version >= 700 && maparg('*', 'x') ==# ''
+if maparg('*', 'x') ==# ''
   " Modified from https://github.com/nelstrom/vim-visual-star-search
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#visual-star-search-for-vim
   " for more explanation of this implementation.
@@ -150,8 +150,13 @@ if v:version >= 700 && maparg('*', 'x') ==# ''
     call histadd('/', search)
     call setreg('s', s_contents, s_type)
   endfunction
-  xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
-  xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+  if v:version >= 700
+    xnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
+    xnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+  else
+    vnoremap * :<C-U>call <SID>VisualStarSearch()<CR>/<CR>
+    vnoremap # :<C-U>call <SID>VisualStarSearch()<CR>?<CR>
+  endif
 endif
 
 " From sensible.vim
@@ -206,9 +211,9 @@ if v:version >= 700 && maparg(']<Space>', 'n') ==# ''
   nnoremap <expr> [<Space> <SID>InsertBlankLinesWithOffset(-1)
 endif
 
-if v:version >= 700 && maparg(']q', 'n') ==# ''
-  nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
-  nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
+if maparg(']q', 'n') ==# ''
+  nnoremap <silent> ]q :<C-U><C-R>=v:count1<CR>cnext<CR>
+  nnoremap <silent> [q :<C-U><C-R>=v:count1<CR>cprevious<CR>
 endif
 
 if v:version >= 700 && exists('*strftime')
