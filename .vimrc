@@ -289,7 +289,7 @@ if has('autocmd')
     autocmd! fedora BufReadPost *
   endif
 
-  " See :help restore-cursor. This implementation is taken from Vim's
+  " See :help restore-cursor. This implementation is modified from Vim's
   " defaults.vim.
   augroup RestoreCursor
     autocmd!
