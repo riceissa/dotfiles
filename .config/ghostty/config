@@ -33,6 +33,9 @@ keybind = ctrl+enter=unbind
 # actually send a carriage return:
 keybind = ctrl+enter=text:\x0d
 
+# Ctrl-m at the shell doesn't seem to work, so map it to a carriage return.
+keybind = ctrl+m=text:\x0d
+
 # Keybindings to mimic tmux. Commented out lines are ones that as far as I know
 # Ghostty cannot do yet.
 keybind = ctrl+space>shift+quote=new_split:down
