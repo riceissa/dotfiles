@@ -50,7 +50,7 @@ silent! set mouse=nvi
 if has('mouse') && exists('&ttymouse') && exists('$TMUX')
   set ttymouse=xterm2  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
 endif
-set wildoptions=tagfile
+silent! set wildoptions=tagfile
 silent! set wildoptions^=pum  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#wildoptions
 nnoremap Y y$
 inoremap <C-U> <C-G>u<C-U>
@@ -58,10 +58,11 @@ inoremap <C-W> <C-G>u<C-W>
 
 set expandtab shiftwidth=4 softtabstop=4
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
-set scrolloff=3 completeopt=menu guicursor=
+set scrolloff=3 guicursor=
+silent! set completeopt=menu
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
-set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
+silent! set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
 set formatoptions=tcrq
 silent! set formatoptions+=j
 silent! set clipboard^=unnamedplus
@@ -81,18 +82,21 @@ nnoremap g/ /[^\d32-\d126]<CR>
 " as if I typed /, and pressing C-_ makes the font size smaller). There might
 " also be a Vim vs Neovim thing going on. Having both mappings here makes it
 " work in all the terminal + Vim/Neovim + tmux configurations I've tried.
-if 1
+if v:version >= 700
   nnoremap <expr> <C-/> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
   nnoremap <expr> <C-_> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
 endif
 
-if 1
+if v:version >= 700
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#better-j-and-k
   " for explanation.
   nnoremap <expr> j v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'j' : 'gj'
   nnoremap <expr> k v:count > 0 <Bar><Bar> &filetype ==# 'qf' ? 'k' : 'gk'
   xnoremap <expr> j mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" <Bar><Bar> v:count > 0 ? 'j' : 'gj'
   xnoremap <expr> k mode() ==# 'V' <Bar><Bar> mode() ==# "\<C-V>" <Bar><Bar> v:count > 0 ? 'k' : 'gk'
+else
+  nnoremap <silent> j :<C-U>normal! <C-R>=v:count > 0 <bar><bar> &filetype ==# "qf" ? v:count1 . "j" : v:count1 . "gj"<CR><CR>
+  nnoremap <silent> k :<C-U>normal! <C-R>=v:count > 0 <bar><bar> &filetype ==# "qf" ? v:count1 . "k" : v:count1 . "gk"<CR><CR>
 endif
 
 " See :help emacs-keys. These particular mappings are mostly from rsi.vim.
@@ -111,16 +115,22 @@ silent! while 0
   cnoremap <C-F> <Right>
   cnoremap <C-X><C-E> <C-F>
 silent! endwhile
-if 1
+if v:version >= 700
   inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
   cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
   inoremap <expr> <C-E> col(".") >= col("$") ? "<C-E>" : "<End>"
   inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
   cnoremap <expr> <C-X><C-E> &cedit
+else
+  inoremap <C-D> <Del>
+  inoremap <C-E> <End>
+  inoremap <C-F> <Right>
+  cnoremap <C-F> <Right>
+  cnoremap <C-X><C-E> <C-F>
 endif
 
-if maparg('*', 'x') ==# ''
+if v:version >= 700 && maparg('*', 'x') ==# ''
   " Modified from https://github.com/nelstrom/vim-visual-star-search
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#visual-star-search-for-vim
   " for more explanation of this implementation.
@@ -146,7 +156,7 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-if 1
+if v:version >= 700
   function! s:LinewisePasteOp(type) abort
     let s_type = getregtype('s')
     if has('patch-7.4.513')
@@ -180,7 +190,7 @@ if 1
   nnoremap <expr> [P <SID>Paste("P", "")
 endif
 
-if maparg(']<Space>', 'n') ==# ''
+if v:version >= 700 && maparg(']<Space>', 'n') ==# ''
   function! s:BlankLinesOp(type) abort
     call append(line('.') + s:line_offset, repeat([''], v:count1))
   endfunction
@@ -193,12 +203,12 @@ if maparg(']<Space>', 'n') ==# ''
   nnoremap <expr> [<Space> <SID>InsertBlankLinesWithOffset(-1)
 endif
 
-if maparg(']q', 'n') ==# ''
+if v:version >= 700 && maparg(']q', 'n') ==# ''
   nnoremap <expr><silent> ]q ":<C-U>" . v:count1 . "cnext<CR>"
   nnoremap <expr><silent> [q ":<C-U>" . v:count1 . "cprevious<CR>"
 endif
 
-if exists('*strftime')
+if v:version >= 700 && exists('*strftime')
   " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
   function! s:CompleteDateTime() abort
     let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d-at-%H-%M-%S']
@@ -214,7 +224,7 @@ endif
 silent! while 0
   cnoremap %% %:h/<C-L>
 silent! endwhile
-if 1
+if v:version >= 700
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
 
@@ -226,9 +236,11 @@ if 1
   let c_no_curly_error = 1
 
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#python-indent
-  let g:python_indent = {}
-  let g:python_indent.open_paren = 'shiftwidth()'
-  let g:python_indent.closed_paren_align_last_line = 0
+  if v:version >= 700
+    let g:python_indent = {}
+    let g:python_indent.open_paren = 'shiftwidth()'
+    let g:python_indent.closed_paren_align_last_line = 0
+  endif
   " Old style, for older versions of Vim; there is no equivalent of
   " closed_paren_align_last_line in the old style configuration.
   let g:pyindent_open_paren = '&sw'
@@ -276,14 +288,14 @@ if has('autocmd')
     autocmd BufReadPost *
           \ let line = line("'\"")
           \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
-          \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
+          \      && &filetype !=# 'xxd' && &filetype !=# 'gitrebase' && &filetype !=# 'tutor'
           \      && !&diff
           \ |   execute "normal! g`\""
           \ | endif
   augroup END
 endif
 
-if !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
+if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
   " Modified from
   " https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
   " Truecolor support
@@ -304,7 +316,7 @@ if !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
   let &t_ut=''
 endif
 
-if !empty(globpath(&rtp, 'colors/vim.*'))
+if v:version >= 700 && !empty(globpath(&rtp, 'colors/vim.*'))
   colorscheme vim
   set notermguicolors
 endif
