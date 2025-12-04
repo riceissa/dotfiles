@@ -85,6 +85,9 @@ nnoremap g/ /[^\d32-\d126]<CR>
 if v:version >= 700
   nnoremap <expr> <C-/> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
   nnoremap <expr> <C-_> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
+else
+  nnoremap <C-/> :<C-U>set hlsearch!<CR>
+  nnoremap <C-_> :<C-U>set hlsearch!<CR>
 endif
 
 if v:version >= 700
