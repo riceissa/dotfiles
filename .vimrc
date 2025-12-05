@@ -232,7 +232,7 @@ endif
 silent! while 0
   cnoremap %% %:h/<C-L>
 silent! endwhile
-if v:version >= 700
+if v:version >= 701
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
 
