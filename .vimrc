@@ -216,7 +216,7 @@ if maparg(']q', 'n') ==# ''
   nnoremap <silent> [q :<C-U><C-R>=v:count1<CR>cprevious<CR>
 endif
 
-if v:version >= 700 && exists('*strftime')
+if exists('*complete') && exists('*strftime')
   " Modified from https://github.com/tpope/dotfiles/blob/c743f64380910041de605546149b0575ed0538ce/.vimrc#L284
   function! s:CompleteDateTime() abort
     let date_formats = ['%Y-%m-%d', '%B %-d, %Y', '%B %Y', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d-at-%H-%M-%S']
@@ -232,7 +232,7 @@ endif
 silent! while 0
   cnoremap %% %:h/<C-L>
 silent! endwhile
-if v:version >= 701
+if exists('*getcmdtype') && exists('*fnameescape')
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
 
@@ -324,7 +324,7 @@ if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty
   let &t_ut=''
 endif
 
-if v:version >= 700 && !empty(globpath(&rtp, 'colors/vim.*'))
+if exists('*empty') && !empty(globpath(&rtp, 'colors/vim.*'))
   colorscheme vim
   set notermguicolors
 endif
