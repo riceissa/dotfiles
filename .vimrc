@@ -306,12 +306,12 @@ endif
 if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
   " Modified from
   " https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
-  " Truecolor support
+  " Truecolor support (for automatic 'background' detection)
   let &t_8f = "\e[38:2:%lu:%lu:%lum"
   let &t_8b = "\e[48:2:%lu:%lu:%lum"
   let &t_RF = "\e]10;?\e\\"
   let &t_RB = "\e]11;?\e\\"
-  " Focus tracking
+  " Focus tracking (for 'autoread')
   let &t_fe = "\e[?1004h"
   let &t_fd = "\e[?1004l"
   execute "set <FocusGained>=\<Esc>[I"
