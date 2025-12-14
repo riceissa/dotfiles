@@ -120,7 +120,13 @@ fi
 
 if [ -n "$install_git_diff_highlight" ]; then
     search_result="$(find /usr -type f -name "diff-highlight" 2>/dev/null)"
-    result_count=$(echo "$search_result" | wc -l)
+    result_count=0
+    # When counting lines with wc -l, even an empty output will be considered
+    # to have 1 line, so we need to first check whether the output is empty or
+    # not, and only if the output is non-empty do we count the lines.
+    if [ -n "$search_result" ]; then
+        result_count=$(echo "$search_result" | wc -l)
+    fi
     if [ "$result_count" -eq 1 ]; then
         echo "diff-highlight found; we are going to create a symlink and make it executable."
         echo "Need to become root in order to do this:"
