@@ -1,15 +1,13 @@
 root = true
 
 [*]
-# end_of_line = lf
-# charset = utf-8
-# insert_final_newline = true
 indent_style = space
 indent_size = 4
 tab_width = 8
 
 [{*vimrc,*.{c,cpp,css,go,h,hs,html,js,nim,py,scala,ts,vim}}]
 trim_trailing_whitespace = true
+insert_final_newline = true
 
 [{Makefile,.gitconfig*}]
 indent_style = tab
