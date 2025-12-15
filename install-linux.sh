@@ -130,7 +130,7 @@ if [ -n "$install_git_diff_highlight" ]; then
     if [ "$result_count" -eq 1 ]; then
         echo "diff-highlight found; we are going to create a symlink and make it executable."
         echo "Need to become root in order to do this:"
-        sudo ln -sv $search_result /usr/bin/diff-highlight
+        sudo ln -sv $search_result /usr/local/bin/diff-highlight
         sudo chmod +x $search_result
     elif [ "$result_count" -eq 0 ]; then
         echo "diff-highlight not found; not going to create a symlink."
