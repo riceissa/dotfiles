@@ -255,7 +255,7 @@ if 1
 endif
 
 " See :help :DiffOrig
-if exists(":DiffOrig") != 2
+if v:version >= 700 && exists(":DiffOrig") != 2
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
         \ | diffthis | wincmd p | diffthis
 endif
