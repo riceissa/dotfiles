@@ -159,9 +159,9 @@ if maparg('*', 'x') ==# ''
   endif
 endif
 
-" From sensible.vim
+" Modified from sensible.vim
 if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+  nnoremap <silent> <C-L> :<C-U>nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
 if v:version >= 700
