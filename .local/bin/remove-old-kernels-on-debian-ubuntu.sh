@@ -7,7 +7,7 @@
 # the list printed in the dry run.
 
 uname -a
-IN_USE=$(uname -a | awk '{ print $3 }')
+IN_USE=$(uname -a | awk '{ print $3 }' | sed 's/-generic//')
 echo "Your in use kernel is $IN_USE"
 
 OLD_KERNELS=$(
@@ -22,9 +22,7 @@ echo "Old Kernels to be removed:"
 echo "$OLD_KERNELS"
 
 if [ "$1" == "exec" ]; then
-    for PACKAGE in $OLD_KERNELS; do
-        yes | apt purge "$PACKAGE"
-    done
+    yes | apt purge $(echo "$OLD_KERNELS" | tr '\n' ' ')
 else
     echo "If all looks good, run it again like this: sudo remove_old_kernels.sh exec"
 fi
