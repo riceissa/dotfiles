@@ -259,8 +259,6 @@ in a smart sort of way like C-w in bash."
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
 (setopt auto-dark-themes '((tango-dark) (issa-test)))
-;; (setopt auto-dark-dark-theme 'tango-dark)
-;; (setopt auto-dark-light-theme 'issa-test)
 (require 'auto-dark)
 (auto-dark-mode t)
 
