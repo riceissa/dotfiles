@@ -111,13 +111,11 @@ cnoremap <C-A> <Home>
 cnoremap <C-X><C-A> <C-A>
 inoremap <C-B> <Left>
 cnoremap <C-B> <Left>
-silent! while 0
-  inoremap <C-D> <Del>
-  inoremap <C-E> <End>
-  inoremap <C-F> <Right>
-  cnoremap <C-F> <Right>
-  cnoremap <C-X><C-E> <C-F>
-silent! endwhile
+inoremap <C-D> <Del>
+inoremap <C-E> <End>
+inoremap <C-F> <Right>
+cnoremap <C-F> <Right>
+cnoremap <C-X><C-E> <C-F>
 if v:version >= 700
   inoremap <expr> <C-D> col(".") >= col("$") ? "<C-D>" : "<Del>"
   cnoremap <expr> <C-D> getcmdpos() > strlen(getcmdline()) ? "<C-D>" : "<Del>"
@@ -125,12 +123,6 @@ if v:version >= 700
   inoremap <expr> <C-F> col(".") >= col("$") ? "<C-F>" : "<Right>"
   cnoremap <expr> <C-F> getcmdpos() > strlen(getcmdline()) ? &cedit : "<Right>"
   cnoremap <expr> <C-X><C-E> &cedit
-else
-  inoremap <C-D> <Del>
-  inoremap <C-E> <End>
-  inoremap <C-F> <Right>
-  cnoremap <C-F> <Right>
-  cnoremap <C-X><C-E> <C-F>
 endif
 
 if maparg('*', 'x') ==# ''
