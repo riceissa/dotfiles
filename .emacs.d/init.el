@@ -18,7 +18,7 @@
 
 (setopt mouse-wheel-progressive-speed nil)
 (setopt mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
-(setopt scroll-conservatively 1000)
+;; (setopt scroll-conservatively 1000)
 
 (setopt column-number-mode t)
 (setopt global-word-wrap-whitespace-mode t)
@@ -241,8 +241,8 @@ in a smart sort of way like C-w in bash."
 ;; (set-face-attribute 'default nil
 ;;                     :font font-name
 ;;                     :height font-height
-;;                     :background "white"  ;; equivalent to #ffffff
-;;                     :foreground "gray20" ;; equivalent to #333333
+;;                     :background "#ffffff"
+;;                     :foreground "#333333"
 ;;                     )
 ;; 2. reopen emacs
 ;; 3. M-x customize-create-theme
