@@ -130,8 +130,8 @@ if [ -n "$install_git_diff_highlight" ]; then
     if [ "$result_count" -eq 1 ]; then
         echo "diff-highlight found; we are going to create a symlink and make it executable."
         echo "Need to become root in order to do this:"
-        sudo ln -sv $search_result /usr/local/bin/diff-highlight
-        sudo chmod +x $search_result
+        sudo ln -sv "$search_result" /usr/local/bin/diff-highlight
+        sudo chmod +x "$search_result"
     elif [ "$result_count" -eq 0 ]; then
         echo "diff-highlight not found; not going to create a symlink."
     else
@@ -170,8 +170,8 @@ fi
 
 if [ -n "$install_neovim" ]; then
     config_home=${XDG_CONFIG_HOME:=$HOME/.config}
-    mkdir -p $config_home/nvim
-    ln -sv "$(pwd)/.config/nvim/init.vim" $config_home/nvim/init.vim
+    mkdir -p "$config_home"/nvim
+    ln -sv "$(pwd)/.config/nvim/init.vim" "$config_home"/nvim/init.vim
 fi
 
 if [ -n "$install_newsboat" ]; then
