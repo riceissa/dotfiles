@@ -1,6 +1,7 @@
 ;; This file is supposed to be for basic editing-related settings
 ;; that I would like whenever using Emacs on any machine.
 
+
 (setopt inhibit-startup-screen t)
 (setopt menu-bar-mode nil)
 (setopt tool-bar-mode nil)
@@ -30,6 +31,7 @@
 ;; This does not seem to actually obey what's in ~/.editorconfig a lot
 ;; of the time. I'm not sure why.
 (editorconfig-mode 1)
+
 
 ;; Make C-w work as in Bash.
 ;; This still doesn't work exactly like in bash, since bash seems to
@@ -64,3 +66,44 @@ in a smart sort of way like C-w in bash."
                        (search-backward " ")
                        (forward-char)
                        (goto-char (max (point) original-line-beginning))))))))
+
+
+;; hunspell provides better spelling suggestions in my opinion.
+;; To get hunspell on Windows, first install
+;; msys2 (https://www.msys2.org/), then follow the instructions
+;; in this answer https://emacs.stackexchange.com/a/45752/31094
+;; to get hunspell installed via msys2 (the instructions
+;; are for aspell but it's very similar). Once hunspell is
+;; installed, the configuration below should automatically work.
+;; Also it is kind of bizarre that Emacs (which in all other areas
+;; eschews the Unix philosophy) is that one that needs
+;; an external program to do spell checking, whereas Vim comes
+;; with its own (very excellent -- way better than hunspell)
+;; spell checker.
+(let ((spell-program-location (if (eq system-type 'windows-nt)
+                                  "C:/msys64/mingw64/bin/hunspell.exe"
+                                  "/usr/bin/hunspell")))
+    (when (file-exists-p spell-program-location)
+        (setopt ispell-program-name spell-program-location)
+        (setenv "DICTIONARY" "en_US")))
+
+;; Turn on flyspell in most files
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Emacs already binds C-; to flyspell-auto-correct-previous-word.
+;; However, in my experience this command has a couple of bugs:
+;; 1. Sometimes it shifts the screen as if I had typed C-l or something.
+;; 2. It often misses misspelled words (that actually have a red squiggly
+;;    underline) that are closer to point and tries to fix words farther
+;;    away from point.
+;; 3. Possibly related to the bug in (1), if I have multiple copies of
+;;    the same buffer (at different locations) open in different panes,
+;;    then the pane that I am not in will also be shifted.
+;; I may eventually need to roll my own elisp code to get the behavior I
+;; want (basically Vim's insert-mode C-x C-s), but I did notice while
+;; playing around that flyspell mode has this other command to look
+;; backwards to fix a spelling mistake, so I'll be trying it for now.
+(eval-after-load "flyspell"
+    '(define-key flyspell-mode-map (kbd "C-;")
+         'flyspell-check-previous-highlighted-word))
