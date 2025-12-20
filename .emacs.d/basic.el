@@ -1,3 +1,6 @@
+;; This file is supposed to be for basic editing-related settings
+;; that I would like whenever using Emacs on any machine.
+
 (setopt inhibit-startup-screen t)
 (setopt menu-bar-mode nil)
 (setopt tool-bar-mode nil)
