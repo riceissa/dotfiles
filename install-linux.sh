@@ -106,6 +106,8 @@ fi
 if [ -n "$install_emacs" ]; then
     mkdir -p ~/.emacs.d
     ln -sv "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
+    ln -sv "$(pwd)/.emacs.d/basic.el" ~/.emacs.d/basic.el
+    ln -sv "$(pwd)/.emacs.d/spaced-inbox.el" ~/.emacs.d/spaced-inbox.el
 fi
 
 if [ -n "$install_gf" ]; then
