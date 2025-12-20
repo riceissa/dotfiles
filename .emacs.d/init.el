@@ -26,12 +26,12 @@
 ;; an external program to do spell checking, whereas Vim comes
 ;; with its own (very excellent -- way better than hunspell)
 ;; spell checker.
-(if (eq system-type 'windows-nt)
-    (progn
-      (setopt ispell-program-name "C:/msys64/mingw64/bin/hunspell.exe")
-      (setenv "DICTIONARY" "en_US"))
-  (when (file-exists-p "/usr/bin/hunspell")
-    (setopt ispell-program-name "/usr/bin/hunspell")))
+(let ((spell-program-location (if (eq system-type 'windows-nt)
+                                  "C:/msys64/mingw64/bin/hunspell.exe"
+                                  "/usr/bin/hunspell")))
+    (when (file-exists-p spell-program-location)
+        (setopt ispell-program-name spell-program-location)
+        (setenv "DICTIONARY" "en_US")))
 
 ;; Turn on flyspell in most files
 (add-hook 'text-mode-hook 'flyspell-mode)
