@@ -62,6 +62,7 @@ set scrolloff=3 guicursor=
 silent! set completeopt=menu
 set nohlsearch ignorecase smartcase
 set shortmess-=S  " Show number of matches when searching
+set sessionoptions-=options viewoptions-=options
 silent! set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
 set formatoptions=tcrq
 silent! set formatoptions+=j
