@@ -43,6 +43,8 @@ set ttimeout ttimeoutlen=50 nojoinspaces autoindent autoread
 set hidden  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-hidden
 set nostartofline  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-nostartofline
 set history=10000 laststatus=2 display=lastline nrformats-=octal complete-=i
+set shortmess-=S  " Show number of matches when searching
+set sessionoptions-=options viewoptions-=options  " If I make a session file, then change something in my vimrc for example, then load the session file, the new Vim instance will have settings from the old vimrc, which is probably not what I want. In general, session files should save a snapshot of what I was working on at the time, rather than saving the way Vim behaves. Behavior changes should be saved as EditorConfig files or in the vimrc.
 silent! set belloff=all
 silent! set incsearch
 silent! set tags=./tags;,tags  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#working-with-tags
@@ -61,8 +63,6 @@ set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it t
 set scrolloff=3 guicursor=
 silent! set completeopt=menu
 set nohlsearch ignorecase smartcase
-set shortmess-=S  " Show number of matches when searching
-set sessionoptions-=options viewoptions-=options
 silent! set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
 set formatoptions=tcrq
 silent! set formatoptions+=j
