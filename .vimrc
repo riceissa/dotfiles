@@ -229,7 +229,7 @@ if exists('*getcmdtype') && exists('*fnameescape')
   cnoremap %% <C-R><C-R>=getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'<CR>
 endif
 
-set cinoptions=l1
+set cinoptions=l1,(0
 if 1
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-no-c_comment_strings
   unlet! c_comment_strings
