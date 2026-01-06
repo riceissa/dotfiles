@@ -49,7 +49,7 @@ silent! set belloff=all
 silent! set incsearch
 silent! set tags=./tags;,tags  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#working-with-tags
 silent! set mouse=nvi
-if has('mouse') && exists('&ttymouse') && exists('$TMUX')
+if has('mouse') && exists('&ttymouse') && (exists('$TMUX') || (exists('$TERM') && $TERM =~# '^\(screen-\|tmux-\)'))
   set ttymouse=xterm2  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#making-the-mouse-work-in-vim-under-tmux
 endif
 silent! set wildoptions=tagfile
