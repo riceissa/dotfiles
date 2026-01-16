@@ -60,7 +60,7 @@ inoremap <C-W> <C-G>u<C-W>
 
 set expandtab shiftwidth=4 softtabstop=4
 set viminfo&  " Fedora's /etc/vimrc sets this to a terrible value, so reset it to the Vim default; see https://github.com/riceissa/computing-notes/blob/main/vim.md#vimrc-on-fedora for more information.
-set scrolloff=3 guicursor=
+set scrolloff=3
 silent! set completeopt=menu
 set nohlsearch ignorecase smartcase
 silent! set listchars=tab:>-,extends:>,precedes:<,nbsp:+,trail:@
@@ -74,6 +74,16 @@ silent! set smoothscroll
 set suffixes+=,
 " And a few more extensions I am unlikely to want to open in Vim:
 set suffixes+=.pdf,.epub,.ttf
+
+if has('nvim')
+  " Clearing this on Vim leads to Fedora's /etc/vimrc not being able to be
+  " sourced multiple times (which I've had to do when testing things at one
+  " point) due to Fedora's /etc/vimrc changing guicursor without using the +=
+  " operator. Since the whole point of setting this option was to get rid of
+  " the fancy cursor in Neovim (Vim doesn't do fancy cursors in the first
+  " place), I am guarding this line to only be done in Neovim.
+  set guicursor=
+endif
 
 nnoremap g/ /[^\d32-\d126]<CR>
 
