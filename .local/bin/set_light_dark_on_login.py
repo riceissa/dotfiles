@@ -25,7 +25,11 @@ ct_minute = int(civil_twilight_end[2:])
 
 now = datetime.datetime.now()
 
-should_be_dark_mode = (now.hour > ct_hour) or (now.hour == ct_hour and now.minute >= ct_minute)
+after_civil_twilight_end = (now.hour > ct_hour) or (now.hour == ct_hour and now.minute >= ct_minute)
+
+after_eight_pm = now.hour >= 20
+
+should_be_dark_mode = after_civil_twilight_end or after_eight_pm
 
 if should_be_dark_mode:
     subprocess.run(["gsettings", "set", "org.gnome.desktop.interface", "color-scheme", "'prefer-dark'"])
