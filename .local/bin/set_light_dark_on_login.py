@@ -12,7 +12,7 @@ result = subprocess.run(["sunwait", "-p", "47.603889N", "122.33W"], capture_outp
 
 lines = [line for line in result.stdout.decode('utf-8').split("\n") if "Civil twilight start" in line]
 
-assert len(lines) == 1, "More than one match found!"
+assert len(lines) == 1, f"Expected a single match, but found {len(lines)}."
 
 civil_twilight_line_words = lines[0].split()
 
