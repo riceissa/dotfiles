@@ -8,7 +8,7 @@
 
 (setopt mouse-wheel-progressive-speed nil)
 (setopt mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
-;; (setopt scroll-conservatively 1000)
+(setopt scroll-conservatively 1000)
 
 (setopt column-number-mode t)
 (setopt global-word-wrap-whitespace-mode t)

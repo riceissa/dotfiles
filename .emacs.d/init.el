@@ -14,7 +14,7 @@
 
 (load "~/.emacs.d/basic.el" t)
 
-(setopt org-agenda-files '("~/todo.org"))
+(setopt org-agenda-files '("~/todo.org" "~/tasks.org"))
 (setopt org-capture-templates
       '(("i" "Idea" entry (file "~/notes.org") "* %T %?")
            ("t" "TODO item" entry (file+headline "~/todo.org" "Tasks")
