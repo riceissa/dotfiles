@@ -120,4 +120,5 @@
         (find-file inbox-file)
         (end-of-buffer)
         (recenter-top-bottom)
-        (roll)))
+        (roll)
+        (org-agenda-list)))
