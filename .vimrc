@@ -38,6 +38,10 @@ endif
 " versions
 set ruler showcmd backspace=indent,eol,start wildmenu
 
+" "silent!" means that an option or value did not exist in older Vim versions,
+" and is used to ignore error messages when using this vimrc with these older
+" Vim versions.
+
 " Copying some of the Neovim defaults that I like
 set ttimeout ttimeoutlen=50 nojoinspaces autoindent autoread
 set hidden  " See https://github.com/riceissa/computing-notes/blob/main/vim.md#why-set-hidden
