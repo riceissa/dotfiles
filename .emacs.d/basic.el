@@ -11,7 +11,7 @@
 (setopt scroll-conservatively 1000)
 
 (setopt column-number-mode t)
-(setopt global-word-wrap-whitespace-mode t)
+;; (setopt global-word-wrap-whitespace-mode t) ;; commenting this out -- see the text-mode-hook below
 (setopt indent-tabs-mode nil)
 (setopt make-backup-files nil)
 (setopt markdown-enable-math t)
@@ -87,8 +87,8 @@ in a smart sort of way like C-w in bash."
         (setopt ispell-program-name spell-program-location)
         (setenv "DICTIONARY" "en_US")))
 
-;; Turn on flyspell in most files
 (add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'word-wrap-whitespace-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; Emacs already binds C-; to flyspell-auto-correct-previous-word.
