@@ -14,6 +14,8 @@ while [ -n "$1" ]; do
         ;;
     gf) install_gf=yes
         ;;
+    ghostty) install_ghostty=yes
+        ;;
     git) install_git=yes
         ;;
     git_diff_highlight) install_git_diff_highlight=yes
@@ -56,9 +58,9 @@ Options:
 
 Arguments:
   programs          Can be one or more of the following, separated by spaces:
-                    bash, editorconfig, emacs, gf, git, git_diff_highlight,
-                    kitty, lazygit, local_bin, neovim, newsboat, proselint,
-                    tmux, vim, vim_commentary, vim_sleuth
+                    bash, editorconfig, emacs, gf, ghostty, git,
+                    git_diff_highlight, kitty, lazygit, local_bin, neovim,
+                    newsboat, proselint, tmux, vim, vim_commentary, vim_sleuth
 
 For instance to install dotfiles for Vim and tmux, run:
     ./install-linux.sh vim tmux
@@ -113,6 +115,11 @@ fi
 if [ -n "$install_gf" ]; then
     mkdir -p ~/.config
     ln -sv "$(pwd)/.config/gf2_config.ini" ~/.config/gf2_config.ini
+fi
+
+if [ -n "$install_ghostty" ]; then
+    mkdir -p ~/.config/ghostty
+    ln -sv "$(pwd)/.config/ghostty/config" ~/.config/ghostty/config
 fi
 
 if [ -n "$install_git" ]; then
