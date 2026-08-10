@@ -18,9 +18,12 @@ unfocused-split-opacity = 1
 
 # Don't blink the cursor in the shell
 shell-integration-features = no-cursor
+cursor-style-blink = false
 
 # By default Ghostty scrolls a huge amount inside of Neovim. This makes it
-# scroll a more reasonable amount (3 lines).
+# scroll a more reasonable amount (3 lines).  However, this also makes
+# scrolling in the shell output only scroll by 1 line at a time, which
+# is annoying...
 mouse-scroll-multiplier = 0.5
 
 # Cursor is way too thin by default.
