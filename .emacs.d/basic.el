@@ -22,6 +22,7 @@
 (setopt show-paren-mode t)
 (setopt show-trailing-whitespace t)
 (setopt vc-follow-symlinks t)
+(setopt isearch-lazy-count t)
 
 ;; I forgot why I needed to put these lines. Probably because Windows
 ;; is stupid and doesn't use UTF-8 by default.
