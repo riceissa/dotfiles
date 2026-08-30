@@ -26,6 +26,8 @@ while [ -n "$1" ]; do
         ;;
     local_bin) install_local_bin=yes
         ;;
+    mocp) install_mocp=yes
+        ;;
     neovim) install_neovim=yes
         ;;
     newsboat) install_newsboat=yes
@@ -59,7 +61,7 @@ Options:
 Arguments:
   programs          Can be one or more of the following, separated by spaces:
                     bash, editorconfig, emacs, gf, ghostty, git,
-                    git_diff_highlight, kitty, lazygit, local_bin, neovim,
+                    git_diff_highlight, kitty, lazygit, local_bin, mocp, neovim,
                     newsboat, proselint, tmux, vim, vim_commentary, vim_sleuth
 
 For instance to install dotfiles for Vim and tmux, run:
@@ -175,6 +177,12 @@ if [ -n "$install_local_bin" ]; then
     if ! (grep -q -F "$binline" ~/.bashrc); then
         echo "$binline" >> ~/.bashrc
     fi
+fi
+
+if [ -n "$install_mocp" ]; then
+    mkdir -p ~/.moc/themes
+    ln -sv "$(pwd)/.moc/config" ~/.moc/config
+    ln -sv "$(pwd)/.moc/themes/my_theme" ~/.moc/themes/my_theme
 fi
 
 if [ -n "$install_neovim" ]; then
