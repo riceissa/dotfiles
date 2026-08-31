@@ -296,6 +296,7 @@ if has('autocmd')
   augroup END
 endif
 
+" This block must come before setting the colorscheme.
 if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
   " Modified from
   " https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
@@ -318,6 +319,8 @@ if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty
 endif
 
 if exists('*empty') && !empty(globpath(&rtp, 'colors/vim.*'))
+  " According to the Kitty documentation, the colorscheme must be set after the
+  " terminal settings above.
   colorscheme vim
   set notermguicolors
 endif
