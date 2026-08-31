@@ -91,20 +91,6 @@ endif
 
 nnoremap g/ /[^\d32-\d126]<CR>
 
-" Mapping using C-/ works on kitty but not Gnome Terminal. Mapping using C-_
-" works on Gnome Terminal (and the mapping can be activated using both C-_ and
-" C-/), but on kitty that mapping does not work at all (pressing C-/ just acts
-" as if I typed /, and pressing C-_ makes the font size smaller). There might
-" also be a Vim vs Neovim thing going on. Having both mappings here makes it
-" work in all the terminal + Vim/Neovim + tmux configurations I've tried.
-if v:version >= 700
-  nnoremap <expr> <C-/> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
-  nnoremap <expr> <C-_> ":<C-U>set " . (&hlsearch ? "nohlsearch" : "hlsearch") . "<CR>"
-else
-  nnoremap <C-/> :<C-U>set hlsearch!<CR>
-  nnoremap <C-_> :<C-U>set hlsearch!<CR>
-endif
-
 if v:version >= 700
   " See https://github.com/riceissa/computing-notes/blob/main/vim.md#better-j-and-k
   " for explanation.
