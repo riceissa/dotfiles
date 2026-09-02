@@ -3,3 +3,4 @@ tags
 __pycache__
 *.pyc
 .gutctags
+.wrangler

@@ -296,7 +296,8 @@ if has('autocmd')
   augroup END
 endif
 
-" This block must come before setting the colorscheme.
+" This block must come before setting the colorscheme; see the Kitty
+" documentation link below.
 if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty"
   " Modified from
   " https://sw.kovidgoyal.net/kitty/faq/#using-a-color-theme-with-a-background-color-does-not-work-well-in-vim
@@ -319,8 +320,12 @@ if v:version >= 704 && !has('nvim') && exists('$TERM') && $TERM ==# "xterm-kitty
 endif
 
 if exists('*empty') && !empty(globpath(&rtp, 'colors/vim.*'))
-  " According to the Kitty documentation, the colorscheme must be set after the
-  " terminal settings above.
+  " According to the Kitty documentation (see the link above), the colorscheme
+  " must be set after the terminal settings above. However, currently this
+  " block only runs under Neovim, and the terminal settings above only run
+  " under Vim, so there is never a case where both blocks could run and the
+  " ordering could cause issues. But it's good to keep in mind in case I decide
+  " to use a different colorscheme for both Neovim and Vim in the future.
   colorscheme vim
   set notermguicolors
 endif
