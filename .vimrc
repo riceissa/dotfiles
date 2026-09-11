@@ -79,6 +79,16 @@ set suffixes+=,
 " And a few more extensions I am unlikely to want to open in Vim:
 set suffixes+=.pdf,.epub,.ttf
 
+if v:version >= 700
+  " Vim and Neovim both use the same spellfile format, but Neovim by default uses
+  " a different location for the spellfile, so we standardize to Vim's default
+  " location.
+  if !isdirectory(expand('~/.vim/spell'))
+    call mkdir(expand('~/.vim/spell'), 'p')
+  endif
+  set spellfile=~/.vim/spell/en.utf-8.add
+endif
+
 if has('nvim')
   " Clearing this on Vim leads to Fedora's /etc/vimrc not being able to be
   " sourced multiple times (which I've had to do when testing things at one
