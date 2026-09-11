@@ -112,6 +112,12 @@ if [ -n "$install_emacs" ]; then
     ln -sv "$(pwd)/.emacs.d/init.el" ~/.emacs.d/init.el
     ln -sv "$(pwd)/.emacs.d/basic.el" ~/.emacs.d/basic.el
     ln -sv "$(pwd)/.emacs.d/spaced-inbox.el" ~/.emacs.d/spaced-inbox.el
+
+    # Vim and Hunspell both have pretty much the same spell file format (one
+    # word per line), so just use the same file.
+    mkdir -p "$HOME/.vim/spell"
+    touch "$HOME/.vim/spell/en.utf-8.add"
+    ln -sv "$HOME/.vim/spell/en.utf-8.add" "$HOME/.hunspell_en_US"
 fi
 
 if [ -n "$install_gf" ]; then
@@ -207,7 +213,7 @@ if [ -n "$install_tmux" ]; then
 fi
 
 if [ -n "$install_vim" ]; then
-    mkdir -p ~/.vim
+    mkdir -p ~/.vim/spell
     ln -sv "$(pwd)/.vimrc" ~/.vimrc
 fi
 
