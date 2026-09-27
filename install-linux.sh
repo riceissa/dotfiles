@@ -38,6 +38,8 @@ while [ -n "$1" ]; do
         ;;
     vim) install_vim=yes
         ;;
+    vim_characterize) install_vim_characterize=yes
+        ;;
     vim_commentary) install_vim_commentary=yes
         ;;
     vim_sleuth) install_vim_sleuth=yes
@@ -62,7 +64,8 @@ Arguments:
   programs          Can be one or more of the following, separated by spaces:
                     bash, editorconfig, emacs, gf, ghostty, git,
                     git_diff_highlight, kitty, lazygit, local_bin, mocp, neovim,
-                    newsboat, proselint, tmux, vim, vim_commentary, vim_sleuth
+                    newsboat, proselint, tmux, vim, vim_characterize,
+                    vim_commentary, vim_sleuth
 
 For instance to install dotfiles for Vim and tmux, run:
     ./install-linux.sh vim tmux
@@ -215,6 +218,16 @@ fi
 if [ -n "$install_vim" ]; then
     mkdir -p ~/.vim/spell
     ln -sv "$(pwd)/.vimrc" ~/.vimrc
+fi
+
+if [ -n "$install_vim_characterize" ]; then
+    mkdir -p ~/.vim/pack/tpope/start/characterize/doc
+    mkdir -p ~/.vim/pack/tpope/start/characterize/plugin
+    mkdir -p ~/.vim/pack/tpope/start/characterize/autoload
+    ln -sv "$(pwd)/.vim/pack/tpope/start/characterize/doc/characterize.txt" ~/.vim/pack/tpope/start/characterize/doc/characterize.txt
+    ln -sv "$(pwd)/.vim/pack/tpope/start/characterize/plugin/characterize.vim" ~/.vim/pack/tpope/start/characterize/plugin/characterize.vim
+    ln -sv "$(pwd)/.vim/pack/tpope/start/characterize/autoload/characterize.vim" ~/.vim/pack/tpope/start/characterize/autoload/characterize.vim
+    vim -u NONE -c "helptags ~/.vim/pack/tpope/start/characterize/doc" -c q
 fi
 
 if [ -n "$install_vim_commentary" ]; then
