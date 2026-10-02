@@ -90,6 +90,7 @@ in a smart sort of way like C-w in bash."
 
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'word-wrap-whitespace-mode)
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; Emacs already binds C-; to flyspell-auto-correct-previous-word.
