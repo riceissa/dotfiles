@@ -47,7 +47,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
+ )
 
 (setq mymediawiki-highlights
       '(("<ref[^>/]*>?[^<]*\\(</ref>\\|/>\\)" . font-lock-constant-face)))
@@ -112,6 +112,36 @@
 (setopt auto-dark-themes '((tango-dark) (issa-test)))
 (require 'auto-dark)
 (auto-dark-mode t)
+
+;; This block is written by Claude Fable 5.2.
+(with-eval-after-load 'markdown-mode
+  ;; 1. Don't treat footnote definitions ("[^label]: text") as reference
+  ;;    link definitions ("[label]: url"): forbid a label starting with ^.
+  (let ((old markdown-regex-reference-definition)
+        (new "^ \\{0,3\\}\\(?1:\\[\\)\\(?2:[^]^\n][^]\n]*?\\)\\(?3:\\]\\)\\(?4::\\)\\s *\\(?5:.*?\\)\\s *\\(?6: \"[^\"]*\"$\\|$\\)"))
+    (dolist (kw markdown-mode-font-lock-keywords)
+      (when (equal (car-safe kw) old)
+        (setcar kw new)))
+    (setq markdown-regex-reference-definition new))
+
+  ;; 2. Indented continuation lines of a footnote are not code blocks.
+  (defun my/markdown-unpre-footnotes (start end)
+    "Remove the `markdown-pre' property from footnote bodies in START..END."
+    (save-excursion
+      (save-match-data
+        (let ((pos start))
+          (while (and pos (< pos end))
+            (if (not (get-text-property pos 'markdown-pre))
+                (setq pos (next-single-property-change pos 'markdown-pre nil end))
+              (let ((next (or (next-single-property-change pos 'markdown-pre nil end)
+                              end)))
+                (goto-char pos)
+                (when (markdown-footnote-text-positions)
+                  (remove-text-properties pos next '(markdown-pre nil)))
+                (setq pos next))))))))
+  (advice-add 'markdown-syntax-propertize-pre-blocks
+              :after #'my/markdown-unpre-footnotes))
+
 
 ;; Stuff to do on startup
 (let ((inbox-file "/home/issa/projects/notes/inbox.txt"))
