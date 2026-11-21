@@ -255,6 +255,8 @@ if 1
   " Old style, for older versions of Vim; there is no equivalent of
   " closed_paren_align_last_line in the old style configuration.
   let g:pyindent_open_paren = '&sw'
+
+  let g:sql_type_default = 'mysql'
 endif
 
 " See :help :DiffOrig

@@ -5,7 +5,7 @@ indent_style = space
 indent_size = 4
 tab_width = 8
 
-[{*vimrc,*.{c,cpp,css,go,h,hs,html,js,nim,py,scala,ts,vim}}]
+[{*vimrc,*.{c,cpp,css,go,h,hs,html,js,nim,py,scala,sql,ts,vim}}]
 trim_trailing_whitespace = true
 insert_final_newline = true
 
