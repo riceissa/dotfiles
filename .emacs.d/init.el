@@ -32,15 +32,15 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-      '("ff0d5f6adf3182829eee9ace64d2e32bc0f0e00890eb54879cac364be9dc243f"
-           default))
- '(package-selected-packages '(auctex auto-dark magit markdown-mode s)))
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(custom-safe-themes
+;;       '("ff0d5f6adf3182829eee9ace64d2e32bc0f0e00890eb54879cac364be9dc243f"
+;;            default))
+;;  '(package-selected-packages '(auctex auto-dark magit markdown-mode s)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -109,9 +109,9 @@
 ;; option; otherwise it starts to load random themes like leuven and
 ;; wombat that I don't want. See
 ;; https://github.com/LionyxML/auto-dark-emacs/issues/51
-(setopt auto-dark-themes '((tango-dark) (issa-test)))
-(require 'auto-dark)
-(auto-dark-mode t)
+;; (setopt auto-dark-themes '((tango-dark) (issa-test)))
+;; (require 'auto-dark)
+;; (auto-dark-mode t)
 
 ;; This block is written by Claude Fable 5.2.
 (with-eval-after-load 'markdown-mode
@@ -144,7 +144,7 @@
 
 
 ;; Stuff to do on startup
-(let ((inbox-file "/home/issa/projects/notes/inbox.txt"))
+(let ((inbox-file "/var/home/user/Issa/projects/notes/inbox.txt"))
     (when (file-exists-p inbox-file)
         (find-file inbox-file)
         (end-of-buffer)
