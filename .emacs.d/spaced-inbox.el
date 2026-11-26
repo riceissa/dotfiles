@@ -1,3 +1,5 @@
+;; -*- lexical-binding: nil; -*-
+
 ;; spaced inbox stuff
 
 (defun daily-note-separator ()
