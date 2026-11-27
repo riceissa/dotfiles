@@ -5,7 +5,7 @@
 (defun daily-note-separator ()
   "Insert the daily note separator for spaced inbox."
   (interactive)
-  (shell-command-to-string "python3 /home/issa/projects/spaced-inbox/spaced_inbox.py")  ;; I don't need the output but I also don't want to have a buffer pop up showing me the output (which is what would happen if I used shell-command instead), so I store it to a string and just ignore it.
+  (shell-command-to-string "python3 /home/issa/Issa/projects/spaced-inbox/spaced_inbox.py")  ;; I don't need the output but I also don't want to have a buffer pop up showing me the output (which is what would happen if I used shell-command instead), so I store it to a string and just ignore it.
   (insert "=====\n")
   (insert (format-time-string "%Y-%m-%d"))
   (insert "\n\n\n")

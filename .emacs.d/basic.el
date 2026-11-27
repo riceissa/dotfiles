@@ -13,7 +13,6 @@
 (setopt scroll-conservatively 1000)
 
 (setopt column-number-mode t)
-;; (setopt global-word-wrap-whitespace-mode t) ;; commenting this out -- see the text-mode-hook below
 (setopt indent-tabs-mode nil)
 (setopt make-backup-files nil)
 (setopt markdown-enable-math t)
