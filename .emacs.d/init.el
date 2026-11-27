@@ -146,7 +146,7 @@
 
 
 ;; Stuff to do on startup
-(let ((inbox-file "/var/home/user/Issa/projects/notes/inbox.txt"))
+(let ((inbox-file "/home/issa/Issa/projects/notes/inbox.txt"))
     (when (file-exists-p inbox-file)
         (find-file inbox-file)
         (end-of-buffer)

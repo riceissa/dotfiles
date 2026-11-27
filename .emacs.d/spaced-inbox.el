@@ -29,7 +29,7 @@
 
 (defun roll ()
   (interactive)
-  (let* ((spaced-inbox-executable "python3 /var/home/user/Issa/projects/spaced-inbox/spaced_inbox.py")
+  (let* ((spaced-inbox-executable "python3 /home/issa/Issa/projects/spaced-inbox/spaced_inbox.py")
          (flags "-r")
          (spaced-inbox-command (concat spaced-inbox-executable " " flags)))
     (progn
